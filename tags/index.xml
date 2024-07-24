@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on My Blog</title>
+    <title>Tags on Daminha Blog</title>
     <link>https://dangduongminhnhat.github.io/tags/</link>
-    <description>Recent content in Tags on My Blog</description>
+    <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 24 Jul 2024 19:02:25 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>https://dangduongminhnhat.github.io/tags/about-me/</link>
+      <pubDate>Wed, 24 Jul 2024 19:02:25 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/about-me/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Personal</title>
+      <link>https://dangduongminhnhat.github.io/tags/personal/</link>
+      <pubDate>Wed, 24 Jul 2024 19:02:25 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/personal/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
