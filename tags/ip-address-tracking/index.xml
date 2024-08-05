@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IP Address Tracking on Daminha Blog</title>
+    <link>http://localhost:1313/tags/ip-address-tracking/</link>
+    <description>Recent content in IP Address Tracking on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Aug 2024 12:46:40 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ip-address-tracking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Extracting IP Addresses Through Various Interactions on Chat Applications like Zalo and Telegram</title>
+      <link>http://localhost:1313/posts/d050824/extracting-ip-address/</link>
+      <pubDate>Mon, 05 Aug 2024 12:46:40 +0700</pubDate>
+      <guid>http://localhost:1313/posts/d050824/extracting-ip-address/</guid>
+      <description>In the digital age, chat applications like Zalo and Telegram are essential tools for communication. However, they also open doors for cybercriminals to exploit users. One sophisticated method involves extracting IP addresses using spoofed URLs and phishing tactics. This blog post dives into the mechanics of URL spoofing, the common types of attacks, and a step-by-step demonstration of how attackers can track IP addresses through seemingly harmless interactions on these chat applications.</description>
+    </item>
+  </channel>
+</rss>

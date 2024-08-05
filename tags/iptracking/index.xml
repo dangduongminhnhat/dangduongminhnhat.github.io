@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Daminha Blog</title>
-    <link>https://dangduongminhnhat.github.io/posts/</link>
-    <description>Recent content in Posts on Daminha Blog</description>
+    <title>IPTracking on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/iptracking/</link>
+    <description>Recent content in IPTracking on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Aug 2024 12:46:40 +0700</lastBuildDate>
-    <atom:link href="https://dangduongminhnhat.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dangduongminhnhat.github.io/tags/iptracking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Extracting IP Addresses via Chat Apps: Zalo and Telegram</title>
       <link>https://dangduongminhnhat.github.io/posts/d050824/extracting-ip-address/</link>
       <pubDate>Mon, 05 Aug 2024 12:46:40 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/posts/d050824/extracting-ip-address/</guid>
       <description>In this blog post, I explore how cybercriminals exploit chat applications like Zalo and Telegram to extract users&amp;rsquo; IP addresses through methods like URL spoofing and phishing. By creating and distributing spoofed URLs, attackers can deceive users into revealing sensitive information. I also highlight a specific vulnerability in Telegram that exposes user IP addresses during calls. Learn the mechanics of these attacks, see a detailed proof of concept, and discover essential tips to protect your privacy online.</description>
-    </item>
-    <item>
-      <title>About Me</title>
-      <link>https://dangduongminhnhat.github.io/posts/about-me/</link>
-      <pubDate>Wed, 24 Jul 2024 19:02:25 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/about-me/</guid>
-      <description>Welcome to my blog! I am Dang Duong Minh Nhat, a passionate mathematics student with a strong interest in cybersecurity.</description>
     </item>
   </channel>
 </rss>

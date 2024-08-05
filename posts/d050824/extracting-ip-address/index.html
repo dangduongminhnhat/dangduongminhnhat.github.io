@@ -1,0 +1,482 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Extracting IP Addresses via Chat Apps: Zalo and Telegram - </title>
+
+  <meta name="description" content="In this blog post, I explore how cybercriminals exploit chat applications like Zalo and Telegram to extract users&rsquo; IP addresses through methods like URL spoofing and phishing. By creating and distributing spoofed URLs, attackers can deceive users into revealing sensitive information. I also highlight a specific vulnerability in Telegram that exposes user IP addresses during calls. Learn the mechanics of these attacks, see a detailed proof of concept, and discover essential tips to protect your privacy online."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Daminha Blog",
+    
+    "url": "https:\/\/dangduongminhnhat.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dangduongminhnhat.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dangduongminhnhat.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dangduongminhnhat.github.io\/posts\/d050824\/extracting-ip-address\/",
+          "name": "Extracting IP addresses via chat apps zalo and telegram"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Dang Duong Minh Nhat"
+  },
+  "headline": "Extracting IP Addresses via Chat Apps: Zalo and Telegram",
+  "description" : "In this blog post, I explore how cybercriminals exploit chat applications like Zalo and Telegram to extract users\u0026rsquo; IP addresses through methods like URL spoofing and phishing. By creating and distributing spoofed URLs, attackers can deceive users into revealing sensitive information. I also highlight a specific vulnerability in Telegram that exposes user IP addresses during calls. Learn the mechanics of these attacks, see a detailed proof of concept, and discover essential tips to protect your privacy online.",
+  "inLanguage" : "en",
+  "wordCount":  1960 ,
+  "datePublished" : "2024-08-05T12:46:40\u002b07:00",
+  "dateModified" : "2024-08-05T12:46:40\u002b07:00",
+  "image" : "https:\/\/dangduongminhnhat.github.io\/",
+  "keywords" : [ "IPTracking, CyberSecurity, OnlineSafety" ],
+  "mainEntityOfPage" : "https:\/\/dangduongminhnhat.github.io\/posts\/d050824\/extracting-ip-address\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dangduongminhnhat.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dangduongminhnhat.github.io\/",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Extracting IP Addresses via Chat Apps: Zalo and Telegram" />
+<meta property="og:description" content="In this blog post, I explore how cybercriminals exploit chat applications like Zalo and Telegram to extract users&rsquo; IP addresses through methods like URL spoofing and phishing. By creating and distributing spoofed URLs, attackers can deceive users into revealing sensitive information. I also highlight a specific vulnerability in Telegram that exposes user IP addresses during calls. Learn the mechanics of these attacks, see a detailed proof of concept, and discover essential tips to protect your privacy online.">
+<meta property="og:url" content="https://dangduongminhnhat.github.io/posts/d050824/extracting-ip-address/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Daminha Blog" />
+
+  <meta name="twitter:title" content="Extracting IP Addresses via Chat Apps: Zalo and Telegram" />
+  <meta name="twitter:description" content="In this blog post, I explore how cybercriminals exploit chat applications like Zalo and Telegram to extract users&rsquo; IP addresses through methods like URL spoofing and phishing. By creating and …">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="generator" content="Hugo 0.129.0">
+  <link rel="alternate" href="https://dangduongminhnhat.github.io/index.xml" type="application/rss+xml" title="Daminha Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/posts/about-me/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>Extracting IP Addresses via Chat Apps: Zalo and Telegram</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>
+          <strong>Posted on:</strong> August 5, 2024 |
+          <strong>Reading time:</strong> 10 minutes |
+          <strong>Word count:</strong> 1960 words |
+          <strong>Author:</strong> Dang Duong Minh Nhat
+        </p>
+        <p>In the digital age, chat applications like Zalo and Telegram are essential tools for communication. However, they also open doors for cybercriminals to exploit users. One sophisticated method involves extracting IP addresses using spoofed URLs and phishing tactics. This blog post dives into the mechanics of URL spoofing, the common types of attacks, and a step-by-step demonstration of how attackers can track IP addresses through seemingly harmless interactions on these chat applications.</p>
+<p>I&rsquo;ll also explore a specific vulnerability in Telegram that allows hackers to discover a user&rsquo;s IP address during calls, revealing the potential risks and the necessary precautions to safeguard your online privacy.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#tracking-ip-address-by-using-an-image-url">Tracking IP Address by using an Image URL</a>
+<ul>
+<li><a href="#background">Background</a>
+<ul>
+<li><a href="#url-spoofing">URL spoofing</a></li>
+<li><a href="#phishing">Phishing</a></li>
+</ul>
+</li>
+<li><a href="#proof-of-concept">Proof of Concept</a>
+<ul>
+<li><a href="#attack-scenario">Attack Scenario</a></li>
+<li><a href="#exploitation-demo">Exploitation Demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#discover-the-user%E2%80%99s-ip-address-using-telegram.">Discover the user’s IP address using Telegram.</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#root-cause">Root Cause</a></li>
+<li><a href="#proof-of-concept">Proof of Concept</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h1 id="tracking-ip-address-by-using-an-image-url">Tracking IP Address by using an Image URL</h1>
+<h2 id="background">Background</h2>
+<h3 id="url-spoofing">URL spoofing</h3>
+<p><strong>Definition of URL Spoofing</strong></p>
+<ul>
+<li><strong>URL Spoofing</strong>: URL spoofing involves creating a fraudulent link that appears to be from a legitimate source. This deceptive tactic aims to trick users into providing personal data or inadvertently downloading malware.</li>
+<li><strong>Consequences</strong>: Interacting with spoofed URLs can result in the installation of malicious software or the unauthorized collection of sensitive information, such as passwords, financial details, and personal identification.</li>
+</ul>
+<p><strong>Distribution of Spoofed URLs Through Phishing</strong>: Spoofed URLs are often disseminated via phishing attacks. Phishing involves sending deceptive emails or text messages that lure recipients into clicking on fraudulent links. These messages often include enticing offers or urgent requests to prompt immediate action.</p>
+<p><strong>Common Types of URL Spoofing Attacks</strong></p>
+<ol>
+<li><strong>Links Behind Buttons or Words:</strong> A common phishing tactic involves embedding malicious links within buttons or hyperlinked text in emails that appear to be from trusted sources. By disguising the link, attackers can redirect users to harmful websites. Users can identify these links by hovering over them to reveal the true URL.
+Example: An email from a purported airline might offer discounted flights with a &ldquo;Book Now&rdquo; button. Clicking the button could lead to a malicious site that installs malware on the user’s device.</li>
+<li><strong>Misspelled Links:</strong> Hackers often create URLs that closely resemble legitimate ones, altering only a single character. This method exploits users’ tendency to skim read, making it easy to overlook minor discrepancies.
+Example: A phishing email from a fake Netflix account may request confirmation of payment details, linking to “netfliix.com” or “n3tflix.com” instead of the official Netflix site.</li>
+<li><strong>URL Shorteners:</strong> URL shortening services (e.g., <a href="bit.ly">bit.ly</a>) are used to condense long URLs, making them easier to share. However, these shortened links obscure the destination URL, allowing attackers to mask malicious links.
+Example: A shortened URL shared on social media or via text message may lead unsuspecting users to harmful websites.</li>
+<li><strong>Links with Non-Latin Characters:</strong> Hackers exploit non-Latin characters to create URLs that look nearly identical to legitimate ones. This method, known as homograph attack, involves using characters from different alphabets that appear similar to Latin characters.
+Example: A spoofed URL like “ņordvpn.com” may appear to be the legitimate “nordvpn.com” at a quick glance, deceiving users into visiting a fraudulent site.</li>
+</ol>
+<h3 id="phishing">Phishing</h3>
+<p>Phishing is a type of cyber-attack where attackers impersonate a trusted entity to deceive users into providing personal information. Commonly, cybercriminals masquerade as banks, online transaction websites, e-wallets, or credit card companies to trick users into sharing sensitive information, such as login credentials, transaction passwords, credit card details, and other valuable data.</p>
+<p>Typically, phishing attacks are executed via emails and text messages. When users open these emails and click on the spoofed links, they are directed to a fake login page where they are prompted to enter their credentials. If they fall for the scam, the attackers immediately gain access to their information. In this case, I will focus on the use of phishing to distribute URL spoofing attacks.</p>
+<h2 id="proof-of-concept">Proof of Concept</h2>
+<h3 id="attack-scenario">Attack Scenario</h3>
+<p>In this section, I will outline a detailed attack scenario demonstrating the use of URL spoofing to track the IP addresses of victims through various interactions on chat applications like Zalo and Telegram.</p>
+<p><strong>Step 1: Creation of a Spoofed URL.</strong>
+Select an image to use as bait. This image could be a popular meme, an interesting photograph, or a seemingly important document that the attacker believes will entice the victim to click the link.
+Upload the selected image to a website that allows for IP logging, such as Grabify, IP Logger, or a similar service. These services generate a URL that captures the IP address of the visitor when clicked.</p>
+<p><strong>Step 2: URL Shortening.</strong>
+Use a URL shortening service like Bitly or TinyURL to condense the lengthy IP logging URL into a shorter, more innocuous-looking link.
+Obtain the shortened URL, which will be less suspicious and more likely to be clicked by the victim.</p>
+<p><strong>Step 3: Distribution of the Spoofed URL.</strong>
+Craft a message to send to the victim through a chat application like Zalo or Telegram. The message should be compelling enough to encourage the victim to click the link.
+Send the message with the shortened URL to the victim via the chosen chat application.</p>
+<p><strong>Step 4: Tracking the IP Address.</strong>
+When the victim clicks on the shortened URL, they are redirected to the IP logging service, which records their IP address before displaying the image.
+Log in to the IP logging service to view the captured IP address and other relevant information about the victim&rsquo;s device and location.</p>
+<h3 id="exploitation-demo">Exploitation Demo</h3>
+<p><strong>Step 1: Creation of a Spoofed URL.</strong>
+Start by uploading the image to an image hosting website such as <a href="https://imgbb.com/">ImgBB</a>. For this demonstration, I will use the link to the <a href="https://i.ibb.co/R6z9myy/Hacker.jpg">image</a>.
+To track the IP address, I will use a service that logs and tracks IP addresses. Many websites offer logging services, but for this demo, I will use <a href="https://grabify.link/">Grabify</a>. Grabify allows us to log and track IP addresses and provide additional information about our target, such as the browser and operating system used. While Grabify offers both free and paid services, I will use the free package for this demonstration.
+Go to the Grabify website and enter the link to our online hosted <a href="https://i.ibb.co/R6z9myy/Hacker.jpg">image</a> into the provided field. Click on the &ldquo;Create URL&rdquo; button to generate a tracking link.
+<img src="/images/d050824/grabify.png" alt="Grabify">
+A screen will pop up requesting you to agree to the terms of service and privacy policy. Make sure to read through the terms to ensure compliance with legal requirements. Accept the terms and continue to proceed with the creation of the tracking URL.
+<img src="/images/d050824/requires.png" alt="Requires">
+<img src="/images/d050824/information.png" alt="Information">
+On this page I have several types of information to help us track IP address:</p>
+<ul>
+<li>Original URL - This is the original URL to your image on the website it is hosted on.</li>
+<li>New URL - This is the URL which I will send to our target in order to obtain information to help us track the IP address.</li>
+<li>Access Link - This is the link I will be using to access the information already logged onto our grabify platform.</li>
+</ul>
+<p><strong>Step 2: URL Shortening.</strong>
+After creating the tracking link with Grabify, you will have a URL that can be used to track the IP address of the target. However, this link can be identified as an information-fetching link, potentially raising suspicion.
+To make the link less detectable and more likely to be clicked by the target, I will use a URL shortening service. This service will convert the lengthy and potentially suspicious link into a shorter and more inconspicuous one. For this demonstration, I will use <a href="https://bitly.com/">Bitly</a>, a popular free URL shortening service.
+<img src="/images/d050824/bitly.png" alt="Bitly">
+Visit the Bitly website and enter the Grabify tracking link into the URL shortening field. Click “Enter” to generate a shortened URL. For this example, the shortened URL is: <a href="https://bit.ly/4dtLE3Y">https://bit.ly/4dtLE3Y</a>.
+<img src="/images/d050824/link.png" alt="Link">
+<strong>Step 3: Distribution of the Spoofed URL.</strong>
+Send message to Victim through Zalo with Spoofed URL.
+<img src="/images/d050824/message.png" alt="Message">
+<strong>Step 4: Tracking the IP Address.</strong>
+Use Grabify to log and track IP addresses and provide additional information about our target. See the log results on the statistics table and its referring URL from Zalo.
+<img src="/images/d050824/result.png" alt="Reslut">
+Click on to see full details.
+<img src="/images/d050824/log.png" alt="Log"></p>
+<h1 id="discover-the-users-ip-address-using-telegram">Discover the user’s IP address using Telegram.</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Telegram, a popular messaging app, can unintentionally leak your IP address if you add a hacker to your contacts and accept a phone call from them. This vulnerability is identified as <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-17780">CVE-2018-17780</a>:</p>
+<ul>
+<li><strong>Affected Versions:</strong> Telegram Desktop (aka tdesktop) 1.3.14, and Telegram 3.3.0.0 WP8.1 on Windows.</li>
+<li><strong>Vulnerability:</strong> Leaks end-user public and private IP addresses during a call due to unsafe default behavior that accepts P2P connections from clients outside of the &ldquo;My Contacts&rdquo; list.</li>
+<li><strong>CVSS Score:</strong> 6.5 (Medium - Version 3.x).</li>
+</ul>
+<p>Unfortunately, this vulnerability still exists and continues (until now) to expose users&rsquo; IP addresses during calls.
+<img src="/images/d050824/cve.png" alt="CVE">
+To avoid leaking your IP address while using Telegram, go to Telegram’s Settings &gt; Privacy and Security &gt; Calls, and then select “Never” in the Peer-to-Peer menu.
+<img src="/images/d050824/p2p.png" alt="P2P"></p>
+<h2 id="root-cause">Root Cause</h2>
+<p>According to Simonov, &ldquo;An unprepared person can easily reveal his IP address to his interlocutor if he does not know about them.&rdquo; The reason for this leak is that Telegram, by default, uses a peer-to-peer (P2P) connection between callers for better quality and reduced latency. A Telegram spokesperson, Remi Vaughn, explained, &ldquo;The downside of this is that it necessitates that both sides know the IP address of the other (since it is a direct connection). Unlike on other messengers, calls from those who are not your contact list will be routed through Telegram’s servers to obscure that.&rdquo;</p>
+<h2 id="proof-of-concept-1">Proof of Concept</h2>
+<p><strong>Step 1: Establishing the Scenario</strong></p>
+<ol>
+<li><strong>Add the Hacker to Contacts:</strong> The attacker persuades the victim to add them to their Telegram contacts, potentially through social engineering techniques or by impersonating a known contact.</li>
+<li><strong>Initiate a Call:</strong> The attacker initiates a voice or video call to the victim using Telegram. The call request appears legitimate to the victim, who subsequently accepts the call.</li>
+</ol>
+<p><strong>Step 2: Capture Network Traffic</strong></p>
+<ol>
+<li><strong>Open Wireshark:</strong> The attacker opens Wireshark, a network protocol analyzer, to monitor the network traffic during the call.</li>
+<li><strong>Filter for STUN Traffic:</strong> The attacker sets a filter in Wireshark to capture STUN (Session Traversal Utilities for NAT) traffic. STUN is a protocol used by Telegram for establishing peer-to-peer connections.</li>
+</ol>
+<p><strong>Step 3: Identify the IP Address</strong></p>
+<ol>
+<li><strong>Monitor the Call:</strong> While the call is in progress, the attacker closely monitors the STUN traffic in Wireshark for any packets containing IP address information.</li>
+<li><strong>Extract the IP Address:</strong> Upon detecting the relevant STUN packets, the attacker analyzes the packet details to extract the victim&rsquo;s public IP address. This information is now accessible to the attacker.</li>
+</ol>
+<p><img src="/images/d050824/wireshark.png" alt="Wireshark">
+With the IP address in hand, you can use a web service like <a href="https://infosniper.net/">InfoSniper</a> to find the location associated with the IP address.
+<img src="/images/d050824/info.png" alt="Info">
+<img src="/images/d050824/info2.png" alt="Info2"></p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Understanding the methods cybercriminals use to extract IP addresses through chat applications like Zalo and Telegram is crucial in today&rsquo;s digital landscape. By highlighting the tactics of URL spoofing and phishing, as well as exposing vulnerabilities within these platforms, I hope to raise awareness about the potential risks and encourage proactive measures for online safety. Always be vigilant when interacting with links and unknown contacts, and take advantage of privacy settings to protect your personal information. Staying informed and cautious is your best defense against cyber threats.</p>
+<p>Stay safe, and keep your data secure!</p>
+<h1 id="references">References</h1>
+<ol>
+<li>Kennedy Muthii. (2024, January 1). <em>How to track IP address using an image.</em> Retrieved from <a href="https://www.golinuxcloud.com/track-ip-address-using-an-image/">https://www.golinuxcloud.com/track-ip-address-using-an-image/</a></li>
+<li>Lorenzo Franceschi-Bicchierai. (2023, October 19). <em>Telegram is still leaking user IP addresses to contacts.</em> TechCrunch. Retrieved from 2. <a href="https://techcrunch.com/2023/10/19/telegram-is-still-leaking-user-ip-addresses-to-contacts/">https://techcrunch.com/2023/10/19/telegram-is-still-leaking-user-ip-addresses-to-contacts/</a></li>
+<li>Jomilė Nakutavičiūtė. (2024, January 2). <em>URL Spoofing: Definition and explanation.</em> Retrieved from <a href="https://nordvpn.com/blog/url-spoofing/">https://nordvpn.com/blog/url-spoofing/</a></li>
+<li>CyStack. (n.d.). <em>Phishing là gì? Cách phòng chống tấn công Phishing hiệu quả.</em> Retrieved from <a href="https://cystack.net/blog/phishing-la-gi">https://cystack.net/blog/phishing-la-gi</a></li>
+<li>National Vulnerability Database. (2018). <em>CVE-2018-17780.</em> Retrieved from <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-17780">https://nvd.nist.gov/vuln/detail/CVE-2018-17780</a></li>
+<li>Catalin Cimpanu. (2018, Septemper 29). <em>Telegram fixes IP address leak in desktop client.</em> ZDNet. Retrieved from <a href="https://www.zdnet.com/article/telegram-fixes-ip-address-leak-in-desktop-client/">https://www.zdnet.com/article/telegram-fixes-ip-address-leak-in-desktop-client/</a></li>
+</ol>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/iptracking/">IPTracking</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/cybersecurity/">CyberSecurity</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/onlinesafety/">OnlineSafety</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+      </article>
+      
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dangduongminhnhat.github.io/posts/about-me/" data-toggle="tooltip" data-placement="top" title="About Me">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2024
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="https://dangduongminhnhat.github.io/js/main.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dangduongminhnhat.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
