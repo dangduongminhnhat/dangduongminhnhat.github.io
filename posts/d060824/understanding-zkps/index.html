@@ -1,0 +1,742 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Understanding Zero Knowledge Proofs: Key Concepts and Applications - </title>
+
+  <meta name="description" content="This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine)."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Daminha Blog",
+    
+    "url": "https:\/\/dangduongminhnhat.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dangduongminhnhat.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dangduongminhnhat.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dangduongminhnhat.github.io\/posts\/d060824\/understanding-zkps\/",
+          "name": "Understanding zero knowledge proofs key concepts and applications"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Dang Duong Minh Nhat"
+  },
+  "headline": "Understanding Zero Knowledge Proofs: Key Concepts and Applications",
+  "description" : "This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine).",
+  "inLanguage" : "en",
+  "wordCount":  6353 ,
+  "datePublished" : "2024-08-06T13:58:24\u002b07:00",
+  "dateModified" : "2024-08-06T13:58:24\u002b07:00",
+  "image" : "https:\/\/dangduongminhnhat.github.io\/",
+  "keywords" : [ "Zero-Knowledge Proofs, Cryptography, Blockchain" ],
+  "mainEntityOfPage" : "https:\/\/dangduongminhnhat.github.io\/posts\/d060824\/understanding-zkps\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dangduongminhnhat.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dangduongminhnhat.github.io\/",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Understanding Zero Knowledge Proofs: Key Concepts and Applications" />
+<meta property="og:description" content="This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine).">
+<meta property="og:url" content="https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Daminha Blog" />
+
+  <meta name="twitter:title" content="Understanding Zero Knowledge Proofs: Key Concepts and Applications" />
+  <meta name="twitter:description" content="This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine).">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="generator" content="Hugo 0.129.0">
+  <link rel="alternate" href="https://dangduongminhnhat.github.io/index.xml" type="application/rss+xml" title="Daminha Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/posts/about-me/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>Understanding Zero Knowledge Proofs: Key Concepts and Applications</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>
+          <strong>Posted on:</strong> August 6, 2024 |
+          <strong>Reading time:</strong> 30 minutes |
+          <strong>Word count:</strong> 6353 words |
+          <strong>Author:</strong> Dang Duong Minh Nhat
+        </p>
+        <p>In my research on security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine), it&rsquo;s essential to understand the foundational concepts of Zero-Knowledge Proofs (ZKPs). ZKPs are a revolutionary cryptographic technique that enables one party to prove knowledge of a fact without revealing any information about the fact itself. This blog will delve into the classification of Zero-Knowledge Proofs, their various applications, and how they play a pivotal role in enhancing privacy and security in blockchain systems, particularly in the context of ZK-EVM.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction-to-zero-knowledge-proofs">Introduction to Zero Knowledge Proofs</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#origins-of-zero-knowledge">Origins of Zero Knowledge</a></li>
+</ul>
+</li>
+<li><a href="#proof-systems-and-privacy">Proof Systems and Privacy</a>
+<ul>
+<li><a href="#what-is-a-proof-system?">What is a Proof System?</a></li>
+<li><a href="#privacy-through-zero-knowledge-proofs">Privacy through Zero Knowledge Proofs</a></li>
+<li><a href="#the-colored-balls-and-the-colorblind-friend:-an-illustration-of-zero-knowledge-proofs">The Colored Balls and the Colorblind Friend: An Illustration of Zero Knowledge Proofs</a></li>
+<li><a href="#formal-definitions">Formal Definitions</a>
+<ul>
+<li><a href="#interactive-turing-machines">Interactive Turing Machines</a></li>
+<li><a href="#interactive-proof-systems:-understanding-their-mechanics">Interactive Proof Systems: Understanding Their Mechanics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#understanding-commitment-schemes-and-their-applications">Understanding Commitment Schemes and Their Applications</a>
+<ul>
+<li><a href="#what-is-a-commitment-scheme?">What is a Commitment Scheme?</a></li>
+<li><a href="#graph-coloring:-a-dive-into-zero-knowledge-proofs">Graph Coloring: A Dive into Zero-Knowledge Proofs</a>
+<ul>
+<li><a href="#key-properties-of-commitment-schemes">Key Properties of Commitment Schemes</a></li>
+<li><a href="#steps-of-interaction-between-prover-and-verifier">Steps of Interaction Between Prover and Verifier</a></li>
+<li><a href="#what-makes-a-proof-zero-knowledge?">What Makes a Proof Zero-Knowledge?</a></li>
+<li><a href="#designing-a-simulator-for-zkp-in-graph-coloring">Designing a Simulator for ZKP in Graph Coloring</a></li>
+<li><a href="#the-complexity-of-the-three-coloring-problem">The Complexity of the Three Coloring Problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#understanding-identification-schemes-and-their-role-in-security">Understanding Identification Schemes and Their Role in Security</a>
+<ul>
+<li><a href="#the-importance-of-zero-knowledge-proofs">The Importance of Zero-Knowledge Proofs</a></li>
+<li><a href="#introducing-schnorr's-identification-scheme">Introducing Schnorr&rsquo;s Identification Scheme</a></li>
+<li><a href="#background:-group-theory-essentials">Background: Group Theory Essentials</a>
+<ul>
+<li><a href="#group-definition">Group Definition</a></li>
+<li><a href="#cyclic-groups">Cyclic Groups</a></li>
+<li><a href="#the-discrete-logarithm-problem">The Discrete Logarithm Problem</a></li>
+</ul>
+</li>
+<li><a href="#schnorr%E2%80%99s-identification-scheme:-a-deep-dive-into-zero-knowledge-proofs">Schnorr’s Identification Scheme: A Deep Dive into Zero-Knowledge Proofs</a>
+<ul>
+<li><a href="#definition-and-structure">Definition and Structure</a></li>
+<li><a href="#the-process-of-the-identification-scheme">The Process of the Identification Scheme</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#classification-and-applications-of-zero-knowledge-proofs">Classification and Applications of Zero Knowledge Proofs</a>
+<ul>
+<li><a href="#classification-of-zero-knowledge-proofs">Classification of Zero Knowledge Proofs</a>
+<ul>
+<li><a href="#interactive-zero-knowledge-proofs-(izkps)">Interactive Zero Knowledge Proofs (IZKPs)</a></li>
+<li><a href="#non-interactive-zero-knowledge-proofs-(nizkps)">Non-Interactive Zero Knowledge Proofs (NIZKPs)</a></li>
+</ul>
+</li>
+<li><a href="#applications-of-zero-knowledge-proofs">Applications of Zero Knowledge Proofs</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+</ul>
+<h1 id="introduction-to-zero-knowledge-proofs">Introduction to Zero Knowledge Proofs</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In recent years, <em>proof systems</em> have garnered significant attention for their ability to verify the integrity of mathematical computations. For instance, they can be used to implement cryptographic checkers that certify whether a mathematical function, such as a search query on a database, has been computed correctly. This ensures the accuracy of the output even if the database is owned by a potentially dishonest party.</p>
+<p>A standout feature of these proof systems is zero-knowledge, which ensures the privacy of the computational process. Zero-knowledge allows the verification of computations on a data set without revealing any specific information about the data itself. This makes zero-knowledge proof systems particularly valuable in privacy-sensitive areas such as anonymous identification, database membership queries, or blockchain-based payments.</p>
+<h2 id="origins-of-zero-knowledge">Origins of Zero Knowledge</h2>
+<p>The concept of “zero knowledge” was first proposed in the 1980s by researchers Shafi Goldwasser, Silvio Micali, and Charles Rackoff of MIT in their paper <a href="https://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Proof%20Systems/The_Knowledge_Complexity_Of_Interactive_Proof_Systems.pdf">&ldquo;The Knowledge Complexity of Interactive Proof-Systems&rdquo;</a>. Their research focused on <a href="https://en.wikipedia.org/wiki/Interactive_proof_system">interactive proof systems</a>, where one party (called the &lsquo;Prover&rsquo;) exchanges information with another party (the &lsquo;Verifier&rsquo;) to convince the Verifier that a certain mathematical statement is true. The goal of an interactive proof is to persuade the Verifier that a particular string belongs to a specific language. While the Prover is not limited in computational power, the Verifier is constrained.</p>
+<p>Before the work of Goldwasser and colleagues, most research in this field emphasized the soundness of the proof system—ensuring that the Prover could not deceive the Verifier into believing a false statement. However, Goldwasser, Micali, and Rackoff posed a crucial question: what happens if the Verifier is not trustworthy?</p>
+<p>They were concerned with information leakage and questioned how much additional information the Verifier could learn beyond just verifying the truth of a statement. This concern was not only theoretical but had significant practical implications.</p>
+<p>For example, when a user logs into a web server using a password, the conventional method is to store a hashed version of the password on the server. The client sends the original password to the server, which then re-computes the hash and compares it to the stored value. The problem here is that the server knows the actual password, so if the server is compromised, the password is exposed.</p>
+<p>Goldwasser, Micali, and Rackoff proposed zero-knowledge proofs as a solution to this problem. Zero-knowledge proofs allow us to prove statements without revealing any information other than the assertion that the statement is true. This concept opens new possibilities for protecting information in interactive proof systems, ensuring that sensitive information is not leaked during the verification process.</p>
+<h1 id="proof-systems-and-privacy">Proof Systems and Privacy</h1>
+<p>After introducing Zero Knowledge Proofs, let&rsquo;s delve deeper into the concepts and mechanisms behind them. This section will explain what a proof system is, explore privacy concepts through Zero Knowledge Proofs, and cover the formal definitions necessary for a better understanding of these mechanisms. Let&rsquo;s start by clarifying what a proof system is and why it is important.</p>
+<h2 id="what-is-a-proof-system">What is a Proof System?</h2>
+<p>In computational complexity theory, an interactive proof system is an abstract machine that models the computational process as a message exchange between two parties. These parties, called the Prover and the Verifier, interact by exchanging messages to determine the truth of a statement.</p>
+<p>The Prover is considered all-powerful, with unlimited computational resources, but cannot be fully trusted. On the other hand, the Verifier has limited computational power. Messages are exchanged between the Prover and the Verifier until the Verifier has enough evidence to either verify or reject a statement. All interactive proof systems possess two main properties:</p>
+<ul>
+<li>
+<p><strong>Completeness:</strong> If the statement is true, an honest Verifier (one who follows the protocol correctly) can be convinced of the statement&rsquo;s truth by an honest Prover.</p>
+</li>
+<li>
+<p><strong>Soundness:</strong> If the statement is false, no fraudulent or malicious Prover can convince an honest Verifier that the statement is true, except with negligible probability.</p>
+</li>
+</ul>
+<p>In other words, soundness ensures that the verification process cannot be &ldquo;fooled&rdquo; into accepting false statements. This represents the Verifier&rsquo;s ability to protect itself from being persuaded by false claims (no matter how the Prover attempts to deceive). Completeness, on the other hand, simply represents the Prover&rsquo;s ability to convince the Verifier of true statements (belonging to a set of predefined true statements). Both properties are essential to ensure the concept of a proof system.</p>
+<p>Interactive proof systems are crucial for ensuring the integrity of computations, providing a way to verify the correctness of statements without revealing sensitive information.</p>
+<h2 id="privacy-through-zero-knowledge-proofs">Privacy through Zero Knowledge Proofs</h2>
+<p>Zero-knowledge proof systems have an additional remarkable property: they do not reveal any information beyond the validity of the statement. This property is meaningful only if the Prover possesses some secret information—known as a witness—and wants to ensure that the Verifier does not learn anything else about it. The third, and perhaps the most magical, property of zero-knowledge proof systems can be summarized as follows:</p>
+<p><strong>Zero-knowledge:</strong> If the statement is true, no dishonest Verifier can learn anything beyond the fact that the statement is true.</p>
+<p>To illustrate this, let&rsquo;s consider the following example: Suppose there is a cave with two paths connected by a door that can only be opened with a secret word. Alice wants to prove to Bob that she knows the secret word without revealing it. To do this, both stand at the entrance of the cave. Alice then walks into the cave and chooses one of the two paths at random. From the entrance, Bob cannot know which path Alice has taken.</p>
+<p><img src="/images/d060824/cave.png" alt="Cave">
+<em><a href="http://zk-ssh.cms.ac/">Source Image</a></em></p>
+<p>Bob then enters the cave and arrives at the junction. He chooses one of the two paths and calls out to Alice to come through that path. Alice’s task is to appear on the path that Bob has chosen. If Alice happened to choose the same path that Bob called, she doesn’t need the secret word. But if she chose the other path, she must pass through the door to reach the correct path.</p>
+<p>This means that if Alice does not know the secret word, she can only convince Bob that she knows the secret word with a 50% probability in a single execution of this protocol. Therefore, Alice and Bob will repeat the protocol many times to reduce the error probability to an insignificant level. This protocol is considered a zero-knowledge proof because, no matter how many times it is repeated, if Alice knows the secret word, she will always succeed in appearing on the correct path Bob calls for, while Bob learns nothing new about the secret word.</p>
+<p>Zero-knowledge proof systems ensure that the verification process does not reveal any information other than the correctness of the statement, thereby protecting the privacy of the Prover&rsquo;s secret information.</p>
+<h2 id="the-colored-balls-and-the-colorblind-friend-an-illustration-of-zero-knowledge-proofs">The Colored Balls and the Colorblind Friend: An Illustration of Zero Knowledge Proofs</h2>
+<p>To illustrate Zero Knowledge Proofs more clearly, let&rsquo;s consider the following example:</p>
+<p>Bob has a friend named Alice who is colorblind. Bob owns two balls: one red and one green, but they are identical in shape and size. To Alice, these two balls appear exactly the same, and she doubts they can be distinguished by color. Bob wants to prove to Alice that the two balls are indeed of different colors without revealing which one is red and which one is green.</p>
+<p>To do this, Bob hands the two balls to Alice and asks her to switch them behind her back. After each switch, Bob will guess whether the two balls have been swapped.</p>
+<p>The process goes as follows:</p>
+<ol>
+<li>Bob gives the two balls to Alice.</li>
+<li>Alice switches the two balls behind her back.</li>
+<li>Bob guesses whether Alice has swapped the balls or not.</li>
+</ol>
+<p>If the two balls are of the same color, Bob can only guess correctly with a 50% probability. However, if they are of different colors, Bob can easily determine whether Alice has swapped the balls.</p>
+<p>This process can be repeated multiple times. If Alice sees that Bob consistently guesses correctly, she will begin to believe that the two balls are indeed of different colors (<strong>completeness</strong>). If not, the probability that Bob could guess correctly all the times without any additional information will be nearly zero (<strong>soundness</strong>). Meanwhile, Alice still does not know which ball is red and which is green (<strong>zero knowledge</strong>).</p>
+<p>Through this example, we see that a zero-knowledge proof system allows Bob to verify a statement without revealing any information about the nature of the two balls, thereby protecting the privacy of the secret information.</p>
+<h2 id="formal-definitions">Formal Definitions</h2>
+<h3 id="interactive-turing-machines">Interactive Turing Machines</h3>
+<p>While the properties of proof systems might seem intuitive, formally defining completeness, soundness, and zero-knowledge in a rigorous mathematical way has taken decades of research. To formalize these properties, we need a computational model to represent the interaction between two computing devices. In cryptography, the preferred choice is the Turing Machine, named after the &ldquo;father&rdquo; of computer science, Alan Turing.</p>
+<p><strong>Interactive Turing Machines</strong></p>
+<p>An Interactive Turing Machine (ITM) is a multi-tape (deterministic) version of the Turing Machine. The ITM consists of the following tapes:</p>
+<ul>
+<li>Input Tape: Read-only.</li>
+<li>Random Tape: Read-only.</li>
+<li>Work Tape: Read and write.</li>
+<li>Output Tape: Write-only.</li>
+<li>Communication Tapes: A pair of tapes, one read-only and one write-only.</li>
+<li>Switch Tape: Read and write, consisting of a single cell.</li>
+</ul>
+<p>Each ITM is associated with a unique bit, called its identity. An ITM is said to be active when the content of the switch tape equals the machine&rsquo;s identity. Otherwise, the machine is considered idle. When idle, the state of the machine, the position of the heads on the different tapes, and the content of the writable tapes do not change.</p>
+<ul>
+<li>Input: Content of the input tape.</li>
+<li>Random Input: Content of the random tape.</li>
+<li>Output: Content of the output tape at the end.</li>
+<li>Messages Sent: Content written on the write-only communication tape during the machine&rsquo;s active period.</li>
+<li>Messages Received: Content read from the read-only communication tape during the machine&rsquo;s active period.</li>
+</ul>
+<p>The machine&rsquo;s movement on both communication tapes is unidirectional, for example, from left to right.</p>
+<p>Assume we call the interactive Turing machine M₁ the Prover (P) and M₂ the Verifier (V). Like humans, machines need to understand a language L to interact correctly. We do not plan to delve deep into language and complexity theory here. All we need to know is that the statement the Prover P wants to prove must be – loosely speaking – encoded in a specific language. With (x, w) ∈ L and (x, w) ∉ L, we denote a true or false statement to be proven. In other words, the pair (x, w) is a member of the language L. Typically, the value x is public and known to both the Prover and the Verifier, while the parameter w (called the witness) is private and known only to the Prover.</p>
+<p><strong>Definition of Language L</strong></p>
+<p>Formally, a language L is defined as a set (possibly infinite) of strings over some finite alphabet and is formed according to a set of specific rules. For example, a language L over the alphabet Σ = {0, 1, 2, -, =} may have the following grammar:</p>
+<ul>
+<li>Any non-empty string that does not contain “-” or “=” and does not start with “0” is in L.</li>
+<li>A string containing “=” is in L if and only if it contains exactly one “=”, and it separates two valid strings of L.</li>
+</ul>
+<p>According to these rules, the string “2–1=1” is in L, but the string “=21=0-” is not. During the setup phase of the communication protocol, the interacting parties usually agree on a specific language with specific rules.</p>
+<p>By understanding these formal definitions, we gain a deeper insight into how interactive proof systems work, paving the way for robust zero-knowledge proofs that protect sensitive information while proving the validity of a statement.</p>
+<h3 id="interactive-proof-systems-understanding-their-mechanics">Interactive Proof Systems: Understanding Their Mechanics</h3>
+<p>An interactive proof system is a critical component in the realm of cryptography, allowing a Prover (P) to convince a Verifier (V) of a statement&rsquo;s validity without revealing any sensitive information. A pair of Interactive Turing Machines (P, V) constitutes an interactive proof system for a language L if the Verifier operates in polynomial time and the following two conditions hold:</p>
+<p><strong>Completeness</strong></p>
+<p>The completeness property ensures that if the statement is true, the Prover can convince the Verifier with significant probability. Formally, for every pair (x, w) in the language L, the probability that Prover P can successfully convince the honest Verifier V is expressed as:</p>
+<blockquote>
+<p>∀(x,w) ∈ L : Pr[ ⟨P(x,w),V(x)⟩ = 1 ] ≥ 1 — negl</p>
+</blockquote>
+<p>This means that if (x, w) is a valid statement in L, the Prover has a high chance of successfully convincing the Verifier.</p>
+<p><strong>Soundness</strong></p>
+<p>Soundness has two versions that together ensure the reliability of the proof system:</p>
+<ul>
+<li><strong>Weak Soundness (Unforgeability):</strong> For any (x, w) not in the language L, the probability that a dishonest Prover 𝑃′ can convince the honest Verifier V is negligible:</li>
+</ul>
+<blockquote>
+<p>∀(x,w) ∉ L : Pr[ ⟨P&rsquo;(x),V(x)⟩ = 1 ] ≤ negl</p>
+</blockquote>
+<p>This means that if (x, w) is not a valid statement, it should be virtually impossible for a dishonest Prover to convince the Verifier.</p>
+<ul>
+<li><strong>Strong Soundness (Special Soundness):</strong> For every (x, w) in L, there exists a polynomial-time extractor algorithm E such that the witness w can be extracted from valid conversations between Prover P and Verifier V:</li>
+</ul>
+<blockquote>
+<p>∀(x,w) ∈ L, ∃ E: Pr[ E⟨P(x,w),V(x)⟩ = w ] ≥ 1 - negl</p>
+</blockquote>
+<p>The strong soundness guarantees that the witness can be reliably extracted from the interaction, ensuring that the Prover&rsquo;s knowledge can be verified.</p>
+<p>These two versions of soundness emphasize that a valid proof should not only be convincing but also verifiable in a way that guarantees the integrity of the information.</p>
+<p><strong>Zero-Knowledge</strong></p>
+<p>The zero-knowledge property is perhaps the most fascinating aspect of interactive proof systems. For every (x, w) in the language L, there exists a simulator S such that no polynomial-time distinguisher D can distinguish between the real interaction between Prover P and Verifier V and the simulated interaction produced by S:</p>
+<blockquote>
+<p>∀(x,w)∈L, ∀V ∃S: Pr[ D⟨P(x,w),V(x)⟩ = 1 ] - Pr[ D⟨S(x)⟩ = 1 ] ≤ negl</p>
+</blockquote>
+<p>This means that the interaction between the Prover and Verifier does not leak any information beyond the validity of the statement itself.</p>
+<p>Understanding the Simulation Mechanism
+To grasp the simulation mechanism, it is essential to remember the concept of indistinguishability. Indistinguishability is a powerful notion in computer science that indicates when two distributions (or processes) cannot be distinguished from one another by a given algorithm D. If a spectator cannot differentiate between a human and a machine after a lengthy conversation, the machine is considered to be &ldquo;as good as&rdquo; or &ldquo;appearing like&rdquo; a human.</p>
+<p><img src="/images/d060824/definition.png" alt="Definition">
+<em><a href="https://medium.com/magicofc/interactive-proofs-and-zero-knowledge-b32f6c8d66c3">Source Image</a></em></p>
+<p>In the comparison between the interaction of Prover P and Verifier V with the execution process created by simulator S, P uses her witness w while simulator S only has access to the public information x. Despite the information disadvantage, the simulator generates a &ldquo;similar&rdquo; record of the interaction between Prover and Verifier. If the actual protocol record is indistinguishable from the simulated record, then the protocol is considered zero-knowledge because the simulated record contains no information about the witness w.</p>
+<h1 id="understanding-commitment-schemes-and-their-applications">Understanding Commitment Schemes and Their Applications</h1>
+<p>In the previous sections, we explored proof systems, the concept of privacy through Zero Knowledge Proofs, and some formal definitions. Now, we will delve into the intriguing world of Commitment Schemes and their applications, particularly in the context of graph coloring problems. Let’s start by understanding what a Commitment Scheme is, followed by its specific applications.</p>
+<h2 id="what-is-a-commitment-scheme">What is a Commitment Scheme?</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Commitment_scheme">Commitment Scheme</a> is a cryptographic method that allows one party (the sender) to commit to a value or message while keeping that value secret until the sender chooses to reveal it later. Commitment Schemes have two primary properties:</p>
+<ul>
+<li><strong>Hiding Property:</strong> The receiver cannot determine the value that the sender has committed to until the sender reveals it.</li>
+<li><strong>Binding Property:</strong> The sender cannot change the committed value after the commitment is made.</li>
+</ul>
+<p><strong>Visualizing the Concept</strong></p>
+<p>Imagine the sender places a message inside a locked box and hands the box to the receiver. The receiver cannot open the box and therefore cannot see the message inside. The sender holds the key and can choose to reveal the message by providing the key to the receiver later. In this analogy, the locked box represents the “commitment,” while the key symbolizes the “proof.”</p>
+<p><strong>Two Phases of a Commitment Scheme</strong></p>
+<p>Commitment Schemes consist of two main phases:</p>
+<ol>
+<li><strong>Commit Phase:</strong> The sender selects and commits to a value.</li>
+<li><strong>Reveal Phase:</strong> The sender reveals the committed value, and the receiver verifies its authenticity.</li>
+</ol>
+<p>In our analogy, the commit phase occurs when the sender places the message in the box and locks it. The reveal phase takes place when the sender gives the key to the receiver to open the box and confirm the message inside.</p>
+<p><strong>Technical Characteristics</strong></p>
+<ol>
+<li><strong>Commit Phase:</strong>
+<ul>
+<li>The sender produces a unique message known as the “commitment” to send to the receiver.</li>
+<li>This commitment must be designed so that the receiver cannot extract the committed value immediately (hiding property).</li>
+</ul>
+</li>
+<li><strong>Reveal Phase:</strong>
+<ul>
+<li>The sender sends a unique message called the “opening” to the receiver.</li>
+<li>The receiver checks this message to verify the committed value (binding property).</li>
+</ul>
+</li>
+</ol>
+<p><strong>Historical Development</strong></p>
+<ul>
+<li>The concept of a Commitment Scheme was first formalized by Gilles Brassard, David Chaum, and Claude Crépeau in 1988, in the context of zero-knowledge protocols for NP problems.</li>
+<li>Before this formalization, several researchers, including Manuel Blum, Shimon Even, and Adi Shamir, had used the concept but had not formally defined it.</li>
+<li>The term “commitment” is believed to have originated from Manuel Blum.</li>
+</ul>
+<p><strong>Applications of Commitment Schemes</strong></p>
+<p>Commitment Schemes have numerous applications in cryptographic protocols, including:</p>
+<ul>
+<li><strong>Secure Coin Flipping:</strong> Ensuring that neither party can manipulate the outcome of a coin flip.</li>
+<li><strong>Zero-Knowledge Proofs:</strong> Proving that one party knows a value without revealing the value itself.</li>
+<li><strong>Secure Computation:</strong> Ensuring that parties can perform computations on data without revealing the data to each other.</li>
+</ul>
+<p>Commitment Schemes play a vital role in ensuring safety and security across various cryptographic protocols and applications.</p>
+<h2 id="graph-coloring-a-dive-into-zero-knowledge-proofs">Graph Coloring: A Dive into Zero-Knowledge Proofs</h2>
+<p>In the realm of cryptography, the problem of graph coloring offers an interesting application of Commitment Schemes and Zero-Knowledge Proofs (ZKPs). The objective in this scenario is for the prover to demonstrate that they have a valid coloring for a graph without revealing the entire coloring to the verifier. Let’s explore how this works, including the properties of Commitment Schemes, the interaction process, and the implications of Zero-Knowledge Proofs.
+<img src="/images/d060824/graph1.png" alt="Graph1">
+<img src="/images/d060824/graph2.png" alt="Graph2">
+<em><a href="https://medium.com/@noah_h/zero-knowledge-proofs-3f412d911b1e">Source Image</a></em></p>
+<h3 id="understanding-the-graph-coloring-problem">Understanding the Graph Coloring Problem</h3>
+<p><a href="https://en.wikipedia.org/wiki/Graph_coloring">Graph coloring</a> is a classic problem in computer science where the goal is to assign colors to the vertices of a graph such that no two adjacent vertices share the same color. In our context, the prover wants to convince the verifier that they can color the graph correctly without disclosing the actual coloring method used.</p>
+<h3 id="key-properties-of-commitment-schemes">Key Properties of Commitment Schemes</h3>
+<p>Commitment Schemes are essential to maintaining privacy and integrity in the graph coloring process. They possess two fundamental properties:</p>
+<ul>
+<li><strong>Hiding:</strong> The verifier cannot discern the value the prover has committed to until it is revealed.
+<ul>
+<li><strong>Perfect Hiding:</strong> Even if the verifier has unlimited computational power, they cannot uncover the committed value.</li>
+</ul>
+</li>
+<li>Binding: The prover cannot alter the committed value once it has been established.
+<ul>
+<li><strong>Perfect Binding:</strong> Again, even with unlimited computational resources, the prover cannot change their commitment.</li>
+</ul>
+</li>
+</ul>
+<p>In practice, achieving both perfect hiding and perfect binding simultaneously is impossible. Instead, we rely on computationally hiding and binding, which ensures these properties hold within the limits of computational capability.</p>
+<h3 id="steps-of-interaction-between-prover-and-verifier">Steps of Interaction Between Prover and Verifier</h3>
+<p>The interaction process in the graph coloring scenario unfolds through several key phases:</p>
+<ol>
+<li><strong>Commit Phase:</strong> The prover commits to a coloring method and sends it to the verifier.</li>
+<li><strong>Verifier Chooses:</strong> The verifier randomly selects two adjacent vertices to check and sends these vertices to the prover.</li>
+<li><strong>Reveal Phase:</strong> The prover sends the keys of the commitment scheme corresponding to the chosen vertices.</li>
+<li><strong>Verification:</strong> The verifier uses these keys to validate the colors of the two vertices.</li>
+<li><strong>Repetition:</strong> This process is repeated multiple times, with the prover alternating colors each time to ensure that the colors revealed are from an independent random distribution.</li>
+</ol>
+<h3 id="what-makes-a-proof-zero-knowledge">What Makes a Proof Zero-Knowledge?</h3>
+<p>A proof is considered truly zero-knowledge if, at the end of the interaction, the verifier gains no additional information about the secret, despite having participated in the protocol. Essentially, the verifier should not learn anything extra by observing the messages exchanged between the prover and themselves. These messages are referred to as the transcript.</p>
+<p>Due to the randomness utilized in ZKPs—such as the random selection of revealed vertices in the graph coloring problem—numerous transcripts can be generated from a foundational probability distribution. A simulator, designed as a third-party algorithm, generates transcripts from the same distribution. The objective is to ensure that the messages produced during the proof and the outputs from the simulator are indistinguishable.</p>
+<p>The key point here is that if we can construct a simulator that operates without accessing the prover&rsquo;s secret, it guarantees that the verifier does not learn any information from the communication process. The simulator must produce transcripts that the verifier cannot distinguish from those created during the actual proof. If this can be achieved without knowing the prover&rsquo;s secret, we can confirm that the protocol is indeed zero-knowledge.</p>
+<p>A proof is considered perfect zero-knowledge if, for all possible verifiers, there exists a simulator with access to that verifier such that the distributions of actual transcripts and the simulator&rsquo;s outputs are identical. This implies that at the end of the proof, the verifier learns nothing additional about the prover&rsquo;s secret, even though they participated in the protocol.</p>
+<p>In practice, weaker definitions of zero-knowledge are often used:</p>
+<ul>
+<li><strong>Statistical Zero-Knowledge:</strong> Requires the distributions to be statistically close, meaning that an unlimited computational program, with a polynomially bounded number of samples, cannot distinguish between the two distributions.</li>
+<li><strong>Computational Zero-Knowledge:</strong> An even weaker variant where a computationally bounded program (with polynomial time limits) cannot differentiate between the two distributions with a limited number of samples.</li>
+</ul>
+<h3 id="designing-a-simulator-for-zkp-in-graph-coloring">Designing a Simulator for ZKP in Graph Coloring</h3>
+<p>To design a simulator that can access any verifier and generate transcripts for ZKP in the Three Coloring problem, we need to follow these steps:</p>
+<ol>
+<li>Randomly select a pair of adjacent vertices and color them differently.</li>
+<li>Randomly assign colors to the remaining vertices.</li>
+<li>Execute an arbitrary verifier (with access to the committed colors) to obtain a selected pair of adjacent vertices. If the chosen pair does not match those colored differently in step 1, repeat the process.</li>
+<li>Present (A) the corresponding commitment for the assigned colors, (B) the selected vertices, and (C) the corresponding keys.</li>
+</ol>
+<p>To ensure the simulator does not run indefinitely, we can impose a limit on the number of restarts. If the limit is exceeded, the simulation “fails” but still meets the definition of a simulator.</p>
+<p>When considering the distributions of the simulator’s output vertices and the interaction between a valid prover and any verifier, it becomes clear that they are equivalent. We can simply observe the similarities between the commitments and keys of the actual transcript and the simulated transcript.</p>
+<h3 id="the-complexity-of-the-three-coloring-problem">The Complexity of the Three Coloring Problem</h3>
+<p>It&rsquo;s crucial to note that a commitment scheme cannot satisfy both perfect hiding and perfect binding. In fact, it is also impossible to achieve both statistically. At least one of these properties must hold computationally.</p>
+<p>To ensure perfect hiding, at least two distinct messages must produce the same commitment output. This leads to commitments that can be satisfied by more than one input, making it impossible to guarantee perfect binding.</p>
+<p>The Three Coloring problem is a significant challenge in computer science and is classified as NP-Complete. This means that all problems that can be efficiently computed or verified can be simulated by a Three Coloring solution. ZKPs for the Three Coloring problem demonstrate that all problems within the NP class, including the most critical issues in computer science, can be proven within zero knowledge.</p>
+<h1 id="understanding-identification-schemes-and-their-role-in-security">Understanding Identification Schemes and Their Role in Security</h1>
+<p>In the previous section, we explored the concepts of Commitment Schemes and their application in the graph coloring problem. In this section, we will delve deeper into identification schemes, particularly Schnorr&rsquo;s Identification Scheme. These schemes play a crucial role in protecting personal information and ensuring safety in online transactions.</p>
+<h3 id="the-importance-of-zero-knowledge-proofs">The Importance of Zero-Knowledge Proofs</h3>
+<p>Zero-Knowledge Proofs (ZKPs) allow for authentication schemes to defend against various attacks such as eavesdropping, social engineering, keylogging, and data breaches. Schnorr&rsquo;s Identification Scheme is one such algorithm that leverages ZKPs to enhance security without compromising user privacy.</p>
+<p>Traditional authentication schemes rely on users confirming their identity by sharing a secret, such as a password or PIN. However, a more effective solution enables users to prove their identity to a verifier without revealing any information that an eavesdropper or the verifier might find &ldquo;interesting.&rdquo; This approach minimizes the risk of exposing sensitive data while still verifying the user&rsquo;s identity.</p>
+<h3 id="introducing-schnorrs-identification-scheme">Introducing Schnorr&rsquo;s Identification Scheme</h3>
+<p>Schnorr&rsquo;s Identification Scheme, developed by Claus-Peter Schnorr in the 1980s, may initially appear unconventional, but it forms the foundation of many modern signature schemes. Interestingly, Schnorr&rsquo;s primary focus was on identification rather than digital signatures.</p>
+<p>To fully appreciate Schnorr&rsquo;s Identification Scheme, let&rsquo;s first cover some foundational concepts in group theory and how they relate to this identification process.</p>
+<h2 id="background-group-theory-essentials">Background: Group Theory Essentials</h2>
+<h3 id="group-definition">Group Definition</h3>
+<p>A group is a non-empty set equipped with a binary operation (such as addition or multiplication) that satisfies the following conditions:</p>
+<ul>
+<li><strong>Associativity:</strong> The operation is associative; for all elements 𝑎, 𝑏, 𝑐 in the group, (𝑎 ⋅ 𝑏) ⋅ 𝑐 = 𝑎 ⋅ (𝑏 ⋅ 𝑐).</li>
+<li><strong>Identity Element:</strong> There exists an identity element 𝑒 such that for every element 𝑎 in the group, 𝑒 ⋅ 𝑎 = 𝑎 ⋅ 𝑒 = 𝑎.</li>
+<li><strong>Inverse Element:</strong> Each element 𝑎 in the group has an inverse element 𝑎^−1 such that $$𝑎 ⋅ 𝑎^{−1} = 𝑎^{−1} ⋅ 𝑎 = 𝑒$$.</li>
+<li><strong>Closure:</strong> For any elements 𝑎 and 𝑏 in the group, the result of the operation 𝑎 ⋅ 𝑏 is also in the group.</li>
+</ul>
+<h3 id="cyclic-groups">Cyclic Groups</h3>
+<p>A group is cyclic if it can be generated by a single element, known as a generator. This means every element in the group can be expressed as a power of that generator.</p>
+<h3 id="the-discrete-logarithm-problem">The Discrete Logarithm Problem</h3>
+<p>In cryptography, we often rely on functions that are easy to compute in one direction but hard to reverse. An example of this is the discrete logarithm.</p>
+<p>Consider an element ℎ in 𝑍𝑝* with a generator 𝑔 and an integer 𝑥 such that $$𝑔^𝑥 \equiv ℎ \text{ mod } p$$Calculating ℎ given 𝑥 is relatively straightforward. However, for a suitably large prime 𝑝, determining 𝑥 given ℎ becomes significantly more challenging. Since 𝑔 is a primitive root, the probability of a random guess for 𝑥 satisfying the equation is as low as 1 / 𝑝.</p>
+<p>While there are methods to improve the random approach, no known algorithms efficiently solve the discrete logarithm problem in general cases. This assumption underpins many algorithms in cryptography, including Schnorr&rsquo;s Identification Scheme, where the prover authenticates their identity by demonstrating knowledge of the discrete logarithm without revealing the solution itself.</p>
+<h2 id="schnorrs-identification-scheme-a-deep-dive-into-zero-knowledge-proofs">Schnorr’s Identification Scheme: A Deep Dive into Zero-Knowledge Proofs</h2>
+<p>Schnorr’s Identification Scheme is one of the cryptographic protocols that employs the concept of Zero-Knowledge Proof (ZKP). It allows a prover to convince a verifier that they know a secret value without actually revealing that value. In this post, we will explore the structure, properties, and functioning of this scheme.</p>
+<h3 id="definition-and-structure">Definition and Structure</h3>
+<p>To begin with, we define two large prime numbers, 𝑝 and 𝑞, such that 𝑞 divides 𝑝 − 1 (𝑞 ∣ (𝑝 − 1)). We then select 𝑔 as a generator for a subgroup 𝐺 (of prime order 𝑞) of 𝑍𝑝*. A subgroup of a group is a subset of numbers that satisfies the properties of a group, and the order of a group is the number of elements in that group. This subgroup
+𝐺 is known as the Schnorr Group. Finally, the private key 𝑥 (which identifies the prover) has a corresponding public key 𝑋 that satisfies the equation $$𝑋 = 𝑔^x \text{ mod } p$$</p>
+<h3 id="the-process-of-the-identification-scheme">The Process of the Identification Scheme</h3>
+<p>The Schnorr Identification Scheme consists of the following steps:</p>
+<ol>
+<li><strong>Commitment Step:</strong> The prover selects a random number 𝑣 and sends a commitment 𝑉 = 𝑔^𝑣 mod 𝑝 to the verifier.</li>
+<li><strong>Challenge Step:</strong> The verifier chooses a random number 𝑐, known as the challenge, and sends it to the prover.</li>
+<li><strong>Response Step:</strong> The prover calculates and returns the response 𝑏 = 𝑣 + 𝑐𝑥 mod 𝑞 to the verifier.</li>
+<li><strong>Verification Step:</strong> The verifier checks if $$g^b = V \cdot X^c \text{ mod } p.$$</li>
+</ol>
+<p><strong>Sigma Protocols</strong></p>
+<p>The Schnorr Identification Scheme follows a three-step structure (commitment, challenge, response) and meets the properties of Zero-Knowledge (ZK) completeness, special soundness, and honest verification, collectively known as Sigma Protocols (or Σ-protocols). A replica of such protocols is often summarized as a tuple (𝑉, 𝑐, 𝑏).</p>
+<p><strong>Completeness</strong></p>
+<p>The protocol is complete if a prover who knows 𝑥 can always convince an honest verifier. This is straightforward to see by confirming the verifier’s final check in step 4. Specifically, we have:
+$$g^b = g^v+cx=g^v \cdot g^{cx} = V \cdot X^c \text{ mod } p$$</p>
+<p><strong>Soundness</strong></p>
+<p>The protocol ensures that a dishonest prover, who does not know 𝑥, cannot convince the verifier with a high probability (reasonable error). This is proven by contradiction. If a dishonest prover can provide two responses 𝑏1 and 𝑏2 for the same commitment 𝑣 but with two different challenges 𝑐1 and 𝑐2, we get:
+$$g^{b_1} = g^v \cdot g^{xc_1}$$
+and
+$$g^{b_2} = g^v \cdot g^{xc_2}$$
+From this, we can calculate 𝑥 as:
+$$x = \frac{b_1 - b_2}{c_1 - c_2}$$
+This contradicts the assumption that the prover does not know 𝑥.</p>
+<p><strong>Proofs of Knowledge</strong></p>
+<p>A complete protocol is called a Proof of Knowledge (PoK) if it guarantees that the prover actually knows a secret value (like the private key 𝑥) if they can convince the verifier. This means if the prover can persuade the verifier they know 𝑥, then they must truly know it.</p>
+<p>To demonstrate that the protocol is a Proof of Knowledge, we need to establish the existence of a special algorithm called an extractor. This extractor can obtain information from a potentially dishonest prover and compute the secret value 𝑥.</p>
+<p><strong>Key Components</strong></p>
+<ol>
+<li><strong>Extractor:</strong> An assumed algorithm that has access to the prover and can derive the secret 𝑥.</li>
+<li><strong>Oracle Access:</strong> The extractor can perform operations or queries (imagine making phone calls) to gather necessary data from the prover.</li>
+<li><strong>Adversarial Prover:</strong> This is a prover who does not necessarily follow the protocol honestly and may attempt to cheat or perform other actions.</li>
+<li><strong>Probability of Convincing:</strong> If the prover can convince the verifier that they know 𝑥 with a certain probability, the extractor can also compute 𝑥 with at least that same probability.</li>
+</ol>
+<p>For example, if a dishonest prover can generate proofs (𝑉, 𝑐, 𝑏) that the verifier accepts with probability 𝑃*, then the extractor can use these proofs to calculate 𝑥 with probability at least 𝑃*.</p>
+<p><strong>Special Soundness</strong></p>
+<p>The Sigma protocol guarantees that for any two accepted copies of the protocol (𝑉, 𝑐, 𝑏) and (𝑉, 𝑐′, 𝑏′) where 𝑐 and 𝑐′ are different, an efficient extractor can learn the witness 𝑥. This validates that Schnorr’s Identification Scheme satisfies special soundness.</p>
+<p><strong>Honest-Verifier Zero-Knowledge (HVZK)</strong></p>
+<p>The final property we examine is Honest-Verifier Zero-Knowledge (HVZK). The goal here is to create a proof that the verifier cannot distinguish from the real proof, even when the verifier acts honestly.</p>
+<p>We illustrate HVZK by constructing a simulator that can create fake proofs indistinguishable from real proofs. Here’s how the simulator works:</p>
+<ol>
+<li><strong>Randomly Choose Response and Challenge:</strong> The simulator randomly selects a response value 𝑏 and a challenge value 𝑐.</li>
+<li><strong>Calculate Commitment Value:</strong> The simulator computes the commitment value 𝑉 using the formula:
+$$V = g^b \cdot X^{-c} \text{ mod } p$$
+where:
+<ul>
+<li>g is the generator for the subgroup 𝐺</li>
+<li>𝑋 is the public key $$𝑋 = g^x \text{ mod }p$$</li>
+<li>𝑝 is a large prime number</li>
+</ul>
+</li>
+<li><strong>Publish Proof:</strong> The simulator outputs a proof in the form (𝑉, 𝑐, 𝑏).</li>
+</ol>
+<p><strong>Explanation</strong></p>
+<p>When the verifier selects random challenges, the proofs generated by the simulator are indistinguishable from real proofs created by an actual prover. This means that the verifier cannot determine whether the proof (𝑉, 𝑐, 𝑏) was generated by the simulator or the real prover.</p>
+<p><strong>Example Illustration</strong></p>
+<p>Suppose the verifier receives a proof (𝑉, 𝑐, 𝑏). If this proof cannot be distinguished from a real proof, it indicates that the verifier cannot ascertain how (𝑉, 𝑐, 𝑏) was created, demonstrating the HVZK property.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Schnorr’s Identification Scheme offers numerous advantages over traditional authentication protocols (which rely on passwords). It ensures the security of the prover, even if the server (verifier) is compromised. However, its primary drawback is its single point of failure: the private key. Nonetheless, Schnorr’s scheme remains a potential solution to enhance the security toolkit for engineers.</p>
+<h1 id="classification-and-applications-of-zero-knowledge-proofs">Classification and Applications of Zero Knowledge Proofs</h1>
+<p>Zero Knowledge Proofs (ZKPs) are powerful cryptographic protocols that allow one party (the prover) to convince another party (the verifier) that a statement is true without revealing any additional information. In this post, we will classify ZKPs into two main types and explore their various applications.</p>
+<h2 id="classification-of-zero-knowledge-proofs">Classification of Zero Knowledge Proofs</h2>
+<h3 id="interactive-zero-knowledge-proofs-izkps">Interactive Zero Knowledge Proofs (IZKPs)</h3>
+<p>Interactive Zero Knowledge Proofs require multiple interactions between the prover and the verifier. This method allows the prover to convince the verifier of the validity of a statement without disclosing any other information. Here are the key features:</p>
+<ul>
+<li><strong>Continuous Interaction:</strong> The prover and verifier must exchange multiple messages back and forth.</li>
+<li><strong>Real-World Applications:</strong> While IZKPs can be used in various situations, they are not suitable for blockchain applications. Each interaction incurs gas fees, which can hinder the scalability of the system.</li>
+</ul>
+<h3 id="non-interactive-zero-knowledge-proofs-nizkps">Non-Interactive Zero Knowledge Proofs (NIZKPs)</h3>
+<p>Non-Interactive Zero Knowledge Proofs only require a single interaction between the prover and the verifier. This characteristic makes them easier to implement on blockchain and other distributed systems. Key points include:</p>
+<ul>
+<li><strong>Single Interaction:</strong> The prover prepares a single proof and sends it to the verifier. The verifier then checks the validity of the proof without any further interaction.</li>
+<li><strong>Simulation Method:</strong> The prover simulates the necessary interactions and sends the results of this simulation to the verifier. The verifier checks and confirms that the simulation is accurate.</li>
+<li><strong>Complex Cryptography:</strong> NIZKPs use sophisticated cryptographic techniques, though we won’t delve into these details in this report.</li>
+<li><strong>Popular Types:</strong> Two of the most common NIZKPs are Zero Knowledge Succinct Non-interactive Argument of Knowledge (ZK-SNARKs) and Zero Knowledge Scalable Transparent Argument of Knowledge (ZK-STARKs).</li>
+</ul>
+<h2 id="applications-of-zero-knowledge-proofs">Applications of Zero Knowledge Proofs</h2>
+<p>Zero Knowledge Proofs have a wide range of applications, some of which include:</p>
+<ul>
+<li><strong>Privacy in Blockchain:</strong> While the transparency of blockchain offers advantages, such as the ability to verify public transactions, it can also lead to reduced privacy. ZKPs can protect transactions on the blockchain, enabling private transactions, secure messaging, and more. Examples of privacy-focused blockchains or protocols include Zcash, Mina, and Monero.</li>
+<li><strong>Scalability of Blockchain:</strong> Ethereum’s Proof of Work model enhances the security of decentralized protocols but is resource-intensive and requires significant computational power to operate. With the advent of zk-rollups, we can bundle hundreds or thousands of transactions into a single proof for verification. This approach improves scalability by allowing these transactions to be recorded on Ethereum simultaneously, rather than processing each one directly on the blockchain.</li>
+<li><strong>Authentication:</strong> ZKPs are widely used in authentication protocols as they provide a means to verify users without requiring private information like passwords or IDs. This enhances security while protecting user privacy.</li>
+<li><strong>Machine Learning:</strong> ZKPs are also being applied in the field of machine learning. They allow algorithm owners to convince others of the outcomes of their models without disclosing any information about the actual machine learning model itself.</li>
+</ul>
+<h1 id="references">References</h1>
+<ol>
+<li>Matthew Green. (2014, November 27). <em>Zero Knowledge Proofs: An illustrated primer</em>. Retrieved from <a href="https://blog.cryptographyengineering.com/2014/11/27/zero-knowledge-proofs-illustrated-primer/">https://blog.cryptographyengineering.com/2014/11/27/zero-knowledge-proofs-illustrated-primer/</a></li>
+<li>Yannik Goldgräbe, Sebastian Gajek. (2019, January 15). <em>On Interactive Proofs and Zero-Knowledge: A Primer</em>. Retrieved from <a href="https://medium.com/magicofc/interactive-proofs-and-zero-knowledge-b32f6c8d66c3">https://medium.com/magicofc/interactive-proofs-and-zero-knowledge-b32f6c8d66c3</a></li>
+<li>Darlington Nnam. (2022, August 20). <em>Beginner’s Guide To Understanding Zero Knowledge Proofs</em>. Retrieved from <a href="https://medium.com/@darlingtonnnam/beginners-guide-to-understanding-zero-knowledge-proofs-cadc4e2c23a8">https://medium.com/@darlingtonnnam/beginners-guide-to-understanding-zero-knowledge-proofs-cadc4e2c23a8</a></li>
+<li><em>Commitment scheme</em>. Wikipedia. Retrieved from <a href="https://en.wikipedia.org/wiki/Commitment_scheme">https://en.wikipedia.org/wiki/Commitment_scheme</a></li>
+<li>Noah. (2023, July 13). <em>Zero-Knowledge Proofs.</em> Retrieved from <a href="https://medium.com/@noah_h/zero-knowledge-proofs-3f412d911b1e">https://medium.com/@noah_h/zero-knowledge-proofs-3f412d911b1e</a></li>
+<li>Matthew Green. (2017, January 21). <em>Zero Knowledge Proofs: An illustrated primer, Part 2</em>. Retrieved from <a href="https://blog.cryptographyengineering.com/2017/01/21/zero-knowledge-proofs-an-illustrated-primer-part-2/">https://blog.cryptographyengineering.com/2017/01/21/zero-knowledge-proofs-an-illustrated-primer-part-2/</a></li>
+<li>Noah. (2023, August 19). <em>Schnorr’s Identification Scheme.</em> Retrieved from <a href="https://medium.com/@noah_h/schnorrs-identification-scheme-e9c029500cbd">https://medium.com/@noah_h/schnorrs-identification-scheme-e9c029500cbd</a></li>
+</ol>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/">Zero-Knowledge Proofs</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/cryptography/">Cryptography</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/blockchain/">Blockchain</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+      </article>
+      
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dangduongminhnhat.github.io/posts/d050824/extracting-ip-address/" data-toggle="tooltip" data-placement="top" title="Extracting IP Addresses via Chat Apps: Zalo and Telegram">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2024
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="https://dangduongminhnhat.github.io/js/main.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dangduongminhnhat.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

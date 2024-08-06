@@ -66,7 +66,7 @@
   "headline": "Extracting IP Addresses via Chat Apps: Zalo and Telegram",
   "description" : "In this blog post, I explore how cybercriminals exploit chat applications like Zalo and Telegram to extract users\u0026rsquo; IP addresses through methods like URL spoofing and phishing. By creating and distributing spoofed URLs, attackers can deceive users into revealing sensitive information. I also highlight a specific vulnerability in Telegram that exposes user IP addresses during calls. Learn the mechanics of these attacks, see a detailed proof of concept, and discover essential tips to protect your privacy online.",
   "inLanguage" : "en",
-  "wordCount":  1960 ,
+  "wordCount":  1959 ,
   "datePublished" : "2024-08-05T12:46:40\u002b07:00",
   "dateModified" : "2024-08-05T12:46:40\u002b07:00",
   "image" : "https:\/\/dangduongminhnhat.github.io\/",
@@ -241,7 +241,7 @@
         <p>
           <strong>Posted on:</strong> August 5, 2024 |
           <strong>Reading time:</strong> 10 minutes |
-          <strong>Word count:</strong> 1960 words |
+          <strong>Word count:</strong> 1959 words |
           <strong>Author:</strong> Dang Duong Minh Nhat
         </p>
         <p>In the digital age, chat applications like Zalo and Telegram are essential tools for communication. However, they also open doors for cybercriminals to exploit users. One sophisticated method involves extracting IP addresses using spoofed URLs and phishing tactics. This blog post dives into the mechanics of URL spoofing, the common types of attacks, and a step-by-step demonstration of how attackers can track IP addresses through seemingly harmless interactions on these chat applications.</p>
@@ -317,12 +317,12 @@ Log in to the IP logging service to view the captured IP address and other relev
 <p><strong>Step 1: Creation of a Spoofed URL.</strong>
 Start by uploading the image to an image hosting website such as <a href="https://imgbb.com/">ImgBB</a>. For this demonstration, I will use the link to the <a href="https://i.ibb.co/R6z9myy/Hacker.jpg">image</a>.
 To track the IP address, I will use a service that logs and tracks IP addresses. Many websites offer logging services, but for this demo, I will use <a href="https://grabify.link/">Grabify</a>. Grabify allows us to log and track IP addresses and provide additional information about our target, such as the browser and operating system used. While Grabify offers both free and paid services, I will use the free package for this demonstration.
-Go to the Grabify website and enter the link to our online hosted <a href="https://i.ibb.co/R6z9myy/Hacker.jpg">image</a> into the provided field. Click on the &ldquo;Create URL&rdquo; button to generate a tracking link.
-<img src="/images/d050824/grabify.png" alt="Grabify">
-A screen will pop up requesting you to agree to the terms of service and privacy policy. Make sure to read through the terms to ensure compliance with legal requirements. Accept the terms and continue to proceed with the creation of the tracking URL.
-<img src="/images/d050824/requires.png" alt="Requires">
-<img src="/images/d050824/information.png" alt="Information">
-On this page I have several types of information to help us track IP address:</p>
+Go to the Grabify website and enter the link to our online hosted <a href="https://i.ibb.co/R6z9myy/Hacker.jpg">image</a> into the provided field. Click on the &ldquo;Create URL&rdquo; button to generate a tracking link.</p>
+<p><img src="/images/d050824/grabify.png" alt="Grabify"></p>
+<p>A screen will pop up requesting you to agree to the terms of service and privacy policy. Make sure to read through the terms to ensure compliance with legal requirements. Accept the terms and continue to proceed with the creation of the tracking URL.</p>
+<p><img src="/images/d050824/requires.png" alt="Requires">
+<img src="/images/d050824/information.png" alt="Information"></p>
+<p>On this page I have several types of information to help us track IP address:</p>
 <ul>
 <li>Original URL - This is the original URL to your image on the website it is hosted on.</li>
 <li>New URL - This is the URL which I will send to our target in order to obtain information to help us track the IP address.</li>
@@ -330,18 +330,18 @@ On this page I have several types of information to help us track IP address:</p
 </ul>
 <p><strong>Step 2: URL Shortening.</strong>
 After creating the tracking link with Grabify, you will have a URL that can be used to track the IP address of the target. However, this link can be identified as an information-fetching link, potentially raising suspicion.
-To make the link less detectable and more likely to be clicked by the target, I will use a URL shortening service. This service will convert the lengthy and potentially suspicious link into a shorter and more inconspicuous one. For this demonstration, I will use <a href="https://bitly.com/">Bitly</a>, a popular free URL shortening service.
-<img src="/images/d050824/bitly.png" alt="Bitly">
-Visit the Bitly website and enter the Grabify tracking link into the URL shortening field. Click “Enter” to generate a shortened URL. For this example, the shortened URL is: <a href="https://bit.ly/4dtLE3Y">https://bit.ly/4dtLE3Y</a>.
-<img src="/images/d050824/link.png" alt="Link">
-<strong>Step 3: Distribution of the Spoofed URL.</strong>
-Send message to Victim through Zalo with Spoofed URL.
-<img src="/images/d050824/message.png" alt="Message">
-<strong>Step 4: Tracking the IP Address.</strong>
-Use Grabify to log and track IP addresses and provide additional information about our target. See the log results on the statistics table and its referring URL from Zalo.
-<img src="/images/d050824/result.png" alt="Reslut">
-Click on to see full details.
-<img src="/images/d050824/log.png" alt="Log"></p>
+To make the link less detectable and more likely to be clicked by the target, I will use a URL shortening service. This service will convert the lengthy and potentially suspicious link into a shorter and more inconspicuous one. For this demonstration, I will use <a href="https://bitly.com/">Bitly</a>, a popular free URL shortening service.</p>
+<p><img src="/images/d050824/bitly.png" alt="Bitly"></p>
+<p>Visit the Bitly website and enter the Grabify tracking link into the URL shortening field. Click “Enter” to generate a shortened URL. For this example, the shortened URL is: <a href="https://bit.ly/4dtLE3Y">https://bit.ly/4dtLE3Y</a>.</p>
+<p><img src="/images/d050824/link.png" alt="Link"></p>
+<p><strong>Step 3: Distribution of the Spoofed URL.</strong>
+Send message to Victim through Zalo with Spoofed URL.</p>
+<p><img src="/images/d050824/message.png" alt="Message"></p>
+<p><strong>Step 4: Tracking the IP Address.</strong>
+Use Grabify to log and track IP addresses and provide additional information about our target. See the log results on the statistics table and its referring URL from Zalo.</p>
+<p><img src="/images/d050824/result.png" alt="Reslut"></p>
+<p>Click on to see full details.</p>
+<p><img src="/images/d050824/log.png" alt="Log"></p>
 <h1 id="discover-the-users-ip-address-using-telegram">Discover the user’s IP address using Telegram.</h1>
 <h2 id="introduction">Introduction</h2>
 <p>Telegram, a popular messaging app, can unintentionally leak your IP address if you add a hacker to your contacts and accept a phone call from them. This vulnerability is identified as <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-17780">CVE-2018-17780</a>:</p>
@@ -350,10 +350,10 @@ Click on to see full details.
 <li><strong>Vulnerability:</strong> Leaks end-user public and private IP addresses during a call due to unsafe default behavior that accepts P2P connections from clients outside of the &ldquo;My Contacts&rdquo; list.</li>
 <li><strong>CVSS Score:</strong> 6.5 (Medium - Version 3.x).</li>
 </ul>
-<p>Unfortunately, this vulnerability still exists and continues (until now) to expose users&rsquo; IP addresses during calls.
-<img src="/images/d050824/cve.png" alt="CVE">
-To avoid leaking your IP address while using Telegram, go to Telegram’s Settings &gt; Privacy and Security &gt; Calls, and then select “Never” in the Peer-to-Peer menu.
-<img src="/images/d050824/p2p.png" alt="P2P"></p>
+<p>Unfortunately, this vulnerability still exists and continues (until now) to expose users&rsquo; IP addresses during calls.</p>
+<p><img src="/images/d050824/cve.png" alt="CVE"></p>
+<p>To avoid leaking your IP address while using Telegram, go to Telegram’s Settings &gt; Privacy and Security &gt; Calls, and then select “Never” in the Peer-to-Peer menu.</p>
+<p><img src="/images/d050824/p2p.png" alt="P2P"></p>
 <h2 id="root-cause">Root Cause</h2>
 <p>According to Simonov, &ldquo;An unprepared person can easily reveal his IP address to his interlocutor if he does not know about them.&rdquo; The reason for this leak is that Telegram, by default, uses a peer-to-peer (P2P) connection between callers for better quality and reduced latency. A Telegram spokesperson, Remi Vaughn, explained, &ldquo;The downside of this is that it necessitates that both sides know the IP address of the other (since it is a direct connection). Unlike on other messengers, calls from those who are not your contact list will be routed through Telegram’s servers to obscure that.&rdquo;</p>
 <h2 id="proof-of-concept-1">Proof of Concept</h2>
@@ -372,9 +372,9 @@ To avoid leaking your IP address while using Telegram, go to Telegram’s Settin
 <li><strong>Monitor the Call:</strong> While the call is in progress, the attacker closely monitors the STUN traffic in Wireshark for any packets containing IP address information.</li>
 <li><strong>Extract the IP Address:</strong> Upon detecting the relevant STUN packets, the attacker analyzes the packet details to extract the victim&rsquo;s public IP address. This information is now accessible to the attacker.</li>
 </ol>
-<p><img src="/images/d050824/wireshark.png" alt="Wireshark">
-With the IP address in hand, you can use a web service like <a href="https://infosniper.net/">InfoSniper</a> to find the location associated with the IP address.
-<img src="/images/d050824/info.png" alt="Info">
+<p><img src="/images/d050824/wireshark.png" alt="Wireshark"></p>
+<p>With the IP address in hand, you can use a web service like <a href="https://infosniper.net/">InfoSniper</a> to find the location associated with the IP address.</p>
+<p><img src="/images/d050824/info.png" alt="Info">
 <img src="/images/d050824/info2.png" alt="Info2"></p>
 <h1 id="conclusion">Conclusion</h1>
 <p>Understanding the methods cybercriminals use to extract IP addresses through chat applications like Zalo and Telegram is crucial in today&rsquo;s digital landscape. By highlighting the tactics of URL spoofing and phishing, as well as exposing vulnerabilities within these platforms, I hope to raise awareness about the potential risks and encourage proactive measures for online safety. Always be vigilant when interacting with links and unknown contacts, and take advantage of privacy settings to protect your personal information. Staying informed and cautious is your best defense against cyber threats.</p>
@@ -382,7 +382,7 @@ With the IP address in hand, you can use a web service like <a href="https://inf
 <h1 id="references">References</h1>
 <ol>
 <li>Kennedy Muthii. (2024, January 1). <em>How to track IP address using an image.</em> Retrieved from <a href="https://www.golinuxcloud.com/track-ip-address-using-an-image/">https://www.golinuxcloud.com/track-ip-address-using-an-image/</a></li>
-<li>Lorenzo Franceschi-Bicchierai. (2023, October 19). <em>Telegram is still leaking user IP addresses to contacts.</em> TechCrunch. Retrieved from 2. <a href="https://techcrunch.com/2023/10/19/telegram-is-still-leaking-user-ip-addresses-to-contacts/">https://techcrunch.com/2023/10/19/telegram-is-still-leaking-user-ip-addresses-to-contacts/</a></li>
+<li>Lorenzo Franceschi-Bicchierai. (2023, October 19). <em>Telegram is still leaking user IP addresses to contacts.</em> TechCrunch. Retrieved from <a href="https://techcrunch.com/2023/10/19/telegram-is-still-leaking-user-ip-addresses-to-contacts/">https://techcrunch.com/2023/10/19/telegram-is-still-leaking-user-ip-addresses-to-contacts/</a></li>
 <li>Jomilė Nakutavičiūtė. (2024, January 2). <em>URL Spoofing: Definition and explanation.</em> Retrieved from <a href="https://nordvpn.com/blog/url-spoofing/">https://nordvpn.com/blog/url-spoofing/</a></li>
 <li>CyStack. (n.d.). <em>Phishing là gì? Cách phòng chống tấn công Phishing hiệu quả.</em> Retrieved from <a href="https://cystack.net/blog/phishing-la-gi">https://cystack.net/blog/phishing-la-gi</a></li>
 <li>National Vulnerability Database. (2018). <em>CVE-2018-17780.</em> Retrieved from <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-17780">https://nvd.nist.gov/vuln/detail/CVE-2018-17780</a></li>
@@ -418,6 +418,10 @@ With the IP address in hand, you can use a web service like <a href="https://inf
               <a href="https://dangduongminhnhat.github.io/posts/about-me/" data-toggle="tooltip" data-placement="top" title="About Me">&larr; Previous Post</a>
             </li>
           
+          
+            <li class="next">
+              <a href="https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/" data-toggle="tooltip" data-placement="top" title="Understanding Zero Knowledge Proofs: Key Concepts and Applications">Next Post &rarr;</a>
+            </li>
           
         </ul>
       

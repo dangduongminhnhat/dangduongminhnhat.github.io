@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Aug 2024 12:46:40 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 06 Aug 2024 13:58:24 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blockchain</title>
+      <link>https://dangduongminhnhat.github.io/tags/blockchain/</link>
+      <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/blockchain/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cryptography</title>
+      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
+      <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Zero-Knowledge Proofs</title>
+      <link>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</link>
+      <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>CyberSecurity</title>
       <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
