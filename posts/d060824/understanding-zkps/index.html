@@ -66,7 +66,7 @@
   "headline": "Understanding Zero Knowledge Proofs: Key Concepts and Applications",
   "description" : "This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine).",
   "inLanguage" : "en",
-  "wordCount":  6353 ,
+  "wordCount":  6381 ,
   "datePublished" : "2024-08-06T13:58:24\u002b07:00",
   "dateModified" : "2024-08-06T13:58:24\u002b07:00",
   "image" : "https:\/\/dangduongminhnhat.github.io\/",
@@ -108,6 +108,19 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
 <link rel="manifest" href="/favicon_io/site.webmanifest">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
 
     <meta name="google-site-verification" content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU" />
   </head>
@@ -246,7 +259,7 @@
         <p>
           <strong>Posted on:</strong> August 6, 2024 |
           <strong>Reading time:</strong> 30 minutes |
-          <strong>Word count:</strong> 6353 words |
+          <strong>Word count:</strong> 6381 words |
           <strong>Author:</strong> Dang Duong Minh Nhat
         </p>
         <p>In my research on security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine), it&rsquo;s essential to understand the foundational concepts of Zero-Knowledge Proofs (ZKPs). ZKPs are a revolutionary cryptographic technique that enables one party to prove knowledge of a fact without revealing any information about the fact itself. This blog will delve into the classification of Zero-Knowledge Proofs, their various applications, and how they play a pivotal role in enhancing privacy and security in blockchain systems, particularly in the context of ZK-EVM.</p>
@@ -318,6 +331,7 @@
 </ul>
 </li>
 <li><a href="#references">References</a></li>
+<li><a href="#connect-with-me">Connect with Me</a></li>
 </ul>
 <h1 id="introduction-to-zero-knowledge-proofs">Introduction to Zero Knowledge Proofs</h1>
 <h2 id="introduction">Introduction</h2>
@@ -388,51 +402,51 @@
 <li>Messages Received: Content read from the read-only communication tape during the machine&rsquo;s active period.</li>
 </ul>
 <p>The machine&rsquo;s movement on both communication tapes is unidirectional, for example, from left to right.</p>
-<p>Assume we call the interactive Turing machine M₁ the Prover (P) and M₂ the Verifier (V). Like humans, machines need to understand a language L to interact correctly. We do not plan to delve deep into language and complexity theory here. All we need to know is that the statement the Prover P wants to prove must be – loosely speaking – encoded in a specific language. With (x, w) ∈ L and (x, w) ∉ L, we denote a true or false statement to be proven. In other words, the pair (x, w) is a member of the language L. Typically, the value x is public and known to both the Prover and the Verifier, while the parameter w (called the witness) is private and known only to the Prover.</p>
-<p><strong>Definition of Language L</strong></p>
-<p>Formally, a language L is defined as a set (possibly infinite) of strings over some finite alphabet and is formed according to a set of specific rules. For example, a language L over the alphabet Σ = {0, 1, 2, -, =} may have the following grammar:</p>
+<p>Assume we call the interactive Turing machine M₁ the Prover $P$ and M₂ the Verifier $V$. Like humans, machines need to understand a language $L$ to interact correctly. We do not plan to delve deep into language and complexity theory here. All we need to know is that the statement the Prover $P$ wants to prove must be – loosely speaking – encoded in a specific language. With $(x, w) \in L$ and $(x, w) \notin L$, we denote a true or false statement to be proven. In other words, the pair $(x, w)$ is a member of the language $L$. Typically, the value $x$ is public and known to both the Prover and the Verifier, while the parameter $w$ (called the witness) is private and known only to the Prover.</p>
+<p><strong>Definition of Language $L$</strong></p>
+<p>Formally, a language $L$ is defined as a set (possibly infinite) of strings over some finite alphabet and is formed according to a set of specific rules. For example, a language $L$ over the alphabet $\sum = {0, 1, 2, -, =}$ may have the following grammar:</p>
 <ul>
-<li>Any non-empty string that does not contain “-” or “=” and does not start with “0” is in L.</li>
-<li>A string containing “=” is in L if and only if it contains exactly one “=”, and it separates two valid strings of L.</li>
+<li>Any non-empty string that does not contain “-” or “=” and does not start with “0” is in $L$.</li>
+<li>A string containing “=” is in $L$ if and only if it contains exactly one “=”, and it separates two valid strings of $L$.</li>
 </ul>
-<p>According to these rules, the string “2–1=1” is in L, but the string “=21=0-” is not. During the setup phase of the communication protocol, the interacting parties usually agree on a specific language with specific rules.</p>
+<p>According to these rules, the string “2–1=1” is in $L$, but the string “=21=0-” is not. During the setup phase of the communication protocol, the interacting parties usually agree on a specific language with specific rules.</p>
 <p>By understanding these formal definitions, we gain a deeper insight into how interactive proof systems work, paving the way for robust zero-knowledge proofs that protect sensitive information while proving the validity of a statement.</p>
 <h3 id="interactive-proof-systems-understanding-their-mechanics">Interactive Proof Systems: Understanding Their Mechanics</h3>
-<p>An interactive proof system is a critical component in the realm of cryptography, allowing a Prover (P) to convince a Verifier (V) of a statement&rsquo;s validity without revealing any sensitive information. A pair of Interactive Turing Machines (P, V) constitutes an interactive proof system for a language L if the Verifier operates in polynomial time and the following two conditions hold:</p>
+<p>An interactive proof system is a critical component in the realm of cryptography, allowing a Prover $P$ to convince a Verifier $V$ of a statement&rsquo;s validity without revealing any sensitive information. A pair of Interactive Turing Machines $(P, V)$ constitutes an interactive proof system for a language L if the Verifier operates in polynomial time and the following two conditions hold:</p>
 <p><strong>Completeness</strong></p>
-<p>The completeness property ensures that if the statement is true, the Prover can convince the Verifier with significant probability. Formally, for every pair (x, w) in the language L, the probability that Prover P can successfully convince the honest Verifier V is expressed as:</p>
+<p>The completeness property ensures that if the statement is true, the Prover can convince the Verifier with significant probability. Formally, for every pair $(x, w)$ in the language L, the probability that Prover $P$ can successfully convince the honest Verifier $V$ is expressed as:</p>
 <blockquote>
-<p>∀(x,w) ∈ L : Pr[ ⟨P(x,w),V(x)⟩ = 1 ] ≥ 1 — negl</p>
+<p>$\forall (x, w) \in L: Pr[\langle P(x, w), V(x)\rangle = 1] \geq 1-negl$</p>
 </blockquote>
-<p>This means that if (x, w) is a valid statement in L, the Prover has a high chance of successfully convincing the Verifier.</p>
+<p>This means that if $(x, w)$ is a valid statement in $L$, the Prover has a high chance of successfully convincing the Verifier.</p>
 <p><strong>Soundness</strong></p>
 <p>Soundness has two versions that together ensure the reliability of the proof system:</p>
 <ul>
-<li><strong>Weak Soundness (Unforgeability):</strong> For any (x, w) not in the language L, the probability that a dishonest Prover 𝑃′ can convince the honest Verifier V is negligible:</li>
+<li><strong>Weak Soundness (Unforgeability):</strong> For any $(x, w)$ not in the language $L$, the probability that a dishonest Prover $𝑃^{&rsquo;}$ can convince the honest Verifier $V$ is negligible:</li>
 </ul>
 <blockquote>
-<p>∀(x,w) ∉ L : Pr[ ⟨P&rsquo;(x),V(x)⟩ = 1 ] ≤ negl</p>
+<p>$\forall (x, w) \notin L: Pr[\langle P^{&rsquo;}(x), V(x)\rangle = 1] \leq negl$</p>
 </blockquote>
-<p>This means that if (x, w) is not a valid statement, it should be virtually impossible for a dishonest Prover to convince the Verifier.</p>
+<p>This means that if $(x, w)$ is not a valid statement, it should be virtually impossible for a dishonest Prover to convince the Verifier.</p>
 <ul>
-<li><strong>Strong Soundness (Special Soundness):</strong> For every (x, w) in L, there exists a polynomial-time extractor algorithm E such that the witness w can be extracted from valid conversations between Prover P and Verifier V:</li>
+<li><strong>Strong Soundness (Special Soundness):</strong> For every $(x, w)$ in $L$, there exists a polynomial-time extractor algorithm $E$ such that the witness $w$ can be extracted from valid conversations between Prover $P$ and Verifier $V$:</li>
 </ul>
 <blockquote>
-<p>∀(x,w) ∈ L, ∃ E: Pr[ E⟨P(x,w),V(x)⟩ = w ] ≥ 1 - negl</p>
+<p>$\forall (x, w) \in L, \exists E: Pr[E\langle P(x, w), V(x)\rangle = w] \geq 1-negl$</p>
 </blockquote>
 <p>The strong soundness guarantees that the witness can be reliably extracted from the interaction, ensuring that the Prover&rsquo;s knowledge can be verified.</p>
 <p>These two versions of soundness emphasize that a valid proof should not only be convincing but also verifiable in a way that guarantees the integrity of the information.</p>
 <p><strong>Zero-Knowledge</strong></p>
-<p>The zero-knowledge property is perhaps the most fascinating aspect of interactive proof systems. For every (x, w) in the language L, there exists a simulator S such that no polynomial-time distinguisher D can distinguish between the real interaction between Prover P and Verifier V and the simulated interaction produced by S:</p>
+<p>The zero-knowledge property is perhaps the most fascinating aspect of interactive proof systems. For every $(x, w)$ in the language $L$, there exists a simulator $S$ such that no polynomial-time distinguisher $D$ can distinguish between the real interaction between Prover $P$ and Verifier $V$ and the simulated interaction produced by $S$:</p>
 <blockquote>
-<p>∀(x,w)∈L, ∀V ∃S: Pr[ D⟨P(x,w),V(x)⟩ = 1 ] - Pr[ D⟨S(x)⟩ = 1 ] ≤ negl</p>
+<p>$\forall (x, w) \in L, \forall V \exists S: Pr[D\langle P(x, w), V(x)\rangle = 1] - Pr[D\langle S(x)\rangle = 1] \leq negl$</p>
 </blockquote>
 <p>This means that the interaction between the Prover and Verifier does not leak any information beyond the validity of the statement itself.</p>
 <p>Understanding the Simulation Mechanism
-To grasp the simulation mechanism, it is essential to remember the concept of indistinguishability. Indistinguishability is a powerful notion in computer science that indicates when two distributions (or processes) cannot be distinguished from one another by a given algorithm D. If a spectator cannot differentiate between a human and a machine after a lengthy conversation, the machine is considered to be &ldquo;as good as&rdquo; or &ldquo;appearing like&rdquo; a human.</p>
+To grasp the simulation mechanism, it is essential to remember the concept of indistinguishability. Indistinguishability is a powerful notion in computer science that indicates when two distributions (or processes) cannot be distinguished from one another by a given algorithm $D$. If a spectator cannot differentiate between a human and a machine after a lengthy conversation, the machine is considered to be &ldquo;as good as&rdquo; or &ldquo;appearing like&rdquo; a human.</p>
 <p><img src="/images/d060824/definition.png" alt="Definition">
 <em><a href="https://medium.com/magicofc/interactive-proofs-and-zero-knowledge-b32f6c8d66c3">Source Image</a></em></p>
-<p>In the comparison between the interaction of Prover P and Verifier V with the execution process created by simulator S, P uses her witness w while simulator S only has access to the public information x. Despite the information disadvantage, the simulator generates a &ldquo;similar&rdquo; record of the interaction between Prover and Verifier. If the actual protocol record is indistinguishable from the simulated record, then the protocol is considered zero-knowledge because the simulated record contains no information about the witness w.</p>
+<p>In the comparison between the interaction of Prover $P$ and Verifier $V$ with the execution process created by simulator $S, P$ uses her witness $w$ while simulator $S$ only has access to the public information $x$. Despite the information disadvantage, the simulator generates a &ldquo;similar&rdquo; record of the interaction between Prover and Verifier. If the actual protocol record is indistinguishable from the simulated record, then the protocol is considered zero-knowledge because the simulated record contains no information about the witness $w$.</p>
 <h1 id="understanding-commitment-schemes-and-their-applications">Understanding Commitment Schemes and Their Applications</h1>
 <p>In the previous sections, we explored proof systems, the concept of privacy through Zero Knowledge Proofs, and some formal definitions. Now, we will delve into the intriguing world of Commitment Schemes and their applications, particularly in the context of graph coloring problems. Let’s start by understanding what a Commitment Scheme is, followed by its specific applications.</p>
 <h2 id="what-is-a-commitment-scheme">What is a Commitment Scheme?</h2>
@@ -546,76 +560,75 @@ To grasp the simulation mechanism, it is essential to remember the concept of in
 <h3 id="group-definition">Group Definition</h3>
 <p>A group is a non-empty set equipped with a binary operation (such as addition or multiplication) that satisfies the following conditions:</p>
 <ul>
-<li><strong>Associativity:</strong> The operation is associative; for all elements 𝑎, 𝑏, 𝑐 in the group, (𝑎 ⋅ 𝑏) ⋅ 𝑐 = 𝑎 ⋅ (𝑏 ⋅ 𝑐).</li>
-<li><strong>Identity Element:</strong> There exists an identity element 𝑒 such that for every element 𝑎 in the group, 𝑒 ⋅ 𝑎 = 𝑎 ⋅ 𝑒 = 𝑎.</li>
-<li><strong>Inverse Element:</strong> Each element 𝑎 in the group has an inverse element 𝑎^−1 such that $$𝑎 ⋅ 𝑎^{−1} = 𝑎^{−1} ⋅ 𝑎 = 𝑒$$.</li>
-<li><strong>Closure:</strong> For any elements 𝑎 and 𝑏 in the group, the result of the operation 𝑎 ⋅ 𝑏 is also in the group.</li>
+<li><strong>Associativity:</strong> The operation is associative; for all elements $a,b,c$ in the group, $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.</li>
+<li><strong>Identity Element:</strong> There exists an identity element $e$ such that for every element $a$ in the group, $e \cdot a = a \cdot e = a$.</li>
+<li><strong>Inverse Element:</strong> Each element $𝑎$ in the group has an inverse element $𝑎^{-1}$ such that $$𝑎 ⋅ 𝑎^{−1} = 𝑎^{−1} ⋅ 𝑎 = 𝑒$$</li>
+<li><strong>Closure:</strong> For any elements $a$ and $b$ in the group, the result of the operation $a \cdot b$ is also in the group.</li>
 </ul>
 <h3 id="cyclic-groups">Cyclic Groups</h3>
 <p>A group is cyclic if it can be generated by a single element, known as a generator. This means every element in the group can be expressed as a power of that generator.</p>
 <h3 id="the-discrete-logarithm-problem">The Discrete Logarithm Problem</h3>
 <p>In cryptography, we often rely on functions that are easy to compute in one direction but hard to reverse. An example of this is the discrete logarithm.</p>
-<p>Consider an element ℎ in 𝑍𝑝* with a generator 𝑔 and an integer 𝑥 such that $$𝑔^𝑥 \equiv ℎ \text{ mod } p$$Calculating ℎ given 𝑥 is relatively straightforward. However, for a suitably large prime 𝑝, determining 𝑥 given ℎ becomes significantly more challenging. Since 𝑔 is a primitive root, the probability of a random guess for 𝑥 satisfying the equation is as low as 1 / 𝑝.</p>
+<p>Consider an element $h$ in $Z_p^*$ with a generator $g$ and an integer $𝑥$ such that $$𝑔^𝑥 \equiv ℎ \text{ mod } p$$Calculating $ℎ$ given $𝑥$ is relatively straightforward. However, for a suitably large prime $𝑝$, determining $𝑥$ given $ℎ$ becomes significantly more challenging. Since $𝑔$ is a primitive root, the probability of a random guess for $𝑥$ satisfying the equation is as low as $1 / 𝑝$.</p>
 <p>While there are methods to improve the random approach, no known algorithms efficiently solve the discrete logarithm problem in general cases. This assumption underpins many algorithms in cryptography, including Schnorr&rsquo;s Identification Scheme, where the prover authenticates their identity by demonstrating knowledge of the discrete logarithm without revealing the solution itself.</p>
 <h2 id="schnorrs-identification-scheme-a-deep-dive-into-zero-knowledge-proofs">Schnorr’s Identification Scheme: A Deep Dive into Zero-Knowledge Proofs</h2>
 <p>Schnorr’s Identification Scheme is one of the cryptographic protocols that employs the concept of Zero-Knowledge Proof (ZKP). It allows a prover to convince a verifier that they know a secret value without actually revealing that value. In this post, we will explore the structure, properties, and functioning of this scheme.</p>
 <h3 id="definition-and-structure">Definition and Structure</h3>
-<p>To begin with, we define two large prime numbers, 𝑝 and 𝑞, such that 𝑞 divides 𝑝 − 1 (𝑞 ∣ (𝑝 − 1)). We then select 𝑔 as a generator for a subgroup 𝐺 (of prime order 𝑞) of 𝑍𝑝*. A subgroup of a group is a subset of numbers that satisfies the properties of a group, and the order of a group is the number of elements in that group. This subgroup
-𝐺 is known as the Schnorr Group. Finally, the private key 𝑥 (which identifies the prover) has a corresponding public key 𝑋 that satisfies the equation $$𝑋 = 𝑔^x \text{ mod } p$$</p>
+<p>To begin with, we define two large prime numbers, $𝑝$ and $𝑞$, such that $𝑞$ divides $𝑝 − 1$, $(𝑞 ∣ (𝑝 − 1))$. We then select $𝑔$ as a generator for a subgroup $𝐺$ (of prime order $𝑞$) of $Z_p^*$. A subgroup of a group is a subset of numbers that satisfies the properties of a group, and the order of a group is the number of elements in that group. This subgroup $G$ is known as the Schnorr Group. Finally, the private key $x$ (which identifies the prover) has a corresponding public key $X$ that satisfies the equation $$𝑋 = 𝑔^x \text{ mod } p$$</p>
 <h3 id="the-process-of-the-identification-scheme">The Process of the Identification Scheme</h3>
 <p>The Schnorr Identification Scheme consists of the following steps:</p>
 <ol>
-<li><strong>Commitment Step:</strong> The prover selects a random number 𝑣 and sends a commitment 𝑉 = 𝑔^𝑣 mod 𝑝 to the verifier.</li>
-<li><strong>Challenge Step:</strong> The verifier chooses a random number 𝑐, known as the challenge, and sends it to the prover.</li>
-<li><strong>Response Step:</strong> The prover calculates and returns the response 𝑏 = 𝑣 + 𝑐𝑥 mod 𝑞 to the verifier.</li>
+<li><strong>Commitment Step:</strong> The prover selects a random number $𝑣$ and sends a commitment $𝑉 = 𝑔^𝑣$ mod $𝑝$ to the verifier.</li>
+<li><strong>Challenge Step:</strong> The verifier chooses a random number $𝑐$, known as the challenge, and sends it to the prover.</li>
+<li><strong>Response Step:</strong> The prover calculates and returns the response $𝑏 = 𝑣 + 𝑐𝑥$ mod $𝑞$ to the verifier.</li>
 <li><strong>Verification Step:</strong> The verifier checks if $$g^b = V \cdot X^c \text{ mod } p.$$</li>
 </ol>
 <p><strong>Sigma Protocols</strong></p>
-<p>The Schnorr Identification Scheme follows a three-step structure (commitment, challenge, response) and meets the properties of Zero-Knowledge (ZK) completeness, special soundness, and honest verification, collectively known as Sigma Protocols (or Σ-protocols). A replica of such protocols is often summarized as a tuple (𝑉, 𝑐, 𝑏).</p>
+<p>The Schnorr Identification Scheme follows a three-step structure (commitment, challenge, response) and meets the properties of Zero-Knowledge (ZK) completeness, special soundness, and honest verification, collectively known as Sigma Protocols (or $\sum$-protocols). A replica of such protocols is often summarized as a tuple $(𝑉, 𝑐, 𝑏)$.</p>
 <p><strong>Completeness</strong></p>
 <p>The protocol is complete if a prover who knows 𝑥 can always convince an honest verifier. This is straightforward to see by confirming the verifier’s final check in step 4. Specifically, we have:
 $$g^b = g^v+cx=g^v \cdot g^{cx} = V \cdot X^c \text{ mod } p$$</p>
 <p><strong>Soundness</strong></p>
-<p>The protocol ensures that a dishonest prover, who does not know 𝑥, cannot convince the verifier with a high probability (reasonable error). This is proven by contradiction. If a dishonest prover can provide two responses 𝑏1 and 𝑏2 for the same commitment 𝑣 but with two different challenges 𝑐1 and 𝑐2, we get:
+<p>The protocol ensures that a dishonest prover, who does not know 𝑥, cannot convince the verifier with a high probability (reasonable error). This is proven by contradiction. If a dishonest prover can provide two responses $𝑏_1$ and $𝑏_2$ for the same commitment $𝑣$ but with two different challenges $𝑐_1$ and $𝑐_2$, we get:
 $$g^{b_1} = g^v \cdot g^{xc_1}$$
 and
 $$g^{b_2} = g^v \cdot g^{xc_2}$$
-From this, we can calculate 𝑥 as:
+From this, we can calculate $𝑥$ as:
 $$x = \frac{b_1 - b_2}{c_1 - c_2}$$
-This contradicts the assumption that the prover does not know 𝑥.</p>
+This contradicts the assumption that the prover does not know $𝑥$.</p>
 <p><strong>Proofs of Knowledge</strong></p>
-<p>A complete protocol is called a Proof of Knowledge (PoK) if it guarantees that the prover actually knows a secret value (like the private key 𝑥) if they can convince the verifier. This means if the prover can persuade the verifier they know 𝑥, then they must truly know it.</p>
-<p>To demonstrate that the protocol is a Proof of Knowledge, we need to establish the existence of a special algorithm called an extractor. This extractor can obtain information from a potentially dishonest prover and compute the secret value 𝑥.</p>
+<p>A complete protocol is called a Proof of Knowledge (PoK) if it guarantees that the prover actually knows a secret value (like the private key $𝑥$) if they can convince the verifier. This means if the prover can persuade the verifier they know $𝑥$, then they must truly know it.</p>
+<p>To demonstrate that the protocol is a Proof of Knowledge, we need to establish the existence of a special algorithm called an extractor. This extractor can obtain information from a potentially dishonest prover and compute the secret value $𝑥$.</p>
 <p><strong>Key Components</strong></p>
 <ol>
-<li><strong>Extractor:</strong> An assumed algorithm that has access to the prover and can derive the secret 𝑥.</li>
+<li><strong>Extractor:</strong> An assumed algorithm that has access to the prover and can derive the secret $𝑥$.</li>
 <li><strong>Oracle Access:</strong> The extractor can perform operations or queries (imagine making phone calls) to gather necessary data from the prover.</li>
 <li><strong>Adversarial Prover:</strong> This is a prover who does not necessarily follow the protocol honestly and may attempt to cheat or perform other actions.</li>
-<li><strong>Probability of Convincing:</strong> If the prover can convince the verifier that they know 𝑥 with a certain probability, the extractor can also compute 𝑥 with at least that same probability.</li>
+<li><strong>Probability of Convincing:</strong> If the prover can convince the verifier that they know $𝑥$ with a certain probability, the extractor can also compute $𝑥$ with at least that same probability.</li>
 </ol>
-<p>For example, if a dishonest prover can generate proofs (𝑉, 𝑐, 𝑏) that the verifier accepts with probability 𝑃*, then the extractor can use these proofs to calculate 𝑥 with probability at least 𝑃*.</p>
+<p>For example, if a dishonest prover can generate proofs $(𝑉, 𝑐, 𝑏)$ that the verifier accepts with probability $P^{*}$, then the extractor can use these proofs to calculate $𝑥$ with probability at least $P^{*}$.</p>
 <p><strong>Special Soundness</strong></p>
-<p>The Sigma protocol guarantees that for any two accepted copies of the protocol (𝑉, 𝑐, 𝑏) and (𝑉, 𝑐′, 𝑏′) where 𝑐 and 𝑐′ are different, an efficient extractor can learn the witness 𝑥. This validates that Schnorr’s Identification Scheme satisfies special soundness.</p>
+<p>The Sigma protocol guarantees that for any two accepted copies of the protocol $(𝑉, 𝑐, 𝑏)$ and $(𝑉, 𝑐^{&rsquo;}, 𝑏^{&rsquo;})$ where $𝑐$ and $𝑐^{&rsquo;}$ are different, an efficient extractor can learn the witness $𝑥$. This validates that Schnorr’s Identification Scheme satisfies special soundness.</p>
 <p><strong>Honest-Verifier Zero-Knowledge (HVZK)</strong></p>
 <p>The final property we examine is Honest-Verifier Zero-Knowledge (HVZK). The goal here is to create a proof that the verifier cannot distinguish from the real proof, even when the verifier acts honestly.</p>
 <p>We illustrate HVZK by constructing a simulator that can create fake proofs indistinguishable from real proofs. Here’s how the simulator works:</p>
 <ol>
-<li><strong>Randomly Choose Response and Challenge:</strong> The simulator randomly selects a response value 𝑏 and a challenge value 𝑐.</li>
-<li><strong>Calculate Commitment Value:</strong> The simulator computes the commitment value 𝑉 using the formula:
+<li><strong>Randomly Choose Response and Challenge:</strong> The simulator randomly selects a response value 𝑏 and a challenge value $𝑐$.</li>
+<li><strong>Calculate Commitment Value:</strong> The simulator computes the commitment value $𝑉$ using the formula:
 $$V = g^b \cdot X^{-c} \text{ mod } p$$
 where:
 <ul>
-<li>g is the generator for the subgroup 𝐺</li>
-<li>𝑋 is the public key $$𝑋 = g^x \text{ mod }p$$</li>
-<li>𝑝 is a large prime number</li>
+<li>$g$ is the generator for the subgroup $𝐺$</li>
+<li>$𝑋$ is the public key $$𝑋 = g^x \text{ mod }p$$</li>
+<li>$𝑝$ is a large prime number</li>
 </ul>
 </li>
-<li><strong>Publish Proof:</strong> The simulator outputs a proof in the form (𝑉, 𝑐, 𝑏).</li>
+<li><strong>Publish Proof:</strong> The simulator outputs a proof in the form $(𝑉, 𝑐, 𝑏)$.</li>
 </ol>
 <p><strong>Explanation</strong></p>
-<p>When the verifier selects random challenges, the proofs generated by the simulator are indistinguishable from real proofs created by an actual prover. This means that the verifier cannot determine whether the proof (𝑉, 𝑐, 𝑏) was generated by the simulator or the real prover.</p>
+<p>When the verifier selects random challenges, the proofs generated by the simulator are indistinguishable from real proofs created by an actual prover. This means that the verifier cannot determine whether the proof $(𝑉, 𝑐, 𝑏)$ was generated by the simulator or the real prover.</p>
 <p><strong>Example Illustration</strong></p>
-<p>Suppose the verifier receives a proof (𝑉, 𝑐, 𝑏). If this proof cannot be distinguished from a real proof, it indicates that the verifier cannot ascertain how (𝑉, 𝑐, 𝑏) was created, demonstrating the HVZK property.</p>
+<p>Suppose the verifier receives a proof $(𝑉, 𝑐, 𝑏)$. If this proof cannot be distinguished from a real proof, it indicates that the verifier cannot ascertain how $(𝑉, 𝑐, 𝑏)$ was created, demonstrating the HVZK property.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>Schnorr’s Identification Scheme offers numerous advantages over traditional authentication protocols (which rely on passwords). It ensures the security of the prover, even if the server (verifier) is compromised. However, its primary drawback is its single point of failure: the private key. Nonetheless, Schnorr’s scheme remains a potential solution to enhance the security toolkit for engineers.</p>
 <h1 id="classification-and-applications-of-zero-knowledge-proofs">Classification and Applications of Zero Knowledge Proofs</h1>
@@ -653,6 +666,8 @@ where:
 <li>Matthew Green. (2017, January 21). <em>Zero Knowledge Proofs: An illustrated primer, Part 2</em>. Retrieved from <a href="https://blog.cryptographyengineering.com/2017/01/21/zero-knowledge-proofs-an-illustrated-primer-part-2/">https://blog.cryptographyengineering.com/2017/01/21/zero-knowledge-proofs-an-illustrated-primer-part-2/</a></li>
 <li>Noah. (2023, August 19). <em>Schnorr’s Identification Scheme.</em> Retrieved from <a href="https://medium.com/@noah_h/schnorrs-identification-scheme-e9c029500cbd">https://medium.com/@noah_h/schnorrs-identification-scheme-e9c029500cbd</a></li>
 </ol>
+<h1 id="connect-with-me">Connect with Me</h1>
+<p>Connect with me on <a href="https://www.facebook.com/dangduongminhnhat/">Facebook</a>, <a href="https://www.linkedin.com/in/nhatdang1901/">LinkedIn</a>, via email at <a href="mailto:dangduongminhnhat2003@gmail.com">dangduongminhnhat2003@gmail.com</a>, <a href="https://github.com/dangduongminhnhat">GitHub</a>, or by phone at +84829258815.</p>
 
 
         
