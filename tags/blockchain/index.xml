@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blockchain on Daminha Blog</title>
-    <link>https://dangduongminhnhat.github.io/tags/blockchain/</link>
+    <link>http://localhost:1313/tags/blockchain/</link>
     <description>Recent content in Blockchain on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 06 Aug 2024 13:58:24 +0700</lastBuildDate>
-    <atom:link href="https://dangduongminhnhat.github.io/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding Zero Knowledge Proofs: Key Concepts and Applications</title>
-      <link>https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/</link>
+      <link>http://localhost:1313/posts/d060824/understanding-zkps/</link>
       <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/</guid>
+      <guid>http://localhost:1313/posts/d060824/understanding-zkps/</guid>
       <description>This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine).</description>
     </item>
   </channel>
