@@ -2,66 +2,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Daminha Blog</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://dangduongminhnhat.github.io/tags/</link>
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Aug 2024 13:58:24 +0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Aug 2024 15:11:45 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blockchain</title>
-      <link>http://localhost:1313/tags/blockchain/</link>
-      <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
-      <guid>http://localhost:1313/tags/blockchain/</guid>
+      <title>Commitment Schemes</title>
+      <link>https://dangduongminhnhat.github.io/tags/commitment-schemes/</link>
+      <pubDate>Wed, 14 Aug 2024 15:11:45 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/commitment-schemes/</guid>
       <description></description>
     </item>
     <item>
       <title>Cryptography</title>
-      <link>http://localhost:1313/tags/cryptography/</link>
-      <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
-      <guid>http://localhost:1313/tags/cryptography/</guid>
+      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
+      <pubDate>Wed, 14 Aug 2024 15:11:45 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pairings</title>
+      <link>https://dangduongminhnhat.github.io/tags/pairings/</link>
+      <pubDate>Wed, 14 Aug 2024 15:11:45 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/pairings/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Polynomials</title>
+      <link>https://dangduongminhnhat.github.io/tags/polynomials/</link>
+      <pubDate>Wed, 14 Aug 2024 15:11:45 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/polynomials/</guid>
       <description></description>
     </item>
     <item>
       <title>Zero-Knowledge Proofs</title>
-      <link>http://localhost:1313/tags/zero-knowledge-proofs/</link>
+      <link>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</link>
+      <pubDate>Wed, 14 Aug 2024 15:11:45 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blockchain</title>
+      <link>https://dangduongminhnhat.github.io/tags/blockchain/</link>
       <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
-      <guid>http://localhost:1313/tags/zero-knowledge-proofs/</guid>
+      <guid>https://dangduongminhnhat.github.io/tags/blockchain/</guid>
       <description></description>
     </item>
     <item>
       <title>CyberSecurity</title>
-      <link>http://localhost:1313/tags/cybersecurity/</link>
+      <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
       <pubDate>Mon, 05 Aug 2024 12:46:40 +0700</pubDate>
-      <guid>http://localhost:1313/tags/cybersecurity/</guid>
+      <guid>https://dangduongminhnhat.github.io/tags/cybersecurity/</guid>
       <description></description>
     </item>
     <item>
       <title>IPTracking</title>
-      <link>http://localhost:1313/tags/iptracking/</link>
+      <link>https://dangduongminhnhat.github.io/tags/iptracking/</link>
       <pubDate>Mon, 05 Aug 2024 12:46:40 +0700</pubDate>
-      <guid>http://localhost:1313/tags/iptracking/</guid>
+      <guid>https://dangduongminhnhat.github.io/tags/iptracking/</guid>
       <description></description>
     </item>
     <item>
       <title>OnlineSafety</title>
-      <link>http://localhost:1313/tags/onlinesafety/</link>
+      <link>https://dangduongminhnhat.github.io/tags/onlinesafety/</link>
       <pubDate>Mon, 05 Aug 2024 12:46:40 +0700</pubDate>
-      <guid>http://localhost:1313/tags/onlinesafety/</guid>
+      <guid>https://dangduongminhnhat.github.io/tags/onlinesafety/</guid>
       <description></description>
     </item>
     <item>
       <title>About Me</title>
-      <link>http://localhost:1313/tags/about-me/</link>
+      <link>https://dangduongminhnhat.github.io/tags/about-me/</link>
       <pubDate>Wed, 24 Jul 2024 19:02:25 +0700</pubDate>
-      <guid>http://localhost:1313/tags/about-me/</guid>
+      <guid>https://dangduongminhnhat.github.io/tags/about-me/</guid>
       <description></description>
     </item>
     <item>
       <title>Personal</title>
-      <link>http://localhost:1313/tags/personal/</link>
+      <link>https://dangduongminhnhat.github.io/tags/personal/</link>
       <pubDate>Wed, 24 Jul 2024 19:02:25 +0700</pubDate>
-      <guid>http://localhost:1313/tags/personal/</guid>
+      <guid>https://dangduongminhnhat.github.io/tags/personal/</guid>
       <description></description>
     </item>
   </channel>
