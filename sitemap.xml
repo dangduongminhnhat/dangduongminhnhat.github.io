@@ -2,13 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://dangduongminhnhat.github.io/tags/commitment-schemes/</loc>
-    <lastmod>2024-08-14T15:11:45+07:00</lastmod>
+    <loc>https://dangduongminhnhat.github.io/tags/arithmetic-circuits/</loc>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/blockchain/</loc>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/cryptography/</loc>
-    <lastmod>2024-08-14T15:11:45+07:00</lastmod>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/</loc>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/posts/</loc>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/</loc>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</loc>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</loc>
+    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/commitment-schemes/</loc>
     <lastmod>2024-08-14T15:11:45+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/pairings/</loc>
@@ -17,20 +35,8 @@
     <loc>https://dangduongminhnhat.github.io/tags/polynomials/</loc>
     <lastmod>2024-08-14T15:11:45+07:00</lastmod>
   </url><url>
-    <loc>https://dangduongminhnhat.github.io/posts/</loc>
-    <lastmod>2024-08-14T15:11:45+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/</loc>
-    <lastmod>2024-08-14T15:11:45+07:00</lastmod>
-  </url><url>
     <loc>https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/</loc>
     <lastmod>2024-08-14T15:11:45+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</loc>
-    <lastmod>2024-08-14T15:11:45+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/blockchain/</loc>
-    <lastmod>2024-08-06T13:58:24+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/</loc>
     <lastmod>2024-08-06T13:58:24+07:00</lastmod>

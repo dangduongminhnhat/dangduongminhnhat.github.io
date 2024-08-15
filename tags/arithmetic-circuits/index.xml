@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blockchain on Daminha Blog</title>
-    <link>https://dangduongminhnhat.github.io/tags/blockchain/</link>
-    <description>Recent content in Blockchain on Daminha Blog</description>
+    <title>Arithmetic Circuits on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/arithmetic-circuits/</link>
+    <description>Recent content in Arithmetic Circuits on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 15 Aug 2024 12:49:30 +0700</lastBuildDate>
-    <atom:link href="https://dangduongminhnhat.github.io/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dangduongminhnhat.github.io/tags/arithmetic-circuits/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Math Behind the Magic: Exploring Arithmetic Circuits and Their Role in Zero-Knowledge Proofs</title>
       <link>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</link>
       <pubDate>Thu, 15 Aug 2024 12:49:30 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</guid>
       <description>This blog delves into the critical role of arithmetic circuits in zero-knowledge proofs, using the game of Sudoku as an analogy to explain complex concepts. From understanding how Sudoku verification relates to the famous P vs NP problem, to exploring the broader implications of arithmetic circuits in cryptographic protocols, the blog offers a clear and engaging overview. Perfect for readers interested in the intersection of computer science, mathematics, and privacy.</description>
-    </item>
-    <item>
-      <title>Understanding Zero Knowledge Proofs: Key Concepts and Applications</title>
-      <link>https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/</link>
-      <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/</guid>
-      <description>This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine).</description>
     </item>
   </channel>
 </rss>
