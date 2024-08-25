@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Arithmetic Circuits on Daminha Blog</title>
-    <link>https://dangduongminhnhat.github.io/tags/arithmetic-circuits/</link>
-    <description>Recent content in Arithmetic Circuits on Daminha Blog</description>
+    <title>SNARKs on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/snarks/</link>
+    <description>Recent content in SNARKs on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Aug 2024 12:02:12 +0700</lastBuildDate>
-    <atom:link href="https://dangduongminhnhat.github.io/tags/arithmetic-circuits/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dangduongminhnhat.github.io/tags/snarks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unraveling SNARKs: The Breakthrough Technology in Cryptography</title>
       <link>https://dangduongminhnhat.github.io/posts/d240824/unraveling-snarks/</link>
       <pubDate>Sat, 24 Aug 2024 12:02:12 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/posts/d240824/unraveling-snarks/</guid>
       <description>In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&amp;rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you&amp;rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful.</description>
-    </item>
-    <item>
-      <title>The Math Behind the Magic: Exploring Arithmetic Circuits and Their Role in Zero-Knowledge Proofs</title>
-      <link>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</link>
-      <pubDate>Thu, 15 Aug 2024 12:49:30 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</guid>
-      <description>This blog delves into the critical role of arithmetic circuits in zero-knowledge proofs, using the game of Sudoku as an analogy to explain complex concepts. From understanding how Sudoku verification relates to the famous P vs NP problem, to exploring the broader implications of arithmetic circuits in cryptographic protocols, the blog offers a clear and engaging overview. Perfect for readers interested in the intersection of computer science, mathematics, and privacy.</description>
     </item>
   </channel>
 </rss>
