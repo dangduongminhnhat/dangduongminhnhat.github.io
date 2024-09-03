@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CyberSecurity on Daminha Blog</title>
-    <link>http://localhost:1313/tags/cybersecurity/</link>
+    <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
     <description>Recent content in CyberSecurity on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Aug 2024 12:46:40 +0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Sep 2024 13:49:38 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unmasking Cyber Threats: The Art of Phishing with Canarytokens and RTLO Attacks</title>
+      <link>https://dangduongminhnhat.github.io/posts/d030924/unmasking-cyber-threads/</link>
+      <pubDate>Tue, 03 Sep 2024 13:49:38 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/d030924/unmasking-cyber-threads/</guid>
+      <description>In this detailed blog post, we explore the insidious world of phishing attacks carried out via Zalo chat. Through a step-by-step demonstration, we reveal how attackers craft convincing disguised files, use social engineering to lure victims, and employ Canarytokens to track unauthorized access and gather critical data like public IP addresses. Discover the techniques behind this sophisticated form of cyber deception and learn how to protect yourself from falling victim to such attacks.</description>
+    </item>
     <item>
       <title>Extracting IP Addresses via Chat Apps: Zalo and Telegram</title>
-      <link>http://localhost:1313/posts/d050824/extracting-ip-address/</link>
+      <link>https://dangduongminhnhat.github.io/posts/d050824/extracting-ip-address/</link>
       <pubDate>Mon, 05 Aug 2024 12:46:40 +0700</pubDate>
-      <guid>http://localhost:1313/posts/d050824/extracting-ip-address/</guid>
+      <guid>https://dangduongminhnhat.github.io/posts/d050824/extracting-ip-address/</guid>
       <description>In this blog post, I explore how cybercriminals exploit chat applications like Zalo and Telegram to extract users&amp;rsquo; IP addresses through methods like URL spoofing and phishing. By creating and distributing spoofed URLs, attackers can deceive users into revealing sensitive information. I also highlight a specific vulnerability in Telegram that exposes user IP addresses during calls. Learn the mechanics of these attacks, see a detailed proof of concept, and discover essential tips to protect your privacy online.</description>
     </item>
   </channel>
