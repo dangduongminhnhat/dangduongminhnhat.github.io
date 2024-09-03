@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Social Engineering on Daminha Blog</title>
+    <link>http://localhost:1313/tags/social-engineering/</link>
+    <description>Recent content in Social Engineering on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Sep 2024 13:49:38 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/social-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unmasking Cyber Threats: The Art of Phishing with Canarytokens and RTLO Attacks</title>
+      <link>http://localhost:1313/posts/d030924/unmasking-cyber-threads/</link>
+      <pubDate>Tue, 03 Sep 2024 13:49:38 +0700</pubDate>
+      <guid>http://localhost:1313/posts/d030924/unmasking-cyber-threads/</guid>
+      <description>In this detailed blog post, we explore the insidious world of phishing attacks carried out via Zalo chat. Through a step-by-step demonstration, we reveal how attackers craft convincing disguised files, use social engineering to lure victims, and employ Canarytokens to track unauthorized access and gather critical data like public IP addresses. Discover the techniques behind this sophisticated form of cyber deception and learn how to protect yourself from falling victim to such attacks.</description>
+    </item>
+  </channel>
+</rss>

@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cryptography on Daminha Blog</title>
-    <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
+    <link>http://localhost:1313/tags/cryptography/</link>
     <description>Recent content in Cryptography on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Aug 2024 12:02:12 +0700</lastBuildDate>
-    <atom:link href="https://dangduongminhnhat.github.io/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unraveling SNARKs: The Breakthrough Technology in Cryptography</title>
-      <link>https://dangduongminhnhat.github.io/posts/d240824/unraveling-snarks/</link>
+      <link>http://localhost:1313/posts/d240824/unraveling-snarks/</link>
       <pubDate>Sat, 24 Aug 2024 12:02:12 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/d240824/unraveling-snarks/</guid>
+      <guid>http://localhost:1313/posts/d240824/unraveling-snarks/</guid>
       <description>In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&amp;rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you&amp;rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful.</description>
     </item>
     <item>
       <title>The Math Behind the Magic: Exploring Arithmetic Circuits and Their Role in Zero-Knowledge Proofs</title>
-      <link>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</link>
+      <link>http://localhost:1313/posts/d150824/the-math-behind-the-magic/</link>
       <pubDate>Thu, 15 Aug 2024 12:49:30 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</guid>
+      <guid>http://localhost:1313/posts/d150824/the-math-behind-the-magic/</guid>
       <description>This blog delves into the critical role of arithmetic circuits in zero-knowledge proofs, using the game of Sudoku as an analogy to explain complex concepts. From understanding how Sudoku verification relates to the famous P vs NP problem, to exploring the broader implications of arithmetic circuits in cryptographic protocols, the blog offers a clear and engaging overview. Perfect for readers interested in the intersection of computer science, mathematics, and privacy.</description>
     </item>
     <item>
       <title>Unveiling the Secrets of Cryptography: From Polynomials to Pairings and Commitment Schemes</title>
-      <link>https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/</link>
+      <link>http://localhost:1313/posts/d140824/unveiling-the-secrets-of-cryptography/</link>
       <pubDate>Wed, 14 Aug 2024 15:11:45 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/</guid>
+      <guid>http://localhost:1313/posts/d140824/unveiling-the-secrets-of-cryptography/</guid>
       <description>This blog explores the foundational concepts in cryptography, focusing on the roles of polynomials, pairings, and commitment schemes. It explains how polynomials contribute to data integrity through erasure coding and interpolation, introduces the concept of pairings with their critical properties of bilinearity and non-degeneracy, and guides readers through the setup and importance of polynomial commitment schemes. Building on previous discussions of Zero-Knowledge Proofs, this blog provides an accessible yet comprehensive guide to these essential cryptographic tools.</description>
     </item>
     <item>
       <title>Understanding Zero Knowledge Proofs: Key Concepts and Applications</title>
-      <link>https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/</link>
+      <link>http://localhost:1313/posts/d060824/understanding-zkps/</link>
       <pubDate>Tue, 06 Aug 2024 13:58:24 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/d060824/understanding-zkps/</guid>
+      <guid>http://localhost:1313/posts/d060824/understanding-zkps/</guid>
       <description>This blog explores the fundamentals of Zero-Knowledge Proofs (ZKPs), an essential concept for understanding security and privacy in ZK-EVM (Zero-Knowledge Ethereum Virtual Machine).</description>
     </item>
   </channel>
