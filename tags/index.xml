@@ -6,8 +6,50 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Sep 2024 13:49:38 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2024 15:11:04 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blockchain</title>
+      <link>https://dangduongminhnhat.github.io/tags/blockchain/</link>
+      <pubDate>Mon, 07 Oct 2024 15:11:04 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/blockchain/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cryptography</title>
+      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
+      <pubDate>Mon, 07 Oct 2024 15:11:04 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ethereum</title>
+      <link>https://dangduongminhnhat.github.io/tags/ethereum/</link>
+      <pubDate>Mon, 07 Oct 2024 15:11:04 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/ethereum/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>EVM</title>
+      <link>https://dangduongminhnhat.github.io/tags/evm/</link>
+      <pubDate>Mon, 07 Oct 2024 15:11:04 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/evm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MerkleTrees</title>
+      <link>https://dangduongminhnhat.github.io/tags/merkletrees/</link>
+      <pubDate>Mon, 07 Oct 2024 15:11:04 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/merkletrees/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SmartContracts</title>
+      <link>https://dangduongminhnhat.github.io/tags/smartcontracts/</link>
+      <pubDate>Mon, 07 Oct 2024 15:11:04 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/smartcontracts/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cyber Attacks</title>
       <link>https://dangduongminhnhat.github.io/tags/cyber-attacks/</link>
@@ -65,13 +107,6 @@
       <description></description>
     </item>
     <item>
-      <title>Cryptography</title>
-      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Sat, 24 Aug 2024 12:02:12 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Interactive Oracle Proofs</title>
       <link>https://dangduongminhnhat.github.io/tags/interactive-oracle-proofs/</link>
       <pubDate>Sat, 24 Aug 2024 12:02:12 +0700</pubDate>
@@ -90,13 +125,6 @@
       <link>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</link>
       <pubDate>Sat, 24 Aug 2024 12:02:12 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blockchain</title>
-      <link>https://dangduongminhnhat.github.io/tags/blockchain/</link>
-      <pubDate>Thu, 15 Aug 2024 12:49:30 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/blockchain/</guid>
       <description></description>
     </item>
     <item>

@@ -2,13 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://dangduongminhnhat.github.io/tags/blockchain/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/cryptography/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/ethereum/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/evm/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/merkletrees/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/posts/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/smartcontracts/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/</loc>
+    <lastmod>2024-10-07T15:11:04+07:00</lastmod>
+  </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/cyber-attacks/</loc>
     <lastmod>2024-09-03T13:49:38+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/cybersecurity/</loc>
-    <lastmod>2024-09-03T13:49:38+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/</loc>
     <lastmod>2024-09-03T13:49:38+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/digital-deception/</loc>
@@ -20,13 +47,7 @@
     <loc>https://dangduongminhnhat.github.io/tags/phishing/</loc>
     <lastmod>2024-09-03T13:49:38+07:00</lastmod>
   </url><url>
-    <loc>https://dangduongminhnhat.github.io/posts/</loc>
-    <lastmod>2024-09-03T13:49:38+07:00</lastmod>
-  </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/social-engineering/</loc>
-    <lastmod>2024-09-03T13:49:38+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/</loc>
     <lastmod>2024-09-03T13:49:38+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/posts/d030924/unmasking-cyber-threads/</loc>
@@ -36,9 +57,6 @@
     <lastmod>2024-08-24T12:02:12+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/commitment-schemes/</loc>
-    <lastmod>2024-08-24T12:02:12+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/cryptography/</loc>
     <lastmod>2024-08-24T12:02:12+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/interactive-oracle-proofs/</loc>
@@ -52,9 +70,6 @@
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/</loc>
     <lastmod>2024-08-24T12:02:12+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/blockchain/</loc>
-    <lastmod>2024-08-15T12:49:30+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/</loc>
     <lastmod>2024-08-15T12:49:30+07:00</lastmod>

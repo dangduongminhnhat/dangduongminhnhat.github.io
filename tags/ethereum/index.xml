@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ethereum on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/ethereum/</link>
+    <description>Recent content in Ethereum on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Oct 2024 15:11:04 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/ethereum/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Merkle Trees to Ethereum: A Journey Through Blockchain Technology</title>
+      <link>https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/</link>
+      <pubDate>Mon, 07 Oct 2024 15:11:04 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/</guid>
+      <description>Dive into the fascinating world of blockchain technology with this engaging exploration of its foundational elements! From understanding the robust structure of Merkle trees that underpins data verification to unraveling the complexities of the Ethereum Virtual Machine (EVM), this blog offers a thorough overview of how decentralized applications and smart contracts operate. Discover how Ethereum revolutionizes trust and security through its unique consensus mechanisms and the role of Ether as its lifeblood. As you embark on this journey, you&amp;rsquo;ll gain insights that not only enhance your understanding of Ethereum but also prepare you for the cutting-edge innovations of zkEVM. Join me as we unlock the potential of blockchain and envision the future of decentralized technologies!</description>
+    </item>
+  </channel>
+</rss>
