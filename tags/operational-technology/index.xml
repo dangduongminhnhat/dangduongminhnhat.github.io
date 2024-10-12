@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Operational Technology on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/operational-technology/</link>
+    <description>Recent content in Operational Technology on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Oct 2024 12:18:15 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/operational-technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Decoding CVE-2021-22659: How to Protect the MicroLogix 1400 from Attacks</title>
+      <link>https://dangduongminhnhat.github.io/posts/d121024/decoding-cve-2021-22659/</link>
+      <pubDate>Sat, 12 Oct 2024 12:18:15 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/d121024/decoding-cve-2021-22659/</guid>
+      <description>This blog delves into the vulnerabilities associated with the MicroLogix 1400 PLC, particularly focusing on CVE-2021-22659. Through a detailed analysis, I outline the phases of potential attacks, the underlying Modbus protocol, and the steps necessary for effective remediation. By understanding the intricacies of this vulnerability and employing robust security measures, organizations can better protect their operational technology environments. With the insights gained from the OPSWAT Fellowship Program, this work serves as a crucial resource for enhancing cybersecurity in industrial settings.</description>
+    </item>
+  </channel>
+</rss>
