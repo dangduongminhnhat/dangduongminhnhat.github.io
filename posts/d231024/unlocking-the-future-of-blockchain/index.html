@@ -490,7 +490,7 @@
 <p>As the Ethereum ecosystem continues to grow, the demand for faster, more efficient transactions is becoming increasingly urgent. Enter <strong>Zero-Knowledge Rollups (ZK-rollups)</strong>—a revolutionary solution that promises to enhance scalability while maintaining the security and integrity that Ethereum is known for. But what exactly are ZK-rollups, and how do they function? Let’s explore this exciting technology in detail.</p>
 <h2 id="what-are-zero-knowledge-rollups">What Are Zero-Knowledge Rollups?</h2>
 <p>ZK-rollups are a layer-2 scaling solution that enables the bundling of multiple transactions into a single batch, executed off-chain. This method significantly reduces the amount of data that needs to be posted to the Ethereum blockchain. Instead of sending each transaction individually, ZK-rollup operators submit a summary of the changes required to represent all the transactions in a batch, accompanied by <strong>validity proofs</strong> to ensure the correctness of those changes.</p>
-<p><img src="/images/d231024/zkrollup.png" alt="Line">
+<p><img src="/images/d231024/zkrollup.PNG" alt="Line">
 <em><a href="https://zk-learning.org/assets/lecture12.pdf">Source Image</a></em></p>
 <h2 id="interacting-with-ethereum-the-role-of-zk-rollups">Interacting with Ethereum: The Role of ZK-rollups</h2>
 <p>ZK-rollups operate as an off-chain protocol atop the Ethereum blockchain, managed by smart contracts that ensure the system&rsquo;s integrity. Here’s how the interaction unfolds:</p>
@@ -553,11 +553,11 @@
 <p>Despite these promising features, zk-Rollups currently face significant limitations, particularly in their application scope. At this stage, their usage is largely confined to payments and swaps. The hurdles arise from two primary challenges:</p>
 <h3 id="developer-unfriendliness">Developer Unfriendliness</h3>
 <p>To build DApps on zk-Rollups, developers must write their smart contract logic in a specialized language known as <strong>R1CS</strong> (Rank-1 Constraint System). Unfortunately, R1CS is not only syntactically complex but also requires an extensive understanding of zero-knowledge proofs. This steep learning curve can deter many developers from exploring zk-Rollup opportunities, thus limiting innovation.</p>
-<p><img src="/images/d231024/r1cs.png" alt="Line">
+<p><img src="/images/d231024/r1cs.PNG" alt="Line">
 <em><a href="https://zk-learning.org/assets/lecture12.pdf">Source Image</a></em></p>
 <h3 id="lack-of-composability">Lack of Composability</h3>
 <p>Another critical drawback is the absence of composability within zk-Rollups. Composability allows different applications to interact seamlessly within Layer 2, which is vital for creating interconnected DeFi ecosystems. Without this capability, zk-Rollup applications are isolated, significantly undermining the potential for building rich, integrated decentralized finance solutions.</p>
-<p><img src="/images/d231024/composability.png" alt="Line">
+<p><img src="/images/d231024/composability.PNG" alt="Line">
 <em><a href="https://zk-learning.org/assets/lecture12.pdf">Source Image</a></em></p>
 <h2 id="the-path-forward-enhancing-developer-experience">The Path Forward: Enhancing Developer Experience</h2>
 <p>To unlock the full potential of zk-Rollups, it’s essential to address these limitations head-on. The goal is to provide a seamless developer experience and enable composability within Layer 2.</p>
@@ -579,7 +579,7 @@
 </ul>
 <h3 id="universal-evm-circuits">Universal EVM Circuits</h3>
 <p>The second approach proposes building a <strong>universal circuit</strong> based on the Ethereum Virtual Machine (EVM). Instead of creating individual circuits for each DApp, this method focuses on verifying program execution at a lower level, similar to how a CPU operates.</p>
-<p><img src="/images/d231024/zkevm.png" alt="Line">
+<p><img src="/images/d231024/zkevm.PNG" alt="Line">
 <em><a href="https://zk-learning.org/assets/lecture12.pdf">Source Image</a></em></p>
 <p><strong>Advantages:</strong></p>
 <ul>
@@ -664,7 +664,7 @@
 <li><strong>Input Data:</strong> It uses pre-state information, transaction inputs, and post-state details to create proofs.</li>
 <li><strong>Proof Generation:</strong> After processing these inputs, the circuit produces a succinct proof verifying the validity of the state transition.</li>
 </ul>
-<p><img src="/images/d231024/workflow.png" alt="Line">
+<p><img src="/images/d231024/workflow.PNG" alt="Line">
 <em><a href="https://zk-learning.org/assets/lecture12.pdf">Source Image</a></em></p>
 <p>This succinct proof is what makes zkEVM efficient and powerful.</p>
 <h3 id="the-verifier-contract">The Verifier Contract</h3>
