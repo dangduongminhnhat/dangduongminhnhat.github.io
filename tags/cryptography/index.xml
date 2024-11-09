@@ -6,8 +6,15 @@
     <description>Recent content in Cryptography on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Oct 2024 15:11:04 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 09 Nov 2024 12:56:42 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data</title>
+      <link>https://dangduongminhnhat.github.io/posts/d091124/decoding-stark/</link>
+      <pubDate>Sat, 09 Nov 2024 12:56:42 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/d091124/decoding-stark/</guid>
+      <description>In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial is close to a low-degree one through a series of recursive folding steps. By halving the polynomial&amp;rsquo;s degree progressively, the FRI protocol reduces computational complexity while preserving the security of the verification process. The prover commits to the polynomial&amp;rsquo;s evaluations using Merkle trees, ensuring both integrity and consistency, which are verified through collinearity checks. In this blog, we take a deep dive into the mechanics of the FRI protocol, from the commitment phase where the degree is halved to the query phase where the verifier checks consistency. Whether you are a blockchain enthusiast, cryptography expert, or just curious about the future of digital proofs, understanding the FRI protocol will give you a glimpse into the future of secure, scalable cryptographic verification.</description>
+    </item>
     <item>
       <title>From Merkle Trees to Ethereum: A Journey Through Blockchain Technology</title>
       <link>https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/</link>
