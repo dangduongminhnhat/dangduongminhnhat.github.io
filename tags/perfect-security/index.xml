@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Perfect Security on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/perfect-security/</link>
+    <description>Recent content in Perfect Security on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Mar 2025 23:10:29 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/perfect-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 1: Perfect Security and the Limits of Perfect Security</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p1/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p1/</guid>
+      <description>This blog post explores the concept of Perfect Security in cryptography, which guarantees that observing a ciphertext provides no additional information about the original message. We establish a fundamental theorem stating that Perfect Security is equivalent to the statistical independence of ciphertexts and plaintexts. However, Shannon’s Theorem proves that achieving Perfect Security requires the secret key to be at least as long as the message, making practical implementations infeasible beyond small-scale use cases like the One-Time Pad.</description>
+    </item>
+  </channel>
+</rss>

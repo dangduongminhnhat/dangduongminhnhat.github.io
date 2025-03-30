@@ -6,8 +6,15 @@
     <description>Recent content in CyberSecurity on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2024 12:18:15 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 28 Mar 2025 23:10:29 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 1: Perfect Security and the Limits of Perfect Security</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p1/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p1/</guid>
+      <description>This blog post explores the concept of Perfect Security in cryptography, which guarantees that observing a ciphertext provides no additional information about the original message. We establish a fundamental theorem stating that Perfect Security is equivalent to the statistical independence of ciphertexts and plaintexts. However, Shannon’s Theorem proves that achieving Perfect Security requires the secret key to be at least as long as the message, making practical implementations infeasible beyond small-scale use cases like the One-Time Pad.</description>
+    </item>
     <item>
       <title>Decoding CVE-2021-22659: How to Protect the MicroLogix 1400 from Attacks</title>
       <link>https://dangduongminhnhat.github.io/posts/d121024/decoding-cve-2021-22659/</link>

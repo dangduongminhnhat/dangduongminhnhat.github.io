@@ -6,20 +6,62 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Nov 2024 12:56:42 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 28 Mar 2025 23:10:29 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography</title>
+      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CyberSecurity</title>
+      <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cybersecurity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Encryption</title>
+      <link>https://dangduongminhnhat.github.io/tags/encryption/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/encryption/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Information Theory</title>
+      <link>https://dangduongminhnhat.github.io/tags/information-theory/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/information-theory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>One-Time Pad</title>
+      <link>https://dangduongminhnhat.github.io/tags/one-time-pad/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/one-time-pad/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Perfect Security</title>
+      <link>https://dangduongminhnhat.github.io/tags/perfect-security/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/perfect-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shannon Security</title>
+      <link>https://dangduongminhnhat.github.io/tags/shannon-security/</link>
+      <pubDate>Fri, 28 Mar 2025 23:10:29 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/shannon-security/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Blockchain</title>
       <link>https://dangduongminhnhat.github.io/tags/blockchain/</link>
       <pubDate>Sat, 09 Nov 2024 12:56:42 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/blockchain/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cryptography</title>
-      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Sat, 09 Nov 2024 12:56:42 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
       <description></description>
     </item>
     <item>
@@ -90,13 +132,6 @@
       <link>https://dangduongminhnhat.github.io/tags/cve-2021-22659/</link>
       <pubDate>Sat, 12 Oct 2024 12:18:15 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/cve-2021-22659/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>CyberSecurity</title>
-      <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
-      <pubDate>Sat, 12 Oct 2024 12:18:15 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/cybersecurity/</guid>
       <description></description>
     </item>
     <item>

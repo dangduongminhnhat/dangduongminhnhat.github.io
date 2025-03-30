@@ -1,0 +1,753 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Cryptography 1: Perfect Security and the Limits of Perfect Security - Daminha Blog</title>
+
+  <meta name="description" content="This blog post explores the concept of Perfect Security in cryptography, which guarantees that observing a ciphertext provides no additional information about the original message. We establish a fundamental theorem stating that Perfect Security is equivalent to the statistical independence of ciphertexts and plaintexts. However, Shannon’s Theorem proves that achieving Perfect Security requires the secret key to be at least as long as the message, making practical implementations infeasible beyond small-scale use cases like the One-Time Pad."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Daminha Blog",
+    
+    "url": "https:\/\/dangduongminhnhat.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dangduongminhnhat.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dangduongminhnhat.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dangduongminhnhat.github.io\/posts\/cryptography\/p1\/",
+          "name": "Cryptography 1 perfect security and the limits of perfect security"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Dang Duong Minh Nhat"
+  },
+  "headline": "Cryptography 1: Perfect Security and the Limits of Perfect Security",
+  "description" : "This blog post explores the concept of Perfect Security in cryptography, which guarantees that observing a ciphertext provides no additional information about the original message. We establish a fundamental theorem stating that Perfect Security is equivalent to the statistical independence of ciphertexts and plaintexts. However, Shannon’s Theorem proves that achieving Perfect Security requires the secret key to be at least as long as the message, making practical implementations infeasible beyond small-scale use cases like the One-Time Pad.",
+  "inLanguage" : "en",
+  "wordCount":  4338 ,
+  "datePublished" : "2025-03-28T23:10:29\u002b07:00",
+  "dateModified" : "2025-03-28T23:10:29\u002b07:00",
+  "image" : "https:\/\/dangduongminhnhat.github.io\/",
+  "keywords" : [ "Cryptography, Perfect Security, One-Time Pad, Shannon Security, Information Theory, CyberSecurity, Encryption" ],
+  "mainEntityOfPage" : "https:\/\/dangduongminhnhat.github.io\/posts\/cryptography\/p1\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dangduongminhnhat.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dangduongminhnhat.github.io\/",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Cryptography 1: Perfect Security and the Limits of Perfect Security" />
+<meta property="og:description" content="This blog post explores the concept of Perfect Security in cryptography, which guarantees that observing a ciphertext provides no additional information about the original message. We establish a fundamental theorem stating that Perfect Security is equivalent to the statistical independence of ciphertexts and plaintexts. However, Shannon’s Theorem proves that achieving Perfect Security requires the secret key to be at least as long as the message, making practical implementations infeasible beyond small-scale use cases like the One-Time Pad.">
+<meta property="og:url" content="https://dangduongminhnhat.github.io/posts/cryptography/p1/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Daminha Blog" />
+
+  <meta name="twitter:title" content="Cryptography 1: Perfect Security and the Limits of Perfect Security" />
+  <meta name="twitter:description" content="This blog post explores the concept of Perfect Security in cryptography, which guarantees that observing a ciphertext provides no additional information about the original message. We establish a …">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="generator" content="Hugo 0.129.0">
+  <link rel="alternate" href="https://dangduongminhnhat.github.io/index.xml" type="application/rss+xml" title="Daminha Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+<script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+    <meta name="google-site-verification" content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU" />
+    <meta name="google-site-verification" content="oQJmyNtEP9HjjEcXwRno2_YPeuLd5kX3jTltynIx65s" />
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/posts/about-me/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags/">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Cryptography Series" href="/posts/cryptography/">Cryptography Series</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Note" href="https://hackmd.io/@daminha">Note</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>Cryptography 1: Perfect Security and the Limits of Perfect Security</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>
+          <strong>Posted on:</strong> March 28, 2025 |
+          <strong>Reading time:</strong> 21 minutes |
+          <strong>Word count:</strong> 4338 words |
+          <strong>Author:</strong> Dang Duong Minh Nhat
+        </p>
+        <p><strong>Welcome to the Cryptography Knowledge Sharing Series!</strong></p>
+<p>Hello everyone! I’m excited to share with you the knowledge I’ve gained about <strong>Cryptography</strong>. This is the first article in a series on cryptography, where I will introduce fundamental and core concepts of this fascinating field. Before we begin, I recommend having some foundational mathematical knowledge, particularly in <strong>discrete probability</strong>, which you can explore at <a href="https://en.wikibooks.org/wiki/High_School_Mathematics_Extensions/Discrete_Probability">Discrete Probability - High School Mathematics Extensions</a>, and <strong>basic number theory</strong> available in <a href="https://shoup.net/ntb/ntb-v2.pdf">A Computational Introduction to Number Theory and Algebra – Victor Shoup</a>.</p>
+<p>In this series, I primarily reference <em>A Graduate Course in Applied Cryptography</em> by Dan Boneh and Victor Shoup, an excellent and accessible introductory book. You can check out the table of contents <a href="https://toc.cryptobook.us/">here</a>.</p>
+<p>I hope you follow and support this series! If you have any questions or suggestions, feel free to connect with me. Now, let’s dive into the first chapter: <strong>Shannon Cipher and Perfect Security!</strong> 🔐</p>
+<h2 id="definition-of-shannon-cipher">Definition of Shannon Cipher</h2>
+<p>We begin with the concept of encryption, assuming that Alice and Bob share a secret key $k$. Alice wants to send a message $m$ to Bob over a network while keeping $m$ confidential from any eavesdropper. We will develop fundamental techniques to address this problem.</p>
+<p>Beyond transmitting messages over a network, these techniques also allow Alice to store a file securely on a disk, ensuring that no one else can access it while she retains the ability to retrieve it later.</p>
+<p>A fundamental mechanism for encrypting a message using a secret key is called a <strong>cipher</strong> or an <strong>encryption scheme</strong>. A simpler form of cipher, known as <strong>Shannon cipher</strong>, consists of a pair of functions, denoted as $\mathcal{E} = (E, D)$:</p>
+<ul>
+<li>
+<p><strong>Encryption function $E$</strong> takes as input a key $k$ and a message $m$ (also known as plaintext) and produces a ciphertext $c = E(k, m)$. We say that $c$ is the ciphertext of $m$ under key $k$.</p>
+</li>
+<li>
+<p><strong>Decryption function $D$</strong> takes as input a key $k$ and a ciphertext $c$ and recovers the message $m = D(k, c)$. We say that $m$ is the plaintext decrypted from $c$ using key $k$.</p>
+</li>
+<li>
+<p><strong>Correctness</strong>: The decryption process must accurately recover the original message. That is, for all keys $k$ and messages $m$, we must have:
+$$
+D(k, E(k, m)) = m
+$$</p>
+</li>
+</ul>
+<p>Formally, let:</p>
+<ul>
+<li>$\mathcal{K}$ be the set of all possible keys (<strong>key space</strong>)</li>
+<li>$\mathcal{M}$ be the set of all possible messages (<strong>message space</strong>)</li>
+<li>$\mathcal{C}$ be the set of all possible ciphertexts (<strong>ciphertext space</strong>)</li>
+</ul>
+<p>Then, the encryption and decryption functions can be described as $E: \mathcal{K} \times \mathcal{M} \to \mathcal{C}$ and $D: \mathcal{K} \times \mathcal{C} \to \mathcal{M}$. We define an encryption scheme $\mathcal{E}$ over the tuple $(\mathcal{K}, \mathcal{M}, \mathcal{C})$.</p>
+<p>To better understand this process, consider the following encryption and decryption workflow. Suppose Alice and Bob want to use an encryption scheme for secure communication. They must first agree on a secret key $k \in \mathcal{K}$. Once they have the key:</p>
+<ul>
+<li>When Alice wants to send a message $m \in \mathcal{M}$ to Bob, she encrypts it using key $k$ to obtain the ciphertext $c = E(k, m) \in \mathcal{C}$. She then sends $c$ to Bob over a communication channel.</li>
+<li>When Bob receives the ciphertext $c$, he decrypts it using key $k$: $m = D(k, c)$. Due to the correctness property, Bob is guaranteed to recover the exact original message $m$.</li>
+<li>We assume that the ciphertext $c$ remains unchanged during transmission from Alice to Bob. The goal of encryption is to ensure that even if an eavesdropper intercepts $c$, they cannot deduce significant information about the message $m$.</li>
+</ul>
+<p>In practice, keys, messages, and ciphertexts are typically represented as sequences of bytes.</p>
+<ul>
+<li>Keys usually have a fixed length, e.g., <strong>128-bit (16 bytes)</strong>.</li>
+<li>Messages and ciphertexts can have either fixed or variable lengths, ranging from a single bit to large files like <strong>1GB videos</strong>, <strong>10MB songs</strong>, or <strong>1KB emails</strong>.</li>
+<li>Besides bit strings, they can also be mathematical objects such as <strong>integers, polynomials, matrices</strong>, or <strong>elements of algebraic groups</strong>.</li>
+</ul>
+<p>In theory, we often assume that $\mathcal{K}, \mathcal{M}, \mathcal{C}$ are finite sets. This simplification helps in modeling encryption schemes, though real-world systems may support messages of unbounded length. I will introduce various applications of these concepts in upcoming sections.</p>
+<h3 id="one-time-pad-otp-cipher"><strong>One-Time Pad (OTP) Cipher</strong></h3>
+<p>The OTP cipher is a Shannon cipher $\mathcal{E} = (E, D)$, where the key, message, and ciphertext are all bit strings of the same length $L$:</p>
+<p>$$
+\mathcal{K} := \mathcal{M} := \mathcal{C} := \left\lbrace 0,1 \right\rbrace^L.
+$$</p>
+<p>For a given key $k \in \left\lbrace 0,1 \right\rbrace^L$ and a message $m \in \left\lbrace 0,1 \right\rbrace^L$, encryption and decryption are defined as follows:</p>
+<ul>
+<li><strong>Encryption</strong>:<br>
+$$ E(k, m) := k \oplus m $$</li>
+<li><strong>Decryption</strong>:<br>
+$$ D(k, c) := k \oplus c $$</li>
+</ul>
+<p>where $\oplus$ denotes the bitwise XOR (exclusive-OR) operation. The XOR operation has the following properties:</p>
+<ul>
+<li><strong>Commutativity</strong>: $x \oplus y = y \oplus x$</li>
+<li><strong>Associativity</strong>: $x \oplus (y \oplus z) = (x \oplus y) \oplus z$</li>
+<li><strong>Identity element</strong>: $x \oplus 0^L = x$</li>
+<li><strong>Inverse property</strong>: $x \oplus x = 0^L$</li>
+</ul>
+<p>To verify correctness:</p>
+<p>$$
+D(k, E(k, m)) = D(k, k \oplus m) = k \oplus (k \oplus m) = (k \oplus k) \oplus m = 0^L \oplus m = m.
+$$</p>
+<h3 id="variable-length-one-time-pad"><strong>Variable-Length One-Time Pad</strong></h3>
+<p>This scheme is similar to OTP but allows messages of variable length up to $L$.</p>
+<ul>
+<li><strong>Key space</strong>: $\mathcal{K} := \left\lbrace 0,1 \right\rbrace^L$</li>
+<li><strong>Message &amp; ciphertext spaces</strong>: $\mathcal{M} := \mathcal{C} := \left\lbrace 0,1 \right\rbrace^{\leq L}$</li>
+</ul>
+<p>For a message $m$ of length $\ell$, encryption and decryption are defined as:</p>
+<ul>
+<li><strong>Encryption</strong>:<br>
+$$ E(k, m) := k[0 \dots \ell -1] \oplus m $$</li>
+<li><strong>Decryption</strong>:<br>
+$$ D(k, c) := k[0 \dots \ell -1] \oplus c $$</li>
+</ul>
+<p>where $k[0 \dots \ell -1]$ represents the first $\ell$ bits of the key $k$.</p>
+<h3 id="substitution-cipher"><strong>Substitution Cipher</strong></h3>
+<p>A substitution cipher is an encryption method in which each character of the plaintext is replaced with another character according to a fixed rule.</p>
+<ul>
+<li><strong>Alphabet</strong>: A finite set of characters, e.g., the 26 English letters (A–Z) and space.</li>
+<li><strong>Message &amp; ciphertext spaces</strong>: The set of all fixed-length strings of length $L$, denoted as $\mathcal{M} = \mathcal{C} = \Sigma^L$.</li>
+<li><strong>Key space</strong>: Each key is a <strong>permutation</strong> (rearrangement) of the alphabet $\Sigma$, meaning the key space has a size of $\left| \mathcal{K} \right| = \left| \Sigma \right|!$ (which is extremely large).</li>
+</ul>
+<p>Given a permutation key $k$, which defines a unique mapping of characters:</p>
+<ul>
+<li><strong>Encryption</strong>: Each character in the plaintext is replaced by its corresponding character in the permutation $k$:<br>
+$$ E(k, m) = (k(m[0]), k(m[1]), &hellip;, k(m[L-1])). $$<br>
+Here, $m[i]$ represents the $i$-th character of the message $m$.</li>
+<li><strong>Decryption</strong>: The inverse permutation $k^{-1}$ is applied to recover the original message:<br>
+$$ D(k, c) = (k^{-1}(c[0]), k^{-1}(c[1]), &hellip;, k^{-1}(c[L-1])). $$<br>
+The function $k^{-1}$ is the inverse mapping of $k$, allowing decryption back to the original plaintext.</li>
+</ul>
+<h3 id="additive-one-time-pad"><strong>Additive One-time Pad</strong></h3>
+<p>This cipher is defined as follows:</p>
+<ul>
+<li><strong>Key, message, and ciphertext spaces</strong>:<br>
+$$ \mathcal{K} = \mathcal{M} = \mathcal{C} = \left\lbrace 0, \dots, n-1 \right\rbrace. $$</li>
+<li><strong>Encryption</strong>:<br>
+$$ E(k, m) = (m + k) \mod n. $$</li>
+<li><strong>Decryption</strong>:<br>
+$$ D(k, c) = (c - k) \mod n. $$</li>
+</ul>
+<p>Correctness verification:</p>
+<p>$$
+D(k, E(k, m)) = (m + k - k) \mod n = m.
+$$</p>
+<h2 id="perfect-security"><strong>Perfect Security</strong></h2>
+<p>So far, we have only defined the basic syntax and correctness requirements of a Shannon cipher. The next crucial question is: <em>What does it mean for a cipher to be secure?</em> Intuitively, a secure cipher is one in which an encrypted message remains <em>well hidden</em>, even if an adversary intercepts the ciphertext. However, translating this intuition into a mathematically rigorous and practically meaningful definition is a major challenge. While cryptographic systems have been used for centuries, it is only in the past few decades that mathematically sound security definitions have been developed.</p>
+<p>Next, we will formalize the notion of <strong>perfect security</strong>—the gold standard of security (at least when considering encryption of a single message, without integrity concerns). We will see that this level of security is achievable; in fact, we will prove that the <strong>one-time pad</strong> satisfies this definition. However, the <strong>one-time pad</strong> is impractical because the key must be as long as the message: if Alice wants to send a <strong>1GB file</strong> to Bob, they must share a <strong>1GB key</strong>! Unfortunately, this is unavoidable: we will also prove that <strong>any cipher achieving perfect security must have a key space at least as large as the message space</strong>. This result motivates the development of a weaker yet still practical definition of security, allowing long messages to be encrypted with shorter keys.</p>
+<p>If Alice encrypts a message $m$ using a key $k$, and an eavesdropper intercepts the ciphertext $c$, then $m$ remains secret only if $k$ is unpredictable. At a minimum, $k$ must be randomly chosen from a sufficiently large key space. When we say that $m$ is <em>well hidden</em>, we mean that determining $m$ from $c$ without knowing $k$ should be infeasible. However, this is not enough. Although the adversary does not know $k$, we assume they know the encryption algorithm and the key distribution. In fact, we assume that each time a message is encrypted, the key $k$ is chosen uniformly at random from the key space.</p>
+<p>Additionally, the adversary may have some prior knowledge about the encrypted message. Based on context, they might know that the set of possible messages is small and even have some probability distribution over these messages. For example, suppose the adversary knows that Alice’s message $m$ is either</p>
+<p>$$
+m_0 = \text{&ldquo;ATTACK AT DAWN&rdquo;}
+$$</p>
+<p>or</p>
+<p>$$
+m_1 = \text{&ldquo;ATTACK AT DUSK&rdquo;}
+$$</p>
+<p>and that Alice is equally likely to choose either message. Before seeing the ciphertext $c$, the adversary has a <strong>50% probability</strong> of guessing correctly. However, after observing $c$, both messages might still be possible—there could exist keys $k_0$ and $k_1$ such that:</p>
+<p>$$
+E(k_0, m_0) = c, \quad E(k_1, m_1) = c.
+$$</p>
+<p>Thus, the adversary cannot be certain whether $m = m_0$ or $m = m_1$. However, they can still make an educated guess. Suppose there are <strong>800 keys</strong> $k_0$ satisfying $E(k_0, m_0) = c$ and <strong>600 keys</strong> $k_1$ satisfying $E(k_1, m_1) = c$. Then, the adversary’s optimal guessing probability is</p>
+<p>$$
+\frac{800}{800 + 600} \approx 57%.
+$$</p>
+<p>This is slightly better than the <strong>50% probability</strong> without knowing the ciphertext. The formal definition of perfect security eliminates this advantage entirely—meaning that learning the ciphertext does not increase the probability of correctly guessing the message, nor does it reveal any partial information about the message.</p>
+<p>Without further delay, we formally define perfect security. In this definition, we consider a <strong>randomized experiment</strong> where the key $\mathbf{k}$ is chosen uniformly from the key space. We denote $\mathbf{k}$ as a <strong>random variable</strong> representing this key. For each message $m$, we define $E(\mathbf{k}, m)$ as another random variable, representing the result of encrypting $m$ using the randomly chosen key $\mathbf{k}$. Thus, every message $m$ induces a distinct random variable $E(\mathbf{k}, m)$.</p>
+<h3 id="definition-perfect-security">Definition (perfect security)</h3>
+<p>Let $\mathcal{E} = (E, D)$ be a Shannon cipher defined over the set $(\mathcal{K}, \mathcal{M}, \mathcal{C})$. Consider a randomized experiment in which the random variable $k$ is uniformly distributed over the key space $\mathcal{K}$. If for all $m_0, m_1 \in \mathcal{M}$ and for all $c \in \mathcal{C}$, we have:</p>
+<p>$$
+\Pr[E(k, m_0) = c] = \Pr[E(k, m_1) = c],
+$$</p>
+<p>then $\mathcal{E}$ is said to be a perfectly secret Shannon cipher.</p>
+<p>There are multiple equivalent formulations of perfect security that we shall explore. Below are some equivalent statements:</p>
+<p><strong>Theorem 1</strong> Let $\mathcal{E} = (E, D)$ be a Shannon cipher defined over $(\mathcal{K}, \mathcal{M}, \mathcal{C})$. Then, the following conditions are equivalent:</p>
+<ol>
+<li>$\mathcal{E}$ is perfectly secret.</li>
+<li>For every $c \in \mathcal{C}$, there exists an integer $N_c$ (which may depend on $c$) such that for every $m \in \mathcal{M}$, we have:
+$$
+\left| \left \lbrace k \in \mathcal{K} \mid E(k, m) = c \right \rbrace \right| = N_c.
+$$</li>
+<li>If the random variable $k$ is uniformly distributed over $\mathcal{K}$, then each random variable $E(k, m)$, for every $m \in \mathcal{M}$, is also uniformly distributed.</li>
+</ol>
+<p>We shall prove this theorem. First, we can restate condition (2) as follows: for every $c \in \mathcal{C}$, there exists a probability $P_c$ (depending on $c$) such that for every $m \in \mathcal{M}$, we have:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m) = c] = P_c.
+$$</p>
+<p>Here, $\mathbf{k}$ is a random variable uniformly distributed over $\mathcal{K}$, which implies that $P_c = \frac{N_c}{|\mathcal{K}|}$, where $N_c$ is the number of keys $k$ satisfying $E(k, m) = c$. From this, it is evident that $E(k, m)$ is also uniformly distributed, making statements (2) and (3) equivalent.</p>
+<p>Next, we prove that $(1) \Rightarrow (2)$. Suppose $\mathcal{E}$ is perfectly secret. We aim to establish condition (2). Fix an arbitrary ciphertext $c \in \mathcal{C}$. Choose any message $m_0 \in \mathcal{M}$. Define $P_c := \Pr[E(k, m_0) = c]$. By the definition of perfect security, for every $m \in \mathcal{M}$, we have:</p>
+<p>$$
+\Pr[E(k, m) = c] = \Pr[E(k, m_0) = c] = P_c.
+$$</p>
+<p>This proves condition (2).</p>
+<p>Finally, we prove that $(2) \Rightarrow (1)$. Assume (2) holds, and we show that $\mathcal{E}$ is perfectly secret. For any two messages $m_0, m_1 \in \mathcal{M}$ and any ciphertext $c \in \mathcal{C}$, condition (2) implies that:</p>
+<p>$$
+\Pr[E(k, m_0) = c] = P_c = \Pr[E(k, m_1) = c].
+$$</p>
+<p>Since this holds for all $m_0, m_1$, $\mathcal{E}$ satisfies the definition of perfect security.</p>
+<hr>
+<p>Returning to Shannon’s examples, we first prove that the <strong>one-time pad</strong> achieves perfect security. Suppose $\mathcal{E} = (E, D)$ is a one-time pad cipher defined over $(\mathcal{K}, \mathcal{M}, \mathcal{C})$, where $\mathcal{K} := \mathcal{M} := \mathcal{C} := \left \lbrace0,1\right \rbrace^L$.</p>
+<p>For any fixed message $m \in \left \lbrace0,1\right \rbrace^L$ and ciphertext $c \in \left \lbrace0,1\right \rbrace^L$, there exists a unique key $k \in \left \lbrace0,1\right \rbrace^L$ satisfying:</p>
+<p>$$
+k \oplus m = c,
+$$</p>
+<p>specifically, $k := m \oplus c$. Thus, $\mathcal{E}$ satisfies condition (ii) in Theorem 1 (with $N_c = 1$ for each $c$).</p>
+<p>Now consider the <strong>variable-length one-time pad</strong>. This scheme does not satisfy our definition of perfect security because the ciphertext length directly reveals the plaintext length. Suppose we select a one-character message $m_0$ and a two-character message $m_1$. Assume $c$ is a one-character ciphertext, and $k$ is a random key uniformly distributed over the key space. Then,</p>
+<p>$$
+\Pr[E(k, m_0) = c] = \frac{1}{2}, \quad \Pr[E(k, m_1) = c] = 0.
+$$</p>
+<p>This provides a direct counterexample to the definition of perfect security.</p>
+<p>We note that the variable-length one-time pad cannot satisfy perfect security simply because any ciphertext reveals the length of its corresponding plaintext. However, in a certain sense (not yet formally defined), this is the only information leaked. Whether this is a flaw in the scheme or in the definition of perfect security is debatable.</p>
+<ul>
+<li>On one hand, if messages vary significantly in length, one can pad them to a uniform size. However, this may be impractical due to bandwidth inefficiencies.</li>
+<li>On the other hand, in some applications, leaking only the message length can be dangerous. For example, encrypting the response &ldquo;yes&rdquo; or &ldquo;no&rdquo; would leak the answer unless &ldquo;no&rdquo; is padded to match the length of &ldquo;yes.&rdquo;</li>
+</ul>
+<p>Finally, let us examine the <strong>substitution cipher</strong>. There are multiple ways to see that this scheme is not perfectly secret. For example, consider two messages $m_0, m_1 \in \Sigma^L$ where the first two characters of $m_0$ are identical, but those of $m_1$ differ: $m_0[0] = m_0[1]$ but $m_1[0] \neq m_1[1]$. If $k$ is a permutation of $\Sigma$, then for any ciphertext $c$, we have:</p>
+<p>$$
+c[0] = c[1] \text{ if } c = E(k, m_0), \quad c[0] \neq c[1] \text{ if } c = E(k, m_1).
+$$</p>
+<p>Thus, $E(k, m_0)$ and $E(k, m_1)$ have distinguishable distributions, violating perfect security.</p>
+<p>A more practical attack exploits structured headers in encrypted emails, such as &ldquo;FROM&rdquo; appearing in predictable locations. Knowing this, an attacker can infer portions of the plaintext, demonstrating that substitution ciphers fail to achieve perfect security.</p>
+<p>In contrast, the <strong>additive one-time pad</strong> can be easily verified to be perfectly secret, as it satisfies condition (ii) in Theorem 1 (with $N_c = 1$ for each $c$).</p>
+<hr>
+<p>The next two theorems introduce alternative characterizations of <strong>perfect security</strong>. In the first theorem, we assume that an eavesdropper applies a <strong>logical predicate</strong> $\phi$ to the ciphertext they intercept. The predicate $\phi$ is a <strong>Boolean function</strong> over the ciphertext space, which could be as simple as a <strong>parity check function</strong> (i.e., checking whether the number of 1-bits in the ciphertext is even or odd), or it could be a more sophisticated statistical test. Regardless of how intricate $\phi$ may be, <strong>perfect security</strong> ensures that its value on the ciphertext <strong>reveals no information whatsoever</strong> about the original message.</p>
+<p><strong>Theorem 2</strong>. Let $\mathcal{E} = (E, D)$ be a Shannon cipher defined over the tuple $(\mathcal{K}, \mathcal{M}, \mathcal{C})$. Consider a random experiment where the key $\mathbf{k}$ is a uniformly distributed random variable over the key space $\mathcal{K}$. Then, $\mathcal{E}$ is <strong>perfectly secret</strong> if and only if, for every <strong>predicate</strong> $\phi$ over the ciphertext space $\mathcal{C}$ and for all $m_0, m_1 \in \mathcal{M}$, we have:</p>
+<p>$$
+\Pr[\phi(E(\mathbf{k}, m_0))] = \Pr[\phi(E(\mathbf{k}, m_1))].
+$$</p>
+<p>The forward direction of this theorem follows from a straightforward computation.</p>
+<ul>
+<li>Assume that $\mathcal{E}$ is <strong>perfectly secret</strong>, and let $\phi$ be an arbitrary predicate, with two messages $m_0$ and $m_1$.</li>
+<li>Define the set $S := \left \lbrace c \in \mathcal{C} \mid \phi(c) \right \rbrace$, which consists of all ciphertexts for which $\phi$ evaluates to true. This allows us to express:</li>
+</ul>
+<p>$$
+\Pr[\phi(E(\mathbf{k}, m_0))] = \sum_{c \in S} \Pr[E(\mathbf{k}, m_0) = c].
+$$</p>
+<p>By the definition of perfect security, we have:</p>
+<p>$$
+\sum_{c \in S} \Pr[E(\mathbf{k}, m_0) = c] = \sum_{c \in S} \Pr[E(\mathbf{k}, m_1) = c] = \Pr[\phi(E(\mathbf{k}, m_1))].
+$$</p>
+<p>Now, for the reverse direction, suppose that $\mathcal{E}$ is <strong>not</strong> perfectly secret. This means there exist messages $m_0, m_1$ and a ciphertext $c$ such that $\Pr[E(\mathbf{k}, m_0) = c] \neq \Pr[E(\mathbf{k}, m_1) = c]$.</p>
+<p>Consider the predicate $\phi$ that evaluates <strong>true</strong> for ciphertext $c$ and <strong>false</strong> for all other ciphertexts. Then, we obtain:</p>
+<p>$$
+\Pr[\phi(E(\mathbf{k}, m_0))] = \Pr[E(\mathbf{k}, m_0) = c] \neq \Pr[E(\mathbf{k}, m_1) = c] = \Pr[\phi(E(\mathbf{k}, m_1))].
+$$</p>
+<p>This contradiction establishes the theorem.</p>
+<hr>
+<p>The next theorem provides an alternative formulation of <strong>perfect security</strong>, stating that <strong>a ciphertext reveals no information about the original message</strong>.</p>
+<ul>
+<li>Suppose that $\mathbf{m}$ is a <strong>random variable</strong> distributed over the message space $\mathcal{M}$ (not necessarily uniformly).</li>
+<li>Suppose that $\mathbf{k}$ is a <strong>uniformly distributed random variable</strong> over the key space $\mathcal{K}$ and is independent of $\mathbf{m}$.</li>
+<li>Define $\mathbf{c} := E(\mathbf{k}, \mathbf{m})$ as the random variable distributed over the ciphertext space $\mathcal{C}$.</li>
+</ul>
+<p><strong>Corollary:</strong> perfect security ensures that $\mathbf{c}$ and $\mathbf{m}$ are <strong>statistically independent</strong>. One way to express this independence is:</p>
+<p>$$
+\Pr[\mathbf{m} = m \mid \mathbf{c} = c] = \Pr[\mathbf{m} = m], \quad \forall m \in \mathcal{M}, c \in \mathcal{C}, \text{ with positive probability.}
+$$</p>
+<p><strong>Intuitive Interpretation:</strong> After observing a ciphertext $c$, we <strong>gain no additional information</strong> about the original message $m$ compared to before seeing $c$. Another way to describe this independence is:</p>
+<p>$$
+\Pr[\mathbf{c} = c \mid \mathbf{m} = m] = \Pr[\mathbf{c} = c], \quad \forall m \in \mathcal{M}, c \in \mathcal{C}.
+$$</p>
+<p>This means that <strong>the choice of message $m$ does not affect the distribution of the ciphertext</strong>.</p>
+<p><strong>Remark:</strong> The assumption that $\mathbf{m}$ and $\mathbf{k}$ are <strong>independent random variables</strong> is reasonable. When using any encryption scheme, <strong>choosing a key based on the message</strong> or <strong>choosing a message based on the key</strong> is generally a bad idea.</p>
+<p><strong>Theorem 3</strong>. Let $\mathcal{E} = (E, D)$ be a Shannon cipher defined over the tuple $(\mathcal{K, M, C})$. Consider a random experiment where $\mathbf{k}$ and $\mathbf{m}$ are random variables satisfying:</p>
+<ul>
+<li>$\mathbf{k}$ is uniformly distributed over $\mathcal{K}$,</li>
+<li>$\mathbf{m}$ is distributed over $\mathcal{M}$,</li>
+<li>$\mathbf{k}$ and $\mathbf{m}$ are independent.</li>
+</ul>
+<p>Define the random variable $\mathbf{c} := E(\mathbf{k}, \mathbf{m})$. Then:</p>
+<ul>
+<li>If $\mathcal{E}$ is <strong>perfectly secret</strong>, then $\mathbf{c}$ and $\mathbf{m}$ are <strong>independent</strong>.</li>
+<li>Conversely, if $\mathbf{c}$ and $\mathbf{m}$ are <strong>independent</strong>, and every message in $\mathcal{M}$ has a nonzero probability, then $\mathcal{E}$ is <strong>perfectly secret</strong>.</li>
+</ul>
+<p><strong>Proof</strong>. We will prove the theorem in both directions.</p>
+<h4 id="1-if-mathcale-is-perfectly-secret-then-mathbfc-and-mathbfm-are-independent"><strong>(1) If $\mathcal{E}$ is perfectly secret, then $\mathbf{c}$ and $\mathbf{m}$ are independent.</strong></h4>
+<p>For any $m \in \mathcal{M}$ and $c \in \mathcal{C}$, we need to show:</p>
+<p>$$
+\Pr[\mathbf{c} = c \wedge \mathbf{m} = m] = \Pr[\mathbf{c} = c] \Pr[\mathbf{m} = m].
+$$</p>
+<p>Expanding the left-hand side:</p>
+<p>$$
+\begin{aligned}
+\Pr[\mathbf{c} = c \wedge \mathbf{m} = m] &amp;= \Pr[E(\mathbf{k}, \mathbf{m}) = c \wedge \mathbf{m} = m] \\
+&amp;= \Pr[E(\mathbf{k}, m) = c \wedge \mathbf{m} = m].
+\end{aligned}
+$$</p>
+<p>Since $\mathbf{k}$ and $\mathbf{m}$ are independent, we obtain:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m) = c \wedge \mathbf{m} = m] = \Pr[E(\mathbf{k}, m) = c] \Pr[\mathbf{m} = m].
+$$</p>
+<p>To establish independence, we need to show:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m) = c] = \Pr[\mathbf{c} = c].
+$$</p>
+<p>Indeed, we have:</p>
+<p>$$
+\Pr[\mathbf{c} = c] = \Pr[E(\mathbf{k}, \mathbf{m}) = c].
+$$</p>
+<p>Applying the law of total probability:</p>
+<p>$$
+\begin{aligned}
+\Pr[\mathbf{c} = c] &amp;= \sum_{m_0 \in \mathcal{M}} \Pr[E(\mathbf{k}, \mathbf{m}) = c \wedge \mathbf{m} = m_0] \\
+&amp;= \sum_{m_0 \in \mathcal{M}} \Pr[E(\mathbf{k}, m_0) = c \wedge \mathbf{m} = m_0].
+\end{aligned}
+$$</p>
+<p>Since $\mathbf{k}$ and $\mathbf{m}$ are independent:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m_0) = c \wedge \mathbf{m} = m_0] = \Pr[E(\mathbf{k}, m_0) = c] \Pr[\mathbf{m} = m_0].
+$$</p>
+<p>From the assumption that $\mathcal{E}$ is perfectly secret, we know that:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m_0) = c] = \Pr[E(\mathbf{k}, m) = c] \quad \forall m_0 \in \mathcal{M}.
+$$</p>
+<p>Substituting this into the summation:</p>
+<p>$$
+\Pr[\mathbf{c} = c] = \sum_{m_0 \in \mathcal{M}} \Pr[E(\mathbf{k}, m) = c] \Pr[\mathbf{m} = m_0].
+$$</p>
+<p>Since the probabilities $\Pr[\mathbf{m} = m_0]$ sum to 1 over $\mathcal{M}$, we conclude:</p>
+<p>$$
+\Pr[\mathbf{c} = c] = \Pr[E(\mathbf{k}, m) = c].
+$$</p>
+<p>Thus, $\mathbf{c}$ and $\mathbf{m}$ are independent.</p>
+<h4 id="2-if-mathbfc-and-mathbfm-are-independent-then-mathcale-is-perfectly-secret"><strong>(2) If $\mathbf{c}$ and $\mathbf{m}$ are independent, then $\mathcal{E}$ is perfectly secret.</strong></h4>
+<p>Assume that $\mathbf{c}$ and $\mathbf{m}$ are independent, and that every message in $\mathcal{M}$ has nonzero probability. Consider any $m \in \mathcal{M}$ and $c \in \mathcal{C}$. We will prove that:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m) = c] = \Pr[\mathbf{c} = c],
+$$</p>
+<p>which immediately implies perfect security. Since $\Pr[\mathbf{m} = m] \neq 0$, we obtain:</p>
+<p>$$
+\begin{aligned}
+\Pr[E(\mathbf{k}, m) = c] \Pr[\mathbf{m} = m] &amp;= \Pr[E(\mathbf{k}, m) = c \wedge \mathbf{m} = m] \quad \text{(since $\mathbf{k}$ and $\mathbf{m}$ are independent)} \\
+&amp;= \Pr[E(\mathbf{k}, \mathbf{m}) = c \wedge \mathbf{m} = m] \\
+&amp;= \Pr[\mathbf{c} = c \wedge \mathbf{m} = m] \\
+&amp;= \Pr[\mathbf{c} = c] \Pr[\mathbf{m} = m] \quad \text{(since $\mathbf{c}$ and $\mathbf{m}$ are independent)}.
+\end{aligned}
+$$</p>
+<p>Dividing both sides by $\Pr[\mathbf{m} = m]$ (which is nonzero), we conclude:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m) = c] = \Pr[\mathbf{c} = c] = \Pr[E(\mathbf{k}, \mathbf{m})].
+$$</p>
+<p>Since this holds for all $m \in \mathcal{M}$ and $c \in \mathcal{C}$, the encryption scheme $\mathcal{E}$ is perfectly secret.</p>
+<hr>
+<p>The bad news is saved for last. The following theorem shows that <strong>perfect security</strong> is such a strong concept that no encryption scheme can do better than <strong>the one-time pad (OTP)</strong>: the key must be at least as long as the message.</p>
+<p>As a consequence, <strong>perfectly secure</strong> encryption schemes are impractical in most real-world applications. For example, if Alice wants to send Bob a 1GB video file securely, they must agree on a secret key of <strong>at least 1GB in length</strong> beforehand. This leads to the following theorem.</p>
+<p><strong>Theorem 4 (Shannon&rsquo;s Theorem)</strong>. Let $\mathcal{E} = (E, D)$ be a Shannon encryption scheme defined over $(\mathcal{K, M, C})$. If $\mathcal{E}$ achieves <strong>perfect security</strong>, then:</p>
+<p>$$
+|\mathcal{K}| \geq |\mathcal{M}|.
+$$</p>
+<p>As with the previous theorems, we will prove this statement. Suppose, <strong>for contradiction</strong>, that $|\mathcal{K}| &lt; |\mathcal{M}|$. We will show that $\mathcal{E}$ <strong>cannot</strong> be perfectly secure by demonstrating the existence of two messages $m_0, m_1$ and a ciphertext $c$ such that:</p>
+<p>$$
+\Pr[E(\mathbf{k}, m_0) = c] &gt; 0, \quad \text{(1)}
+$$</p>
+<p>$$
+\Pr[E(\mathbf{k}, m_1) = c] = 0. \quad \text{(2)}
+$$</p>
+<p>where $\mathbf{k}$ is a uniformly distributed random variable over $\mathcal{K}$.</p>
+<p><strong>Constructing the Counterexample</strong></p>
+<ul>
+<li>Choose an arbitrary message $m_0 \in \mathcal{M}$ and a key $k_0 \in \mathcal{K}$.</li>
+<li>Define $c := E(k_0, m_0)$.</li>
+<li>Clearly, Equation (1) holds because there is at least one key $k_0$ that encrypts $m_0$ to $c$.</li>
+</ul>
+<p>Next, consider the set:</p>
+<p>$$
+S := \left \lbrace D(k_1, c) \mid k_1 \in \mathcal{K} \right \rbrace.
+$$</p>
+<p>The set $S$ contains all possible messages that could be decrypted from ciphertext $c$ <strong>using any key</strong> in $\mathcal{K}$. Since the number of possible decryptions cannot exceed the number of available keys, we have:</p>
+<p>$$
+|S| \leq |\mathcal{K}| &lt; |\mathcal{M}|.
+$$</p>
+<p>Because $|S| &lt; |\mathcal{M}|$, there must exist at least one message $m_1 \in \mathcal{M}$ <strong>not included</strong> in $S$. In other words,</p>
+<p>$$
+m_1 \notin S.
+$$</p>
+<p>This means that <strong>no key in $\mathcal{K}$ can decrypt $c$ to $m_1$</strong>. We now prove this formally.</p>
+<p><strong>Contradiction Proof</strong><br>
+Assume, for contradiction, that there exists a key $k_1$ such that:</p>
+<p>$$
+E(k_1, m_1) = c.
+$$</p>
+<p>By the <strong>correctness</strong> of the encryption scheme (i.e., decryption with the correct key must recover the original message), we have:</p>
+<p>$$
+D(k_1, c) = D(k_1, E(k_1, m_1)) = m_1.
+$$</p>
+<p>However, this contradicts our choice of $m_1 \notin S$, meaning that such a key <strong>cannot exist</strong>. Therefore, we conclude:</p>
+<p>$$
+\Pr[E(k, m_1) = c] = 0.
+$$</p>
+<p><strong>Final Argument</strong><br>
+From Equations (1) and (2), we see that there exists at least one ciphertext $c$ that <strong>can only be generated by some messages but not others</strong>. This means that the probability distribution of ciphertexts <strong>is not uniform across all messages</strong>, violating the definition of <strong>perfect security</strong>.</p>
+<p>Since perfect security requires that every message be equally likely to produce any given ciphertext, we conclude that $\mathcal{E}$ <strong>cannot be perfectly secure</strong>, proving the necessary condition:</p>
+<p>$$
+|\mathcal{K}| \geq |\mathcal{M}|.
+$$</p>
+<hr>
+<p>While <strong>Perfect Security</strong> represents an idealized form of encryption, it is ultimately impractical due to its strict key-length requirement. <strong>Shannon’s Theorem</strong> proves that the secret key must be at least as long as the message to achieve this level of security, limiting its usability in real-world scenarios.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Dan Boneh and Victor Shoup. <em>A Graduate Course in Applied Cryptography</em>. Retrieved from <a href="https://toc.cryptobook.us/">https://toc.cryptobook.us/</a></li>
+</ol>
+<h2 id="connect-with-me">Connect with Me</h2>
+<p>Connect with me on <a href="https://www.facebook.com/dangduongminhnhat/">Facebook</a>, <a href="https://www.linkedin.com/in/nhatdang1901/">LinkedIn</a>, via email at <a href="mailto:dangduongminhnhat2003@gmail.com">dangduongminhnhat2003@gmail.com</a>, <a href="https://github.com/dangduongminhnhat">GitHub</a>, or by phone at <a href="tel:+84829258815">+84 829 258 815</a> .</p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/cryptography/">Cryptography</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/perfect-security/">Perfect Security</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/one-time-pad/">One-Time Pad</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/shannon-security/">Shannon Security</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/information-theory/">Information Theory</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/cybersecurity/">CyberSecurity</a>&nbsp;
+            
+              
+              <a href="https://dangduongminhnhat.github.io/tags/encryption/">Encryption</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+      </article>
+      
+
+      
+        <ul class="pager blog-pager">
+          
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2025
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="https://dangduongminhnhat.github.io/js/main.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dangduongminhnhat.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
