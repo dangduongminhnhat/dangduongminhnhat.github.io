@@ -1,914 +1,107 @@
-
-
-
-
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
- 
-
-
-      <title>Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data - Daminha Blog</title>
-
-  <meta name="description" content="In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial is close to a low-degree one through a series of recursive folding steps. By halving the polynomial&rsquo;s degree progressively, the FRI protocol reduces computational complexity while preserving the security of the verification process. The prover commits to the polynomial&rsquo;s evaluations using Merkle trees, ensuring both integrity and consistency, which are verified through collinearity checks. In this blog, we take a deep dive into the mechanics of the FRI protocol, from the commitment phase where the degree is halved to the query phase where the verifier checks consistency. Whether you are a blockchain enthusiast, cryptography expert, or just curious about the future of digital proofs, understanding the FRI protocol will give you a glimpse into the future of secure, scalable cryptographic verification."><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "Daminha Blog",
-    
-    "url": "https:\/\/dangduongminhnhat.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/dangduongminhnhat.github.io\/"
-  
-  
-  
-  
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/dangduongminhnhat.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/dangduongminhnhat.github.io\/posts\/d091124\/decoding-stark\/",
-          "name": "Decoding stark how to prove computation accuracy without revealing the data"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "Dang Duong Minh Nhat"
-  },
-  "headline": "Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data",
-  "description" : "In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial is close to a low-degree one through a series of recursive folding steps. By halving the polynomial\u0026rsquo;s degree progressively, the FRI protocol reduces computational complexity while preserving the security of the verification process. The prover commits to the polynomial\u0026rsquo;s evaluations using Merkle trees, ensuring both integrity and consistency, which are verified through collinearity checks. In this blog, we take a deep dive into the mechanics of the FRI protocol, from the commitment phase where the degree is halved to the query phase where the verifier checks consistency. Whether you are a blockchain enthusiast, cryptography expert, or just curious about the future of digital proofs, understanding the FRI protocol will give you a glimpse into the future of secure, scalable cryptographic verification.",
-  "inLanguage" : "en",
-  "wordCount":  6424 ,
-  "datePublished" : "2024-11-09T12:56:42\u002b07:00",
-  "dateModified" : "2024-11-09T12:56:42\u002b07:00",
-  "image" : "https:\/\/dangduongminhnhat.github.io\/",
-  "keywords" : [ "FRI Protocol, Polynomials, Zero-Knowledge Proofs, STARKs, Blockchain, Cryptography, MerkleTrees, Interactive Oracle Proofs" ],
-  "mainEntityOfPage" : "https:\/\/dangduongminhnhat.github.io\/posts\/d091124\/decoding-stark\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/dangduongminhnhat.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/dangduongminhnhat.github.io\/",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
-
-
-<meta property="og:title" content="Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data" />
-<meta property="og:description" content="In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial is close to a low-degree one through a series of recursive folding steps. By halving the polynomial&rsquo;s degree progressively, the FRI protocol reduces computational complexity while preserving the security of the verification process. The prover commits to the polynomial&rsquo;s evaluations using Merkle trees, ensuring both integrity and consistency, which are verified through collinearity checks. In this blog, we take a deep dive into the mechanics of the FRI protocol, from the commitment phase where the degree is halved to the query phase where the verifier checks consistency. Whether you are a blockchain enthusiast, cryptography expert, or just curious about the future of digital proofs, understanding the FRI protocol will give you a glimpse into the future of secure, scalable cryptographic verification.">
-<meta property="og:url" content="https://dangduongminhnhat.github.io/posts/d091124/decoding-stark/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Daminha Blog" />
-
-  <meta name="twitter:title" content="Decoding STARK: How to Prove Computation Accuracy Without Revealing …" />
-  <meta name="twitter:description" content="In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial …">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="generator" content="Hugo 0.129.0">
-  <link rel="alternate" href="https://dangduongminhnhat.github.io/index.xml" type="application/rss+xml" title="Daminha Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-V19WW5WSEZ"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-V19WW5WSEZ');
-        }
-      </script>
-    
-  
-
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
-<link rel="manifest" href="/favicon_io/site.webmanifest">
-
-<script type="text/x-mathjax-config">
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data - Daminha Blog</title>
+<meta name=description content="In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial is close to a low-degree one through a series of recursive folding steps. By halving the polynomial&rsquo;s degree progressively, the FRI protocol reduces computational complexity while preserving the security of the verification process. The prover commits to the polynomial&rsquo;s evaluations using Merkle trees, ensuring both integrity and consistency, which are verified through collinearity checks. In this blog, we take a deep dive into the mechanics of the FRI protocol, from the commitment phase where the degree is halved to the query phase where the verifier checks consistency. Whether you are a blockchain enthusiast, cryptography expert, or just curious about the future of digital proofs, understanding the FRI protocol will give you a glimpse into the future of secure, scalable cryptographic verification."><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Daminha Blog","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/posts\/d091124\/decoding-stark\/","name":"Decoding stark how to prove computation accuracy without revealing the data"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Dang Duong Minh Nhat"},"headline":"Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data","description":"In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial is close to a low-degree one through a series of recursive folding steps. By halving the polynomial\u0026rsquo;s degree progressively, the FRI protocol reduces computational complexity while preserving the security of the verification process. The prover commits to the polynomial\u0026rsquo;s evaluations using Merkle trees, ensuring both integrity and consistency, which are verified through collinearity checks. In this blog, we take a deep dive into the mechanics of the FRI protocol, from the commitment phase where the degree is halved to the query phase where the verifier checks consistency. Whether you are a blockchain enthusiast, cryptography expert, or just curious about the future of digital proofs, understanding the FRI protocol will give you a glimpse into the future of secure, scalable cryptographic verification.","inLanguage":"en","wordCount":6424,"datePublished":"2024-11-09T12:56:42\u002b07:00","dateModified":"2024-11-09T12:56:42\u002b07:00","image":"https:\/\/dangduongminhnhat.github.io\/","keywords":["FRI Protocol, Polynomials, Zero-Knowledge Proofs, STARKs, Blockchain, Cryptography, MerkleTrees, Interactive Oracle Proofs"],"mainEntityOfPage":"https:\/\/dangduongminhnhat.github.io\/posts\/d091124\/decoding-stark\/","publisher":{"@type":"Organization","name":"https:\/\/dangduongminhnhat.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/dangduongminhnhat.github.io\/","height":60,"width":60}}}</script><meta property="og:title" content="Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data"><meta property="og:description" content="In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial is close to a low-degree one through a series of recursive folding steps. By halving the polynomial&rsquo;s degree progressively, the FRI protocol reduces computational complexity while preserving the security of the verification process. The prover commits to the polynomial&rsquo;s evaluations using Merkle trees, ensuring both integrity and consistency, which are verified through collinearity checks. In this blog, we take a deep dive into the mechanics of the FRI protocol, from the commitment phase where the degree is halved to the query phase where the verifier checks consistency. Whether you are a blockchain enthusiast, cryptography expert, or just curious about the future of digital proofs, understanding the FRI protocol will give you a glimpse into the future of secure, scalable cryptographic verification."><meta property="og:url" content="https://dangduongminhnhat.github.io/posts/d091124/decoding-stark/"><meta property="og:type" content="website"><meta property="og:site_name" content="Daminha Blog"><meta name=twitter:title content="Decoding STARK: How to Prove Computation Accuracy Without Revealing …"><meta name=twitter:description content="In the rapidly evolving world of cryptography, verifying large-degree polynomials efficiently is a challenge. The FRI protocol solves this by enabling the prover to demonstrate that a given polynomial …"><meta name=twitter:card content="summary_large_image"><meta name=generator content="Hugo 0.129.0"><link rel=alternate href=https://dangduongminhnhat.github.io/index.xml type=application/rss+xml title="Daminha Blog"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css integrity=sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css integrity=sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu crossorigin=anonymous><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/syntax.css><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><script async src="https://www.googletagmanager.com/gtag/js?id=G-V19WW5WSEZ"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-V19WW5WSEZ")}</script><link rel=apple-touch-icon sizes=180x180 href=/favicon_io/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon_io/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon_io/favicon-16x16.png><link rel=manifest href=/favicon_io/site.webmanifest><script type=text/x-mathjax-config>
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       processEscapes: true
     }
   });
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
-</script>
-<script type="text/javascript" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-
-
-    <meta name="google-site-verification" content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU" />
-    <meta name="google-site-verification" content="oQJmyNtEP9HjjEcXwRno2_YPeuLd5kX3jTltynIx65s" />
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
-        
-          
-            <li>
-              <a title="About" href="/posts/about-me/">About</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Tags" href="/tags/">Tags</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Cryptography Series" href="/posts/cryptography/">Cryptography Series</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Note" href="https://hackmd.io/@daminha">Note</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Blog" href="/">Blog</a>
-            </li>
-          
-        
-
-        
-
-        
-      </ul>
-    </div>
-
-    
-
-  </div>
-</nav>
-
-
-
-
-    
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="posts-heading">
-              
-                <h1>Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data</h1>
-              
-              
-                <hr class="small">
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-  </header>
-
-
-    
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>
-          <strong>Posted on:</strong> November 9, 2024 |
-          <strong>Reading time:</strong> 31 minutes |
-          <strong>Word count:</strong> 6424 words |
-          <strong>Author:</strong> Dang Duong Minh Nhat
-        </p>
-        <p>The FRI protocol (Fast Reed-Solomon Interactive Oracle Proofs of Proximity) is revolutionizing the way we verify polynomials. With the growing need for efficient zero-knowledge proofs, particularly in blockchain and cryptography, FRI provides a way to verify that a given polynomial is close to a low-degree polynomial without needing to inspect the entire function. By recursively folding the polynomial and committing to its evaluations, FRI ensures both security and efficiency. This protocol is central to the emerging world of STARKs (Scalable Transparent Arguments of Knowledge), offering a fast, scalable solution to a longstanding problem in cryptographic verification.</p>
-<p>In this blog, we dive into the inner workings of the FRI protocol, breaking down the commitment and query phases, the crucial recursive folding steps, and the importance of Merkle commitments. We&rsquo;ll also explore how FRI ensures consistency via collinearity checks and how the verifier&rsquo;s role is critical to maintaining the integrity of the proof. If you&rsquo;re interested in how cutting-edge cryptography is making blockchain transactions more secure and scalable, this post is a must-read.</p>
-<h2 id="table-of-contents">Table of Contents</h2>
-<ul>
-<li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#unlocking-the-power-of-stark:-a-revolutionary-protocol-for-scalable-and-transparent-proofs">Unlocking the Power of STARK: A Revolutionary Protocol for Scalable and Transparent Proofs</a>
-<ul>
-<li><a href="#what-is-the-stark-protocol?">What Is the STARK Protocol?</a></li>
-<li><a href="#why-does-this-work?">Why Does This Work?</a></li>
-<li><a href="#key-advantages-of-starks">Key Advantages of STARKs</a></li>
-</ul>
-</li>
-<li><a href="#arithmetization-of-the-execution-trace:-turning-computations-into-polynomials">Arithmetization of the Execution Trace: Turning Computations into Polynomials</a>
-<ul>
-<li><a href="#introduction-to-arithmetization">Introduction to Arithmetization</a></li>
-<li><a href="#what-is-an-execution-trace?">What Is an Execution Trace?</a>
-<ul>
-<li><a href="#trace-matrix-representation">Trace Matrix Representation</a></li>
-</ul>
-</li>
-<li><a href="#why-do-we-need-to-arithmetize-the-trace?">Why Do We Need to Arithmetize the Trace?</a></li>
-<li><a href="#converting-the-trace-to-polynomials">Converting the Trace to Polynomials</a>
-<ul>
-<li><a href="#trace-evaluation-domain">Trace Evaluation Domain</a></li>
-<li><a href="#constructing-polynomials-for-each-register">Constructing Polynomials for Each Register</a></li>
-</ul>
-</li>
-<li><a href="#the-trace-evaluation-domain">The Trace Evaluation Domain</a></li>
-</ul>
-</li>
-<li><a href="#constraint-systems-in-starks:-how-we-ensure-computation-validity">Constraint Systems in STARKs: How We Ensure Computation Validity</a>
-<ul>
-<li><a href="#boundary-constraints:-setting-initial-conditions">Boundary Constraints: Setting Initial Conditions</a>
-<ul>
-<li><a href="#example:-fibonacci-sequence">Example: Fibonacci Sequence</a></li>
-<li><a href="#polynomial-representation-of-boundary-constraints">Polynomial Representation of Boundary Constraints</a></li>
-<li><a href="#optimizing-boundary-constraints">Optimizing Boundary Constraints</a></li>
-</ul>
-</li>
-<li><a href="#transition-constraints:-enforcing-computation-logic">Transition Constraints: Enforcing Computation Logic</a>
-<ul>
-<li><a href="#example:-fibonacci-transition-rule">Example: Fibonacci Transition Rule</a></li>
-<li><a href="#polynomial-representation-of-transition-constraints">Polynomial Representation of Transition Constraints</a></li>
-</ul>
-</li>
-<li><a href="#combining-boundary-and-transition-constraints">Combining Boundary and Transition Constraints</a>
-<ul>
-<li><a href="#random-linear-combination-of-polynomials">Random Linear Combination of Polynomials</a></li>
-<li><a href="#why-does-this-work?">Why Does This Work?</a></li>
-<li><a href="#verifying-$cp(x)$">Verifying $CP(x)$</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#vector-commitments:-a-crucial-building-block-of-starks">Vector Commitments: A Crucial Building Block of STARKs</a>
-<ul>
-<li><a href="#what-is-a-vector-commitment?">What is a Vector Commitment?</a></li>
-<li><a href="#vector-commitments-in-starks">Vector Commitments in STARKs</a>
-<ul>
-<li><a href="#committing-to-polynomial-evaluations">Committing to Polynomial Evaluations</a></li>
-<li><a href="#verifying-polynomial-integrity">Verifying Polynomial Integrity</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#the-fri-protocol:-revolutionizing-polynomial-proximity-proofs">The FRI Protocol: Revolutionizing Polynomial Proximity Proofs</a>
-<ul>
-<li><a href="#what-is-the-fri-protocol?">What is the FRI Protocol?</a></li>
-<li><a href="#key-parameters-in-fri">Key Parameters in FRI</a>
-<ul>
-<li><a href="#domain-and-parameters">Domain and Parameters</a></li>
-<li><a href="#the-domain-$d$">The Domain $D$</a></li>
-</ul>
-</li>
-<li><a href="#the-blowup-factor-$%5Cbeta$">The Blowup Factor $\beta$</a>
-<ul>
-<li><a href="#why-is-$%5Cbeta$-important?">Why is $\beta$ Important?</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#degree-adjustment-in-polynomial-constraints:-the-secret-to-efficient-starks">Degree Adjustment in Polynomial Constraints: The Secret to Efficient STARKs</a>
-<ul>
-<li><a href="#how-does-degree-adjustment-work?">How Does Degree Adjustment Work?</a>
-<ul>
-<li><a href="#why-adjust-the-degree?">Why Adjust the Degree?</a></li>
-</ul>
-</li>
-<li><a href="#composition-of-constraints">Composition of Constraints</a>
-<ul>
-<li><a href="#why-use-a-composition-polynomial?">Why Use a Composition Polynomial?</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#committing-to-the-trace:-the-heart-of-stark-integrity">Committing to the Trace: The Heart of STARK Integrity</a>
-<ul>
-<li><a href="#the-polynomial-commitment-process">The Polynomial Commitment Process</a>
-<ul>
-<li><a href="#step-1:-interpolation-of-columns">Step 1: Interpolation of Columns</a></li>
-<li><a href="#step-2:-commitment-to-polynomials">Step 2: Commitment to Polynomials</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#unveiling-the-fri-protocol:-how-to-verify-polynomials-efficiently">Unveiling the FRI Protocol: How to Verify Polynomials Efficiently</a></li>
-<li><a href="#the-commitment-phase-in-the-fri-protocol:-recursive-folding-and-merkle-commitments">The Commitment Phase in the FRI Protocol: Recursive Folding and Merkle Commitments</a>
-<ul>
-<li><a href="#initial-step:-halving-the-polynomial-degree">Initial Step: Halving the Polynomial Degree</a></li>
-<li><a href="#random-linear-combination:-reducing-the-degree-further">Random Linear Combination: Reducing the Degree Further</a></li>
-<li><a href="#recursive-halving:-repeating-the-process">Recursive Halving: Repeating the Process</a></li>
-<li><a href="#final-layer:-constant-polynomial">Final Layer: Constant Polynomial</a></li>
-</ul>
-</li>
-<li><a href="#the-query-phase-in-the-fri-protocol:-ensuring-consistency-through-collinearity-checks">The Query Phase in the FRI Protocol: Ensuring Consistency Through Collinearity Checks</a>
-<ul>
-<li><a href="#verifying-consistency:-the-collinearity-check">Verifying Consistency: The Collinearity Check</a></li>
-<li><a href="#the-collinearity-check:-what-does-it-mean?">The Collinearity Check: What Does It Mean?</a></li>
-<li><a href="#final-check-at-the-last-layer:-verifying-the-constant">Final Check at the Last Layer: Verifying the Constant</a></li>
-</ul>
-</li>
-<li><a href="#references">References</a></li>
-<li><a href="#connect-with-me">Connect with Me</a></li>
-</ul>
-<h1 id="unlocking-the-power-of-stark-a-revolutionary-protocol-for-scalable-and-transparent-proofs">Unlocking the Power of STARK: A Revolutionary Protocol for Scalable and Transparent Proofs</h1>
-<p>In today&rsquo;s world of decentralized systems, <strong>verifiable computations</strong> are essential. Blockchain, for example, relies on proofs to ensure that transactions and computations are valid without revealing sensitive data. But traditional approaches to proof systems can become inefficient as the complexity of the computations increases. This is where <strong>STARKs (Scalable Transparent Arguments of Knowledge)</strong> come into play — offering a powerful and efficient way to verify computations without relying on trusted setups or sacrificing privacy.</p>
-<p>In this post, we’ll dive into the core of the <strong>STARK protocol</strong>, exploring how it enables the scalable, transparent, and secure verification of computations. We’ll break down the protocol step by step and explain it in simple terms, while also showcasing some key mathematical formulas that power this groundbreaking technology.</p>
-<h2 id="what-is-the-stark-protocol">What Is the STARK Protocol?</h2>
-<p>At its core, <strong>STARK</strong> is a cryptographic proof system that allows a prover to convince a verifier that a computation was performed correctly without revealing any details about the computation itself. The verification process is fast, transparent, and scalable, making it perfect for use in blockchain applications, privacy-preserving technologies, and more.</p>
-<p>STARKs rely on a combination of <strong>polynomial commitments</strong>, <strong>interactive proofs</strong>, and <strong>arithmetic circuits</strong> to prove the correctness of a computation’s execution trace. Let’s break down how this works.</p>
-<h2 id="why-does-this-work">Why Does This Work?</h2>
-<p>The beauty of the STARK protocol lies in its <strong>scalability</strong> and <strong>transparency</strong>. By using polynomials, the prover can commit to large, complex computations without revealing sensitive data. The use of random challenges (from the verifier) ensures that the prover cannot cheat by modifying the trace. Additionally, since the STARK protocol does not rely on a trusted setup (as is the case with some other proof systems like SNARKs), it is <strong>transparent</strong>, making it more secure and accessible.</p>
-<p>Moreover, the <strong>efficiency</strong> of the protocol is achieved by reducing the size of the commitment to the trace through polynomial commitment schemes, ensuring that the verifier can check the proof in logarithmic time relative to the size of the computation.</p>
-<h2 id="key-advantages-of-starks">Key Advantages of STARKs</h2>
-<ol>
-<li><strong>Scalability:</strong> STARKs scale with the size of the computation, enabling verification of computations that involve huge amounts of data (e.g., large blockchain transactions, machine learning models, etc.).</li>
-<li><strong>Transparency:</strong> The protocol does not require a trusted setup, ensuring that the system remains secure without relying on any secret parameters.</li>
-<li><strong>Security:</strong> By leveraging polynomial commitments and interactive proofs, STARKs provide strong cryptographic guarantees that the prover cannot alter the trace.</li>
-<li><strong>Efficiency:</strong> The protocol is designed to minimize the computational and communication costs, making it feasible for use in resource-constrained environments.</li>
-</ol>
-<h1 id="arithmetization-of-the-execution-trace-turning-computations-into-polynomials">Arithmetization of the Execution Trace: Turning Computations into Polynomials</h1>
-<h2 id="introduction-to-arithmetization">Introduction to Arithmetization</h2>
-<p>In the world of cryptographic proof systems, one of the most critical concepts is how to represent a computation in a way that allows us to <strong>verify</strong> its correctness without knowing the exact details of the computation itself. This process is known as <strong>arithmetization</strong>, and it&rsquo;s a cornerstone of many modern cryptographic protocols, such as <strong>STARKs</strong> (Scalable Transparent Arguments of Knowledge).</p>
-<p>But how exactly do we take a computation—such as an algorithm or program—and turn it into something we can verify using polynomials? The answer lies in the <strong>execution trace</strong>, which is a matrix that describes the state of a computation at each time step. Arithmetization is the process of transforming this execution trace into a <strong>polynomial representation</strong> that can be easily checked for correctness.</p>
-<p>Let’s dive into how the execution trace is structured and how this transformation to polynomials works in the context of STARKs.</p>
-<h2 id="what-is-an-execution-trace">What Is an Execution Trace?</h2>
-<p>At a high level, the <strong>execution trace</strong> is a way to represent the sequence of states that a system (like a computer program or a blockchain transaction) goes through during its execution. The trace is represented as a matrix $T$, where each row corresponds to a time step in the computation, and each column corresponds to a specific variable or register that the system manipulates.</p>
-<h3 id="trace-matrix-representation">Trace Matrix Representation</h3>
-<p>Consider the following matrix $T$, where each element $T_{i,j}$ represents the value of the $j$-th register at the $i$-th time step:</p>
-<p>$$
+</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script><script type=text/javascript async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta name=google-site-verification content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU"><meta name=google-site-verification content="oQJmyNtEP9HjjEcXwRno2_YPeuLd5kX3jTltynIx65s"></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=https://dangduongminhnhat.github.io/>Daminha Blog</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li><a title=About href=/posts/about-me/>About</a></li><li><a title=Tags href=/tags/>Tags</a></li><li><a title="Cryptography Series" href=/posts/cryptography/>Cryptography Series</a></li><li><a title=Note href=https://hackmd.io/@daminha>Note</a></li><li><a title=Blog href=/>Blog</a></li></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1>Decoding STARK: How to Prove Computation Accuracy Without Revealing the Data</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><strong>Posted on:</strong> November 9, 2024 |
+<strong>Reading time:</strong> 31 minutes |
+<strong>Word count:</strong> 6424 words |
+<strong>Author:</strong> Dang Duong Minh Nhat</p><p>The FRI protocol (Fast Reed-Solomon Interactive Oracle Proofs of Proximity) is revolutionizing the way we verify polynomials. With the growing need for efficient zero-knowledge proofs, particularly in blockchain and cryptography, FRI provides a way to verify that a given polynomial is close to a low-degree polynomial without needing to inspect the entire function. By recursively folding the polynomial and committing to its evaluations, FRI ensures both security and efficiency. This protocol is central to the emerging world of STARKs (Scalable Transparent Arguments of Knowledge), offering a fast, scalable solution to a longstanding problem in cryptographic verification.</p><p>In this blog, we dive into the inner workings of the FRI protocol, breaking down the commitment and query phases, the crucial recursive folding steps, and the importance of Merkle commitments. We&rsquo;ll also explore how FRI ensures consistency via collinearity checks and how the verifier&rsquo;s role is critical to maintaining the integrity of the proof. If you&rsquo;re interested in how cutting-edge cryptography is making blockchain transactions more secure and scalable, this post is a must-read.</p><h2 id=table-of-contents>Table of Contents</h2><ul><li><a href=#table-of-contents>Table of Contents</a></li><li><a href=#unlocking-the-power-of-stark:-a-revolutionary-protocol-for-scalable-and-transparent-proofs>Unlocking the Power of STARK: A Revolutionary Protocol for Scalable and Transparent Proofs</a><ul><li><a href=#what-is-the-stark-protocol?>What Is the STARK Protocol?</a></li><li><a href=#why-does-this-work?>Why Does This Work?</a></li><li><a href=#key-advantages-of-starks>Key Advantages of STARKs</a></li></ul></li><li><a href=#arithmetization-of-the-execution-trace:-turning-computations-into-polynomials>Arithmetization of the Execution Trace: Turning Computations into Polynomials</a><ul><li><a href=#introduction-to-arithmetization>Introduction to Arithmetization</a></li><li><a href=#what-is-an-execution-trace?>What Is an Execution Trace?</a><ul><li><a href=#trace-matrix-representation>Trace Matrix Representation</a></li></ul></li><li><a href=#why-do-we-need-to-arithmetize-the-trace?>Why Do We Need to Arithmetize the Trace?</a></li><li><a href=#converting-the-trace-to-polynomials>Converting the Trace to Polynomials</a><ul><li><a href=#trace-evaluation-domain>Trace Evaluation Domain</a></li><li><a href=#constructing-polynomials-for-each-register>Constructing Polynomials for Each Register</a></li></ul></li><li><a href=#the-trace-evaluation-domain>The Trace Evaluation Domain</a></li></ul></li><li><a href=#constraint-systems-in-starks:-how-we-ensure-computation-validity>Constraint Systems in STARKs: How We Ensure Computation Validity</a><ul><li><a href=#boundary-constraints:-setting-initial-conditions>Boundary Constraints: Setting Initial Conditions</a><ul><li><a href=#example:-fibonacci-sequence>Example: Fibonacci Sequence</a></li><li><a href=#polynomial-representation-of-boundary-constraints>Polynomial Representation of Boundary Constraints</a></li><li><a href=#optimizing-boundary-constraints>Optimizing Boundary Constraints</a></li></ul></li><li><a href=#transition-constraints:-enforcing-computation-logic>Transition Constraints: Enforcing Computation Logic</a><ul><li><a href=#example:-fibonacci-transition-rule>Example: Fibonacci Transition Rule</a></li><li><a href=#polynomial-representation-of-transition-constraints>Polynomial Representation of Transition Constraints</a></li></ul></li><li><a href=#combining-boundary-and-transition-constraints>Combining Boundary and Transition Constraints</a><ul><li><a href=#random-linear-combination-of-polynomials>Random Linear Combination of Polynomials</a></li><li><a href=#why-does-this-work?>Why Does This Work?</a></li><li><a href=#verifying-$cp(x)$>Verifying $CP(x)$</a></li></ul></li></ul></li><li><a href=#vector-commitments:-a-crucial-building-block-of-starks>Vector Commitments: A Crucial Building Block of STARKs</a><ul><li><a href=#what-is-a-vector-commitment?>What is a Vector Commitment?</a></li><li><a href=#vector-commitments-in-starks>Vector Commitments in STARKs</a><ul><li><a href=#committing-to-polynomial-evaluations>Committing to Polynomial Evaluations</a></li><li><a href=#verifying-polynomial-integrity>Verifying Polynomial Integrity</a></li></ul></li></ul></li><li><a href=#the-fri-protocol:-revolutionizing-polynomial-proximity-proofs>The FRI Protocol: Revolutionizing Polynomial Proximity Proofs</a><ul><li><a href=#what-is-the-fri-protocol?>What is the FRI Protocol?</a></li><li><a href=#key-parameters-in-fri>Key Parameters in FRI</a><ul><li><a href=#domain-and-parameters>Domain and Parameters</a></li><li><a href=#the-domain-$d$>The Domain $D$</a></li></ul></li><li><a href=#the-blowup-factor-$%5Cbeta$>The Blowup Factor $\beta$</a><ul><li><a href=#why-is-$%5Cbeta$-important?>Why is $\beta$ Important?</a></li></ul></li></ul></li><li><a href=#degree-adjustment-in-polynomial-constraints:-the-secret-to-efficient-starks>Degree Adjustment in Polynomial Constraints: The Secret to Efficient STARKs</a><ul><li><a href=#how-does-degree-adjustment-work?>How Does Degree Adjustment Work?</a><ul><li><a href=#why-adjust-the-degree?>Why Adjust the Degree?</a></li></ul></li><li><a href=#composition-of-constraints>Composition of Constraints</a><ul><li><a href=#why-use-a-composition-polynomial?>Why Use a Composition Polynomial?</a></li></ul></li></ul></li><li><a href=#committing-to-the-trace:-the-heart-of-stark-integrity>Committing to the Trace: The Heart of STARK Integrity</a><ul><li><a href=#the-polynomial-commitment-process>The Polynomial Commitment Process</a><ul><li><a href=#step-1:-interpolation-of-columns>Step 1: Interpolation of Columns</a></li><li><a href=#step-2:-commitment-to-polynomials>Step 2: Commitment to Polynomials</a></li></ul></li></ul></li><li><a href=#unveiling-the-fri-protocol:-how-to-verify-polynomials-efficiently>Unveiling the FRI Protocol: How to Verify Polynomials Efficiently</a></li><li><a href=#the-commitment-phase-in-the-fri-protocol:-recursive-folding-and-merkle-commitments>The Commitment Phase in the FRI Protocol: Recursive Folding and Merkle Commitments</a><ul><li><a href=#initial-step:-halving-the-polynomial-degree>Initial Step: Halving the Polynomial Degree</a></li><li><a href=#random-linear-combination:-reducing-the-degree-further>Random Linear Combination: Reducing the Degree Further</a></li><li><a href=#recursive-halving:-repeating-the-process>Recursive Halving: Repeating the Process</a></li><li><a href=#final-layer:-constant-polynomial>Final Layer: Constant Polynomial</a></li></ul></li><li><a href=#the-query-phase-in-the-fri-protocol:-ensuring-consistency-through-collinearity-checks>The Query Phase in the FRI Protocol: Ensuring Consistency Through Collinearity Checks</a><ul><li><a href=#verifying-consistency:-the-collinearity-check>Verifying Consistency: The Collinearity Check</a></li><li><a href=#the-collinearity-check:-what-does-it-mean?>The Collinearity Check: What Does It Mean?</a></li><li><a href=#final-check-at-the-last-layer:-verifying-the-constant>Final Check at the Last Layer: Verifying the Constant</a></li></ul></li><li><a href=#references>References</a></li><li><a href=#connect-with-me>Connect with Me</a></li></ul><h1 id=unlocking-the-power-of-stark-a-revolutionary-protocol-for-scalable-and-transparent-proofs>Unlocking the Power of STARK: A Revolutionary Protocol for Scalable and Transparent Proofs</h1><p>In today&rsquo;s world of decentralized systems, <strong>verifiable computations</strong> are essential. Blockchain, for example, relies on proofs to ensure that transactions and computations are valid without revealing sensitive data. But traditional approaches to proof systems can become inefficient as the complexity of the computations increases. This is where <strong>STARKs (Scalable Transparent Arguments of Knowledge)</strong> come into play — offering a powerful and efficient way to verify computations without relying on trusted setups or sacrificing privacy.</p><p>In this post, we’ll dive into the core of the <strong>STARK protocol</strong>, exploring how it enables the scalable, transparent, and secure verification of computations. We’ll break down the protocol step by step and explain it in simple terms, while also showcasing some key mathematical formulas that power this groundbreaking technology.</p><h2 id=what-is-the-stark-protocol>What Is the STARK Protocol?</h2><p>At its core, <strong>STARK</strong> is a cryptographic proof system that allows a prover to convince a verifier that a computation was performed correctly without revealing any details about the computation itself. The verification process is fast, transparent, and scalable, making it perfect for use in blockchain applications, privacy-preserving technologies, and more.</p><p>STARKs rely on a combination of <strong>polynomial commitments</strong>, <strong>interactive proofs</strong>, and <strong>arithmetic circuits</strong> to prove the correctness of a computation’s execution trace. Let’s break down how this works.</p><h2 id=why-does-this-work>Why Does This Work?</h2><p>The beauty of the STARK protocol lies in its <strong>scalability</strong> and <strong>transparency</strong>. By using polynomials, the prover can commit to large, complex computations without revealing sensitive data. The use of random challenges (from the verifier) ensures that the prover cannot cheat by modifying the trace. Additionally, since the STARK protocol does not rely on a trusted setup (as is the case with some other proof systems like SNARKs), it is <strong>transparent</strong>, making it more secure and accessible.</p><p>Moreover, the <strong>efficiency</strong> of the protocol is achieved by reducing the size of the commitment to the trace through polynomial commitment schemes, ensuring that the verifier can check the proof in logarithmic time relative to the size of the computation.</p><h2 id=key-advantages-of-starks>Key Advantages of STARKs</h2><ol><li><strong>Scalability:</strong> STARKs scale with the size of the computation, enabling verification of computations that involve huge amounts of data (e.g., large blockchain transactions, machine learning models, etc.).</li><li><strong>Transparency:</strong> The protocol does not require a trusted setup, ensuring that the system remains secure without relying on any secret parameters.</li><li><strong>Security:</strong> By leveraging polynomial commitments and interactive proofs, STARKs provide strong cryptographic guarantees that the prover cannot alter the trace.</li><li><strong>Efficiency:</strong> The protocol is designed to minimize the computational and communication costs, making it feasible for use in resource-constrained environments.</li></ol><h1 id=arithmetization-of-the-execution-trace-turning-computations-into-polynomials>Arithmetization of the Execution Trace: Turning Computations into Polynomials</h1><h2 id=introduction-to-arithmetization>Introduction to Arithmetization</h2><p>In the world of cryptographic proof systems, one of the most critical concepts is how to represent a computation in a way that allows us to <strong>verify</strong> its correctness without knowing the exact details of the computation itself. This process is known as <strong>arithmetization</strong>, and it&rsquo;s a cornerstone of many modern cryptographic protocols, such as <strong>STARKs</strong> (Scalable Transparent Arguments of Knowledge).</p><p>But how exactly do we take a computation—such as an algorithm or program—and turn it into something we can verify using polynomials? The answer lies in the <strong>execution trace</strong>, which is a matrix that describes the state of a computation at each time step. Arithmetization is the process of transforming this execution trace into a <strong>polynomial representation</strong> that can be easily checked for correctness.</p><p>Let’s dive into how the execution trace is structured and how this transformation to polynomials works in the context of STARKs.</p><h2 id=what-is-an-execution-trace>What Is an Execution Trace?</h2><p>At a high level, the <strong>execution trace</strong> is a way to represent the sequence of states that a system (like a computer program or a blockchain transaction) goes through during its execution. The trace is represented as a matrix $T$, where each row corresponds to a time step in the computation, and each column corresponds to a specific variable or register that the system manipulates.</p><h3 id=trace-matrix-representation>Trace Matrix Representation</h3><p>Consider the following matrix $T$, where each element $T_{i,j}$ represents the value of the $j$-th register at the $i$-th time step:</p><p>$$
 T =
 \begin{pmatrix}
-T_{1,1} &amp; T_{1,2} &amp; \dots &amp; T_{1,w} \\
-T_{2,1} &amp; T_{2,2} &amp; \dots &amp; T_{2,w} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-T_{T,1} &amp; T_{T,2} &amp; \dots &amp; T_{T,w} \\
+T_{1,1} & T_{1,2} & \dots & T_{1,w} \\
+T_{2,1} & T_{2,2} & \dots & T_{2,w} \\
+\vdots & \vdots & \ddots & \vdots \\
+T_{T,1} & T_{T,2} & \dots & T_{T,w} \\
 \end{pmatrix}
-$$</p>
-<ul>
-<li>Each <strong>row</strong> $i$ represents the state of the system at time step $i$.</li>
-<li>Each <strong>column</strong> $j$ corresponds to the value of a specific register (or variable) across all time steps.</li>
-</ul>
-<p>The matrix $T$ has $T$ rows (one for each time step) and $w$ columns (one for each register or variable). This structure gives a snapshot of the entire computation process from start to finish.</p>
-<h2 id="why-do-we-need-to-arithmetize-the-trace">Why Do We Need to Arithmetize the Trace?</h2>
-<p>The goal of arithmetization is to transform the trace $T$ into polynomials that can be used to verify the correctness of the computation. The reason for doing this is that <strong>polynomials are easier to manipulate algebraically</strong>, and we can use them to prove properties about the computation without revealing the actual data in the trace.</p>
-<p>But how do we convert the matrix $T$ into a polynomial?</p>
-<h2 id="converting-the-trace-to-polynomials">Converting the Trace to Polynomials</h2>
-<p>To make this conversion, we take each column of the trace and turn it into a polynomial. This allows us to check the values at different time steps using polynomial evaluation, which is a powerful technique for verification.</p>
-<h3 id="trace-evaluation-domain">Trace Evaluation Domain</h3>
-<p>We begin by selecting a <strong>trace evaluation domain</strong>, which is a set of points where we will evaluate the polynomials. These points are typically taken from a finite field $\mathbb{F}$, which is a set of numbers with specific properties that make polynomial evaluation efficient and secure.</p>
-<p>In particular, we choose a <strong>generator</strong> $g$ of a <strong>multiplicative subgroup</strong> of $\mathbb{F}$, and we evaluate the polynomial at powers of $g$ to encode the trace. The generator $g$ is typically chosen such that $g^i$ corresponds to the time steps of the execution trace.</p>
-<h3 id="constructing-polynomials-for-each-register">Constructing Polynomials for Each Register</h3>
-<p>Let’s take a single column of the trace, say the $j$-th column, which contains the values $T_{1, j}, T_{2, j}, \ldots, T_{T,j}$ for the register at each time step. The goal is to construct a polynomial $t_j(x)$ that encodes this data.</p>
-<p>For each column $T_j$, we define a polynomial $t_j(x)$ such that:</p>
-<p>$$
+$$</p><ul><li>Each <strong>row</strong> $i$ represents the state of the system at time step $i$.</li><li>Each <strong>column</strong> $j$ corresponds to the value of a specific register (or variable) across all time steps.</li></ul><p>The matrix $T$ has $T$ rows (one for each time step) and $w$ columns (one for each register or variable). This structure gives a snapshot of the entire computation process from start to finish.</p><h2 id=why-do-we-need-to-arithmetize-the-trace>Why Do We Need to Arithmetize the Trace?</h2><p>The goal of arithmetization is to transform the trace $T$ into polynomials that can be used to verify the correctness of the computation. The reason for doing this is that <strong>polynomials are easier to manipulate algebraically</strong>, and we can use them to prove properties about the computation without revealing the actual data in the trace.</p><p>But how do we convert the matrix $T$ into a polynomial?</p><h2 id=converting-the-trace-to-polynomials>Converting the Trace to Polynomials</h2><p>To make this conversion, we take each column of the trace and turn it into a polynomial. This allows us to check the values at different time steps using polynomial evaluation, which is a powerful technique for verification.</p><h3 id=trace-evaluation-domain>Trace Evaluation Domain</h3><p>We begin by selecting a <strong>trace evaluation domain</strong>, which is a set of points where we will evaluate the polynomials. These points are typically taken from a finite field $\mathbb{F}$, which is a set of numbers with specific properties that make polynomial evaluation efficient and secure.</p><p>In particular, we choose a <strong>generator</strong> $g$ of a <strong>multiplicative subgroup</strong> of $\mathbb{F}$, and we evaluate the polynomial at powers of $g$ to encode the trace. The generator $g$ is typically chosen such that $g^i$ corresponds to the time steps of the execution trace.</p><h3 id=constructing-polynomials-for-each-register>Constructing Polynomials for Each Register</h3><p>Let’s take a single column of the trace, say the $j$-th column, which contains the values $T_{1, j}, T_{2, j}, \ldots, T_{T,j}$ for the register at each time step. The goal is to construct a polynomial $t_j(x)$ that encodes this data.</p><p>For each column $T_j$, we define a polynomial $t_j(x)$ such that:</p><p>$$
 t_j(1) = T_{1,j}, \quad t_j(g) = T_{2,j}, \quad \dots, \quad t_j(g^{T-1}) = T_{T,j}
-$$</p>
-<p>Here, $g$ is the generator of a multiplicative subgroup of the finite field $\mathbb{F}$, and $g^i$ represents the evaluation point corresponding to the $i$-th time step in the trace.</p>
-<h2 id="the-trace-evaluation-domain">The Trace Evaluation Domain</h2>
-<p>To make sure that the polynomial $t_j(x)$ works for all time steps, we ensure that $g^i$ (where $i$ is a time step) is within the <strong>evaluation domain</strong>. The domain typically comes from a cyclic subgroup of size $N = 2^n$, such that $2^n \geq T$ and the set $\lbrace 1, g , g^2 , g^3 ,&hellip;, g^N \rbrace$ covers all the necessary evaluation points for the trace.</p>
-<p>This setup guarantees that the polynomial $t_j(x)$ is well-defined and its evaluation at $g^i$ will match the trace values, ensuring that we’ve accurately captured the execution trace in polynomial form.</p>
-<h1 id="constraint-systems-in-starks-how-we-ensure-computation-validity">Constraint Systems in STARKs: How We Ensure Computation Validity</h1>
-<p>One of the main features of STARKs (Scalable Transparent Arguments of Knowledge) is their ability to verify the correctness of a computation without requiring the verifier to check every individual step. Instead, the verifier relies on a <strong>constraint system</strong> that enforces certain rules about the computation.</p>
-<p>The constraints used in STARKs come in two types: <strong>boundary constraints</strong> and <strong>transition constraints</strong>. These constraints are imposed on the <strong>trace polynomials</strong>, which are the polynomials that represent the execution of a program. By ensuring that these polynomials satisfy the constraints, we can confirm that the computation was performed correctly, without needing to know the exact details of every individual operation.</p>
-<h2 id="boundary-constraints-setting-initial-conditions">Boundary Constraints: Setting Initial Conditions</h2>
-<p><strong>Boundary constraints</strong> are used to specify certain values that must be true at the beginning or end of the computation. Think of these constraints as enforcing &ldquo;fixed&rdquo; values at specific points in the computation, like specifying the starting values of a Fibonacci sequence.</p>
-<h3 id="example-fibonacci-sequence">Example: Fibonacci Sequence</h3>
-<p>Consider the Fibonacci sequence, where the first two numbers are always 1. In our computation, we can impose boundary constraints on the first two time steps (i.e., when $i = 0$ and $i = 1$) of the trace. Specifically, we require that:</p>
-<p>$$
+$$</p><p>Here, $g$ is the generator of a multiplicative subgroup of the finite field $\mathbb{F}$, and $g^i$ represents the evaluation point corresponding to the $i$-th time step in the trace.</p><h2 id=the-trace-evaluation-domain>The Trace Evaluation Domain</h2><p>To make sure that the polynomial $t_j(x)$ works for all time steps, we ensure that $g^i$ (where $i$ is a time step) is within the <strong>evaluation domain</strong>. The domain typically comes from a cyclic subgroup of size $N = 2^n$, such that $2^n \geq T$ and the set $\lbrace 1, g , g^2 , g^3 ,&mldr;, g^N \rbrace$ covers all the necessary evaluation points for the trace.</p><p>This setup guarantees that the polynomial $t_j(x)$ is well-defined and its evaluation at $g^i$ will match the trace values, ensuring that we’ve accurately captured the execution trace in polynomial form.</p><h1 id=constraint-systems-in-starks-how-we-ensure-computation-validity>Constraint Systems in STARKs: How We Ensure Computation Validity</h1><p>One of the main features of STARKs (Scalable Transparent Arguments of Knowledge) is their ability to verify the correctness of a computation without requiring the verifier to check every individual step. Instead, the verifier relies on a <strong>constraint system</strong> that enforces certain rules about the computation.</p><p>The constraints used in STARKs come in two types: <strong>boundary constraints</strong> and <strong>transition constraints</strong>. These constraints are imposed on the <strong>trace polynomials</strong>, which are the polynomials that represent the execution of a program. By ensuring that these polynomials satisfy the constraints, we can confirm that the computation was performed correctly, without needing to know the exact details of every individual operation.</p><h2 id=boundary-constraints-setting-initial-conditions>Boundary Constraints: Setting Initial Conditions</h2><p><strong>Boundary constraints</strong> are used to specify certain values that must be true at the beginning or end of the computation. Think of these constraints as enforcing &ldquo;fixed&rdquo; values at specific points in the computation, like specifying the starting values of a Fibonacci sequence.</p><h3 id=example-fibonacci-sequence>Example: Fibonacci Sequence</h3><p>Consider the Fibonacci sequence, where the first two numbers are always 1. In our computation, we can impose boundary constraints on the first two time steps (i.e., when $i = 0$ and $i = 1$) of the trace. Specifically, we require that:</p><p>$$
 T_{0, 1} = 1, T_{1, 1} = 1
-$$</p>
-<p>These are the boundary conditions that must hold for the trace to be valid. In terms of the polynomial representation of the trace, we can translate these conditions into the following:</p>
-<ul>
-<li>The value of $t_1(1)$ (the polynomial evaluation at $x = 1$) must be $1$.</li>
-<li>The value of $t_1(g)$ (the polynomial evaluation at $x = g$, where $g$ is a generator in the finite field) must also be $1$.</li>
-</ul>
-<h3 id="polynomial-representation-of-boundary-constraints">Polynomial Representation of Boundary Constraints</h3>
-<p>The key here is that <strong>polynomials are smooth curves</strong>, so if a polynomial passes through a point, the polynomial minus that value must be divisible by $(x - \text{point})$. In our case:</p>
-<ul>
-<li>The polynomial $t_1(x) - 1$ must be divisible by $(x - 1)$, because $t_1(1) = 1$.</li>
-<li>Similarly, the polynomial $t_1(x) - 1$ must be divisible by $(x - g)$, because $t_1(g) = 1$.</li>
-</ul>
-<p>Mathematically, we express these divisibility conditions as:</p>
-<p>$$
+$$</p><p>These are the boundary conditions that must hold for the trace to be valid. In terms of the polynomial representation of the trace, we can translate these conditions into the following:</p><ul><li>The value of $t_1(1)$ (the polynomial evaluation at $x = 1$) must be $1$.</li><li>The value of $t_1(g)$ (the polynomial evaluation at $x = g$, where $g$ is a generator in the finite field) must also be $1$.</li></ul><h3 id=polynomial-representation-of-boundary-constraints>Polynomial Representation of Boundary Constraints</h3><p>The key here is that <strong>polynomials are smooth curves</strong>, so if a polynomial passes through a point, the polynomial minus that value must be divisible by $(x - \text{point})$. In our case:</p><ul><li>The polynomial $t_1(x) - 1$ must be divisible by $(x - 1)$, because $t_1(1) = 1$.</li><li>Similarly, the polynomial $t_1(x) - 1$ must be divisible by $(x - g)$, because $t_1(g) = 1$.</li></ul><p>Mathematically, we express these divisibility conditions as:</p><p>$$
 Q_{BC,1}(x)=\frac{t_1(x)-1}{x-g} \text{ and } Q_{BC,0}(x)=\frac{t_1(x)-1}{x-1}
-$$</p>
-<p>These polynomials $Q_{BC, 1}(x)$ and $Q_{BC, 0}(x)$ will vanish if the boundary constraints are satisfied, i.e., if the polynomial evaluations at $x = 1$ and $x = g$ are both $1$.</p>
-<h3 id="optimizing-boundary-constraints">Optimizing Boundary Constraints</h3>
-<p>If we have multiple boundary constraints (say, $n$ of them), we end up with $n$ polynomials. This could quickly become cumbersome. However, we can <strong>interpolate</strong> the boundary constraints into a single polynomial $t_{BC}(x)$, which satisfies the following conditions:</p>
-<p>$$
+$$</p><p>These polynomials $Q_{BC, 1}(x)$ and $Q_{BC, 0}(x)$ will vanish if the boundary constraints are satisfied, i.e., if the polynomial evaluations at $x = 1$ and $x = g$ are both $1$.</p><h3 id=optimizing-boundary-constraints>Optimizing Boundary Constraints</h3><p>If we have multiple boundary constraints (say, $n$ of them), we end up with $n$ polynomials. This could quickly become cumbersome. However, we can <strong>interpolate</strong> the boundary constraints into a single polynomial $t_{BC}(x)$, which satisfies the following conditions:</p><p>$$
 t_{BC}(1) = 1, t_{BC}(g) = 1
-$$</p>
-<p>Then, the <strong>boundary constraint polynomial</strong> becomes:</p>
-<p>$$
+$$</p><p>Then, the <strong>boundary constraint polynomial</strong> becomes:</p><p>$$
 Q_{BC}(x)=\frac{t_1(x)-t_{BC}(x)}{Z_{BC}(x)}
-$$</p>
-<p>where $Z_{BC}(x)$ is a <strong>vanishing polynomial</strong> that &ldquo;zeros out&rdquo; at the boundary points $x = 1$ and $x = g$:</p>
-<p>$$
+$$</p><p>where $Z_{BC}(x)$ is a <strong>vanishing polynomial</strong> that &ldquo;zeros out&rdquo; at the boundary points $x = 1$ and $x = g$:</p><p>$$
 Z_{BC}(x)=(x-1)(x-g)
-$$</p>
-<p>This approach allows us to bundle all boundary constraints into one polynomial, simplifying the verification process.</p>
-<h2 id="transition-constraints-enforcing-computation-logic">Transition Constraints: Enforcing Computation Logic</h2>
-<p><strong>Transition constraints</strong> are used to ensure that the computation adheres to the program&rsquo;s rules at every step. These constraints link consecutive rows of the trace and ensure that the values change according to specific <strong>transition rules</strong>.</p>
-<h3 id="example-fibonacci-transition-rule">Example: Fibonacci Transition Rule</h3>
-<p>In the case of the Fibonacci sequence, the rule is simple: each number is the sum of the two previous numbers. This rule can be expressed as:</p>
-<p>$$
+$$</p><p>This approach allows us to bundle all boundary constraints into one polynomial, simplifying the verification process.</p><h2 id=transition-constraints-enforcing-computation-logic>Transition Constraints: Enforcing Computation Logic</h2><p><strong>Transition constraints</strong> are used to ensure that the computation adheres to the program&rsquo;s rules at every step. These constraints link consecutive rows of the trace and ensure that the values change according to specific <strong>transition rules</strong>.</p><h3 id=example-fibonacci-transition-rule>Example: Fibonacci Transition Rule</h3><p>In the case of the Fibonacci sequence, the rule is simple: each number is the sum of the two previous numbers. This rule can be expressed as:</p><p>$$
 T_{i+2,1} = T_{i+1,1} + T_{i,1}
-$$</p>
-<p>For each $i$, this transition rule must hold. In terms of the polynomial representation of the trace, we impose this rule on the polynomials. Specifically, for each time step $i$, we require the following polynomial relation:</p>
-<p>$$
+$$</p><p>For each $i$, this transition rule must hold. In terms of the polynomial representation of the trace, we impose this rule on the polynomials. Specifically, for each time step $i$, we require the following polynomial relation:</p><p>$$
 t_1(g^2 x) - t_1(g x) - t_1(x) = 0
-$$</p>
-<p>This ensures that, at each step, the polynomial evaluations follow the Fibonacci rule. If the rule is violated at any point, the polynomial $Q_T(x)$ will not be zero, signaling an error.</p>
-<h3 id="polynomial-representation-of-transition-constraints">Polynomial Representation of Transition Constraints</h3>
-<p>To enforce the transition rule across the entire trace, we introduce the transition polynomial $Z_T(x)$, which vanishes at all the points corresponding to the time steps in the trace:</p>
-<p>$$
+$$</p><p>This ensures that, at each step, the polynomial evaluations follow the Fibonacci rule. If the rule is violated at any point, the polynomial $Q_T(x)$ will not be zero, signaling an error.</p><h3 id=polynomial-representation-of-transition-constraints>Polynomial Representation of Transition Constraints</h3><p>To enforce the transition rule across the entire trace, we introduce the transition polynomial $Z_T(x)$, which vanishes at all the points corresponding to the time steps in the trace:</p><p>$$
 Z_T(x) = \prod_{i=0}^{T-2} (x - g^i)
-$$</p>
-<p>Here, $T$ is the total number of time steps in the computation, and $g^i$ corresponds to each step in the execution trace.</p>
-<p>The transition constraint for the Fibonacci sequence can then be expressed as:</p>
-<p>$$
+$$</p><p>Here, $T$ is the total number of time steps in the computation, and $g^i$ corresponds to each step in the execution trace.</p><p>The transition constraint for the Fibonacci sequence can then be expressed as:</p><p>$$
 Q_T(x) = \frac{t_1(g^2 x) - t_1(g x) - t_1(x)}{Z_T(x)}
-$$</p>
-<p>If the transition rule holds correctly across all steps, $Q_T(x)$ will be a valid polynomial. If the computation deviates from the expected transition rule at any step, $Q_T(x)$ will fail to be a polynomial, indicating an invalid computation.</p>
-<h2 id="combining-boundary-and-transition-constraints">Combining Boundary and Transition Constraints</h2>
-<p>Let’s break down how the combination works.</p>
-<h3 id="random-linear-combination-of-polynomials">Random Linear Combination of Polynomials</h3>
-<p>We take the boundary constraint polynomial $Q_{BC}(x)$ and the transition constraint polynomial $Q_T(x)$, and we combine them using <strong>random coefficients</strong> $\alpha_{BC}$ and $\alpha_T$. The idea is to create a new polynomial $CP(x)$, which is a linear combination of the two existing polynomials:</p>
-<p>$$
+$$</p><p>If the transition rule holds correctly across all steps, $Q_T(x)$ will be a valid polynomial. If the computation deviates from the expected transition rule at any step, $Q_T(x)$ will fail to be a polynomial, indicating an invalid computation.</p><h2 id=combining-boundary-and-transition-constraints>Combining Boundary and Transition Constraints</h2><p>Let’s break down how the combination works.</p><h3 id=random-linear-combination-of-polynomials>Random Linear Combination of Polynomials</h3><p>We take the boundary constraint polynomial $Q_{BC}(x)$ and the transition constraint polynomial $Q_T(x)$, and we combine them using <strong>random coefficients</strong> $\alpha_{BC}$ and $\alpha_T$. The idea is to create a new polynomial $CP(x)$, which is a linear combination of the two existing polynomials:</p><p>$$
 CP(x) = \alpha_{BC} Q_{BC}(x) + \alpha_T Q_T(x)
-$$</p>
-<p>Here’s how it works:</p>
-<ul>
-<li>$\alpha_{BC}$ <strong>and</strong> $\alpha_T$: These are random coefficients chosen by the verifier. These values are important because they prevent the prover from manipulating the constraints in a way that would make them false while still satisfying the combination.</li>
-<li>$Q_{BC}(x)$: This is the polynomial representing the boundary constraints (i.e., the fixed values at the beginning or end of the trace).</li>
-<li>$Q_T(x)$: This is the polynomial representing the transition constraints (i.e., the relations that link consecutive time steps in the trace).</li>
-</ul>
-<h3 id="why-does-this-work-1">Why Does This Work?</h3>
-<p>By taking a random linear combination of the two polynomials, we ensure that:</p>
-<ul>
-<li><strong>Both polynomials must be valid</strong>: If either $Q_{BC}(x)$ or $Q_T(x)$ is not a polynomial (i.e., if the constraints aren’t satisfied), then $CP(x)$ won’t be a polynomial either.</li>
-<li><strong>Randomization</strong>: The random coefficients $\alpha_{BC}$ and $\alpha_T$ ensure that the verifier’s challenge is not predictable by the prover. This randomness adds an extra layer of security to the proof, making it harder for the prover to manipulate the constraints.</li>
-</ul>
-<h3 id="verifying-cpx">Verifying $CP(x)$</h3>
-<p>If both $Q_{BC}(x)$ and $Q_T(x)$ are polynomials, then their linear combination $CP(x)$ will also be a polynomial. The verifier can now check if $CP(x)$ satisfies the following:</p>
-<ul>
-<li>If $CP(x)$ is a valid polynomial, then the boundary and transition constraints have been correctly enforced across the trace.</li>
-<li>If $CP(x)$ is <strong>not</strong> a polynomial, it means that one or both of the constraint polynomials were violated, signaling an invalid computation.</li>
-</ul>
-<p>In this way, the verifier only needs to check the validity of a single polynomial $CP(x)$, rather than checking each constraint separately.</p>
-<h1 id="vector-commitments-a-crucial-building-block-of-starks">Vector Commitments: A Crucial Building Block of STARKs</h1>
-<p>One powerful form of commitment used in STARKs is the <strong>vector commitment</strong>. In simple terms, a vector commitment allows a prover to commit to an entire sequence (or vector) of values and later reveal specific elements of the vector without revealing the entire sequence. This process ensures both <strong>security</strong> (the prover cannot change the committed data) and <strong>efficiency</strong> (the verifier can check specific elements quickly).</p>
-<h2 id="what-is-a-vector-commitment">What is a Vector Commitment?</h2>
-<p>A <strong>vector</strong> is simply an ordered collection of values, for example:</p>
-<p>$$
+$$</p><p>Here’s how it works:</p><ul><li>$\alpha_{BC}$ <strong>and</strong> $\alpha_T$: These are random coefficients chosen by the verifier. These values are important because they prevent the prover from manipulating the constraints in a way that would make them false while still satisfying the combination.</li><li>$Q_{BC}(x)$: This is the polynomial representing the boundary constraints (i.e., the fixed values at the beginning or end of the trace).</li><li>$Q_T(x)$: This is the polynomial representing the transition constraints (i.e., the relations that link consecutive time steps in the trace).</li></ul><h3 id=why-does-this-work-1>Why Does This Work?</h3><p>By taking a random linear combination of the two polynomials, we ensure that:</p><ul><li><strong>Both polynomials must be valid</strong>: If either $Q_{BC}(x)$ or $Q_T(x)$ is not a polynomial (i.e., if the constraints aren’t satisfied), then $CP(x)$ won’t be a polynomial either.</li><li><strong>Randomization</strong>: The random coefficients $\alpha_{BC}$ and $\alpha_T$ ensure that the verifier’s challenge is not predictable by the prover. This randomness adds an extra layer of security to the proof, making it harder for the prover to manipulate the constraints.</li></ul><h3 id=verifying-cpx>Verifying $CP(x)$</h3><p>If both $Q_{BC}(x)$ and $Q_T(x)$ are polynomials, then their linear combination $CP(x)$ will also be a polynomial. The verifier can now check if $CP(x)$ satisfies the following:</p><ul><li>If $CP(x)$ is a valid polynomial, then the boundary and transition constraints have been correctly enforced across the trace.</li><li>If $CP(x)$ is <strong>not</strong> a polynomial, it means that one or both of the constraint polynomials were violated, signaling an invalid computation.</li></ul><p>In this way, the verifier only needs to check the validity of a single polynomial $CP(x)$, rather than checking each constraint separately.</p><h1 id=vector-commitments-a-crucial-building-block-of-starks>Vector Commitments: A Crucial Building Block of STARKs</h1><p>One powerful form of commitment used in STARKs is the <strong>vector commitment</strong>. In simple terms, a vector commitment allows a prover to commit to an entire sequence (or vector) of values and later reveal specific elements of the vector without revealing the entire sequence. This process ensures both <strong>security</strong> (the prover cannot change the committed data) and <strong>efficiency</strong> (the verifier can check specific elements quickly).</p><h2 id=what-is-a-vector-commitment>What is a Vector Commitment?</h2><p>A <strong>vector</strong> is simply an ordered collection of values, for example:</p><p>$$
 Y = (p(d_1), p(d_2), \dots, p(d_M))
-$$</p>
-<p>In a vector commitment, the prover builds a commitment to the entire vector, sending it to the verifier. The commitment is designed in such a way that the verifier can later check if a particular element of the vector is valid, without needing to see the entire vector. To commit to a vector, we use a cryptographic structure called a <a href="https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/#exploring-merkle-proofs:-ensuring-data-integrity-in-a-decentralized-world"><strong>Merkle tree</strong></a>.</p>
-<h2 id="vector-commitments-in-starks">Vector Commitments in STARKs</h2>
-<p>In STARKs, vector commitments play a key role in verifying the correctness of computations. These vectors often represent the evaluations of polynomials at specific points in a finite field.</p>
-<h3 id="committing-to-polynomial-evaluations">Committing to Polynomial Evaluations</h3>
-<p>Let’s say the prover has a polynomial $p(x)$, and they want to commit to its evaluations at certain points in a <strong>domain</strong> $D = (d_1, \dots, d_M)$. This means the prover wants to commit to the vector:</p>
-<p>$$
+$$</p><p>In a vector commitment, the prover builds a commitment to the entire vector, sending it to the verifier. The commitment is designed in such a way that the verifier can later check if a particular element of the vector is valid, without needing to see the entire vector. To commit to a vector, we use a cryptographic structure called a <a href=https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/#exploring-merkle-proofs:-ensuring-data-integrity-in-a-decentralized-world><strong>Merkle tree</strong></a>.</p><h2 id=vector-commitments-in-starks>Vector Commitments in STARKs</h2><p>In STARKs, vector commitments play a key role in verifying the correctness of computations. These vectors often represent the evaluations of polynomials at specific points in a finite field.</p><h3 id=committing-to-polynomial-evaluations>Committing to Polynomial Evaluations</h3><p>Let’s say the prover has a polynomial $p(x)$, and they want to commit to its evaluations at certain points in a <strong>domain</strong> $D = (d_1, \dots, d_M)$. This means the prover wants to commit to the vector:</p><p>$$
 Y = (p(d_1), p(d_2), \dots, p(d_M))
-$$</p>
-<p>Here’s where vector commitments come in:</p>
-<ol>
-<li>The prover computes the evaluations $p(d_1), p(d_2), \dots, p(d_M)$, forming the vector $Y$.</li>
-<li>The prover builds a <a href="https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/#what-is-a-merkle-tree?"><strong>Merkle tree</strong></a> from the values $Y$, which are the polynomial evaluations at the points $d_1, \dots, d_M$.</li>
-<li>The prover commits to this tree by sending the <strong>Merkle root</strong> $[Y]$ to the verifier.</li>
-</ol>
-<h3 id="verifying-polynomial-integrity">Verifying Polynomial Integrity</h3>
-<p>The verifier can later ask the prover to reveal the value of $p(d_i)$ for some index $i$. The prover will send the value $p(d_i)$ and the <strong>authentication path</strong> for this evaluation. The verifier then checks if this value corresponds to the commitment.</p>
-<p>This process allows the verifier to <strong>check any specific polynomial evaluation</strong> without needing to evaluate the entire polynomial. This is especially useful in <strong>zero-knowledge proofs</strong> where the verifier needs to be convinced of the correctness of the polynomial without knowing its exact form or all of its evaluations.</p>
-<h1 id="the-fri-protocol-revolutionizing-polynomial-proximity-proofs">The FRI Protocol: Revolutionizing Polynomial Proximity Proofs</h1>
-<p>In the realm of cryptographic proofs, especially within the context of <strong>zero-knowledge proofs</strong> and <strong>scalable verifiable computation</strong>, the <strong>FRI protocol</strong> (Fast Reed-Solomon Interactive Oracle Proof of Proximity) stands out as a pivotal innovation. The protocol provides a highly efficient way to verify that a given vector is close to the evaluations of a low-degree polynomial, all while maintaining the privacy and integrity of the underlying computation.</p>
-<h2 id="what-is-the-fri-protocol">What is the FRI Protocol?</h2>
-<p>The FRI protocol is an interactive proof system designed to verify that a given vector of values is close to being the evaluations of a low-degree polynomial over a finite field. More formally, it is used to prove that a vector $V = (v_1, v_2, \ldots, v_M)$ is &ldquo;close&rdquo; (in terms of polynomial distance) to a polynomial of degree at most $N - 1$. This is particularly useful in the context of cryptographic protocols like <strong>STARKs</strong>, where such proximity proofs are key for ensuring correctness without revealing sensitive information.</p>
-<p>The <strong>key idea</strong> behind the FRI protocol is that instead of directly verifying the full polynomial, it reduces the problem to verifying smaller <strong>proximity conditions</strong> that ensure the vector is close to a low-degree polynomial. This allows the protocol to be much more <strong>efficient</strong> and <strong>scalable</strong> compared to traditional methods of verifying polynomials directly.</p>
-<h2 id="key-parameters-in-fri">Key Parameters in FRI</h2>
-<p>The <strong>FRI protocol</strong> is built around several key parameters, each of which plays an important role in the efficiency, security, and scalability of the proof.</p>
-<h3 id="domain-and-parameters">Domain and Parameters</h3>
-<ul>
-<li><strong>Evaluation Domain Size</strong>: The domain size $M = 2^m$ is the total number of points at which the vector is evaluated. The protocol works over a <strong>finite field</strong> $\mathbb{F}$, and the domain $D = (d_1, \dots, d_M)$ consists of evaluations of a polynomial at specific points in this field.</li>
-<li><strong>Polynomial Degree</strong>: The degree of the polynomial being tested is $N - 1$, where $N = 2^n$, with $n &lt; m$. This means that $N$ is smaller than $M$, which is an important factor in ensuring the protocol’s <strong>efficiency</strong>. The relationship between these parameters is crucial to the overall security and efficiency of the FRI protocol.</li>
-</ul>
-<h3 id="the-domain-d">The Domain $D$</h3>
-<p>The domain $D = (d_1, \dots, d_M)$ is defined as follows:</p>
-<p>$$
+$$</p><p>Here’s where vector commitments come in:</p><ol><li>The prover computes the evaluations $p(d_1), p(d_2), \dots, p(d_M)$, forming the vector $Y$.</li><li>The prover builds a <a href=https://dangduongminhnhat.github.io/posts/d071024/from-merkel-trees-to-ethereum/#what-is-a-merkle-tree?><strong>Merkle tree</strong></a> from the values $Y$, which are the polynomial evaluations at the points $d_1, \dots, d_M$.</li><li>The prover commits to this tree by sending the <strong>Merkle root</strong> $[Y]$ to the verifier.</li></ol><h3 id=verifying-polynomial-integrity>Verifying Polynomial Integrity</h3><p>The verifier can later ask the prover to reveal the value of $p(d_i)$ for some index $i$. The prover will send the value $p(d_i)$ and the <strong>authentication path</strong> for this evaluation. The verifier then checks if this value corresponds to the commitment.</p><p>This process allows the verifier to <strong>check any specific polynomial evaluation</strong> without needing to evaluate the entire polynomial. This is especially useful in <strong>zero-knowledge proofs</strong> where the verifier needs to be convinced of the correctness of the polynomial without knowing its exact form or all of its evaluations.</p><h1 id=the-fri-protocol-revolutionizing-polynomial-proximity-proofs>The FRI Protocol: Revolutionizing Polynomial Proximity Proofs</h1><p>In the realm of cryptographic proofs, especially within the context of <strong>zero-knowledge proofs</strong> and <strong>scalable verifiable computation</strong>, the <strong>FRI protocol</strong> (Fast Reed-Solomon Interactive Oracle Proof of Proximity) stands out as a pivotal innovation. The protocol provides a highly efficient way to verify that a given vector is close to the evaluations of a low-degree polynomial, all while maintaining the privacy and integrity of the underlying computation.</p><h2 id=what-is-the-fri-protocol>What is the FRI Protocol?</h2><p>The FRI protocol is an interactive proof system designed to verify that a given vector of values is close to being the evaluations of a low-degree polynomial over a finite field. More formally, it is used to prove that a vector $V = (v_1, v_2, \ldots, v_M)$ is &ldquo;close&rdquo; (in terms of polynomial distance) to a polynomial of degree at most $N - 1$. This is particularly useful in the context of cryptographic protocols like <strong>STARKs</strong>, where such proximity proofs are key for ensuring correctness without revealing sensitive information.</p><p>The <strong>key idea</strong> behind the FRI protocol is that instead of directly verifying the full polynomial, it reduces the problem to verifying smaller <strong>proximity conditions</strong> that ensure the vector is close to a low-degree polynomial. This allows the protocol to be much more <strong>efficient</strong> and <strong>scalable</strong> compared to traditional methods of verifying polynomials directly.</p><h2 id=key-parameters-in-fri>Key Parameters in FRI</h2><p>The <strong>FRI protocol</strong> is built around several key parameters, each of which plays an important role in the efficiency, security, and scalability of the proof.</p><h3 id=domain-and-parameters>Domain and Parameters</h3><ul><li><strong>Evaluation Domain Size</strong>: The domain size $M = 2^m$ is the total number of points at which the vector is evaluated. The protocol works over a <strong>finite field</strong> $\mathbb{F}$, and the domain $D = (d_1, \dots, d_M)$ consists of evaluations of a polynomial at specific points in this field.</li><li><strong>Polynomial Degree</strong>: The degree of the polynomial being tested is $N - 1$, where $N = 2^n$, with $n &lt; m$. This means that $N$ is smaller than $M$, which is an important factor in ensuring the protocol’s <strong>efficiency</strong>. The relationship between these parameters is crucial to the overall security and efficiency of the FRI protocol.</li></ul><h3 id=the-domain-d>The Domain $D$</h3><p>The domain $D = (d_1, \dots, d_M)$ is defined as follows:</p><p>$$
 d_i = h \omega^i \text{ for } i = 0, 1, 2, \ldots, M - 1
-$$</p>
-<p>where $h \in \mathbb{F}$ is a scalar, and $\omega$ is a primitive $M$-th root of unity in the field $\mathbb{F}$. This structure is important for ensuring that the polynomial evaluations are evenly distributed and that the symmetry properties required for the protocol hold.</p>
-<p>One key property of this domain is that it satisfies:</p>
-<p>$$
+$$</p><p>where $h \in \mathbb{F}$ is a scalar, and $\omega$ is a primitive $M$-th root of unity in the field $\mathbb{F}$. This structure is important for ensuring that the polynomial evaluations are evenly distributed and that the symmetry properties required for the protocol hold.</p><p>One key property of this domain is that it satisfies:</p><p>$$
 -d_i \in D \text{ for all } i
-$$</p>
-<p>This symmetry is necessary for the FRI protocol’s correctness, as it allows certain algebraic manipulations to hold during the verification steps.</p>
-<h2 id="the-blowup-factor-beta">The Blowup Factor $\beta$</h2>
-<p>A key concept in the FRI protocol is the <strong>blowup factor</strong>, denoted as $\beta$. This factor plays a crucial role in the relationship between the <strong>evaluation domain</strong> $M$ and the degree of the polynomial $N - 1$.</p>
-<p>The blowup factor is defined as:</p>
-<p>$$
+$$</p><p>This symmetry is necessary for the FRI protocol’s correctness, as it allows certain algebraic manipulations to hold during the verification steps.</p><h2 id=the-blowup-factor-beta>The Blowup Factor $\beta$</h2><p>A key concept in the FRI protocol is the <strong>blowup factor</strong>, denoted as $\beta$. This factor plays a crucial role in the relationship between the <strong>evaluation domain</strong> $M$ and the degree of the polynomial $N - 1$.</p><p>The blowup factor is defined as:</p><p>$$
 \beta = \frac{M}{N} = 2^{m-n}
-$$</p>
-<p>Here, $M = 2^m$ is the size of the domain, and $N = 2^n$ is the size of the polynomial’s degree. Since $m &gt; n$, this blowup factor grows exponentially, but it is controlled by the relationship between $m$ and $n$.</p>
-<h3 id="why-is-beta-important">Why is $\beta$ Important?</h3>
-<p>The blowup factor $\beta$ has two main implications:</p>
-<ol>
-<li><strong>Security</strong>: The larger $\beta$ is, the more &ldquo;spread out&rdquo; the polynomial evaluations are, making it harder for a dishonest prover to deceive the verifier. A larger $\beta$ increases the probability that the prover will be caught cheating. This makes the protocol more secure.</li>
-<li><strong>Verification Efficiency</strong>: The blowup factor also influences the number of verification steps the verifier needs to perform. A larger $\beta$ means that the protocol will require more rounds of verification to ensure correctness, as the verifier is checking a larger number of points. Thus, there is a trade-off between <strong>security</strong> and <strong>efficiency</strong>.</li>
-</ol>
-<h1 id="degree-adjustment-in-polynomial-constraints-the-secret-to-efficient-starks">Degree Adjustment in Polynomial Constraints: The Secret to Efficient STARKs</h1>
-<p>In STARKs, the prover needs to convince the verifier that the execution trace of a computation is correct. To do this, the prover encodes the execution trace as a set of polynomials and applies constraints to ensure that the trace follows the rules of the computation. However, these polynomials can sometimes have a high degree, which would make the verification process computationally expensive.</p>
-<p><strong>Degree adjustment</strong> is a technique used to ensure that the degree of the constraint polynomials remains sufficiently low, making the verification process efficient and scalable. In essence, degree adjustment allows the system to control the growth of the polynomial degrees and ensures that the final constraints are well-suited for efficient verification, even in large-scale systems.</p>
-<h2 id="how-does-degree-adjustment-work">How Does Degree Adjustment Work?</h2>
-<p>Let&rsquo;s take a closer look at how degree adjustment is mathematically implemented and why it is necessary. Suppose we have a constraint polynomial $C_j(x)$ that enforces certain conditions on the execution trace. The degree of this constraint polynomial is denoted as $D_j$, and the goal is to ensure that the degree of the final constraint is <strong>low</strong>—specifically, less than a chosen threshold $D$.</p>
-<p>To achieve this, the prover applies the degree adjustment technique, which modifies the polynomial $C_j(x)$ using the following formula:</p>
-<p>$$
+$$</p><p>Here, $M = 2^m$ is the size of the domain, and $N = 2^n$ is the size of the polynomial’s degree. Since $m > n$, this blowup factor grows exponentially, but it is controlled by the relationship between $m$ and $n$.</p><h3 id=why-is-beta-important>Why is $\beta$ Important?</h3><p>The blowup factor $\beta$ has two main implications:</p><ol><li><strong>Security</strong>: The larger $\beta$ is, the more &ldquo;spread out&rdquo; the polynomial evaluations are, making it harder for a dishonest prover to deceive the verifier. A larger $\beta$ increases the probability that the prover will be caught cheating. This makes the protocol more secure.</li><li><strong>Verification Efficiency</strong>: The blowup factor also influences the number of verification steps the verifier needs to perform. A larger $\beta$ means that the protocol will require more rounds of verification to ensure correctness, as the verifier is checking a larger number of points. Thus, there is a trade-off between <strong>security</strong> and <strong>efficiency</strong>.</li></ol><h1 id=degree-adjustment-in-polynomial-constraints-the-secret-to-efficient-starks>Degree Adjustment in Polynomial Constraints: The Secret to Efficient STARKs</h1><p>In STARKs, the prover needs to convince the verifier that the execution trace of a computation is correct. To do this, the prover encodes the execution trace as a set of polynomials and applies constraints to ensure that the trace follows the rules of the computation. However, these polynomials can sometimes have a high degree, which would make the verification process computationally expensive.</p><p><strong>Degree adjustment</strong> is a technique used to ensure that the degree of the constraint polynomials remains sufficiently low, making the verification process efficient and scalable. In essence, degree adjustment allows the system to control the growth of the polynomial degrees and ensures that the final constraints are well-suited for efficient verification, even in large-scale systems.</p><h2 id=how-does-degree-adjustment-work>How Does Degree Adjustment Work?</h2><p>Let&rsquo;s take a closer look at how degree adjustment is mathematically implemented and why it is necessary. Suppose we have a constraint polynomial $C_j(x)$ that enforces certain conditions on the execution trace. The degree of this constraint polynomial is denoted as $D_j$, and the goal is to ensure that the degree of the final constraint is <strong>low</strong>—specifically, less than a chosen threshold $D$.</p><p>To achieve this, the prover applies the degree adjustment technique, which modifies the polynomial $C_j(x)$ using the following formula:</p><p>$$
 C_j(x) \cdot (\alpha_j x^{D - D_j - 1} + \beta_j)
-$$</p>
-<p>Where:</p>
-<ul>
-<li>$C_j(x)$ is the original constraint polynomial.</li>
-<li>$D_j$ is the degree of $C_j(x)$.</li>
-<li>$D$ is the smallest power of 2 greater than or equal to the maximum degree of any constraint polynomial (i.e., the desired degree threshold).</li>
-<li>$\alpha_j$ and $\beta_j$ are <strong>random field elements</strong> chosen by the verifier, adding an element of randomness to the process. This randomness ensures that the adjustments do not introduce any predictable patterns that could be exploited by a malicious prover.</li>
-</ul>
-<h3 id="why-adjust-the-degree">Why Adjust the Degree?</h3>
-<p>The main reason for degree adjustment is to <strong>control the degree of the constraint polynomials</strong>. If the degree of the polynomials is too high, the verification process becomes computationally expensive and inefficient. By adjusting the degree to a lower, fixed value $D$, we ensure that the constraints remain manageable while still enforcing the required conditions on the execution trace.</p>
-<p>In addition, this technique allows us to <strong>compress</strong> the constraints in a way that doesn’t sacrifice soundness (the ability to catch false claims) or completeness (the ability to prove true claims).</p>
-<h2 id="composition-of-constraints">Composition of Constraints</h2>
-<p>Once the degree of each individual constraint is adjusted, the next step is to combine these constraints into a single <strong>composition polynomial</strong>. The composition polynomial represents the overall set of constraints that the execution trace must satisfy, and it is used to verify the correctness of the trace.</p>
-<p>The composition polynomial is constructed by taking a <strong>random linear combination</strong> of all the adjusted constraints. Mathematically, this is done as follows:</p>
-<p>$$
+$$</p><p>Where:</p><ul><li>$C_j(x)$ is the original constraint polynomial.</li><li>$D_j$ is the degree of $C_j(x)$.</li><li>$D$ is the smallest power of 2 greater than or equal to the maximum degree of any constraint polynomial (i.e., the desired degree threshold).</li><li>$\alpha_j$ and $\beta_j$ are <strong>random field elements</strong> chosen by the verifier, adding an element of randomness to the process. This randomness ensures that the adjustments do not introduce any predictable patterns that could be exploited by a malicious prover.</li></ul><h3 id=why-adjust-the-degree>Why Adjust the Degree?</h3><p>The main reason for degree adjustment is to <strong>control the degree of the constraint polynomials</strong>. If the degree of the polynomials is too high, the verification process becomes computationally expensive and inefficient. By adjusting the degree to a lower, fixed value $D$, we ensure that the constraints remain manageable while still enforcing the required conditions on the execution trace.</p><p>In addition, this technique allows us to <strong>compress</strong> the constraints in a way that doesn’t sacrifice soundness (the ability to catch false claims) or completeness (the ability to prove true claims).</p><h2 id=composition-of-constraints>Composition of Constraints</h2><p>Once the degree of each individual constraint is adjusted, the next step is to combine these constraints into a single <strong>composition polynomial</strong>. The composition polynomial represents the overall set of constraints that the execution trace must satisfy, and it is used to verify the correctness of the trace.</p><p>The composition polynomial is constructed by taking a <strong>random linear combination</strong> of all the adjusted constraints. Mathematically, this is done as follows:</p><p>$$
 CP(x) = \sum_{j=1}^{k} C_j(x) \cdot (\alpha_j x^{D - D_j - 1} + \beta_j)
-$$</p>
-<p>Where:</p>
-<ul>
-<li>$k$ is the total number of constraints.</li>
-<li>Each constraint $C_j(x)$ is adjusted by the term $(\alpha_j x^{D - D_j - 1} + \beta_j)$.</li>
-</ul>
-<h3 id="why-use-a-composition-polynomial">Why Use a Composition Polynomial?</h3>
-<p>The composition polynomial serves as a way to c<strong>ombine multiple constraints</strong> into a single object that can be more easily verified. This process of combining the constraints allows the verifier to check that the execution trace adheres to all the required conditions using a single polynomial evaluation.</p>
-<p>The degree of the composition polynomial is crucial to the efficiency of the entire proof. If the degree of the composition polynomial is too high, it would lead to inefficient verification. However, since each individual constraint is adjusted to have a low degree, the composition polynomial itself will also have a manageable degree, ensuring that the verification process remains efficient even for large-scale computations.</p>
-<h1 id="committing-to-the-trace-the-heart-of-stark-integrity">Committing to the Trace: The Heart of STARK Integrity</h1>
-<p>In the world of <strong>Scalable Transparent Arguments of Knowledge</strong> (STARKs), one of the most crucial aspects of the protocol is ensuring the <strong>integrity</strong> and <strong>correctness</strong> of the computation trace. The trace, a series of states that represent the evolution of a computation, must be <strong>committed</strong> in such a way that allows a verifier to confidently check the validity of the proof, without requiring them to re-run the entire computation.</p>
-<p>At the core of this process is the concept of <strong>commitment</strong>: the act of binding a prover to a specific computation trace, without the possibility of later changing the trace. To do this efficiently, STARKs use a combination of <strong>polynomial commitments</strong> and <strong>Merkle trees</strong>.</p>
-<h2 id="the-polynomial-commitment-process">The Polynomial Commitment Process</h2>
-<p>The key idea is to transform the execution trace into a series of <strong>polynomials</strong>. Each column $T_j$ of the trace matrix $T$ represents a sequence of values for a given register across all time steps. By interpolating these values, we can construct polynomials that encode the trace’s validity.</p>
-<h3 id="step-1-interpolation-of-columns">Step 1: Interpolation of Columns</h3>
-<p>For each column $T_j$ of the trace matrix, we will create a polynomial $t_j(x)$ that <strong>interpolates</strong> the values of that column over a <strong>known domain</strong>. This domain is usually chosen as a cyclic group, $D_S = \lbrace 1, g , g^2 , g^3 ,&hellip;, g^N \rbrace$, where $g$ is a generator of the multiplicative group, and $N$ is a power of 2 large enough to cover the number of time steps in the trace.</p>
-<p>To define the polynomial $t_j(x)$, we enforce the condition that it matches the values of the column at each time step:</p>
-<p>$$
+$$</p><p>Where:</p><ul><li>$k$ is the total number of constraints.</li><li>Each constraint $C_j(x)$ is adjusted by the term $(\alpha_j x^{D - D_j - 1} + \beta_j)$.</li></ul><h3 id=why-use-a-composition-polynomial>Why Use a Composition Polynomial?</h3><p>The composition polynomial serves as a way to c<strong>ombine multiple constraints</strong> into a single object that can be more easily verified. This process of combining the constraints allows the verifier to check that the execution trace adheres to all the required conditions using a single polynomial evaluation.</p><p>The degree of the composition polynomial is crucial to the efficiency of the entire proof. If the degree of the composition polynomial is too high, it would lead to inefficient verification. However, since each individual constraint is adjusted to have a low degree, the composition polynomial itself will also have a manageable degree, ensuring that the verification process remains efficient even for large-scale computations.</p><h1 id=committing-to-the-trace-the-heart-of-stark-integrity>Committing to the Trace: The Heart of STARK Integrity</h1><p>In the world of <strong>Scalable Transparent Arguments of Knowledge</strong> (STARKs), one of the most crucial aspects of the protocol is ensuring the <strong>integrity</strong> and <strong>correctness</strong> of the computation trace. The trace, a series of states that represent the evolution of a computation, must be <strong>committed</strong> in such a way that allows a verifier to confidently check the validity of the proof, without requiring them to re-run the entire computation.</p><p>At the core of this process is the concept of <strong>commitment</strong>: the act of binding a prover to a specific computation trace, without the possibility of later changing the trace. To do this efficiently, STARKs use a combination of <strong>polynomial commitments</strong> and <strong>Merkle trees</strong>.</p><h2 id=the-polynomial-commitment-process>The Polynomial Commitment Process</h2><p>The key idea is to transform the execution trace into a series of <strong>polynomials</strong>. Each column $T_j$ of the trace matrix $T$ represents a sequence of values for a given register across all time steps. By interpolating these values, we can construct polynomials that encode the trace’s validity.</p><h3 id=step-1-interpolation-of-columns>Step 1: Interpolation of Columns</h3><p>For each column $T_j$ of the trace matrix, we will create a polynomial $t_j(x)$ that <strong>interpolates</strong> the values of that column over a <strong>known domain</strong>. This domain is usually chosen as a cyclic group, $D_S = \lbrace 1, g , g^2 , g^3 ,&mldr;, g^N \rbrace$, where $g$ is a generator of the multiplicative group, and $N$ is a power of 2 large enough to cover the number of time steps in the trace.</p><p>To define the polynomial $t_j(x)$, we enforce the condition that it matches the values of the column at each time step:</p><p>$$
 t_j(g^i) = T_{i,j}, \quad \text{for all} , i
-$$</p>
-<p>Thus, for each column $T_j$, the polynomial $t_j(x)$ has degree $T - 1$ and is uniquely defined by its values at the points $g^0, g^1 , g^2 , g^3 ,&hellip;, g^{T - 1}$. This interpolation ensures that the polynomial $t_j(x)$ captures the behavior of the corresponding register across all time steps.</p>
-<h3 id="step-2-commitment-to-polynomials">Step 2: Commitment to Polynomials</h3>
-<p>Once the polynomials $t_j(x)$ are constructed, the next step is to <strong>commit</strong> to them. In STARKs, commitment means that the prover creates a cryptographic commitment to these polynomials, binding them to the trace while ensuring they cannot be altered later.</p>
-<p>This is done by evaluating each polynomial $t_j(x)$ over a larger, <strong>extended domain</strong> known as the <strong>Low-Degree Extension (LDE) domain</strong>, denoted $D_{LED}$. This domain is typically chosen to be larger than the original evaluation domain $D_S$, and its purpose is to <strong>extend the polynomial’s evaluation points</strong> to make the commitment more secure.</p>
-<p>For each polynomial $t_j(x)$, the prover computes the following:</p>
-<p>$$
+$$</p><p>Thus, for each column $T_j$, the polynomial $t_j(x)$ has degree $T - 1$ and is uniquely defined by its values at the points $g^0, g^1 , g^2 , g^3 ,&mldr;, g^{T - 1}$. This interpolation ensures that the polynomial $t_j(x)$ captures the behavior of the corresponding register across all time steps.</p><h3 id=step-2-commitment-to-polynomials>Step 2: Commitment to Polynomials</h3><p>Once the polynomials $t_j(x)$ are constructed, the next step is to <strong>commit</strong> to them. In STARKs, commitment means that the prover creates a cryptographic commitment to these polynomials, binding them to the trace while ensuring they cannot be altered later.</p><p>This is done by evaluating each polynomial $t_j(x)$ over a larger, <strong>extended domain</strong> known as the <strong>Low-Degree Extension (LDE) domain</strong>, denoted $D_{LED}$. This domain is typically chosen to be larger than the original evaluation domain $D_S$, and its purpose is to <strong>extend the polynomial’s evaluation points</strong> to make the commitment more secure.</p><p>For each polynomial $t_j(x)$, the prover computes the following:</p><p>$$
 [t_j] := \text{Commit}(t_j(D_{LED}))
-$$</p>
-<p>This means that the prover evaluates $t_j(x)$ at all the points in the LDE domain $D_{LED}$ and then constructs a <strong>Merkle tree</strong> from these evaluations. A Merkle tree is a <strong>binary hash tree</strong> that allows for efficient verification of individual polynomial evaluations.</p>
-<ul>
-<li>The <strong>root</strong> of the Merkle tree becomes the <strong>commitment</strong> $[t_j]$, which the prover sends to the verifier.</li>
-</ul>
-<h1 id="unveiling-the-fri-protocol-how-to-verify-polynomials-efficiently">Unveiling the FRI Protocol: How to Verify Polynomials Efficiently</h1>
-<p>The <strong>FRI protocol</strong> allows the prover to demonstrate that their polynomial, say the <strong>composition polynomial</strong> $CP(x)$, is close to a low-degree polynomial. The essence of the FRI protocol is to recursively <strong>fold</strong> the polynomial, reducing its degree at each step, until we are left with a polynomial that is easy to verify.</p>
-<p>The beauty of FRI lies in its ability to dramatically reduce the complexity of checking large-degree polynomials while maintaining rigorous security guarantees. By following a sequence of <strong>folding steps</strong>, the prover and verifier can efficiently assess whether the polynomial behaves like a low-degree polynomial.</p>
-<p>The FRI protocol is structured into two phases: the <strong>commitment phase</strong> and the <strong>query phase</strong>.</p>
-<ol>
-<li>In the <strong>commitment phase</strong>, the prover constructs and commits to the polynomial evaluations over progressively smaller domains.</li>
-<li>In the <strong>query phase</strong>, the verifier checks whether the committed polynomial is indeed close to a low-degree polynomial by querying random points. The verifier’s role here is to check the consistency of the polynomial across the different levels of folding.</li>
-</ol>
-<h1 id="the-commitment-phase-in-the-fri-protocol-recursive-folding-and-merkle-commitments">The Commitment Phase in the FRI Protocol: Recursive Folding and Merkle Commitments</h1>
-<p>The <strong>commitment phase</strong> of the FRI protocol involves a sequence of steps where the prover progressively reduces the degree of the composition polynomial $CP(x)$ using recursive transformations. The goal is to make the polynomial&rsquo;s degree smaller at each step until it eventually becomes a constant polynomial. At each step, the prover commits to the polynomial by evaluating it over smaller domains and using <strong>Merkle trees</strong> to ensure consistency and integrity.</p>
-<p>Let’s break down this phase step by step.</p>
-<h2 id="initial-step-halving-the-polynomial-degree">Initial Step: Halving the Polynomial Degree</h2>
-<p>The process starts with the original polynomial $CP(x)$. The first operation splits the polynomial into two parts:</p>
-<ul>
-<li>The even-degree part $g(x^2)$, which combines $CP(x)$ and $CP(-x)$.</li>
-<li>The odd-degree part $h(x^2)$, which involves subtracting $CP(-x)$ from $CP(x)$.</li>
-</ul>
-<p>These operations are mathematically expressed as:</p>
-<p>$$
+$$</p><p>This means that the prover evaluates $t_j(x)$ at all the points in the LDE domain $D_{LED}$ and then constructs a <strong>Merkle tree</strong> from these evaluations. A Merkle tree is a <strong>binary hash tree</strong> that allows for efficient verification of individual polynomial evaluations.</p><ul><li>The <strong>root</strong> of the Merkle tree becomes the <strong>commitment</strong> $[t_j]$, which the prover sends to the verifier.</li></ul><h1 id=unveiling-the-fri-protocol-how-to-verify-polynomials-efficiently>Unveiling the FRI Protocol: How to Verify Polynomials Efficiently</h1><p>The <strong>FRI protocol</strong> allows the prover to demonstrate that their polynomial, say the <strong>composition polynomial</strong> $CP(x)$, is close to a low-degree polynomial. The essence of the FRI protocol is to recursively <strong>fold</strong> the polynomial, reducing its degree at each step, until we are left with a polynomial that is easy to verify.</p><p>The beauty of FRI lies in its ability to dramatically reduce the complexity of checking large-degree polynomials while maintaining rigorous security guarantees. By following a sequence of <strong>folding steps</strong>, the prover and verifier can efficiently assess whether the polynomial behaves like a low-degree polynomial.</p><p>The FRI protocol is structured into two phases: the <strong>commitment phase</strong> and the <strong>query phase</strong>.</p><ol><li>In the <strong>commitment phase</strong>, the prover constructs and commits to the polynomial evaluations over progressively smaller domains.</li><li>In the <strong>query phase</strong>, the verifier checks whether the committed polynomial is indeed close to a low-degree polynomial by querying random points. The verifier’s role here is to check the consistency of the polynomial across the different levels of folding.</li></ol><h1 id=the-commitment-phase-in-the-fri-protocol-recursive-folding-and-merkle-commitments>The Commitment Phase in the FRI Protocol: Recursive Folding and Merkle Commitments</h1><p>The <strong>commitment phase</strong> of the FRI protocol involves a sequence of steps where the prover progressively reduces the degree of the composition polynomial $CP(x)$ using recursive transformations. The goal is to make the polynomial&rsquo;s degree smaller at each step until it eventually becomes a constant polynomial. At each step, the prover commits to the polynomial by evaluating it over smaller domains and using <strong>Merkle trees</strong> to ensure consistency and integrity.</p><p>Let’s break down this phase step by step.</p><h2 id=initial-step-halving-the-polynomial-degree>Initial Step: Halving the Polynomial Degree</h2><p>The process starts with the original polynomial $CP(x)$. The first operation splits the polynomial into two parts:</p><ul><li>The even-degree part $g(x^2)$, which combines $CP(x)$ and $CP(-x)$.</li><li>The odd-degree part $h(x^2)$, which involves subtracting $CP(-x)$ from $CP(x)$.</li></ul><p>These operations are mathematically expressed as:</p><p>$$
 g(x^2) = \frac{CP(x) + CP(-x)}{2}
-$$</p>
-<p>$$
+$$</p><p>$$
 x \cdot h(x^2) = \frac{CP(x) - CP(-x)}{2}
-$$</p>
-<p>Thus, the original polynomial $CP(x)$ can be written as:</p>
-<p>$$
+$$</p><p>Thus, the original polynomial $CP(x)$ can be written as:</p><p>$$
 CP(x) = g(x^2) + x \cdot h(x^2)
-$$</p>
-<p>This step reduces the degree of the polynomial by half. Notice that $g(x^2)$ and $h(x^2)$ are now defined over a <strong>new domain</strong> $D_1$, which is a subset of the original domain $D$, having half its size. This new domain can be represented as:</p>
-<p>$$
+$$</p><p>This step reduces the degree of the polynomial by half. Notice that $g(x^2)$ and $h(x^2)$ are now defined over a <strong>new domain</strong> $D_1$, which is a subset of the original domain $D$, having half its size. This new domain can be represented as:</p><p>$$
 D_1 = \lbrace h^2, h^2 \omega^2, \dots, h^2 \omega^m \rbrace
-$$</p>
-<p>Here, $\omega$ is a primitive root of unity, and $h$ is a base element of the domain.</p>
-<h2 id="random-linear-combination-reducing-the-degree-further">Random Linear Combination: Reducing the Degree Further</h2>
-<p>At this point, the verifier chooses a <strong>random coefficient</strong> $\alpha_0$, and the prover constructs a new polynomial:</p>
-<p>$$
+$$</p><p>Here, $\omega$ is a primitive root of unity, and $h$ is a base element of the domain.</p><h2 id=random-linear-combination-reducing-the-degree-further>Random Linear Combination: Reducing the Degree Further</h2><p>At this point, the verifier chooses a <strong>random coefficient</strong> $\alpha_0$, and the prover constructs a new polynomial:</p><p>$$
 P_1(x^2) = g(x^2) + \alpha_0 h(x^2)
-$$</p>
-<p>This new polynomial $P_1(x^2)$ is now evaluated over the new domain $D_1$, and the prover commits to these evaluations by constructing a Merkle tree. The root of the <strong>Merkle tree</strong>, denoted $[P_1]$, is sent to the verifier as the commitment for this stage.</p>
-<p>The Merkle root acts as a cryptographic proof that the prover has indeed committed to the values of the polynomial $P_1(x)$ over the domain $D_1$, without revealing the polynomial itself.</p>
-<h2 id="recursive-halving-repeating-the-process">Recursive Halving: Repeating the Process</h2>
-<p>The <strong>recursive halving</strong> process continues as follows: for each subsequent step $k$, the polynomial is halved again. The polynomial at step $k$, denoted $P_k(y^2)$, is derived from the previous polynomial $P_{k - 1}(y)$ using the formula:</p>
-<p>$$
+$$</p><p>This new polynomial $P_1(x^2)$ is now evaluated over the new domain $D_1$, and the prover commits to these evaluations by constructing a Merkle tree. The root of the <strong>Merkle tree</strong>, denoted $[P_1]$, is sent to the verifier as the commitment for this stage.</p><p>The Merkle root acts as a cryptographic proof that the prover has indeed committed to the values of the polynomial $P_1(x)$ over the domain $D_1$, without revealing the polynomial itself.</p><h2 id=recursive-halving-repeating-the-process>Recursive Halving: Repeating the Process</h2><p>The <strong>recursive halving</strong> process continues as follows: for each subsequent step $k$, the polynomial is halved again. The polynomial at step $k$, denoted $P_k(y^2)$, is derived from the previous polynomial $P_{k - 1}(y)$ using the formula:</p><p>$$
 P_k(y^2) = \frac{P_{k-1}(y) + P_{k-1}(-y)}{2} + \alpha_{k-1} \left( \frac{P_{k-1}(y) - P_{k-1}(-y)}{2} \right)
-$$</p>
-<p>This equation represents the splitting of $P_{k - 1}(y)$ into two parts and introducing a random linear combination via the coefficient $\alpha_{k - 1}$.</p>
-<p>At each step $k$, the domain $D_k$ is updated to:</p>
-<p>$$
+$$</p><p>This equation represents the splitting of $P_{k - 1}(y)$ into two parts and introducing a random linear combination via the coefficient $\alpha_{k - 1}$.</p><p>At each step $k$, the domain $D_k$ is updated to:</p><p>$$
 D_k = \lbrace h^{2^{k-1}}, (h\omega)^{2^{k-1}}, \dots, (\omega^l h)^{2^{k-1}} \rbrace
-$$</p>
-<p>This updated domain $D_k$ has half the size of the previous domain $D_{k - 1}$, and the polynomial $P_k(x)$ is evaluated over this smaller domain.</p>
-<p>Again, the prover constructs a <strong>Merkle tree</strong> from the polynomial evaluations and sends the root of this tree as the commitment to the verifier.</p>
-<h2 id="final-layer-constant-polynomial">Final Layer: Constant Polynomial</h2>
-<p>The recursive halving continues until the degree of the polynomial becomes zero. At this final step $n$, the polynomial is reduced to a constant value $c$, such that:</p>
-<p>$$
+$$</p><p>This updated domain $D_k$ has half the size of the previous domain $D_{k - 1}$, and the polynomial $P_k(x)$ is evaluated over this smaller domain.</p><p>Again, the prover constructs a <strong>Merkle tree</strong> from the polynomial evaluations and sends the root of this tree as the commitment to the verifier.</p><h2 id=final-layer-constant-polynomial>Final Layer: Constant Polynomial</h2><p>The recursive halving continues until the degree of the polynomial becomes zero. At this final step $n$, the polynomial is reduced to a constant value $c$, such that:</p><p>$$
 P_n(x) = c
-$$</p>
-<p>The prover sends this constant value $c$ to the verifier, which serves as the final commitment in the chain.</p>
-<h1 id="the-query-phase-in-the-fri-protocol-ensuring-consistency-through-collinearity-checks">The Query Phase in the FRI Protocol: Ensuring Consistency Through Collinearity Checks</h1>
-<p>In the <strong>Query Phase</strong>, the verifier selects a random point $q$ from the domain $D_k$(the current folding layer). The goal of the phase is to ensure that the polynomial $P_k(x)$, which has been progressively reduced through recursive folding, is consistent at each stage. Specifically, the verifier checks whether the values at $q$ and $-q$ (the negation of $q$) in the polynomial correspond to the expected values at the next folding layer.</p>
-<p>The <strong>prover</strong>&rsquo;s job in this phase is to respond with the following:</p>
-<ol>
-<li><strong>Evaluations at</strong> $q$ <strong>and</strong> $-q$: The prover sends the values of the polynomial $P_k(q)$, $P_k(-q)$ and $P_{k + 1}(q^2)$.</li>
-<li><strong>Merkle Paths</strong>: For each evaluation, the prover also provides the Merkle proof (or authentication path), which allows the verifier to check that these values are consistent with the Merkle commitment to the polynomial evaluations from the previous phase.</li>
-<li><strong>Consistency Check</strong>: Finally, the prover demonstrates that the values $P_k(q)$ and $P_k(-q)$ are consistent with the polynomial at the next layer, $P_{k + 1}(q^2)$.</li>
-</ol>
-<h2 id="verifying-consistency-the-collinearity-check">Verifying Consistency: The Collinearity Check</h2>
-<p>Once the prover sends the required information, the verifier must check the consistency of the polynomial evaluations. The consistency is verified through a <strong>collinearity check</strong>, which essentially ensures that the values at each layer of folding align correctly with the expected values at the next layer.</p>
-<p>The verifier receives three pieces of information at each step:</p>
-<ul>
-<li>$P_k(q)$, the value of the polynomial at $q$</li>
-<li>$P_k(-q)$, the value of the polynomial at $-q$</li>
-<li>$P_{k + 1}(q^2)$ the expected value of the next polynomial at $q^2$</li>
-</ul>
-<h2 id="the-collinearity-check-what-does-it-mean">The Collinearity Check: What Does It Mean?</h2>
-<p>Let’s dig a little deeper into the <strong>collinearity check</strong>. Essentially, this check is about ensuring that the three points $A = (q, P_k(q))$, $B = (-q, P_k(-q))$ and $C = (\alpha_k, P_{k+1}(q^2))$ lie on a straight line. To understand why this must be true, we can perform an elementary <strong>Lagrange interpolation</strong> between points $A$ and $B$ to find the equation of the line passing through them.</p>
-<p>We start with the standard form of Lagrange interpolation for two points:</p>
-<p>$$
+$$</p><p>The prover sends this constant value $c$ to the verifier, which serves as the final commitment in the chain.</p><h1 id=the-query-phase-in-the-fri-protocol-ensuring-consistency-through-collinearity-checks>The Query Phase in the FRI Protocol: Ensuring Consistency Through Collinearity Checks</h1><p>In the <strong>Query Phase</strong>, the verifier selects a random point $q$ from the domain $D_k$(the current folding layer). The goal of the phase is to ensure that the polynomial $P_k(x)$, which has been progressively reduced through recursive folding, is consistent at each stage. Specifically, the verifier checks whether the values at $q$ and $-q$ (the negation of $q$) in the polynomial correspond to the expected values at the next folding layer.</p><p>The <strong>prover</strong>&rsquo;s job in this phase is to respond with the following:</p><ol><li><strong>Evaluations at</strong> $q$ <strong>and</strong> $-q$: The prover sends the values of the polynomial $P_k(q)$, $P_k(-q)$ and $P_{k + 1}(q^2)$.</li><li><strong>Merkle Paths</strong>: For each evaluation, the prover also provides the Merkle proof (or authentication path), which allows the verifier to check that these values are consistent with the Merkle commitment to the polynomial evaluations from the previous phase.</li><li><strong>Consistency Check</strong>: Finally, the prover demonstrates that the values $P_k(q)$ and $P_k(-q)$ are consistent with the polynomial at the next layer, $P_{k + 1}(q^2)$.</li></ol><h2 id=verifying-consistency-the-collinearity-check>Verifying Consistency: The Collinearity Check</h2><p>Once the prover sends the required information, the verifier must check the consistency of the polynomial evaluations. The consistency is verified through a <strong>collinearity check</strong>, which essentially ensures that the values at each layer of folding align correctly with the expected values at the next layer.</p><p>The verifier receives three pieces of information at each step:</p><ul><li>$P_k(q)$, the value of the polynomial at $q$</li><li>$P_k(-q)$, the value of the polynomial at $-q$</li><li>$P_{k + 1}(q^2)$ the expected value of the next polynomial at $q^2$</li></ul><h2 id=the-collinearity-check-what-does-it-mean>The Collinearity Check: What Does It Mean?</h2><p>Let’s dig a little deeper into the <strong>collinearity check</strong>. Essentially, this check is about ensuring that the three points $A = (q, P_k(q))$, $B = (-q, P_k(-q))$ and $C = (\alpha_k, P_{k+1}(q^2))$ lie on a straight line. To understand why this must be true, we can perform an elementary <strong>Lagrange interpolation</strong> between points $A$ and $B$ to find the equation of the line passing through them.</p><p>We start with the standard form of Lagrange interpolation for two points:</p><p>$$
 y = \sum_i y_i \prod_{j \neq i} \frac{x - x_j}{x_i - x_j}
-$$</p>
-<p>For our case, the interpolation for $A = (q, P_k(q))$ and $B = (-q, P_k(-q))$ is:</p>
-<p>$$
+$$</p><p>For our case, the interpolation for $A = (q, P_k(q))$ and $B = (-q, P_k(-q))$ is:</p><p>$$
 y = P_k(q) \cdot \frac{x - (-q)}{q - (-q)} + P_k(-q) \cdot \frac{x - q}{-q - q}
-$$</p>
-<p>Simplifying this expression:</p>
-<p>$$
+$$</p><p>Simplifying this expression:</p><p>$$
 y = \frac{P_k(q) + P_k(-q)}{2} + x \cdot \frac{P_k(q) - P_k(-q)}{2q}
-$$</p>
-<p>Now, we set $x = \alpha_k$, which gives us the y-coordinate of point $C$:</p>
-<p>$$
+$$</p><p>Now, we set $x = \alpha_k$, which gives us the y-coordinate of point $C$:</p><p>$$
 y = \frac{P_k(q) + P_k(-q)}{2} + \alpha_k \cdot \frac{P_k(q) - P_k(-q)}{2q}
-$$</p>
-<p>This is exactly the y-coordinate of $C$, $P_{k + 1}(q^2)$, so we can conclude that the points $A$, $B$, and $C$ lie on a straight line. This is why the <strong>collinearity check</strong> is so important: it provides a simple and efficient way to verify the consistency of the prover’s claims at each layer of folding.</p>
-<h2 id="final-check-at-the-last-layer-verifying-the-constant">Final Check at the Last Layer: Verifying the Constant</h2>
-<p>In the final layer of the folding process, the polynomial reduces to a constant value $c$. To verify this, the verifier checks the consistency of the polynomial evaluations at the previous layer, $P_{n - 1}$, at the points $\omega_j^{2^{n-1}}$ and $-\omega_j^{2^{n-1}}$, using the following formula:</p>
-<p>$$
+$$</p><p>This is exactly the y-coordinate of $C$, $P_{k + 1}(q^2)$, so we can conclude that the points $A$, $B$, and $C$ lie on a straight line. This is why the <strong>collinearity check</strong> is so important: it provides a simple and efficient way to verify the consistency of the prover’s claims at each layer of folding.</p><h2 id=final-check-at-the-last-layer-verifying-the-constant>Final Check at the Last Layer: Verifying the Constant</h2><p>In the final layer of the folding process, the polynomial reduces to a constant value $c$. To verify this, the verifier checks the consistency of the polynomial evaluations at the previous layer, $P_{n - 1}$, at the points $\omega_j^{2^{n-1}}$ and $-\omega_j^{2^{n-1}}$, using the following formula:</p><p>$$
 c&rsquo; = \frac{P_{n-1}(\omega_j^{2^{n-1}}) + P_{n-1}(-\omega_j^{2^{n-1}})}{2} + \alpha_{n-1} \left( \frac{P_{n-1}(\omega_j^{2^{n-1}}) - P_{n-1}(-\omega_j^{2^{n-1}})}{2} \right)
-$$</p>
-<p>If this computed value $c&rsquo;$ matches the constant $c$ that the prover has committed to, the verifier can be confident that the polynomial was correctly reduced to a constant value and that the folding process has been executed properly.</p>
-<h1 id="references">References</h1>
-<ol>
-<li><em>Anatomy of a STARK</em>. Aszepieniec. Retrieved from <a href="https://aszepieniec.github.io/stark-anatomy/">https://aszepieniec.github.io/stark-anatomy/</a></li>
-<li>LambdaClass. (2023, March 01). <em>LambdaWorks or how we decided to create our zkSNARKs library and a STARK prover</em>. Retrieved from <a href="https://blog.lambdaclass.com/lambdaworks-or-how-we-decided-to-created-our-zksnarks-library-and-a-stark-prover/">https://blog.lambdaclass.com/lambdaworks-or-how-we-decided-to-created-our-zksnarks-library-and-a-stark-prover/</a></li>
-<li><em>STARKs protocol</em>. LambdaClass. Retrieved from <a href="https://github.com/lambdaclass/lambdaworks/tree/main/docs/src/starks">https://github.com/lambdaclass/lambdaworks/tree/main/docs/src/starks</a></li>
-<li>StarkWare Team. (2023, July). <em>ethSTARK Documentation</em>. Retrieved from <a href="https://eprint.iacr.org/2021/582.pdf">https://eprint.iacr.org/2021/582.pdf</a></li>
-<li>Eli Ben-Sasson, Iddo Bentov, Yinon Horesh and Michael Riabzev. <em>Fast Reed-Solomon Interactive Oracle Proofs of Proximity</em>. Retrieved from <a href="https://drops.dagstuhl.de/storage/00lipics/lipics-vol107-icalp2018/LIPIcs.ICALP.2018.14/LIPIcs.ICALP.2018.14.pdf">https://drops.dagstuhl.de/storage/00lipics/lipics-vol107-icalp2018/LIPIcs.ICALP.2018.14/LIPIcs.ICALP.2018.14.pdf</a></li>
-<li>Stefano De Angelis. (2024, October 22). <em>Practical notes on the FRI low degree test</em>. Retrieved from <a href="https://hackmd.io/@deanstef/SJTT3MDhC">https://hackmd.io/@deanstef/SJTT3MDhC</a></li>
-</ol>
-<h1 id="connect-with-me">Connect with Me</h1>
-<p>Connect with me on <a href="https://www.facebook.com/dangduongminhnhat/">Facebook</a>, <a href="https://www.linkedin.com/in/nhatdang1901/">LinkedIn</a>, via email at <a href="mailto:dangduongminhnhat2003@gmail.com">dangduongminhnhat2003@gmail.com</a>, <a href="https://github.com/dangduongminhnhat">GitHub</a>, or by phone at +84829258815.</p>
-
-
-        
-          <div class="blog-tags">
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/fri-protocol/">FRI Protocol</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/polynomials/">Polynomials</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/">Zero-Knowledge Proofs</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/starks/">STARKs</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/blockchain/">Blockchain</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/cryptography/">Cryptography</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/merkletrees/">MerkleTrees</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/interactive-oracle-proofs/">Interactive Oracle Proofs</a>&nbsp;
-            
-          </div>
-        
-
-        
-
-        
-      </article>
-      
-
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://dangduongminhnhat.github.io/posts/d231024/unlocking-the-future-of-blockchain/" data-toggle="tooltip" data-placement="top" title="Unlocking the Future of Blockchain: Exploring ZK-Rollups and zkEVM">&larr; Previous Post</a>
-            </li>
-          
-          
-        </ul>
-      
-      <div id="utterances-comments">
-          <script src="https://utteranc.es/client.js"
-              repo="dangduongminhnhat/dangduongminhnhat.github.io"
-              issue-term="pathname"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-          </script>
-      </div>
-
-      
-
-    </div>
-  </div>
-</div>
-
-      <footer>
-  <div class="container">
-    
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2025
-          
-
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
-          
-        </p>
-        
-        <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
-          
-        </p>
-      </div>
-    </div>
-  </div>
-</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-
-<script src="https://dangduongminhnhat.github.io/js/main.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dangduongminhnhat.github.io/js/load-photoswipe.js"></script>
-
-
-
-
-
-
-
-
-
-
-    
-  </body>
-</html>
-
+$$</p><p>If this computed value $c&rsquo;$ matches the constant $c$ that the prover has committed to, the verifier can be confident that the polynomial was correctly reduced to a constant value and that the folding process has been executed properly.</p><h1 id=references>References</h1><ol><li><em>Anatomy of a STARK</em>. Aszepieniec. Retrieved from <a href=https://aszepieniec.github.io/stark-anatomy/>https://aszepieniec.github.io/stark-anatomy/</a></li><li>LambdaClass. (2023, March 01). <em>LambdaWorks or how we decided to create our zkSNARKs library and a STARK prover</em>. Retrieved from <a href=https://blog.lambdaclass.com/lambdaworks-or-how-we-decided-to-created-our-zksnarks-library-and-a-stark-prover/>https://blog.lambdaclass.com/lambdaworks-or-how-we-decided-to-created-our-zksnarks-library-and-a-stark-prover/</a></li><li><em>STARKs protocol</em>. LambdaClass. Retrieved from <a href=https://github.com/lambdaclass/lambdaworks/tree/main/docs/src/starks>https://github.com/lambdaclass/lambdaworks/tree/main/docs/src/starks</a></li><li>StarkWare Team. (2023, July). <em>ethSTARK Documentation</em>. Retrieved from <a href=https://eprint.iacr.org/2021/582.pdf>https://eprint.iacr.org/2021/582.pdf</a></li><li>Eli Ben-Sasson, Iddo Bentov, Yinon Horesh and Michael Riabzev. <em>Fast Reed-Solomon Interactive Oracle Proofs of Proximity</em>. Retrieved from <a href=https://drops.dagstuhl.de/storage/00lipics/lipics-vol107-icalp2018/LIPIcs.ICALP.2018.14/LIPIcs.ICALP.2018.14.pdf>https://drops.dagstuhl.de/storage/00lipics/lipics-vol107-icalp2018/LIPIcs.ICALP.2018.14/LIPIcs.ICALP.2018.14.pdf</a></li><li>Stefano De Angelis. (2024, October 22). <em>Practical notes on the FRI low degree test</em>. Retrieved from <a href=https://hackmd.io/@deanstef/SJTT3MDhC>https://hackmd.io/@deanstef/SJTT3MDhC</a></li></ol><h1 id=connect-with-me>Connect with Me</h1><p>Connect with me on <a href=https://www.facebook.com/dangduongminhnhat/>Facebook</a>, <a href=https://www.linkedin.com/in/nhatdang1901/>LinkedIn</a>, via email at <a href=mailto:dangduongminhnhat2003@gmail.com>dangduongminhnhat2003@gmail.com</a>, <a href=https://github.com/dangduongminhnhat>GitHub</a>, or by phone at +84829258815.</p><div class=blog-tags><a href=https://dangduongminhnhat.github.io/tags/fri-protocol/>FRI Protocol</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/polynomials/>Polynomials</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/>Zero-Knowledge Proofs</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/starks/>STARKs</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/blockchain/>Blockchain</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/cryptography/>Cryptography</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/merkletrees/>MerkleTrees</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/interactive-oracle-proofs/>Interactive Oracle Proofs</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://dangduongminhnhat.github.io/posts/d231024/unlocking-the-future-of-blockchain/ data-toggle=tooltip data-placement=top title="Unlocking the Future of Blockchain: Exploring ZK-Rollups and zkEVM">&larr; Previous Post</a></li></ul><div id=utterances-comments><script src=https://utteranc.es/client.js repo=dangduongminhnhat/dangduongminhnhat.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2025
+&nbsp;&bull;&nbsp;
+<a href=https://dangduongminhnhat.github.io/>Daminha Blog</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js integrity=sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous onload=renderMathInElement(document.body)></script><script src=https://code.jquery.com/jquery-3.7.0.slim.min.js integrity=sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js integrity=sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/load-photoswipe.js></script></body></html>

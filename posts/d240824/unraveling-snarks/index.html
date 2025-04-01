@@ -1,395 +1,28 @@
-
-
-
-
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
- 
-
-
-      <title>Unraveling SNARKs: The Breakthrough Technology in Cryptography - Daminha Blog</title>
-
-  <meta name="description" content="In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you&rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful."><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "Daminha Blog",
-    
-    "url": "https:\/\/dangduongminhnhat.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/dangduongminhnhat.github.io\/"
-  
-  
-  
-  
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/dangduongminhnhat.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/dangduongminhnhat.github.io\/posts\/d240824\/unraveling-snarks\/",
-          "name": "Unraveling SNA rks the breakthrough technology in cryptography"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "Dang Duong Minh Nhat"
-  },
-  "headline": "Unraveling SNARKs: The Breakthrough Technology in Cryptography",
-  "description" : "In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You\u0026rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you\u0026rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful.",
-  "inLanguage" : "en",
-  "wordCount":  4201 ,
-  "datePublished" : "2024-08-24T12:02:12\u002b07:00",
-  "dateModified" : "2024-08-24T12:02:12\u002b07:00",
-  "image" : "https:\/\/dangduongminhnhat.github.io\/",
-  "keywords" : [ "Cryptography, Zero-Knowledge Proofs, SNARKs, Commitment Schemes, Interactive Oracle Proofs, Arithmetic Circuits" ],
-  "mainEntityOfPage" : "https:\/\/dangduongminhnhat.github.io\/posts\/d240824\/unraveling-snarks\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/dangduongminhnhat.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/dangduongminhnhat.github.io\/",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
-
-
-<meta property="og:title" content="Unraveling SNARKs: The Breakthrough Technology in Cryptography" />
-<meta property="og:description" content="In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you&rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful.">
-<meta property="og:url" content="https://dangduongminhnhat.github.io/posts/d240824/unraveling-snarks/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Daminha Blog" />
-
-  <meta name="twitter:title" content="Unraveling SNARKs: The Breakthrough Technology in Cryptography" />
-  <meta name="twitter:description" content="In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&rsquo;ll learn how correctness is ensured across …">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="generator" content="Hugo 0.129.0">
-  <link rel="alternate" href="https://dangduongminhnhat.github.io/index.xml" type="application/rss+xml" title="Daminha Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dangduongminhnhat.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-V19WW5WSEZ"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-V19WW5WSEZ');
-        }
-      </script>
-    
-  
-
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
-<link rel="manifest" href="/favicon_io/site.webmanifest">
-
-<script type="text/x-mathjax-config">
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Unraveling SNARKs: The Breakthrough Technology in Cryptography - Daminha Blog</title>
+<meta name=description content="In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you&rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful."><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Daminha Blog","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/posts\/d240824\/unraveling-snarks\/","name":"Unraveling SNA rks the breakthrough technology in cryptography"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Dang Duong Minh Nhat"},"headline":"Unraveling SNARKs: The Breakthrough Technology in Cryptography","description":"In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You\u0026rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you\u0026rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful.","inLanguage":"en","wordCount":4201,"datePublished":"2024-08-24T12:02:12\u002b07:00","dateModified":"2024-08-24T12:02:12\u002b07:00","image":"https:\/\/dangduongminhnhat.github.io\/","keywords":["Cryptography, Zero-Knowledge Proofs, SNARKs, Commitment Schemes, Interactive Oracle Proofs, Arithmetic Circuits"],"mainEntityOfPage":"https:\/\/dangduongminhnhat.github.io\/posts\/d240824\/unraveling-snarks\/","publisher":{"@type":"Organization","name":"https:\/\/dangduongminhnhat.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/dangduongminhnhat.github.io\/","height":60,"width":60}}}</script><meta property="og:title" content="Unraveling SNARKs: The Breakthrough Technology in Cryptography"><meta property="og:description" content="In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&rsquo;ll learn how correctness is ensured across inputs, gate computations, and wiring within a circuit, all without compromising the secrecy of the information involved. By understanding these mechanisms, you gain insights into the robust security that underpins technologies like blockchain. Whether you&rsquo;re a cryptography enthusiast or a professional in the field, this blog offers a deep dive into the mathematical and logical foundations that make zero-knowledge proofs so powerful."><meta property="og:url" content="https://dangduongminhnhat.github.io/posts/d240824/unraveling-snarks/"><meta property="og:type" content="website"><meta property="og:site_name" content="Daminha Blog"><meta name=twitter:title content="Unraveling SNARKs: The Breakthrough Technology in Cryptography"><meta name=twitter:description content="In this blog, we unravel the complex process of verifying circuit constraints within SNARKs, a cornerstone of modern cryptographic protocols. You&rsquo;ll learn how correctness is ensured across …"><meta name=twitter:card content="summary_large_image"><meta name=generator content="Hugo 0.129.0"><link rel=alternate href=https://dangduongminhnhat.github.io/index.xml type=application/rss+xml title="Daminha Blog"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css integrity=sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css integrity=sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu crossorigin=anonymous><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/syntax.css><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><script async src="https://www.googletagmanager.com/gtag/js?id=G-V19WW5WSEZ"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-V19WW5WSEZ")}</script><link rel=apple-touch-icon sizes=180x180 href=/favicon_io/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon_io/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon_io/favicon-16x16.png><link rel=manifest href=/favicon_io/site.webmanifest><script type=text/x-mathjax-config>
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       processEscapes: true
     }
   });
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
-</script>
-<script type="text/javascript" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-
-
-    <meta name="google-site-verification" content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU" />
-    <meta name="google-site-verification" content="oQJmyNtEP9HjjEcXwRno2_YPeuLd5kX3jTltynIx65s" />
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
-        
-          
-            <li>
-              <a title="About" href="/posts/about-me/">About</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Tags" href="/tags/">Tags</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Cryptography Series" href="/posts/cryptography/">Cryptography Series</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Note" href="https://hackmd.io/@daminha">Note</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Blog" href="/">Blog</a>
-            </li>
-          
-        
-
-        
-
-        
-      </ul>
-    </div>
-
-    
-
-  </div>
-</nav>
-
-
-
-
-    
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="posts-heading">
-              
-                <h1>Unraveling SNARKs: The Breakthrough Technology in Cryptography</h1>
-              
-              
-                <hr class="small">
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-  </header>
-
-
-    
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>
-          <strong>Posted on:</strong> August 24, 2024 |
-          <strong>Reading time:</strong> 20 minutes |
-          <strong>Word count:</strong> 4201 words |
-          <strong>Author:</strong> Dang Duong Minh Nhat
-        </p>
-        <p>Dive deep into the fascinating world of cryptography, where proving something without revealing any secrets is not just possible—it&rsquo;s essential. In this blog, we explore the intricacies of how circuit constraints are verified in SNARKs (Succinct Non-Interactive Arguments of Knowledge), ensuring that every computation is correct and secure. Whether you’re new to this topic or looking to deepen your understanding, I highly recommend checking out my previous posts: <em><a href="https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/">&ldquo;Unveiling the Secrets of Cryptography: From Polynomials to Pairings and Commitment Schemes&rdquo;</a></em> and <em><a href="https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/">&ldquo;The Math Behind the Magic: Exploring Arithmetic Circuits and Their Role in Zero-Knowledge Proofs&rdquo;</a></em>. These will provide you with the foundational knowledge needed to fully appreciate the advanced concepts we’ll cover here.</p>
-<h2 id="table-of-contents">Table of Contents</h2>
-<ul>
-<li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#snark:-unlocking-the-secrets-of-efficient,-private-proofs-in-cryptography">SNARK: Unlocking the Secrets of Efficient, Private Proofs in Cryptography</a>
-<ul>
-<li><a href="#what-is-a-snark?">What is a SNARK?</a></li>
-<li><a href="#why-do-snarks-matter?">Why Do SNARKs Matter?</a></li>
-</ul>
-</li>
-<li><a href="#revisiting-circuits:-the-building-blocks-of-efficient,-private-proofs">Revisiting Circuits: The Building Blocks of Efficient, Private Proofs</a>
-<ul>
-<li><a href="#the-challenge:-proving-without-revealing">The Challenge: Proving Without Revealing</a></li>
-<li><a href="#how-does-it-work?">How Does It Work?</a></li>
-<li><a href="#the-power-of-polynomials">The Power of Polynomials</a></li>
-</ul>
-</li>
-<li><a href="#roots-of-unity:-the-secret-sauce-behind-efficient-proofs">Roots of Unity: The Secret Sauce Behind Efficient Proofs</a>
-<ul>
-<li><a href="#what-are-roots-of-unity?">What Are Roots of Unity?</a></li>
-<li><a href="#why-are-roots-of-unity-so-useful?">Why Are Roots of Unity So Useful?</a>
-<ul>
-<li><a href="#efficient-movement-through-values">Efficient Movement Through Values</a></li>
-<li><a href="#speedy-calculations-with-fast-fourier-transform-(fft)">Speedy Calculations with Fast Fourier Transform (FFT)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#encoding-the-circuit:-how-plonk-keeps-everything-in-check">Encoding the Circuit: How Plonk Keeps Everything in Check</a>
-<ul>
-<li><a href="#the-basics-of-encoding:-what-are-we-working-with?">The Basics of Encoding: What Are We Working With?</a></li>
-<li><a href="#mapping-the-circuit-to-roots-of-unity">Mapping the Circuit to Roots of Unity</a></li>
-<li><a href="#handling-different-types-of-gates">Handling Different Types of Gates</a></li>
-<li><a href="#wiring-encoding:-ensuring-everything-matches-up">Wiring Encoding: Ensuring Everything Matches Up</a></li>
-</ul>
-</li>
-<li><a href="#verification-in-plonk:-ensuring-trust-without-revealing-secrets">Verification in Plonk: Ensuring Trust Without Revealing Secrets</a>
-<ul>
-<li><a href="#the-art-of-verification:-protecting-secrets">The Art of Verification: Protecting Secrets</a></li>
-<li><a href="#querying-polynomials:-a-peek-without-the-full-picture">Querying Polynomials: A Peek Without the Full Picture</a></li>
-<li><a href="#the-essential-checks:-what-must-be-verified?">The Essential Checks: What Must Be Verified?</a></li>
-<li><a href="#zero-tests:-the-secret-sauce-of-verification">Zero Tests: The Secret Sauce of Verification</a></li>
-</ul>
-</li>
-<li><a href="#understanding-interactive-oracle-proofs-(iops):-the-backbone-of-secure-cryptographic-verification">Understanding Interactive Oracle Proofs (IOPs): The Backbone of Secure Cryptographic Verification</a>
-<ul>
-<li><a href="#what-are-interactive-oracle-proofs-(iops)?">What Are Interactive Oracle Proofs (IOPs)?</a></li>
-<li><a href="#a-simple-example:-the-zero-test-with-iops">A Simple Example: The Zero Test with IOPs</a></li>
-<li><a href="#from-interactive-to-non-interactive-proofs">From Interactive to Non-Interactive Proofs</a></li>
-</ul>
-</li>
-<li><a href="#ensuring-trust-in-cryptographic-circuits:-a-deep-dive-into-circuit-constraint-verification">Ensuring Trust in Cryptographic Circuits: A Deep Dive into Circuit Constraint Verification</a>
-<ul>
-<li><a href="#correctness-of-inputs:-setting-the-stage">Correctness of Inputs: Setting the Stage</a></li>
-<li><a href="#correctness-of-gate-computations:-checking-the-circuit%E2%80%99s-math">Correctness of Gate Computations: Checking the Circuit’s Math</a></li>
-<li><a href="#correctness-of-wiring:-ensuring-the-circuit-stays-connected">Correctness of Wiring: Ensuring the Circuit Stays Connected</a></li>
-</ul>
-</li>
-<li><a href="#references">References</a></li>
-<li><a href="#connect-with-me">Connect with Me</a></li>
-</ul>
-<h1 id="snark-unlocking-the-secrets-of-efficient-private-proofs-in-cryptography">SNARK: Unlocking the Secrets of Efficient, Private Proofs in Cryptography</h1>
-<p>In the world of cryptography, SNARKs—short for <em>Succinct Non-interactive Arguments of Knowledge</em>—are nothing short of revolutionary. Imagine being able to prove that you know something without revealing what it is, all while keeping the process quick and straightforward. That’s the magic of SNARKs.</p>
-<h2 id="what-is-a-snark">What is a SNARK?</h2>
-<p>At its core, a SNARK is a cryptographic proof that allows someone (the prover) to demonstrate that they possess certain knowledge without having to share that knowledge itself. But what makes SNARKs so special? Let’s break it down:</p>
-<ol>
-<li><strong>Succinctness:</strong> One of the standout features of SNARKs is their efficiency. The proof generated by a SNARK is compact, regardless of how complex the statement being proven is. This means that verifying the proof is fast and doesn’t require a lot of computational resources. Imagine being able to verify a complex computation in just seconds—SNARKs make that possible.</li>
-<li><strong>Non-interactivity:</strong> Once the prover has created and sent the proof, their job is done. The verifier doesn’t need to interact with the prover anymore. This non-interactive nature is crucial for scenarios where continuous communication is impractical or impossible. The proof stands on its own, ready to be checked without further steps.</li>
-<li><strong>Knowledge Proof:</strong> Perhaps the most fascinating aspect of SNARKs is their ability to prove that the prover knows something without revealing any details about that knowledge. While not all SNARKs offer this feature, those like Plonk are designed to provide zero-knowledge proofs. This means that beyond confirming the validity of the statement, no additional information is exposed—perfect for preserving privacy.</li>
-</ol>
-<h2 id="why-do-snarks-matter">Why Do SNARKs Matter?</h2>
-<p>The unique combination of being succinct, non-interactive, and capable of preserving knowledge privacy makes SNARKs incredibly valuable in modern cryptography. They’re particularly useful in applications where privacy and efficiency are paramount, such as blockchain technologies and secure communications.</p>
-<h1 id="revisiting-circuits-the-building-blocks-of-efficient-private-proofs">Revisiting Circuits: The Building Blocks of Efficient, Private Proofs</h1>
-<p>When it comes to proving computations without revealing sensitive information, arithmetic circuits play a crucial role. In the cryptographic world, these circuits provide a powerful way to represent complex calculations while ensuring that the prover (the person who claims to know something) doesn’t have to reveal the actual values they’re working with.</p>
-<h2 id="the-challenge-proving-without-revealing">The Challenge: Proving Without Revealing</h2>
-<p>Imagine you need to convince someone that you know a secret number, let’s call it $x$, that satisfies a specific condition, but you don’t want to reveal $x$ itself. Moreover, you don’t want the verifier (the person who needs to be convinced) to go through the trouble of performing a potentially complex computation just to verify your claim. This is where arithmetic circuits come into play.
-$$\exists x \in \mathbb{F}_n^m / C(x, w) = 0$$</p>
-<h2 id="how-does-it-work">How Does It Work?</h2>
-<p>Let’s break it down. An arithmetic circuit is like a detailed recipe for a computation. It takes input values, processes them through a series of gates (like addition or multiplication), and outputs a result. The key idea here is that the prover will evaluate this circuit and record the entire process in a structured way, known as a computation trace.</p>
-<p>Think of this trace as a table that logs every step in the computation:</p>
-<ul>
-<li><strong>Inputs:</strong> The initial values you start with.</li>
-<li><strong>Gates:</strong> The operations performed on these values.</li>
-<li><strong>Outputs:</strong> The results of these operations.</li>
-</ul>
-<p><img src="/images/d240824/circuit.png" alt="Line">
-<em><a href="https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be">Source Image</a></em></p>
-<p>For example, consider a simple evaluation using a finite field (think of it as a special kind of arithmetic) with modulo $n = 113$:</p>
-<pre tabindex="0"><code>+-----------+------+------+------+
+</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script><script type=text/javascript async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta name=google-site-verification content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU"><meta name=google-site-verification content="oQJmyNtEP9HjjEcXwRno2_YPeuLd5kX3jTltynIx65s"></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=https://dangduongminhnhat.github.io/>Daminha Blog</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li><a title=About href=/posts/about-me/>About</a></li><li><a title=Tags href=/tags/>Tags</a></li><li><a title="Cryptography Series" href=/posts/cryptography/>Cryptography Series</a></li><li><a title=Note href=https://hackmd.io/@daminha>Note</a></li><li><a title=Blog href=/>Blog</a></li></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1>Unraveling SNARKs: The Breakthrough Technology in Cryptography</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><strong>Posted on:</strong> August 24, 2024 |
+<strong>Reading time:</strong> 20 minutes |
+<strong>Word count:</strong> 4201 words |
+<strong>Author:</strong> Dang Duong Minh Nhat</p><p>Dive deep into the fascinating world of cryptography, where proving something without revealing any secrets is not just possible—it&rsquo;s essential. In this blog, we explore the intricacies of how circuit constraints are verified in SNARKs (Succinct Non-Interactive Arguments of Knowledge), ensuring that every computation is correct and secure. Whether you’re new to this topic or looking to deepen your understanding, I highly recommend checking out my previous posts: <em><a href=https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/>&ldquo;Unveiling the Secrets of Cryptography: From Polynomials to Pairings and Commitment Schemes&rdquo;</a></em> and <em><a href=https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/>&ldquo;The Math Behind the Magic: Exploring Arithmetic Circuits and Their Role in Zero-Knowledge Proofs&rdquo;</a></em>. These will provide you with the foundational knowledge needed to fully appreciate the advanced concepts we’ll cover here.</p><h2 id=table-of-contents>Table of Contents</h2><ul><li><a href=#table-of-contents>Table of Contents</a></li><li><a href=#snark:-unlocking-the-secrets-of-efficient,-private-proofs-in-cryptography>SNARK: Unlocking the Secrets of Efficient, Private Proofs in Cryptography</a><ul><li><a href=#what-is-a-snark?>What is a SNARK?</a></li><li><a href=#why-do-snarks-matter?>Why Do SNARKs Matter?</a></li></ul></li><li><a href=#revisiting-circuits:-the-building-blocks-of-efficient,-private-proofs>Revisiting Circuits: The Building Blocks of Efficient, Private Proofs</a><ul><li><a href=#the-challenge:-proving-without-revealing>The Challenge: Proving Without Revealing</a></li><li><a href=#how-does-it-work?>How Does It Work?</a></li><li><a href=#the-power-of-polynomials>The Power of Polynomials</a></li></ul></li><li><a href=#roots-of-unity:-the-secret-sauce-behind-efficient-proofs>Roots of Unity: The Secret Sauce Behind Efficient Proofs</a><ul><li><a href=#what-are-roots-of-unity?>What Are Roots of Unity?</a></li><li><a href=#why-are-roots-of-unity-so-useful?>Why Are Roots of Unity So Useful?</a><ul><li><a href=#efficient-movement-through-values>Efficient Movement Through Values</a></li><li><a href=#speedy-calculations-with-fast-fourier-transform-(fft)>Speedy Calculations with Fast Fourier Transform (FFT)</a></li></ul></li></ul></li><li><a href=#encoding-the-circuit:-how-plonk-keeps-everything-in-check>Encoding the Circuit: How Plonk Keeps Everything in Check</a><ul><li><a href=#the-basics-of-encoding:-what-are-we-working-with?>The Basics of Encoding: What Are We Working With?</a></li><li><a href=#mapping-the-circuit-to-roots-of-unity>Mapping the Circuit to Roots of Unity</a></li><li><a href=#handling-different-types-of-gates>Handling Different Types of Gates</a></li><li><a href=#wiring-encoding:-ensuring-everything-matches-up>Wiring Encoding: Ensuring Everything Matches Up</a></li></ul></li><li><a href=#verification-in-plonk:-ensuring-trust-without-revealing-secrets>Verification in Plonk: Ensuring Trust Without Revealing Secrets</a><ul><li><a href=#the-art-of-verification:-protecting-secrets>The Art of Verification: Protecting Secrets</a></li><li><a href=#querying-polynomials:-a-peek-without-the-full-picture>Querying Polynomials: A Peek Without the Full Picture</a></li><li><a href=#the-essential-checks:-what-must-be-verified?>The Essential Checks: What Must Be Verified?</a></li><li><a href=#zero-tests:-the-secret-sauce-of-verification>Zero Tests: The Secret Sauce of Verification</a></li></ul></li><li><a href=#understanding-interactive-oracle-proofs-(iops):-the-backbone-of-secure-cryptographic-verification>Understanding Interactive Oracle Proofs (IOPs): The Backbone of Secure Cryptographic Verification</a><ul><li><a href=#what-are-interactive-oracle-proofs-(iops)?>What Are Interactive Oracle Proofs (IOPs)?</a></li><li><a href=#a-simple-example:-the-zero-test-with-iops>A Simple Example: The Zero Test with IOPs</a></li><li><a href=#from-interactive-to-non-interactive-proofs>From Interactive to Non-Interactive Proofs</a></li></ul></li><li><a href=#ensuring-trust-in-cryptographic-circuits:-a-deep-dive-into-circuit-constraint-verification>Ensuring Trust in Cryptographic Circuits: A Deep Dive into Circuit Constraint Verification</a><ul><li><a href=#correctness-of-inputs:-setting-the-stage>Correctness of Inputs: Setting the Stage</a></li><li><a href=#correctness-of-gate-computations:-checking-the-circuit%E2%80%99s-math>Correctness of Gate Computations: Checking the Circuit’s Math</a></li><li><a href=#correctness-of-wiring:-ensuring-the-circuit-stays-connected>Correctness of Wiring: Ensuring the Circuit Stays Connected</a></li></ul></li><li><a href=#references>References</a></li><li><a href=#connect-with-me>Connect with Me</a></li></ul><h1 id=snark-unlocking-the-secrets-of-efficient-private-proofs-in-cryptography>SNARK: Unlocking the Secrets of Efficient, Private Proofs in Cryptography</h1><p>In the world of cryptography, SNARKs—short for <em>Succinct Non-interactive Arguments of Knowledge</em>—are nothing short of revolutionary. Imagine being able to prove that you know something without revealing what it is, all while keeping the process quick and straightforward. That’s the magic of SNARKs.</p><h2 id=what-is-a-snark>What is a SNARK?</h2><p>At its core, a SNARK is a cryptographic proof that allows someone (the prover) to demonstrate that they possess certain knowledge without having to share that knowledge itself. But what makes SNARKs so special? Let’s break it down:</p><ol><li><strong>Succinctness:</strong> One of the standout features of SNARKs is their efficiency. The proof generated by a SNARK is compact, regardless of how complex the statement being proven is. This means that verifying the proof is fast and doesn’t require a lot of computational resources. Imagine being able to verify a complex computation in just seconds—SNARKs make that possible.</li><li><strong>Non-interactivity:</strong> Once the prover has created and sent the proof, their job is done. The verifier doesn’t need to interact with the prover anymore. This non-interactive nature is crucial for scenarios where continuous communication is impractical or impossible. The proof stands on its own, ready to be checked without further steps.</li><li><strong>Knowledge Proof:</strong> Perhaps the most fascinating aspect of SNARKs is their ability to prove that the prover knows something without revealing any details about that knowledge. While not all SNARKs offer this feature, those like Plonk are designed to provide zero-knowledge proofs. This means that beyond confirming the validity of the statement, no additional information is exposed—perfect for preserving privacy.</li></ol><h2 id=why-do-snarks-matter>Why Do SNARKs Matter?</h2><p>The unique combination of being succinct, non-interactive, and capable of preserving knowledge privacy makes SNARKs incredibly valuable in modern cryptography. They’re particularly useful in applications where privacy and efficiency are paramount, such as blockchain technologies and secure communications.</p><h1 id=revisiting-circuits-the-building-blocks-of-efficient-private-proofs>Revisiting Circuits: The Building Blocks of Efficient, Private Proofs</h1><p>When it comes to proving computations without revealing sensitive information, arithmetic circuits play a crucial role. In the cryptographic world, these circuits provide a powerful way to represent complex calculations while ensuring that the prover (the person who claims to know something) doesn’t have to reveal the actual values they’re working with.</p><h2 id=the-challenge-proving-without-revealing>The Challenge: Proving Without Revealing</h2><p>Imagine you need to convince someone that you know a secret number, let’s call it $x$, that satisfies a specific condition, but you don’t want to reveal $x$ itself. Moreover, you don’t want the verifier (the person who needs to be convinced) to go through the trouble of performing a potentially complex computation just to verify your claim. This is where arithmetic circuits come into play.
+$$\exists x \in \mathbb{F}_n^m / C(x, w) = 0$$</p><h2 id=how-does-it-work>How Does It Work?</h2><p>Let’s break it down. An arithmetic circuit is like a detailed recipe for a computation. It takes input values, processes them through a series of gates (like addition or multiplication), and outputs a result. The key idea here is that the prover will evaluate this circuit and record the entire process in a structured way, known as a computation trace.</p><p>Think of this trace as a table that logs every step in the computation:</p><ul><li><strong>Inputs:</strong> The initial values you start with.</li><li><strong>Gates:</strong> The operations performed on these values.</li><li><strong>Outputs:</strong> The results of these operations.</li></ul><p><img src=/images/d240824/circuit.png alt=Line>
+<em><a href=https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be>Source Image</a></em></p><p>For example, consider a simple evaluation using a finite field (think of it as a special kind of arithmetic) with modulo $n = 113$:</p><pre tabindex=0><code>+-----------+------+------+------+
 |           |  w1  |  x1  |  x2  |
 +-----------+--------------------+
 | inputs    |  20  |  13  |  5   |
@@ -402,57 +35,17 @@ $$\exists x \in \mathbb{F}_n^m / C(x, w) = 0$$</p>
 +-----------+--------------+---------------+----------+
 | gate 1    |  13          |  100          |  0       |
 +-----------+--------------+---------------+----------+
-</code></pre><p>Here, you see the inputs, the operations at each gate, and the outputs.</p>
-<h2 id="the-power-of-polynomials">The Power of Polynomials</h2>
-<p>Modern SNARKs, like Plonk, take this concept a step further by encoding the entire computation trace into polynomials. This encoding allows the verifier to easily check if the computation was performed correctly without needing to see the actual numbers.</p>
-<p>Here’s how it works:</p>
-<ol>
-<li><strong>Gate Evaluation:</strong> The verifier checks if each gate was evaluated correctly according to the rules of the circuit.</li>
-<li><strong>Wire Consistency:</strong> The values on wires (connections between gates) must be consistent, especially if they share a common source. For example, certain wires should carry identical values to maintain consistency across the circuit.</li>
-</ol>
-<p>In simpler terms, the circuit not only performs the computation but also sets up a series of checks to ensure everything is correct. Each of these checks is represented by a different polynomial, and the entire computation is captured by a single polynomial $P$.</p>
-<p><img src="/images/d240824/wire.png" alt="Line">
-<em><a href="https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be">Source Image</a></em></p>
-<p>For example, in a circuit, certain wires should hold the same value (e.g., $W_0, W_1​$, and $W_2$ should be identical, as well as $W_6​$ and $W_5$). Additionally, gate operations should be consistent (e.g., $W_0+W_1$ should equal $W_4$).</p>
-<p>In this context, a circuit serves as both a recipe for computation and a set of constraints to verify. Each set of constraints — including wire values, gate operations, and wiring constraints — is encoded into different polynomials. The entire computation trace can be represented by a single polynomial $P$, where $P\left(x_i\right)$ corresponds to a specific wire value.</p>
-<h1 id="roots-of-unity-the-secret-sauce-behind-efficient-proofs">Roots of Unity: The Secret Sauce Behind Efficient Proofs</h1>
-<p>In the world of cryptography, roots of unity might sound like a mysterious concept, but they play a crucial role in making complex computations both efficient and elegant. Let’s dive into what they are and why they’re so powerful.</p>
-<h2 id="what-are-roots-of-unity">What Are Roots of Unity?</h2>
-<p>Imagine you have a special number, represented by the Greek letter omega ($\omega$), that has a magical property: when you multiply it by itself a certain number of times, it brings you back to 1. For example, if $\omega$ is a $k$-th root of unity, then:
+</code></pre><p>Here, you see the inputs, the operations at each gate, and the outputs.</p><h2 id=the-power-of-polynomials>The Power of Polynomials</h2><p>Modern SNARKs, like Plonk, take this concept a step further by encoding the entire computation trace into polynomials. This encoding allows the verifier to easily check if the computation was performed correctly without needing to see the actual numbers.</p><p>Here’s how it works:</p><ol><li><strong>Gate Evaluation:</strong> The verifier checks if each gate was evaluated correctly according to the rules of the circuit.</li><li><strong>Wire Consistency:</strong> The values on wires (connections between gates) must be consistent, especially if they share a common source. For example, certain wires should carry identical values to maintain consistency across the circuit.</li></ol><p>In simpler terms, the circuit not only performs the computation but also sets up a series of checks to ensure everything is correct. Each of these checks is represented by a different polynomial, and the entire computation is captured by a single polynomial $P$.</p><p><img src=/images/d240824/wire.png alt=Line>
+<em><a href=https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be>Source Image</a></em></p><p>For example, in a circuit, certain wires should hold the same value (e.g., $W_0, W_1​$, and $W_2$ should be identical, as well as $W_6​$ and $W_5$). Additionally, gate operations should be consistent (e.g., $W_0+W_1$ should equal $W_4$).</p><p>In this context, a circuit serves as both a recipe for computation and a set of constraints to verify. Each set of constraints — including wire values, gate operations, and wiring constraints — is encoded into different polynomials. The entire computation trace can be represented by a single polynomial $P$, where $P\left(x_i\right)$ corresponds to a specific wire value.</p><h1 id=roots-of-unity-the-secret-sauce-behind-efficient-proofs>Roots of Unity: The Secret Sauce Behind Efficient Proofs</h1><p>In the world of cryptography, roots of unity might sound like a mysterious concept, but they play a crucial role in making complex computations both efficient and elegant. Let’s dive into what they are and why they’re so powerful.</p><h2 id=what-are-roots-of-unity>What Are Roots of Unity?</h2><p>Imagine you have a special number, represented by the Greek letter omega ($\omega$), that has a magical property: when you multiply it by itself a certain number of times, it brings you back to 1. For example, if $\omega$ is a $k$-th root of unity, then:
 $$\omega^k = 1 (\text{mod }p)$$
-This means that if you keep multiplying $\omega$ by itself, after $k$ steps, you end up back where you started—at 1. The set of these numbers (including 1) forms what’s known as a cyclic group. This group, denoted as $H$, is made up of the numbers:</p>
-<p>$H =$ {$1, \omega, \omega^2, \dots, \omega^{k - 1}$}</p>
-<h2 id="why-are-roots-of-unity-so-useful">Why Are Roots of Unity So Useful?</h2>
-<p>When we’re working with polynomials—an essential part of SNARKs (Succinct Non-interactive Arguments of Knowledge)—we need to encode values efficiently. Here’s where roots of unity come in handy:</p>
-<h3 id="efficient-movement-through-values">Efficient Movement Through Values</h3>
-<p>One of the coolest things about roots of unity is how easy it is to move from one value to the next. To transition from $\omega$ to $\omega^2$, you just multiply by $\omega$. To go backward, you multiply by the inverse of $\omega$. This cyclical nature makes navigating through the set incredibly straightforward and efficient.</p>
-<p>For example, because the group is cyclic, you can always return to the starting point:
-$$\omega^{k - 1} \times \omega = 1 \text{ and } \omega^{-1} = \omega^{k - 1}$$</p>
-<h3 id="speedy-calculations-with-fast-fourier-transform-fft">Speedy Calculations with Fast Fourier Transform (FFT)</h3>
-<p>But the real magic happens when we talk about interpolation—the process of finding a polynomial that passes through a given set of points. Normally, this could be a slow and cumbersome task, but using roots of unity allows us to use the <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Fast Fourier Transform</a> (FFT), a super-efficient algorithm that speeds up the entire process.</p>
-<p>FFT is like the turbocharger of polynomial interpolation. By leveraging the cyclical nature of roots of unity, FFT can compute the necessary polynomials in a fraction of the time it would take using other methods. This efficiency is key in cryptographic applications, where speed and accuracy are paramount.</p>
-<h1 id="encoding-the-circuit-how-plonk-keeps-everything-in-check">Encoding the Circuit: How Plonk Keeps Everything in Check</h1>
-<p>In the cryptographic world, ensuring that every part of a computation is accurate and secure is crucial. One way to do this is through a process called encoding, which translates the steps of a computation into a format that can be easily checked. Let’s explore how this works, particularly in the context of Plonk, one of the most advanced cryptographic protocols today.</p>
-<h2 id="the-basics-of-encoding-what-are-we-working-with">The Basics of Encoding: What Are We Working With?</h2>
-<p>When we talk about encoding a circuit, we&rsquo;re essentially breaking down a complex computation into manageable pieces and then representing those pieces in a mathematical way. Imagine you have a circuit with a certain number of inputs and gates (the building blocks that perform operations like addition and multiplication). To keep things organized, we need to define a critical value, which we’ll call $d$. This value determines how many elements (inputs, outputs, and intermediate results) we need to track throughout the computation.</p>
-<p>Here’s how we calculate it:
+This means that if you keep multiplying $\omega$ by itself, after $k$ steps, you end up back where you started—at 1. The set of these numbers (including 1) forms what’s known as a cyclic group. This group, denoted as $H$, is made up of the numbers:</p><p>$H =$ {$1, \omega, \omega^2, \dots, \omega^{k - 1}$}</p><h2 id=why-are-roots-of-unity-so-useful>Why Are Roots of Unity So Useful?</h2><p>When we’re working with polynomials—an essential part of SNARKs (Succinct Non-interactive Arguments of Knowledge)—we need to encode values efficiently. Here’s where roots of unity come in handy:</p><h3 id=efficient-movement-through-values>Efficient Movement Through Values</h3><p>One of the coolest things about roots of unity is how easy it is to move from one value to the next. To transition from $\omega$ to $\omega^2$, you just multiply by $\omega$. To go backward, you multiply by the inverse of $\omega$. This cyclical nature makes navigating through the set incredibly straightforward and efficient.</p><p>For example, because the group is cyclic, you can always return to the starting point:
+$$\omega^{k - 1} \times \omega = 1 \text{ and } \omega^{-1} = \omega^{k - 1}$$</p><h3 id=speedy-calculations-with-fast-fourier-transform-fft>Speedy Calculations with Fast Fourier Transform (FFT)</h3><p>But the real magic happens when we talk about interpolation—the process of finding a polynomial that passes through a given set of points. Normally, this could be a slow and cumbersome task, but using roots of unity allows us to use the <a href=https://en.wikipedia.org/wiki/Fast_Fourier_transform>Fast Fourier Transform</a> (FFT), a super-efficient algorithm that speeds up the entire process.</p><p>FFT is like the turbocharger of polynomial interpolation. By leveraging the cyclical nature of roots of unity, FFT can compute the necessary polynomials in a fraction of the time it would take using other methods. This efficiency is key in cryptographic applications, where speed and accuracy are paramount.</p><h1 id=encoding-the-circuit-how-plonk-keeps-everything-in-check>Encoding the Circuit: How Plonk Keeps Everything in Check</h1><p>In the cryptographic world, ensuring that every part of a computation is accurate and secure is crucial. One way to do this is through a process called encoding, which translates the steps of a computation into a format that can be easily checked. Let’s explore how this works, particularly in the context of Plonk, one of the most advanced cryptographic protocols today.</p><h2 id=the-basics-of-encoding-what-are-we-working-with>The Basics of Encoding: What Are We Working With?</h2><p>When we talk about encoding a circuit, we&rsquo;re essentially breaking down a complex computation into manageable pieces and then representing those pieces in a mathematical way. Imagine you have a circuit with a certain number of inputs and gates (the building blocks that perform operations like addition and multiplication). To keep things organized, we need to define a critical value, which we’ll call $d$. This value determines how many elements (inputs, outputs, and intermediate results) we need to track throughout the computation.</p><p>Here’s how we calculate it:
 $$d = 3|C| + |I|$$
-Where:</p>
-<ul>
-<li>$|C|$ is the number of gates.</li>
-<li>$|I|$ is the number of inputs.</li>
-</ul>
-<p>Each gate has three associated values: two inputs and one output. The total number of elements in our computation trace is represented by $d$. Once we have this value, we can start encoding.</p>
-<p>These values will be encoded into the $d$-th roots of unity:</p>
-<p>$H =$ {$1, \omega, \omega^2, \dots, \omega^{d - 1}$}</p>
-<h2 id="mapping-the-circuit-to-roots-of-unity">Mapping the Circuit to Roots of Unity</h2>
-<p>The mapping of roots to specific wires in the circuit requires a systematic approach. The inputs $|I|$ are encoded using the negative powers of $ω$. For the $j$-th input, we use:
+Where:</p><ul><li>$|C|$ is the number of gates.</li><li>$|I|$ is the number of inputs.</li></ul><p>Each gate has three associated values: two inputs and one output. The total number of elements in our computation trace is represented by $d$. Once we have this value, we can start encoding.</p><p>These values will be encoded into the $d$-th roots of unity:</p><p>$H =$ {$1, \omega, \omega^2, \dots, \omega^{d - 1}$}</p><h2 id=mapping-the-circuit-to-roots-of-unity>Mapping the Circuit to Roots of Unity</h2><p>The mapping of roots to specific wires in the circuit requires a systematic approach. The inputs $|I|$ are encoded using the negative powers of $ω$. For the $j$-th input, we use:
 $$P\left(\omega^{-j}\right)$$
 For each gate $k$, which has three associated wires (left input, right input, and output), the encoding is defined as:
 $$P\left(\omega^{3k}\right), P\left(\omega^{3k+1}\right), P\left(\omega^{3k + 2}\right)$$
-This systematic encoding ensures that all values in the computation trace are included in the polynomial. Once these values are encoded, the next step is to interpolate them to obtain the polynomial $P(x)$ of degree $d-1$.</p>
-<h2 id="handling-different-types-of-gates">Handling Different Types of Gates</h2>
-<p>Gates in the circuit can be either addition or multiplication gates, and encoding their operation requires distinguishing between these types. To achieve this, we use a selector polynomial $S(x)$. For a gate $k$:
+This systematic encoding ensures that all values in the computation trace are included in the polynomial. Once these values are encoded, the next step is to interpolate them to obtain the polynomial $P(x)$ of degree $d-1$.</p><h2 id=handling-different-types-of-gates>Handling Different Types of Gates</h2><p>Gates in the circuit can be either addition or multiplication gates, and encoding their operation requires distinguishing between these types. To achieve this, we use a selector polynomial $S(x)$. For a gate $k$:
 $$S\left(\omega^{3k}\right) = 0 \text{ or } S\left(\omega^{3k}\right) = 1$$
 $$S\left(x_k\right) =$$
 \begin{cases}
@@ -460,227 +53,45 @@ $$S\left(x_k\right) =$$
 0 \text{ if the gate is an multiplication gate.}
 \end{cases}
 This polynomial $S(x)$ allows us to construct an expression that links the inputs and outputs of each gate:
-$$S(\alpha)[P(\alpha) + P(\omega \alpha)] + (1 - S(\alpha))P(\alpha)P(\omega \alpha) - P\left(\omega^2 \alpha\right) =  0$$
-This expression ensures that only the relevant term (either addition or multiplication) is active for each gate $k$, depending on its type, and thereby verifies the correct evaluation of the gate.</p>
-<h2 id="wiring-encoding-ensuring-everything-matches-up">Wiring Encoding: Ensuring Everything Matches Up</h2>
-<p>The wiring constraints are perhaps the most complex part of the encoding process. These constraints ensure that certain wires, which originate from the same source, hold the same value throughout the circuit.</p>
-<p><img src="/images/d240824/encode.png" alt="Line">
-<em><a href="https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be">Source Image</a></em></p>
-<p>For example, if we have wires that should hold the same value:
-$$P\left(\omega^p\right) = P\left(\omega^q\right) = P\left(\omega^r\right) = P\left(\omega^s\right)$$</p>
-<p>We define a subset of roots $H^{&rsquo;}$ such that:</p>
-<p>$H^{&rsquo;} =$ {$\omega^p, \omega^q, \omega^r, \omega^s$}</p>
-<p>We then construct a permutation polynomial $W(X)$ that cyclically maps these roots to each other:</p>
-<p>$$
+$$S(\alpha)[P(\alpha) + P(\omega \alpha)] + (1 - S(\alpha))P(\alpha)P(\omega \alpha) - P\left(\omega^2 \alpha\right) = 0$$
+This expression ensures that only the relevant term (either addition or multiplication) is active for each gate $k$, depending on its type, and thereby verifies the correct evaluation of the gate.</p><h2 id=wiring-encoding-ensuring-everything-matches-up>Wiring Encoding: Ensuring Everything Matches Up</h2><p>The wiring constraints are perhaps the most complex part of the encoding process. These constraints ensure that certain wires, which originate from the same source, hold the same value throughout the circuit.</p><p><img src=/images/d240824/encode.png alt=Line>
+<em><a href=https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be>Source Image</a></em></p><p>For example, if we have wires that should hold the same value:
+$$P\left(\omega^p\right) = P\left(\omega^q\right) = P\left(\omega^r\right) = P\left(\omega^s\right)$$</p><p>We define a subset of roots $H^{&rsquo;}$ such that:</p><p>$H^{&rsquo;} =$ {$\omega^p, \omega^q, \omega^r, \omega^s$}</p><p>We then construct a permutation polynomial $W(X)$ that cyclically maps these roots to each other:</p><p>$$
 W\left(\omega^p\right) = \omega^q \\
 W\left(\omega^q\right) = \omega^r \\
 W\left(\omega^r\right) = \omega^s \\
 W\left(\omega^s\right) = \omega^p
-$$</p>
-<p>The wiring constraint is satisfied if:
-$$P(x) = P(W(x)) \forall x \in H^{&rsquo;}$$</p>
-<p>This condition must hold for every element in $H^{&rsquo;}$, effectively ensuring that the values across all corresponding wires are equal.</p>
-<p>This method of wiring encoding is a key component of the Plonk protocol, and it is what gives Plonk its flexibility in proving that the entire circuit satisfies the required constraints.</p>
-<h1 id="verification-in-plonk-ensuring-trust-without-revealing-secrets">Verification in Plonk: Ensuring Trust Without Revealing Secrets</h1>
-<p>When it comes to cryptographic proofs, one of the most fascinating challenges is how to convince someone that a computation is correct—without giving away any secret information. This is where protocols like Plonk shine, offering powerful ways to verify complex computations while maintaining absolute privacy. Let&rsquo;s break down how this works, focusing on the verification process.</p>
-<h2 id="the-art-of-verification-protecting-secrets">The Art of Verification: Protecting Secrets</h2>
-<p>In the world of Plonk, we deal with polynomials—special mathematical expressions that help encode all the steps of a computation. However, it’s crucial that these polynomials, especially the main one we’ll call $P(X)$, remain hidden from the verifier (the party checking the proof). Why? Because if the verifier could see the full polynomial, they might figure out the secret input values, which defeats the whole purpose of privacy. If the verifier were to obtain the full polynomial, they could potentially uncover the secret information $x$ by calculating:
+$$</p><p>The wiring constraint is satisfied if:
+$$P(x) = P(W(x)) \forall x \in H^{&rsquo;}$$</p><p>This condition must hold for every element in $H^{&rsquo;}$, effectively ensuring that the values across all corresponding wires are equal.</p><p>This method of wiring encoding is a key component of the Plonk protocol, and it is what gives Plonk its flexibility in proving that the entire circuit satisfies the required constraints.</p><h1 id=verification-in-plonk-ensuring-trust-without-revealing-secrets>Verification in Plonk: Ensuring Trust Without Revealing Secrets</h1><p>When it comes to cryptographic proofs, one of the most fascinating challenges is how to convince someone that a computation is correct—without giving away any secret information. This is where protocols like Plonk shine, offering powerful ways to verify complex computations while maintaining absolute privacy. Let&rsquo;s break down how this works, focusing on the verification process.</p><h2 id=the-art-of-verification-protecting-secrets>The Art of Verification: Protecting Secrets</h2><p>In the world of Plonk, we deal with polynomials—special mathematical expressions that help encode all the steps of a computation. However, it’s crucial that these polynomials, especially the main one we’ll call $P(X)$, remain hidden from the verifier (the party checking the proof). Why? Because if the verifier could see the full polynomial, they might figure out the secret input values, which defeats the whole purpose of privacy. If the verifier were to obtain the full polynomial, they could potentially uncover the secret information $x$ by calculating:
 $$P\left(\omega^{-j}\right)$$
-If the verifier cannot know the full polynomials, how can they be convinced that the computation is correct? While the verifier cannot access the complete polynomials, they can request single evaluations of these polynomials. Specifically, they can query the value of $P(X), S(X)$, or the wiring polynomials $W(X)$ at any given point, without revealing the secret inputs.</p>
-<h2 id="querying-polynomials-a-peek-without-the-full-picture">Querying Polynomials: A Peek Without the Full Picture</h2>
-<p>Imagine you’re trying to verify a complex computation. You don’t need to see every detail—you just need to check certain key points. In Plonk, the verifier can ask for the value of a polynomial at a specific point, say $P(b)$, without ever seeing the rest of $P(X)$. This is possible thanks to <strong><a href="https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/#commitment-schemes">Polynomial Commitment Schemes (PCS)</a></strong>.</p>
-<p>Here’s how it works:</p>
-<ol>
-<li><strong>Commitments:</strong> The prover (the party creating the proof) generates a commitment to the polynomial. This commitment acts like a seal that’s impossible to fake.</li>
-<li><strong>Queries:</strong> The verifier asks for the value of $P(X)$ at a particular point, say $b$.</li>
-<li><strong>Verification:</strong> The prover reveals this single value, and the verifier checks it against the commitment. If it matches, the verifier can be confident that the entire polynomial (and thus the computation) is correct.</li>
-</ol>
-<p>This method allows the verifier to check the computation without ever seeing the full polynomial, keeping the secret inputs safe.</p>
-<h2 id="the-essential-checks-what-must-be-verified">The Essential Checks: What Must Be Verified?</h2>
-<p>To ensure everything is correct, the verifier needs to check several key aspects of the computation:</p>
-<ol>
-<li><strong>Final Output Check:</strong> The output of the last gate in the circuit should be exactly zero. This confirms that the computation ended correctly.</li>
-<li><strong>Input Encoding Check:</strong> The public inputs (or witnesses) must be encoded correctly. This ensures that the inputs to the circuit match what was expected.</li>
-<li><strong>Gate Evaluation Check:</strong> The operations performed by each gate—whether it’s addition or multiplication—must be accurate. This confirms that the computation itself was done correctly.</li>
-<li><strong>Wiring Check:</strong> The wires connecting different parts of the circuit must hold consistent values throughout. This ensures that the data flows correctly from one part of the circuit to another.</li>
-</ol>
-<p>These checks are vital for verifying the integrity of the entire computation.</p>
-<p>The first check is straightforward; the verifier simply requests the output at the last gate, which should be:
+If the verifier cannot know the full polynomials, how can they be convinced that the computation is correct? While the verifier cannot access the complete polynomials, they can request single evaluations of these polynomials. Specifically, they can query the value of $P(X), S(X)$, or the wiring polynomials $W(X)$ at any given point, without revealing the secret inputs.</p><h2 id=querying-polynomials-a-peek-without-the-full-picture>Querying Polynomials: A Peek Without the Full Picture</h2><p>Imagine you’re trying to verify a complex computation. You don’t need to see every detail—you just need to check certain key points. In Plonk, the verifier can ask for the value of a polynomial at a specific point, say $P(b)$, without ever seeing the rest of $P(X)$. This is possible thanks to <strong><a href=https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/#commitment-schemes>Polynomial Commitment Schemes (PCS)</a></strong>.</p><p>Here’s how it works:</p><ol><li><strong>Commitments:</strong> The prover (the party creating the proof) generates a commitment to the polynomial. This commitment acts like a seal that’s impossible to fake.</li><li><strong>Queries:</strong> The verifier asks for the value of $P(X)$ at a particular point, say $b$.</li><li><strong>Verification:</strong> The prover reveals this single value, and the verifier checks it against the commitment. If it matches, the verifier can be confident that the entire polynomial (and thus the computation) is correct.</li></ol><p>This method allows the verifier to check the computation without ever seeing the full polynomial, keeping the secret inputs safe.</p><h2 id=the-essential-checks-what-must-be-verified>The Essential Checks: What Must Be Verified?</h2><p>To ensure everything is correct, the verifier needs to check several key aspects of the computation:</p><ol><li><strong>Final Output Check:</strong> The output of the last gate in the circuit should be exactly zero. This confirms that the computation ended correctly.</li><li><strong>Input Encoding Check:</strong> The public inputs (or witnesses) must be encoded correctly. This ensures that the inputs to the circuit match what was expected.</li><li><strong>Gate Evaluation Check:</strong> The operations performed by each gate—whether it’s addition or multiplication—must be accurate. This confirms that the computation itself was done correctly.</li><li><strong>Wiring Check:</strong> The wires connecting different parts of the circuit must hold consistent values throughout. This ensures that the data flows correctly from one part of the circuit to another.</li></ol><p>These checks are vital for verifying the integrity of the entire computation.</p><p>The first check is straightforward; the verifier simply requests the output at the last gate, which should be:
 $$P\left(\omega^{3|C| - 1}\right) = 0$$
-The remaining checks involve more complex processes, requiring additional cryptographic techniques.</p>
-<h2 id="zero-tests-the-secret-sauce-of-verification">Zero Tests: The Secret Sauce of Verification</h2>
-<p>To ensure the correctness of polynomials, we use a concept known as a zero test. Given a polynomial $f(X)$ of degree at most $d$ (which is not identically zero), the probability that a randomly chosen input $r$ will satisfy $f(r)=0$ is:
+The remaining checks involve more complex processes, requiring additional cryptographic techniques.</p><h2 id=zero-tests-the-secret-sauce-of-verification>Zero Tests: The Secret Sauce of Verification</h2><p>To ensure the correctness of polynomials, we use a concept known as a zero test. Given a polynomial $f(X)$ of degree at most $d$ (which is not identically zero), the probability that a randomly chosen input $r$ will satisfy $f(r)=0$ is:
 $$P[f(r) = 0] \leq d/n$$
-Here, $n$ is the modulus, and if n is sufficiently larger than $d$, the probability of $f(r)=0$ becomes negligible. If a random $r$ indeed results in $f(r)=0$, we can be highly confident that $f(X)$ is identically zero, meaning that the constraints are satisfied.</p>
-<p>This zero test forms the foundation of the verification process in SNARKs, ensuring that the verifier can trust the correctness of the proof without needing to access the full polynomials.</p>
-<h1 id="understanding-interactive-oracle-proofs-iops-the-backbone-of-secure-cryptographic-verification">Understanding Interactive Oracle Proofs (IOPs): The Backbone of Secure Cryptographic Verification</h1>
-<p>In the fascinating world of cryptography, one of the biggest challenges is proving that something is true without revealing any secrets. This is where <strong>Interactive Oracle Proofs (IOPs)</strong> come into play. IOPs form the foundation of many cryptographic protocols, enabling a prover to convince a verifier of a particular statement’s truth—without giving away any sensitive information. Let’s explore how this process works and why it’s so crucial.</p>
-<h2 id="what-are-interactive-oracle-proofs-iops">What Are Interactive Oracle Proofs (IOPs)?</h2>
-<p>At its core, an IOP is a way for two parties—the prover and the verifier—to interact in such a way that the verifier can be confident in the truth of a statement. Imagine a conversation where one person is trying to convince the other that a particular set of facts is correct. In cryptographic terms, this interaction ensures that the prover is being truthful, while the verifier remains secure, never learning more than they need to.</p>
-<p><img src="/images/d240824/iops.png" alt="Line">
-<em><a href="https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be">Source Image</a></em></p>
-<p><strong>Interactive Oracle Proofs</strong> are similar to <strong>Polynomial Commitment Schemes (PCSs)</strong>, where the interaction is structured to be both efficient and secure. This setup ensures that even though the prover and verifier are exchanging information, the process remains private and safe.</p>
-<h2 id="a-simple-example-the-zero-test-with-iops">A Simple Example: The Zero Test with IOPs</h2>
-<p>To see IOPs in action, let’s look at a simple example called the <strong>Zero Test</strong>. Suppose a prover wants to show that a specific set $S =$ {$s_0, s_1, &hellip;, s_{n -1}$} consists of the roots of a polynomial $P(X)$. The key tool here is the <strong>vanishing polynomial</strong> $V(X)$, which equals zero exactly at the roots in $S$.
+Here, $n$ is the modulus, and if n is sufficiently larger than $d$, the probability of $f(r)=0$ becomes negligible. If a random $r$ indeed results in $f(r)=0$, we can be highly confident that $f(X)$ is identically zero, meaning that the constraints are satisfied.</p><p>This zero test forms the foundation of the verification process in SNARKs, ensuring that the verifier can trust the correctness of the proof without needing to access the full polynomials.</p><h1 id=understanding-interactive-oracle-proofs-iops-the-backbone-of-secure-cryptographic-verification>Understanding Interactive Oracle Proofs (IOPs): The Backbone of Secure Cryptographic Verification</h1><p>In the fascinating world of cryptography, one of the biggest challenges is proving that something is true without revealing any secrets. This is where <strong>Interactive Oracle Proofs (IOPs)</strong> come into play. IOPs form the foundation of many cryptographic protocols, enabling a prover to convince a verifier of a particular statement’s truth—without giving away any sensitive information. Let’s explore how this process works and why it’s so crucial.</p><h2 id=what-are-interactive-oracle-proofs-iops>What Are Interactive Oracle Proofs (IOPs)?</h2><p>At its core, an IOP is a way for two parties—the prover and the verifier—to interact in such a way that the verifier can be confident in the truth of a statement. Imagine a conversation where one person is trying to convince the other that a particular set of facts is correct. In cryptographic terms, this interaction ensures that the prover is being truthful, while the verifier remains secure, never learning more than they need to.</p><p><img src=/images/d240824/iops.png alt=Line>
+<em><a href=https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be>Source Image</a></em></p><p><strong>Interactive Oracle Proofs</strong> are similar to <strong>Polynomial Commitment Schemes (PCSs)</strong>, where the interaction is structured to be both efficient and secure. This setup ensures that even though the prover and verifier are exchanging information, the process remains private and safe.</p><h2 id=a-simple-example-the-zero-test-with-iops>A Simple Example: The Zero Test with IOPs</h2><p>To see IOPs in action, let’s look at a simple example called the <strong>Zero Test</strong>. Suppose a prover wants to show that a specific set $S =$ {$s_0, s_1, &mldr;, s_{n -1}$} consists of the roots of a polynomial $P(X)$. The key tool here is the <strong>vanishing polynomial</strong> $V(X)$, which equals zero exactly at the roots in $S$.
 $$V(X) = \prod_{i = 0}^{n - 1}\left(X-s_i\right)$$
 The prover’s goal is to demonstrate that when $P(X)$ is divided by $V(X)$, the result is a quotient $Q(X)$ with no remainder. If this division holds true, it confirms that $S$ is indeed the set of roots for $P(X)$.
 $$Q(X) = P(X)/V(X)$$
-Here’s how it works:</p>
-<ol>
-<li><strong>Commitments:</strong> The prover starts by committing to both $P(X)$ and $Q(X)$ using a <strong><a href="https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/#commitment-schemes">Polynomial Commitment Scheme</a></strong>. This means that the prover creates a secure “commitment” to these polynomials, much like sealing an envelope that only the verifier can later open.</li>
-<li><strong>Queries:</strong> The verifier then requests the value of $P(X)$ and $Q(X)$ at a random point $s_i$ from the set $S$. This randomness ensures that the prover can’t cheat.</li>
-<li><strong>Verification:</strong> The verifier checks whether the following equation holds true:
+Here’s how it works:</p><ol><li><strong>Commitments:</strong> The prover starts by committing to both $P(X)$ and $Q(X)$ using a <strong><a href=https://dangduongminhnhat.github.io/posts/d140824/unveiling-the-secrets-of-cryptography/#commitment-schemes>Polynomial Commitment Scheme</a></strong>. This means that the prover creates a secure “commitment” to these polynomials, much like sealing an envelope that only the verifier can later open.</li><li><strong>Queries:</strong> The verifier then requests the value of $P(X)$ and $Q(X)$ at a random point $s_i$ from the set $S$. This randomness ensures that the prover can’t cheat.</li><li><strong>Verification:</strong> The verifier checks whether the following equation holds true:
 $$Q\left(s_i\right).V\left(s_i\right) - P\left(s_i\right) = 0$$
-If this equation is satisfied for the randomly chosen point $s_i$, the verifier can confidently conclude that $S$ is indeed the set of roots of $P(X)$.</li>
-</ol>
-<p><img src="/images/d240824/verify.png" alt="Line">
-<em><a href="https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be">Source Image</a></em></p>
-<p>This process is powerful because it allows the verifier to be convinced without needing to see the entire polynomials. And if the verifier wants even more confidence, they can ask for additional evaluations at different points.</p>
-<p>Similar IOPs are employed for other checks, such as the addition check and the product check. It is important to note, however, that this method does not guarantee that there are no other roots of $P(X)$ outside of $S$.</p>
-<h2 id="from-interactive-to-non-interactive-proofs">From Interactive to Non-Interactive Proofs</h2>
-<p>While IOPs are inherently interactive, many cryptographic protocols, such as <strong>SNARKs (Succinct Non-Interactive Arguments of Knowledge)</strong>, are designed to be non-interactive. So, how do we bridge this gap?</p>
-<p>The solution lies in a clever technique called the <strong><a href="https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic">Fiat-Shamir Transformation</a></strong>. This transformation is a cryptographic trick that turns an interactive proof into a non-interactive one.</p>
-<p>In an interactive setting, the verifier generates random numbers during the verification process, which keeps the prover on their toes. The <strong>Fiat-Shamir Transformation</strong> replaces this need for back-and-forth communication by using a cryptographic hash function to simulate randomness. Essentially, the prover hashes certain parts of the proof to generate the required random values, ensuring the proof’s integrity without needing to interact with the verifier directly.</p>
-<p>This transformation is a game-changer in cryptography because it allows for secure, non-interactive proofs that are just as reliable as their interactive counterparts.</p>
-<h1 id="ensuring-trust-in-cryptographic-circuits-a-deep-dive-into-circuit-constraint-verification">Ensuring Trust in Cryptographic Circuits: A Deep Dive into Circuit Constraint Verification</h1>
-<p>When it comes to cryptographic proofs, one of the most critical steps is verifying that a circuit’s constraints are properly upheld. This verification ensures that the prover knows a secret value, say $x$, that satisfies all the rules of the circuit. In this post, we’ll break down the process of verifying these constraints into three key aspects: the correctness of inputs, gate computations, and wiring. Let’s dive in!</p>
-<h2 id="correctness-of-inputs-setting-the-stage">Correctness of Inputs: Setting the Stage</h2>
-<p>The first step in this verification journey is to ensure that the inputs provided by the prover are correct. The verifier, who acts as the “judge,” already knows a public witness $w$—a value that’s shared and agreed upon. The verifier’s job is to encode this witness into a polynomial $v(X)$ in such a way that:
+If this equation is satisfied for the randomly chosen point $s_i$, the verifier can confidently conclude that $S$ is indeed the set of roots of $P(X)$.</li></ol><p><img src=/images/d240824/verify.png alt=Line>
+<em><a href=https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be>Source Image</a></em></p><p>This process is powerful because it allows the verifier to be convinced without needing to see the entire polynomials. And if the verifier wants even more confidence, they can ask for additional evaluations at different points.</p><p>Similar IOPs are employed for other checks, such as the addition check and the product check. It is important to note, however, that this method does not guarantee that there are no other roots of $P(X)$ outside of $S$.</p><h2 id=from-interactive-to-non-interactive-proofs>From Interactive to Non-Interactive Proofs</h2><p>While IOPs are inherently interactive, many cryptographic protocols, such as <strong>SNARKs (Succinct Non-Interactive Arguments of Knowledge)</strong>, are designed to be non-interactive. So, how do we bridge this gap?</p><p>The solution lies in a clever technique called the <strong><a href=https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic>Fiat-Shamir Transformation</a></strong>. This transformation is a cryptographic trick that turns an interactive proof into a non-interactive one.</p><p>In an interactive setting, the verifier generates random numbers during the verification process, which keeps the prover on their toes. The <strong>Fiat-Shamir Transformation</strong> replaces this need for back-and-forth communication by using a cryptographic hash function to simulate randomness. Essentially, the prover hashes certain parts of the proof to generate the required random values, ensuring the proof’s integrity without needing to interact with the verifier directly.</p><p>This transformation is a game-changer in cryptography because it allows for secure, non-interactive proofs that are just as reliable as their interactive counterparts.</p><h1 id=ensuring-trust-in-cryptographic-circuits-a-deep-dive-into-circuit-constraint-verification>Ensuring Trust in Cryptographic Circuits: A Deep Dive into Circuit Constraint Verification</h1><p>When it comes to cryptographic proofs, one of the most critical steps is verifying that a circuit’s constraints are properly upheld. This verification ensures that the prover knows a secret value, say $x$, that satisfies all the rules of the circuit. In this post, we’ll break down the process of verifying these constraints into three key aspects: the correctness of inputs, gate computations, and wiring. Let’s dive in!</p><h2 id=correctness-of-inputs-setting-the-stage>Correctness of Inputs: Setting the Stage</h2><p>The first step in this verification journey is to ensure that the inputs provided by the prover are correct. The verifier, who acts as the “judge,” already knows a public witness $w$—a value that’s shared and agreed upon. The verifier’s job is to encode this witness into a polynomial $v(X)$ in such a way that:
 $$v\left(\omega^i\right)=w_i \text{ (where } w_i \text{ is the public witness)}$$
-But what does this mean in practice?</p>
-<p>For the circuit to be valid, the values of $v(X)$ and $P(X)$ (which encodes the computation trace of the circuit) must match at specific points, called the roots of unity, that correspond to the public witness. This can be expressed as:
+But what does this mean in practice?</p><p>For the circuit to be valid, the values of $v(X)$ and $P(X)$ (which encodes the computation trace of the circuit) must match at specific points, called the roots of unity, that correspond to the public witness. This can be expressed as:
 $$v\left(\omega^i\right) = P\left(\omega^i\right) \text{ for each root }\omega^i$$
-Here, $\omega^i$ represents these special points, and $P(X)$ represents the polynomial that traces the entire computation.</p>
-<p>To verify this, the verifier performs a <strong>zero test</strong>. This test checks if $P(X)- v(X)$ is zero at these specific points. If the test comes back zero, it’s a green light—the inputs are correctly encoded!</p>
-<h2 id="correctness-of-gate-computations-checking-the-circuits-math">Correctness of Gate Computations: Checking the Circuit’s Math</h2>
-<p>Next up, we need to ensure that each gate (the basic building block of our circuit) is functioning as it should. Whether a gate is adding, multiplying, or performing some other operation, it must adhere to the following rule:
-$$S(\alpha)[P(\alpha) + P(\omega \alpha)] + (1 - S(\alpha))P(\alpha)P(\omega \alpha) - P\left(\omega^2 \alpha\right) =  0$$
-, where $\alpha = \omega^{3k}$</p>
-<p>Here, $S(X)$ is known as the <strong>selector polynomial</strong>. It tells us what type of operation each gate is supposed to perform—whether it’s an addition gate, a multiplication gate, or something else.</p>
-<p>To confirm that each gate is doing its job correctly, the verifier runs a zero test on this expression for every gate in the circuit. This step ensures that all the mathematical operations encoded in the circuit are accurate. The prover helps by providing a commitment to the polynomial $S(X)$, which makes the verification process smooth and efficient.</p>
-<h2 id="correctness-of-wiring-ensuring-the-circuit-stays-connected">Correctness of Wiring: Ensuring the Circuit Stays Connected</h2>
-<p>Finally, we need to verify the wiring—the invisible connections that ensure the circuit’s structure remains intact. Think of the circuit as a complex puzzle, where each piece must fit perfectly with the others. These wiring constraints are encoded into polynomials $W(X)$, which essentially shuffle (or permute) elements of a set $H^{&rsquo;}$.</p>
-<p>The goal is to ensure that $P(x) = P(W(x)) \forall x \in H^{&rsquo;}$. Instead of performing another zero test here, which could be cumbersome, we use something called a <strong>product check</strong>. The expression to verify looks like this:
+Here, $\omega^i$ represents these special points, and $P(X)$ represents the polynomial that traces the entire computation.</p><p>To verify this, the verifier performs a <strong>zero test</strong>. This test checks if $P(X)- v(X)$ is zero at these specific points. If the test comes back zero, it’s a green light—the inputs are correctly encoded!</p><h2 id=correctness-of-gate-computations-checking-the-circuits-math>Correctness of Gate Computations: Checking the Circuit’s Math</h2><p>Next up, we need to ensure that each gate (the basic building block of our circuit) is functioning as it should. Whether a gate is adding, multiplying, or performing some other operation, it must adhere to the following rule:
+$$S(\alpha)[P(\alpha) + P(\omega \alpha)] + (1 - S(\alpha))P(\alpha)P(\omega \alpha) - P\left(\omega^2 \alpha\right) = 0$$
+, where $\alpha = \omega^{3k}$</p><p>Here, $S(X)$ is known as the <strong>selector polynomial</strong>. It tells us what type of operation each gate is supposed to perform—whether it’s an addition gate, a multiplication gate, or something else.</p><p>To confirm that each gate is doing its job correctly, the verifier runs a zero test on this expression for every gate in the circuit. This step ensures that all the mathematical operations encoded in the circuit are accurate. The prover helps by providing a commitment to the polynomial $S(X)$, which makes the verification process smooth and efficient.</p><h2 id=correctness-of-wiring-ensuring-the-circuit-stays-connected>Correctness of Wiring: Ensuring the Circuit Stays Connected</h2><p>Finally, we need to verify the wiring—the invisible connections that ensure the circuit’s structure remains intact. Think of the circuit as a complex puzzle, where each piece must fit perfectly with the others. These wiring constraints are encoded into polynomials $W(X)$, which essentially shuffle (or permute) elements of a set $H^{&rsquo;}$.</p><p>The goal is to ensure that $P(x) = P(W(x)) \forall x \in H^{&rsquo;}$. Instead of performing another zero test here, which could be cumbersome, we use something called a <strong>product check</strong>. The expression to verify looks like this:
 $$L(Y,Z) = \prod_{x \in H^{&rsquo;}} \frac{P(x) + Y.W(x) + Z}{P(x)+Y.x+Z}$$
 The gist of this is that the whole expression should equal 1! If you think about it, it makes perfect sense: all the $P(x)$ values should be the same, and since $W(X)$ permutates the elements of $H^{&rsquo;}$, and because the product covers all of $H^{&rsquo;}$, we just get:
 $$L(Y,Z) = \prod_{x \in H^{&rsquo;}} \frac{P(x) + Y.W(x) + Z}{P(x)+Y.x+Z} = \frac{\prod_{x \in H^{&rsquo;}} P(x) +Y.W(x) + Z}{\prod_{x \in H^{&rsquo;}}P(x)+Y.x+Z}$$
-$$= \frac{\prod_{x \in H^{&rsquo;}} P(x) +Y.x + Z}{\prod_{x \in H^{&rsquo;}}P(x)+Y.x+Z} = 1$$</p>
-<h1 id="references">References</h1>
-<ol>
-<li>Frank Mangone. (2024, June 25). <em>Cryptography 101: Zero Knowledge Proofs (Part 2)</em>. Retrieved from <a href="https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be">https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be</a></li>
-</ol>
-<h1 id="connect-with-me">Connect with Me</h1>
-<p>Connect with me on <a href="https://www.facebook.com/dangduongminhnhat/">Facebook</a>, <a href="https://www.linkedin.com/in/nhatdang1901/">LinkedIn</a>, via email at <a href="mailto:dangduongminhnhat2003@gmail.com">dangduongminhnhat2003@gmail.com</a>, <a href="https://github.com/dangduongminhnhat">GitHub</a>, or by phone at +84829258815.</p>
-
-
-        
-          <div class="blog-tags">
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/cryptography/">Cryptography</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/">Zero-Knowledge Proofs</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/snarks/">SNARKs</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/commitment-schemes/">Commitment Schemes</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/interactive-oracle-proofs/">Interactive Oracle Proofs</a>&nbsp;
-            
-              
-              <a href="https://dangduongminhnhat.github.io/tags/arithmetic-circuits/">Arithmetic Circuits</a>&nbsp;
-            
-          </div>
-        
-
-        
-
-        
-      </article>
-      
-
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/" data-toggle="tooltip" data-placement="top" title="The Math Behind the Magic: Exploring Arithmetic Circuits and Their Role in Zero-Knowledge Proofs">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://dangduongminhnhat.github.io/posts/d030924/unmasking-cyber-threads/" data-toggle="tooltip" data-placement="top" title="Unmasking Cyber Threats: The Art of Phishing with Canarytokens and RTLO Attacks">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-      <div id="utterances-comments">
-          <script src="https://utteranc.es/client.js"
-              repo="dangduongminhnhat/dangduongminhnhat.github.io"
-              issue-term="pathname"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-          </script>
-      </div>
-
-      
-
-    </div>
-  </div>
-</div>
-
-      <footer>
-  <div class="container">
-    
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2025
-          
-
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://dangduongminhnhat.github.io/">Daminha Blog</a>
-          
-        </p>
-        
-        <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
-          
-        </p>
-      </div>
-    </div>
-  </div>
-</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-
-<script src="https://dangduongminhnhat.github.io/js/main.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dangduongminhnhat.github.io/js/load-photoswipe.js"></script>
-
-
-
-
-
-
-
-
-
-
-    
-  </body>
-</html>
-
+$$= \frac{\prod_{x \in H^{&rsquo;}} P(x) +Y.x + Z}{\prod_{x \in H^{&rsquo;}}P(x)+Y.x+Z} = 1$$</p><h1 id=references>References</h1><ol><li>Frank Mangone. (2024, June 25). <em>Cryptography 101: Zero Knowledge Proofs (Part 2)</em>. Retrieved from <a href=https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be>https://medium.com/@francomangone18/cryptography-101-zero-knowledge-proofs-part-2-9e14467ed0be</a></li></ol><h1 id=connect-with-me>Connect with Me</h1><p>Connect with me on <a href=https://www.facebook.com/dangduongminhnhat/>Facebook</a>, <a href=https://www.linkedin.com/in/nhatdang1901/>LinkedIn</a>, via email at <a href=mailto:dangduongminhnhat2003@gmail.com>dangduongminhnhat2003@gmail.com</a>, <a href=https://github.com/dangduongminhnhat>GitHub</a>, or by phone at +84829258815.</p><div class=blog-tags><a href=https://dangduongminhnhat.github.io/tags/cryptography/>Cryptography</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/zero-knowledge-proofs/>Zero-Knowledge Proofs</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/snarks/>SNARKs</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/commitment-schemes/>Commitment Schemes</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/interactive-oracle-proofs/>Interactive Oracle Proofs</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/arithmetic-circuits/>Arithmetic Circuits</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://dangduongminhnhat.github.io/posts/d150824/the-math-behind-the-magic/ data-toggle=tooltip data-placement=top title="The Math Behind the Magic: Exploring Arithmetic Circuits and Their Role in Zero-Knowledge Proofs">&larr; Previous Post</a></li><li class=next><a href=https://dangduongminhnhat.github.io/posts/d030924/unmasking-cyber-threads/ data-toggle=tooltip data-placement=top title="Unmasking Cyber Threats: The Art of Phishing with Canarytokens and RTLO Attacks">Next Post &rarr;</a></li></ul><div id=utterances-comments><script src=https://utteranc.es/client.js repo=dangduongminhnhat/dangduongminhnhat.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2025
+&nbsp;&bull;&nbsp;
+<a href=https://dangduongminhnhat.github.io/>Daminha Blog</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js integrity=sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous onload=renderMathInElement(document.body)></script><script src=https://code.jquery.com/jquery-3.7.0.slim.min.js integrity=sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js integrity=sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/load-photoswipe.js></script></body></html>
