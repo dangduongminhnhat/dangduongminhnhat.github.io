@@ -6,8 +6,15 @@
     <description>Recent content in Cryptography on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Mar 2025 23:10:29 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 08 Apr 2025 18:47:20 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 2: Semantic Security Prevents Message Recovery Attacks — A Security Reduction Proof</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p2/</link>
+      <pubDate>Tue, 08 Apr 2025 18:47:20 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p2/</guid>
+      <description>This blog introduces the notion of message recovery attacks, defines the corresponding security game, and proves that semantic security implies message recovery security via a black-box reduction. A semantic adversary is constructed by wrapping around a message recovery adversary, showing that any success in message recovery would contradict semantic security. This sets the stage for future reductions that interrelate various cryptographic security notions.</description>
+    </item>
     <item>
       <title>Cryptography 1: Perfect Security and the Limits of Perfect Security</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p1/</link>
