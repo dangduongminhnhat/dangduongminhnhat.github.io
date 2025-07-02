@@ -99,5 +99,12 @@
       <guid>https://dangduongminhnhat.github.io/posts/about-me/</guid>
       <description>Welcome to my blog! I am Dang Duong Minh Nhat, a passionate mathematics student with a strong interest in cybersecurity.</description>
     </item>
+    <item>
+      <title>All Blog Posts</title>
+      <link>https://dangduongminhnhat.github.io/posts/blog/</link>
+      <pubDate>Wed, 24 Jul 2024 19:02:25 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/blog/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

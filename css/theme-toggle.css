@@ -1,0 +1,212 @@
+/* === LIGHT THEME (default) === */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --link-color: #0066cc;
+  --navbar-bg: #f8f8f8;
+  --navbar-text: #333333;
+  --navbar-hover: #0077ff;
+}
+
+/* === DARK THEME === */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --link-color: #4ea1ff;
+  --navbar-bg: #1a1a1a;
+  --navbar-text: #e0e0e0;
+  --navbar-hover: #ffa500;
+}
+
+/* === Global styles === */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: var(--link-color);
+  transition: color 0.3s ease;
+}
+
+/* === Fix text in dark mode (titles, post meta, read more) === */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .post-meta,
+[data-theme="dark"] .read-more,
+[data-theme="dark"] .post-heading h1,
+[data-theme="dark"] .post-heading h2 {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .post-meta i,
+[data-theme="dark"] .post-meta span,
+[data-theme="dark"] .post-meta a {
+  color: var(--text-color) !important;
+  opacity: 0.9;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+/* === Navbar styles === */
+.navbar {
+  background-color: var(--navbar-bg) !important;
+  border-color: var(--navbar-bg) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar-nav > li > a,
+.navbar-brand,
+.navbar-nav > li > a span,
+.glyphicon {
+  color: var(--navbar-text) !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav > li > a:hover {
+  color: var(--navbar-hover) !important;
+}
+
+/* Optional: improve mobile view toggle (hamburger) */
+.navbar-toggle .icon-bar {
+  background-color: var(--navbar-text) !important;
+}
+
+/* Optional: box shadow for dark navbar */
+[data-theme="dark"] .navbar {
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Force dark theme for footer */
+[data-theme="dark"] footer,
+[data-theme="dark"] .site-footer,
+[data-theme="dark"] .footer,
+[data-theme="dark"] .container-footer,
+[data-theme="dark"] .row.footer {
+  background-color: var(--navbar-bg) !important;
+  color: var(--navbar-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Link trong footer */
+[data-theme="dark"] footer a,
+[data-theme="dark"] .site-footer a,
+[data-theme="dark"] .footer a {
+  color: var(--navbar-text) !important;
+}
+
+[data-theme="dark"] footer a:hover {
+  color: var(--navbar-hover) !important;
+}
+
+/* === Fix trắng nền trong dark mode === */
+[data-theme="dark"] .well,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .card,
+[data-theme="dark"] .tag-cloud,
+[data-theme="dark"] .list-tags,
+[data-theme="dark"] .taxonomy-term-card,
+[data-theme="dark"] .taxonomy-term-description,
+[data-theme="dark"] .series-box,
+[data-theme="dark"] .intro-box,
+[data-theme="dark"] .content-box,
+[data-theme="dark"] .summary-box {
+  background-color: #2a2a2a !important;
+  color: var(--text-color) !important;
+  border-color: #444 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* optional: fix for heading inside card */
+[data-theme="dark"] .well h1,
+[data-theme="dark"] .well h2,
+[data-theme="dark"] .well h3,
+[data-theme="dark"] .panel h1,
+[data-theme="dark"] .panel h2,
+[data-theme="dark"] .panel h3 {
+  color: var(--text-color) !important;
+}
+
+/* === Fix [Read More] trong dark mode === */
+[data-theme="dark"] a.post-read-more {
+  color: var(--link-color) !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] a.post-read-more:hover {
+  color: var(--link-hover) !important;
+  text-decoration: underline;
+}
+
+/* === Fix pagination button in dark mode === */
+[data-theme="dark"] .pager li a,
+[data-theme="dark"] .pagination li a,
+[data-theme="dark"] .pager li span,
+[data-theme="dark"] .pagination li span {
+  background-color: #2a2a2a !important;
+  color: var(--text-color) !important;
+  border: 1px solid #444 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .pager li a:hover,
+[data-theme="dark"] .pagination li a:hover {
+  background-color: #3c3c3c !important;
+  color: var(--link-hover) !important;
+  text-decoration: none;
+}
+
+.post-list {
+  margin-top: 40px;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.post-item {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-left: 4px solid var(--link-color);
+  background-color: rgba(0,0,0,0.03);
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .post-item {
+  background-color: #2a2a2a;
+  border-color: var(--link-hover);
+}
+
+.post-link {
+  font-size: 2rem;
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.post-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .post-item:hover {
+  background-color: #3c3c3c;
+}
+
+.post-date {
+  display: block;
+  font-size: 1.5rem;
+  color: #888;
+  margin-top: 2px;
+}
