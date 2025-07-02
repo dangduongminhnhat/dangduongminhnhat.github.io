@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DPAPI on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/dpapi/</link>
+    <description>Recent content in DPAPI on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Jul 2025 16:36:42 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/dpapi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Session Hijacking: Transferring Chrome Cookies and Bypassing Two-Factor Authentication (2FA)</title>
+      <link>https://dangduongminhnhat.github.io/posts/d020725/session-hijacking/</link>
+      <pubDate>Wed, 02 Jul 2025 16:36:42 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/d020725/session-hijacking/</guid>
+      <description>This blog is a detailed technical guide on how to perform session hijacking by extracting, decrypting, and transferring encrypted Google Chrome cookies from one computer to another. It delves into Chrome’s security mechanisms, explaining how cookies are encrypted using the AES-256-GCM algorithm and how the encryption key is protected by Windows&amp;rsquo; Data Protection API (DPAPI). The blog specifically highlights the complexities involved in handling the newer version 20 (v20) cookies, which are protected by App-Bound Encryption and require SYSTEM-level privileges to decrypt. By following the instructions provided, readers will be able to clone a login session and potentially bypass even two-factor authentication (2FA) mechanisms.</description>
+    </item>
+  </channel>
+</rss>
