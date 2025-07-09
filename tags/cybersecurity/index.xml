@@ -6,8 +6,15 @@
     <description>Recent content in CyberSecurity on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Jul 2025 16:36:42 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 09 Jul 2025 16:10:43 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Process Injection: The Journey to Penetrate Windows&#39; Protected Process Light Security Barrier</title>
+      <link>https://dangduongminhnhat.github.io/posts/d090725/process-injection/</link>
+      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/d090725/process-injection/</guid>
+      <description>A deep-dive into advanced process injection techniques, demonstrating how to bypass Windows&amp;rsquo; Protected Process Light (PPL) security mechanism. The post covers the journey from classic DLL injection to exploiting the &lt;code&gt;KnownDlls&lt;/code&gt; TOCTOU vulnerability in CSRSS, and finally using Shellcode Reflective DLL Injection (sRDI) to achieve code execution in a PPL process.</description>
+    </item>
     <item>
       <title>Session Hijacking: Transferring Chrome Cookies and Bypassing Two-Factor Authentication (2FA)</title>
       <link>https://dangduongminhnhat.github.io/posts/d020725/session-hijacking/</link>

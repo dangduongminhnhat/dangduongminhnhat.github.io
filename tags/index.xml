@@ -6,8 +6,50 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Jul 2025 16:36:42 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 09 Jul 2025 16:10:43 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CyberSecurity</title>
+      <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
+      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cybersecurity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DLL Injection</title>
+      <link>https://dangduongminhnhat.github.io/tags/dll-injection/</link>
+      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/dll-injection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PPL</title>
+      <link>https://dangduongminhnhat.github.io/tags/ppl/</link>
+      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/ppl/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Process Injection</title>
+      <link>https://dangduongminhnhat.github.io/tags/process-injection/</link>
+      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/process-injection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Red Team</title>
+      <link>https://dangduongminhnhat.github.io/tags/red-team/</link>
+      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/red-team/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows Internals</title>
+      <link>https://dangduongminhnhat.github.io/tags/windows-internals/</link>
+      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/windows-internals/</guid>
+      <description></description>
+    </item>
     <item>
       <title>2FA Bypass</title>
       <link>https://dangduongminhnhat.github.io/tags/2fa-bypass/</link>
@@ -27,13 +69,6 @@
       <link>https://dangduongminhnhat.github.io/tags/cookies/</link>
       <pubDate>Wed, 02 Jul 2025 16:36:42 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/cookies/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>CyberSecurity</title>
-      <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
-      <pubDate>Wed, 02 Jul 2025 16:36:42 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/cybersecurity/</guid>
       <description></description>
     </item>
     <item>
