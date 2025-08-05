@@ -6,8 +6,15 @@
     <description>Recent content in Security Reduction on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Apr 2025 18:47:20 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 05 Aug 2025 16:12:40 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/security-reduction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 3: Consequences and Interpretations of Semantic Security</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p3/</link>
+      <pubDate>Tue, 05 Aug 2025 16:12:40 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p3/</guid>
+      <description>This blog delves deeper into the meaning and consequences of semantic security, one of the foundational concepts of modern cryptography. We will begin by proving that a semantically secure encryption scheme does not allow an adversary to deduce even the smallest piece of partial information about the original message, such as its parity. Next, through the example of an Internet roulette game, the blog will illustrate how the definition of semantic security is applied to analyze the security of real-world applications. Finally, we will become acquainted with another, equivalent interpretation of semantic security—the bit-guessing game—a powerful and convenient tool commonly used in cryptographic proofs.</description>
+    </item>
     <item>
       <title>Cryptography 2: Semantic Security Prevents Message Recovery Attacks — A Security Reduction Proof</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p2/</link>

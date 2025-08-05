@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Jul 2025 16:10:43 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 05 Aug 2025 16:12:40 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography</title>
+      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
+      <pubDate>Tue, 05 Aug 2025 16:12:40 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security Reduction</title>
+      <link>https://dangduongminhnhat.github.io/tags/security-reduction/</link>
+      <pubDate>Tue, 05 Aug 2025 16:12:40 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/security-reduction/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Semantic Security</title>
+      <link>https://dangduongminhnhat.github.io/tags/semantic-security/</link>
+      <pubDate>Tue, 05 Aug 2025 16:12:40 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/semantic-security/</guid>
+      <description></description>
+    </item>
     <item>
       <title>CyberSecurity</title>
       <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
@@ -93,31 +114,10 @@
       <description></description>
     </item>
     <item>
-      <title>Cryptography</title>
-      <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Tue, 08 Apr 2025 18:47:20 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Message Recovery</title>
       <link>https://dangduongminhnhat.github.io/tags/message-recovery/</link>
       <pubDate>Tue, 08 Apr 2025 18:47:20 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/message-recovery/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security Reduction</title>
-      <link>https://dangduongminhnhat.github.io/tags/security-reduction/</link>
-      <pubDate>Tue, 08 Apr 2025 18:47:20 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/security-reduction/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Semantic Security</title>
-      <link>https://dangduongminhnhat.github.io/tags/semantic-security/</link>
-      <pubDate>Tue, 08 Apr 2025 18:47:20 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/semantic-security/</guid>
       <description></description>
     </item>
     <item>
