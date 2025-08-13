@@ -6,27 +6,41 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Aug 2025 16:12:40 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 13 Aug 2025 12:50:54 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cryptography</title>
       <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Tue, 05 Aug 2025 16:12:40 +0700</pubDate>
+      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pseudo-Random Generator</title>
+      <link>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</link>
+      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</guid>
       <description></description>
     </item>
     <item>
       <title>Security Reduction</title>
       <link>https://dangduongminhnhat.github.io/tags/security-reduction/</link>
-      <pubDate>Tue, 05 Aug 2025 16:12:40 +0700</pubDate>
+      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/security-reduction/</guid>
       <description></description>
     </item>
     <item>
       <title>Semantic Security</title>
       <link>https://dangduongminhnhat.github.io/tags/semantic-security/</link>
-      <pubDate>Tue, 05 Aug 2025 16:12:40 +0700</pubDate>
+      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/semantic-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stream Cipher</title>
+      <link>https://dangduongminhnhat.github.io/tags/stream-cipher/</link>
+      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/stream-cipher/</guid>
       <description></description>
     </item>
     <item>
