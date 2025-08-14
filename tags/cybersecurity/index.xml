@@ -6,8 +6,15 @@
     <description>Recent content in CyberSecurity on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Jul 2025 16:10:43 +0700</lastBuildDate>
+    <lastBuildDate>Thu, 14 Aug 2025 15:20:00 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 5: Stream Cipher Vulnerabilities and the Hybrid Argument</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p5/</link>
+      <pubDate>Thu, 14 Aug 2025 15:20:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p5/</guid>
+      <description>This blog delves into two critical aspects of stream ciphers and pseudorandom generators (PRGs). The first part exposes severe vulnerabilities that arise from the misuse of stream ciphers, focusing on two classic attacks: the &amp;ldquo;two-time pad&amp;rdquo; flaw, where key reuse leads to complete plaintext disclosure, and &amp;ldquo;malleability,&amp;rdquo; which allows an attacker to modify message content undetectably. The second part shifts from attacks to constructions, introducing a method for combining secure PRGs to create a new one with a longer output. The centerpiece of this section is the detailed presentation of the &amp;ldquo;hybrid argument,&amp;rdquo; a fundamental and powerful proof technique widely used in modern cryptography to demonstrate the security of protocols.</description>
+    </item>
     <item>
       <title>Process Injection: The Journey to Penetrate Windows&#39; Protected Process Light Security Barrier</title>
       <link>https://dangduongminhnhat.github.io/posts/d090725/process-injection/</link>

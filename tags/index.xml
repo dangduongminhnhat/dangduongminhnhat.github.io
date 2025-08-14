@@ -6,13 +6,27 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Aug 2025 12:50:54 +0700</lastBuildDate>
+    <lastBuildDate>Thu, 14 Aug 2025 15:20:00 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cryptography</title>
       <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
+      <pubDate>Thu, 14 Aug 2025 15:20:00 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CyberSecurity</title>
+      <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
+      <pubDate>Thu, 14 Aug 2025 15:20:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/cybersecurity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stream Cipher</title>
+      <link>https://dangduongminhnhat.github.io/tags/stream-cipher/</link>
+      <pubDate>Thu, 14 Aug 2025 15:20:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/stream-cipher/</guid>
       <description></description>
     </item>
     <item>
@@ -34,20 +48,6 @@
       <link>https://dangduongminhnhat.github.io/tags/semantic-security/</link>
       <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/semantic-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Stream Cipher</title>
-      <link>https://dangduongminhnhat.github.io/tags/stream-cipher/</link>
-      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/stream-cipher/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>CyberSecurity</title>
-      <link>https://dangduongminhnhat.github.io/tags/cybersecurity/</link>
-      <pubDate>Wed, 09 Jul 2025 16:10:43 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/cybersecurity/</guid>
       <description></description>
     </item>
     <item>

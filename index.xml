@@ -6,14 +6,21 @@
     <description>Recent content on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Aug 2025 12:50:54 +0700</lastBuildDate>
+    <lastBuildDate>Thu, 14 Aug 2025 15:20:00 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 5: Stream Cipher Vulnerabilities and the Hybrid Argument</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p5/</link>
+      <pubDate>Thu, 14 Aug 2025 15:20:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p5/</guid>
+      <description>This blog delves into two critical aspects of stream ciphers and pseudorandom generators (PRGs). The first part exposes severe vulnerabilities that arise from the misuse of stream ciphers, focusing on two classic attacks: the &amp;ldquo;two-time pad&amp;rdquo; flaw, where key reuse leads to complete plaintext disclosure, and &amp;ldquo;malleability,&amp;rdquo; which allows an attacker to modify message content undetectably. The second part shifts from attacks to constructions, introducing a method for combining secure PRGs to create a new one with a longer output. The centerpiece of this section is the detailed presentation of the &amp;ldquo;hybrid argument,&amp;rdquo; a fundamental and powerful proof technique widely used in modern cryptography to demonstrate the security of protocols.</description>
+    </item>
     <item>
       <title>Cryptography 4: Constructing Secure Stream Ciphers from PRGs</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p4/</link>
       <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/posts/cryptography/p4/</guid>
-      <description>This post explores the stream cipher, a practical solution to the long-key problem of the One-Time Pad. We delve into how a &amp;ldquo;pseudo-random generator&amp;rdquo; (PRG) can &amp;ldquo;stretch&amp;rdquo; a short key (seed) into a long keystream for encryption. The article&amp;rsquo;s core focuses on the formal security definition of a PRG—the concept of &amp;ldquo;computational indistinguishability&amp;rdquo;—and presents a detailed proof demonstrating that a secure PRG leads to a semantically secure stream cipher</description>
+      <description>This post explores the stream cipher, a practical solution to the long-key problem of the One-Time Pad. We delve into how a &amp;ldquo;pseudo-random generator&amp;rdquo; (PRG) can &amp;ldquo;stretch&amp;rdquo; a short key (seed) into a long keystream for encryption. The blog&amp;rsquo;s core focuses on the formal security definition of a PRG—the concept of &amp;ldquo;computational indistinguishability&amp;rdquo;—and presents a detailed proof demonstrating that a secure PRG leads to a semantically secure stream cipher.</description>
     </item>
     <item>
       <title>Cryptography 3: Consequences and Interpretations of Semantic Security</title>

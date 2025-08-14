@@ -13,7 +13,7 @@
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p4/</link>
       <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/posts/cryptography/p4/</guid>
-      <description>This post explores the stream cipher, a practical solution to the long-key problem of the One-Time Pad. We delve into how a &amp;ldquo;pseudo-random generator&amp;rdquo; (PRG) can &amp;ldquo;stretch&amp;rdquo; a short key (seed) into a long keystream for encryption. The article&amp;rsquo;s core focuses on the formal security definition of a PRG—the concept of &amp;ldquo;computational indistinguishability&amp;rdquo;—and presents a detailed proof demonstrating that a secure PRG leads to a semantically secure stream cipher</description>
+      <description>This post explores the stream cipher, a practical solution to the long-key problem of the One-Time Pad. We delve into how a &amp;ldquo;pseudo-random generator&amp;rdquo; (PRG) can &amp;ldquo;stretch&amp;rdquo; a short key (seed) into a long keystream for encryption. The blog&amp;rsquo;s core focuses on the formal security definition of a PRG—the concept of &amp;ldquo;computational indistinguishability&amp;rdquo;—and presents a detailed proof demonstrating that a secure PRG leads to a semantically secure stream cipher.</description>
     </item>
   </channel>
 </rss>
