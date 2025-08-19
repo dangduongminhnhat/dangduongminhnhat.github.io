@@ -6,8 +6,15 @@
     <description>Recent content on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Aug 2025 15:20:00 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 13:50:00 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 6: Can&#39;t predict the next bit? Your PRG is secure!</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p6/</link>
+      <pubDate>Tue, 19 Aug 2025 13:50:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p6/</guid>
+      <description>This sixth blog in the Cryptography Series explores two fundamental ideas regarding Pseudorandom Generators (PRGs). First, we will learn about the Blum-Micali method, an intelligent sequential construction that allows us to build a PRG capable of extending its output to an arbitrary length from a base PRG that only stretches its input slightly. Next, the post introduces a core security standard: next-bit unpredictability. The highlight of this post is the proof of a classic and surprising result: a PRG is considered secure (indistinguishable from a truly random sequence) if and only if no adversary can efficiently predict its next bit. This provides a solid bridge between statistical theory and practical predictability.</description>
+    </item>
     <item>
       <title>Cryptography 5: Stream Cipher Vulnerabilities and the Hybrid Argument</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p5/</link>

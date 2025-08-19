@@ -6,13 +6,34 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Aug 2025 15:20:00 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 13:50:00 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blum-Micali</title>
+      <link>https://dangduongminhnhat.github.io/tags/blum-micali/</link>
+      <pubDate>Tue, 19 Aug 2025 13:50:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/blum-micali/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cryptography</title>
       <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Thu, 14 Aug 2025 15:20:00 +0700</pubDate>
+      <pubDate>Tue, 19 Aug 2025 13:50:00 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Next-Bit Test</title>
+      <link>https://dangduongminhnhat.github.io/tags/next-bit-test/</link>
+      <pubDate>Tue, 19 Aug 2025 13:50:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/next-bit-test/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pseudo-Random Generator</title>
+      <link>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</link>
+      <pubDate>Tue, 19 Aug 2025 13:50:00 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</guid>
       <description></description>
     </item>
     <item>
@@ -27,13 +48,6 @@
       <link>https://dangduongminhnhat.github.io/tags/stream-cipher/</link>
       <pubDate>Thu, 14 Aug 2025 15:20:00 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/stream-cipher/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Pseudo-Random Generator</title>
-      <link>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</link>
-      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</guid>
       <description></description>
     </item>
     <item>

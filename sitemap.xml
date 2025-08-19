@@ -2,34 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://dangduongminhnhat.github.io/tags/cryptography/</loc>
-    <lastmod>2025-08-14T15:20:00+07:00</lastmod>
+    <loc>https://dangduongminhnhat.github.io/tags/blum-micali/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
   </url><url>
-    <loc>https://dangduongminhnhat.github.io/posts/cryptography/p5/</loc>
-    <lastmod>2025-08-14T15:20:00+07:00</lastmod>
+    <loc>https://dangduongminhnhat.github.io/tags/cryptography/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/posts/cryptography/p6/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/posts/cryptography/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/next-bit-test/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/posts/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/tags/</loc>
+    <lastmod>2025-08-19T13:50:00+07:00</lastmod>
+  </url><url>
+    <loc>https://dangduongminhnhat.github.io/posts/cryptography/p5/</loc>
     <lastmod>2025-08-14T15:20:00+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/cybersecurity/</loc>
     <lastmod>2025-08-14T15:20:00+07:00</lastmod>
   </url><url>
-    <loc>https://dangduongminhnhat.github.io/</loc>
-    <lastmod>2025-08-14T15:20:00+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/posts/</loc>
-    <lastmod>2025-08-14T15:20:00+07:00</lastmod>
-  </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/stream-cipher/</loc>
     <lastmod>2025-08-14T15:20:00+07:00</lastmod>
   </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/</loc>
-    <lastmod>2025-08-14T15:20:00+07:00</lastmod>
-  </url><url>
     <loc>https://dangduongminhnhat.github.io/posts/cryptography/p4/</loc>
-    <lastmod>2025-08-13T12:50:54+07:00</lastmod>
-  </url><url>
-    <loc>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</loc>
     <lastmod>2025-08-13T12:50:54+07:00</lastmod>
   </url><url>
     <loc>https://dangduongminhnhat.github.io/tags/security-reduction/</loc>

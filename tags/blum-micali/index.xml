@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pseudo-Random Generator on Daminha Blog</title>
-    <link>https://dangduongminhnhat.github.io/tags/pseudo-random-generator/</link>
-    <description>Recent content in Pseudo-Random Generator on Daminha Blog</description>
+    <title>Blum-Micali on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/blum-micali/</link>
+    <description>Recent content in Blum-Micali on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Aug 2025 13:50:00 +0700</lastBuildDate>
-    <atom:link href="https://dangduongminhnhat.github.io/tags/pseudo-random-generator/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dangduongminhnhat.github.io/tags/blum-micali/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cryptography 6: Can&#39;t predict the next bit? Your PRG is secure!</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p6/</link>
       <pubDate>Tue, 19 Aug 2025 13:50:00 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/posts/cryptography/p6/</guid>
       <description>This sixth blog in the Cryptography Series explores two fundamental ideas regarding Pseudorandom Generators (PRGs). First, we will learn about the Blum-Micali method, an intelligent sequential construction that allows us to build a PRG capable of extending its output to an arbitrary length from a base PRG that only stretches its input slightly. Next, the post introduces a core security standard: next-bit unpredictability. The highlight of this post is the proof of a classic and surprising result: a PRG is considered secure (indistinguishable from a truly random sequence) if and only if no adversary can efficiently predict its next bit. This provides a solid bridge between statistical theory and practical predictability.</description>
-    </item>
-    <item>
-      <title>Cryptography 4: Constructing Secure Stream Ciphers from PRGs</title>
-      <link>https://dangduongminhnhat.github.io/posts/cryptography/p4/</link>
-      <pubDate>Wed, 13 Aug 2025 12:50:54 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p4/</guid>
-      <description>This post explores the stream cipher, a practical solution to the long-key problem of the One-Time Pad. We delve into how a &amp;ldquo;pseudo-random generator&amp;rdquo; (PRG) can &amp;ldquo;stretch&amp;rdquo; a short key (seed) into a long keystream for encryption. The blog&amp;rsquo;s core focuses on the formal security definition of a PRG—the concept of &amp;ldquo;computational indistinguishability&amp;rdquo;—and presents a detailed proof demonstrating that a secure PRG leads to a semantically secure stream cipher.</description>
     </item>
   </channel>
 </rss>
