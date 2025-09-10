@@ -6,8 +6,15 @@
     <description>Recent content in Cryptography on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Aug 2025 13:50:00 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 22:45:08 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 7: From Group Theory to the Foundations of Lattice-based Cryptography</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p7/</link>
+      <pubDate>Wed, 10 Sep 2025 22:45:08 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p7/</guid>
+      <description>This blog lays the essential mathematical groundwork for understanding modern cryptography. We begin with Group Theory, exploring the definitions of a group, its order, and subgroups—abstract concepts that form the backbone of many public-key cryptosystems. The post then transitions to Vector Spaces and core linear algebra concepts like basis, linear independence, and orthogonality. Finally, we delve into the Gram–Schmidt algorithm, a powerful tool for constructing orthogonal bases, paving the way for more advanced cryptographic topics.</description>
+    </item>
     <item>
       <title>Cryptography 6: Can&#39;t predict the next bit? Your PRG is secure!</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p6/</link>

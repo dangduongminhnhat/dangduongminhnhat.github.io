@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linear Algebra on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/linear-algebra/</link>
+    <description>Recent content in Linear Algebra on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Sep 2025 22:45:08 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/linear-algebra/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 7: From Group Theory to the Foundations of Lattice-based Cryptography</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p7/</link>
+      <pubDate>Wed, 10 Sep 2025 22:45:08 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p7/</guid>
+      <description>This blog lays the essential mathematical groundwork for understanding modern cryptography. We begin with Group Theory, exploring the definitions of a group, its order, and subgroups—abstract concepts that form the backbone of many public-key cryptosystems. The post then transitions to Vector Spaces and core linear algebra concepts like basis, linear independence, and orthogonality. Finally, we delve into the Gram–Schmidt algorithm, a powerful tool for constructing orthogonal bases, paving the way for more advanced cryptographic topics.</description>
+    </item>
+  </channel>
+</rss>
