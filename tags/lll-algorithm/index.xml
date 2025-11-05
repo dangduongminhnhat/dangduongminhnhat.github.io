@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LLL Algorithm on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/lll-algorithm/</link>
+    <description>Recent content in LLL Algorithm on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Nov 2025 20:59:28 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/lll-algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 8: Foundations of Lattice Cryptography and the LLL Algorithm</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p8/</link>
+      <pubDate>Wed, 05 Nov 2025 20:59:28 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p8/</guid>
+      <description>This post, Part 8 of the Cryptography series, dives into the foundations of lattice-based cryptography. We begin by defining lattices, their bases, and crucial invariant properties like the determinant and successive minima. The post also analyzes the core NP-Hard computational problems on lattices, including the Shortest Vector Problem (SVP) and the Closest Vector Problem (CVP). Finally, we explore the LLL (Lenstra–Lenstra–Lovász) algorithm, a foundational basis reduction algorithm that finds approximate solutions to these problems in polynomial time.</description>
+    </item>
+  </channel>
+</rss>
