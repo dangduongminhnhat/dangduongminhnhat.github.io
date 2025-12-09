@@ -6,13 +6,41 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Nov 2025 20:59:28 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 09 Dec 2025 19:35:18 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Coppersmith Method</title>
+      <link>https://dangduongminhnhat.github.io/tags/coppersmith-method/</link>
+      <pubDate>Tue, 09 Dec 2025 19:35:18 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/coppersmith-method/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cryptography</title>
       <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Wed, 05 Nov 2025 20:59:28 +0700</pubDate>
+      <pubDate>Tue, 09 Dec 2025 19:35:18 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hidden Number Problem</title>
+      <link>https://dangduongminhnhat.github.io/tags/hidden-number-problem/</link>
+      <pubDate>Tue, 09 Dec 2025 19:35:18 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/hidden-number-problem/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Knapsack Problem</title>
+      <link>https://dangduongminhnhat.github.io/tags/knapsack-problem/</link>
+      <pubDate>Tue, 09 Dec 2025 19:35:18 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/knapsack-problem/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLL Algorithm</title>
+      <link>https://dangduongminhnhat.github.io/tags/lll-algorithm/</link>
+      <pubDate>Tue, 09 Dec 2025 19:35:18 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/lll-algorithm/</guid>
       <description></description>
     </item>
     <item>
@@ -20,13 +48,6 @@
       <link>https://dangduongminhnhat.github.io/tags/lattice/</link>
       <pubDate>Wed, 05 Nov 2025 20:59:28 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/lattice/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>LLL Algorithm</title>
-      <link>https://dangduongminhnhat.github.io/tags/lll-algorithm/</link>
-      <pubDate>Wed, 05 Nov 2025 20:59:28 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/tags/lll-algorithm/</guid>
       <description></description>
     </item>
     <item>

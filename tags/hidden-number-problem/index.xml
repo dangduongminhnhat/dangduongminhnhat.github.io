@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hidden Number Problem on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/hidden-number-problem/</link>
+    <description>Recent content in Hidden Number Problem on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Dec 2025 19:35:18 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/hidden-number-problem/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 9: Applications of Lattice Reduction and Lattice-based Problems</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p9/</link>
+      <pubDate>Tue, 09 Dec 2025 19:35:18 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p9/</guid>
+      <description>In this 9th installment of the Cryptography series, we explore the powerful applications of lattice reduction in both algebra and cryptanalysis. Specifically, we demonstrate how modeling problems as finding short vectors in a lattice allows us to efficiently solve the Minimal Polynomial reconstruction, Coppersmith’s method for finding small roots, Low-density Subset Sum problems (Knapsack), and the Hidden Number Problem (HNP).</description>
+    </item>
+  </channel>
+</rss>

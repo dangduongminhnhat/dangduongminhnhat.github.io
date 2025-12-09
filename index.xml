@@ -6,8 +6,15 @@
     <description>Recent content on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Nov 2025 20:59:28 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 09 Dec 2025 19:35:18 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 9: Applications of Lattice Reduction and Lattice-based Problems</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p9/</link>
+      <pubDate>Tue, 09 Dec 2025 19:35:18 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p9/</guid>
+      <description>In this 9th installment of the Cryptography series, we explore the powerful applications of lattice reduction in both algebra and cryptanalysis. Specifically, we demonstrate how modeling problems as finding short vectors in a lattice allows us to efficiently solve the Minimal Polynomial reconstruction, Coppersmith’s method for finding small roots, Low-density Subset Sum problems (Knapsack), and the Hidden Number Problem (HNP).</description>
+    </item>
     <item>
       <title>Cryptography 8: Foundations of Lattice Cryptography and the LLL Algorithm</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p8/</link>

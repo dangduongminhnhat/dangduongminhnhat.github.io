@@ -1,0 +1,277 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Cryptography 9: Applications of Lattice Reduction and Lattice-based Problems - Daminha Blog</title>
+<meta name=description content="In this 9th installment of the Cryptography series, we explore the powerful applications of lattice reduction in both algebra and cryptanalysis. Specifically, we demonstrate how modeling problems as finding short vectors in a lattice allows us to efficiently solve the Minimal Polynomial reconstruction, Coppersmith’s method for finding small roots, Low-density Subset Sum problems (Knapsack), and the Hidden Number Problem (HNP)."><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Daminha Blog","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/posts\/cryptography\/p9\/","name":"Cryptography 9 applications of lattice reduction and lattice based problems"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Dang Duong Minh Nhat"},"headline":"Cryptography 9: Applications of Lattice Reduction and Lattice-based Problems","description":"In this 9th installment of the Cryptography series, we explore the powerful applications of lattice reduction in both algebra and cryptanalysis. Specifically, we demonstrate how modeling problems as finding short vectors in a lattice allows us to efficiently solve the Minimal Polynomial reconstruction, Coppersmith’s method for finding small roots, Low-density Subset Sum problems (Knapsack), and the Hidden Number Problem (HNP).","inLanguage":"en","wordCount":4048,"datePublished":"2025-12-09T19:35:18\u002b07:00","dateModified":"2025-12-09T19:35:18\u002b07:00","image":"https:\/\/dangduongminhnhat.github.io\/","keywords":["Cryptography, LLL Algorithm, Coppersmith Method, Knapsack Problem, Hidden Number Problem"],"mainEntityOfPage":"https:\/\/dangduongminhnhat.github.io\/posts\/cryptography\/p9\/","publisher":{"@type":"Organization","name":"https:\/\/dangduongminhnhat.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/dangduongminhnhat.github.io\/","height":60,"width":60}}}</script><meta property="og:title" content="Cryptography 9: Applications of Lattice Reduction and Lattice-based Problems"><meta property="og:description" content="In this 9th installment of the Cryptography series, we explore the powerful applications of lattice reduction in both algebra and cryptanalysis. Specifically, we demonstrate how modeling problems as finding short vectors in a lattice allows us to efficiently solve the Minimal Polynomial reconstruction, Coppersmith’s method for finding small roots, Low-density Subset Sum problems (Knapsack), and the Hidden Number Problem (HNP)."><meta property="og:url" content="https://dangduongminhnhat.github.io/posts/cryptography/p9/"><meta property="og:type" content="website"><meta property="og:site_name" content="Daminha Blog"><meta name=twitter:title content="Cryptography 9: Applications of Lattice Reduction and Lattice-based …"><meta name=twitter:description content="In this 9th installment of the Cryptography series, we explore the powerful applications of lattice reduction in both algebra and cryptanalysis. Specifically, we demonstrate how modeling problems as …"><meta name=twitter:card content="summary_large_image"><meta name=generator content="Hugo 0.129.0"><link rel=alternate href=https://dangduongminhnhat.github.io/index.xml type=application/rss+xml title="Daminha Blog"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css integrity=sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css integrity=sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu crossorigin=anonymous><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/syntax.css><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/theme-toggle.css><script>const savedTheme=localStorage.getItem("theme")||"light";document.documentElement.setAttribute("data-theme",savedTheme)</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-V19WW5WSEZ"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-V19WW5WSEZ")}</script><link rel=apple-touch-icon sizes=180x180 href=/favicon_io/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon_io/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon_io/favicon-16x16.png><link rel=manifest href=/favicon_io/site.webmanifest><script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    }
+  });
+</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script><script type=text/javascript async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta name=google-site-verification content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU"><meta name=google-site-verification content="oQJmyNtEP9HjjEcXwRno2_YPeuLd5kX3jTltynIx65s"></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=https://dangduongminhnhat.github.io/>Daminha Blog</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li><a title=About href=/posts/about-me/>About</a></li><li><a title=Tags href=/tags/>Tags</a></li><li><a title="Cryptography Series" href=/posts/cryptography/>Cryptography Series</a></li><li><a title=Note href=https://hackmd.io/@daminha>Note</a></li><li><a title=Blog href=/posts/blog/>Blog</a></li><li><a href=javascript:void(0); onclick=toggleTheme() style=outline:none><span class="hidden-sm hidden-md hidden-lg">Theme</span>
+<span class="glyphicon glyphicon-adjust" id=themeGlyph></span></a></li></ul></div></div></nav><script>document.addEventListener("DOMContentLoaded",function(){const e=localStorage.getItem("theme")||"light";document.documentElement.setAttribute("data-theme",e),window.toggleTheme=function(){const t=document.documentElement.getAttribute("data-theme"),e=t==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e)}})</script><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1>Cryptography 9: Applications of Lattice Reduction and Lattice-based Problems</h1><hr class=small></div></div></div></div></div><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><strong>Posted on:</strong> December 9, 2025 |
+<strong>Reading time:</strong> 20 minutes |
+<strong>Word count:</strong> 4048 words |
+<strong>Author:</strong> Dang Duong Minh Nhat</p><p><strong>Hello everyone!</strong> Today, we’re going to explore how <strong>lattices</strong> can be applied to solve several problems in <strong>cryptography</strong>. To get the most out of this post, you should first read <strong><a href=https://dangduongminhnhat.github.io/posts/cryptography/p7/>Part 7</a></strong>, <strong><a href=https://dangduongminhnhat.github.io/posts/cryptography/p8/>Part 8</a></strong>, and the other posts in this <strong><a href=https://dangduongminhnhat.github.io/posts/cryptography/>cryptography series</a></strong>. Alright, let’s get started!</p><hr><h2 id=backgrounds>Backgrounds</h2><p>To better understand the problems discussed in this blog, we need to review some of the following theories.</p><h3 id=abelian-groups>Abelian Groups</h3><p><strong>Definition (Abelian Group).</strong> A group $\mathbb{G}$ is called <strong>abelian</strong> if it satisfies the commutative property. That is, for all $a, b \in \mathbb{G}$, we have:</p><p>$$
+a \cdot b = b \cdot a.
+$$</p><p><strong>Example.</strong> The group $(\mathbb{Z}, +)$, the set of integers under addition, is an abelian group because for all $a, b \in \mathbb{Z}$, we have:</p><p>$$
+a + b = b + a.
+$$</p><h3 id=field-theory>Field Theory</h3><p><strong>Definition (Field).</strong> A <strong>field</strong> is a set $\mathbb{F}$, together with two operations: addition $(+)$ and multiplication $(\cdot)$, satisfying the following properties:</p><ul><li><strong>Additive Group:</strong> The set $(\mathbb{F}, +)$ is an abelian group with the identity element $0$.</li><li><strong>Multiplicative Group:</strong> The set $(\mathbb{F} \setminus \left\lbrace 0\right\rbrace, \cdot)$ is an abelian group with the identity element $1 \neq 0$.</li><li><strong>Distributivity:</strong> Multiplication distributes over addition; that is, for all $a, b, c \in \mathbb{F}$, we have
+$$
+a \cdot (b + c) = a \cdot b + a \cdot c.
+$$</li></ul><p><strong>Example.</strong> Consider $\mathbb{Z}_{23}$, the set of integers modulo $23$, with addition “$+$” and multiplication “$\cdot$” defined modulo $23$. The identity elements for addition and multiplication in $(\mathbb{Z}_{23}, +, \cdot)$ are $0$ and $1$, respectively. Thus, $\mathbb{Z}_{23}$ is a <strong>field</strong>.</p><h2 id=applications-of-lattice-reduction>Applications of Lattice Reduction</h2><p>If we can model a specific problem where the solution exists as a short vector in a certain lattice, we can solve it using <strong>lattice reduction</strong>. Before discussing the applications of lattice reduction in cryptography, we will look at an application in algebra. The problem considered here is <strong>reconstructing the minimal polynomial</strong> of an algebraic number given only an approximation of that number. This problem is proven to be solvable using lattice reduction.</p><p><strong>Definition (Minimal Polynomial).</strong> Let $\alpha \in F$ where $F$ is a field. The minimal polynomial of $\alpha$ is the monic polynomial of the lowest degree in $F[x]$ such that $\alpha$ is a root.</p><p>We will use lattice reduction to find the minimal polynomial $f(x)$ of $\alpha = 7 + \sqrt[3]{5}$ given the approximation $7 + \sqrt[3]{5} \approx 8.70997594 = \beta$ up to 8 decimal places.</p><p>First, we suspect that $f$ has degree 3, so we write:</p><p>$$
+f(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3, \quad a_i \in \mathbb{R}.
+$$</p><p>Since $f(\alpha) = 0$, it implies $f(\beta) \approx 0$. To work with integers, we multiply this expression by $10^8$ to get:</p><p>$$
+10^8 a_0 + \lfloor 10^8 \beta \rfloor a_1 + \lfloor 10^8 \beta^2 \rfloor a_2 + \lfloor 10^8 \beta^3 \rfloor a_3 \approx 0.
+$$</p><p>Now, consider the lattice with the basis (given by rows):</p><p>$$
+\begin{aligned}
+\mathbf{B} & =
+\begin{bmatrix}
+10^8 & 1 & 0 & 0 \\
+\lfloor 10^8 \beta \rfloor & 0 & 1 & 0 \\
+\lfloor 10^8 \beta^2 \rfloor & 0 & 0 & 1 \\
+\lfloor 10^8 \beta^3 \rfloor & 0 & 0 & 0
+\end{bmatrix} \\
+& =
+\begin{bmatrix}
+100000000 & 1 & 0 & 0 \\
+870997594 & 0 & 1 & 0 \\
+7586368087 & 0 & 0 & 1 \\
+66077083514 & 0 & 0 & 0
+\end{bmatrix}
+\end{aligned}
+$$</p><p>Note that the target vector $\mathbf{x} = (c, a_0, a_1, a_2)$ containing the coefficients of the minimal polynomial lies in this lattice via the linear combination $\mathbf{t} = (a_0, a_1, a_2, 1)$. That is:</p><p>$$
+\mathbf{tB} = \mathbf{x}.
+$$</p><p>Here, $c$ is an integer very close to $0$. Next, running the LLL algorithm on the basis $\mathbf{B}$ gives us the reduced basis $\mathbf{B}&rsquo;$:</p><p>$$
+\mathbf{B}&rsquo; =
+\begin{bmatrix}
+5 & -348 & 147 & -21 \\
+438 & -75 & 116 & 188 \\
+109 & -214 & -563 & -159 \\
+357 & 136 & 220 & -419
+\end{bmatrix}.
+$$</p><p>The first row gives us the shortest vector, and we recognize this as the solution because the first element $5$ is very close to $0$.</p><p>Reading the coefficients from this vector, we get:</p><p>$$
+a_0 = -348, \quad a_1 = 147, \quad a_2 = -21.
+$$</p><p>Thus, the minimal polynomial of $\alpha = 7 + \sqrt[3]{5}$ is:</p><p>$$
+f(x) = x^3 - 21x^2 + 147x - 348.
+$$</p><h2 id=lattice-based-problems>Lattice-based Problems</h2><p>In this section, we study several problems that can be solved by modeling them as $\textbf{SVP}_\gamma$ or $\textbf{CVP}_\gamma$ problems. These problems can be characterized by their linearity; we call them <strong>lattice-based problems</strong>.</p><h3 id=coppersmiths-method>Coppersmith&rsquo;s Method</h3><p>In this section, we present <strong>a simple, informal overview</strong> of Coppersmith&rsquo;s method in the <strong>univariate case</strong>.</p><p>Let $N$ be a composite number and $f(x) = x^d + \sum_{i=0}^{d-1} a_i x^i \in \mathbb{Z}[x]$ be a monic polynomial of degree $d$. Coppersmith&rsquo;s method helps us <strong>find all integer roots $x_0$ of the equation $f(x_0) = 0 \pmod N$</strong> such that $|x_0| &lt; B$ for a bound $B$ depending on $N$ and $d$.</p><p>The main idea of the algorithm is to <strong>construct a polynomial $h(x)$ over the integers</strong> that also satisfies $h(x_0) = 0$. Since there are efficient algorithms to find roots of univariate polynomials over $\mathbb{Z}$, finding such a polynomial allows us to find the roots of the original polynomial. To achieve this, we observe that <strong>adding integer multiples of $g_i(x) = N x^i \in \mathbb{Z}[x]$ to $f$</strong> results in polynomials sharing the same roots as $f$ modulo $N$. Thus, we consider the <strong>lattice</strong> generated by the rows of the following matrix $\mathbf{B}$:</p><p>$$
+\mathbf{B} =
+\begin{bmatrix}
+N & & & & \\
+& BN & & & \\
+& & B^2 N & & \\
+& & & \ddots & \\
+& & & & B^{d-1} N \\
+a_0 & a_1 B & a_2 B^2 & \cdots & a_{d-1} B^{d-1} & B^d
+\end{bmatrix}
+$$</p><p>The first rows encode the polynomials $g_i(Bx)$ for $0 \le i &lt; d$, while the last row encodes $f(Bx)$. Consequently, <strong>each vector in this lattice represents a polynomial sharing the same roots as $f$ modulo $N$</strong>.</p><p>Crucially, if there exists a polynomial $h(x)$ in this lattice such that $|h(x_0)| &lt; N$, then we have $h(x_0) = 0$ over $\mathbb{Z}$. To achieve this, the polynomial needs to have &ldquo;small&rdquo; coefficients; specifically, we desire that:</p><p>$$
+|h_i x_0^i| \le |h_i B^i| &lt; \frac{N}{d + 1}
+$$</p><p>for every coefficient $h_i$ of $h(x)$ (since $h(x)$ has $d+1$ coefficients). Therefore, we want the coefficients $h_i$ to be as small as possible. Since each vector in the lattice corresponds to a polynomial $h(Bx)$ sharing roots modulo $N$ with $f$, if we find a short vector in the lattice, the coefficients of the corresponding polynomial will be small, ensuring $|h(x_0)| &lt; N \Rightarrow h(x_0) = 0$ in $\mathbb{Z}$. Thus, we use LLL to find a short vector—i.e., the desired polynomial.</p><p>Since $\mathbf{B}$ is a triangular matrix, we can easily calculate:</p><p>$$
+\det(\mathcal{L}(\mathbf{B})) = \det(\mathbf{B}) = B^{d(d+1)/2} N^d
+$$</p><p>From <strong>Proposition 15</strong> in <a href=https://dangduongminhnhat.github.io/posts/cryptography/p8/>Cryptography 8</a>, with $\delta = 3/4$, we have:</p><p>$$
+\begin{aligned}
+\lVert \mathbf{b}_1\rVert & \le
+\left(
+\frac{2}{\sqrt{4\delta - 1}}
+\right)^d
+\sqrt{d + 1} |\det(\mathcal{L})|^{1/(d + 1)} \\
+& = 2^{d/2} \sqrt{d + 1} B^{d/2} N^{d/(d + 1)} \\
+& = 2^{d/2} \sqrt{d + 1} B^{d/2} N N^{-1/(d+1)}
+\end{aligned}
+$$</p><p>Where $\mathbf{b}_1 = (b_0, \dots, b_d)$ is the first vector in the LLL-reduced basis. We choose this vector as the coefficients of the polynomial $h(Bx)$ and see that by setting:</p><p>$$
+B &lt; N^{\frac{2}{d(d+1)}} / \big(2(d + 1)^{3/d}\big)
+$$</p><p>we achieve the desired conditions on the coefficients $h_i$:</p><p>$$
+|h_i B^i| = |b_i| \le \lVert \mathbf{b}_1\rVert &lt; \frac{N}{d + 1}
+$$</p><p>Therefore, to find small roots of $f \bmod N$, we take:</p><p>$$
+h(x) = b_0 + \frac{b_1}{B}x + \frac{b_2}{B^2}x^2 + \cdots + \frac{b_{d-1}}{B^{d-1}}x^{d-1} + x^d
+$$</p><p>and solve for the roots of $h(x)$ over $\mathbb{Z}$. Then, we check each root to ensure it is a root of $f \bmod N$.</p><h4 id=example>Example</h4><p>Let $N = 23 \cdot 29 = 667$ and $f(x) = x^2 + 6x + 352 \in \mathbb{Z}[x]$. Note that $f$ has a small root $x_0 = 15$ modulo $N$ but does not have that root over $\mathbb{Z}$. That is, $f(15) = 0 \pmod N$, but $f(15) \ne 0$. We use Coppersmith&rsquo;s method as above to find this small root. Choose $B = 20$ and construct the lattice generated by the rows of matrix $\mathbf{B}$:</p><p>$$
+\begin{aligned}
+\mathbf{B} & =
+\begin{bmatrix}
+667 & 0 & 0 \\
+0 & 20 \cdot 667 & 0 \\
+352 & 6 \cdot 20 & 20^2
+\end{bmatrix} \\
+& =
+\begin{bmatrix}
+667 & 0 & 0 \\
+0 & 13340 & 0 \\
+352 & 120 & 400
+\end{bmatrix}
+\end{aligned}
+$$</p><p>Running the <strong>LLL algorithm</strong> on this basis yields the reduced basis $\mathbf{B}&rsquo;$:</p><p>$$
+\mathbf{B}&rsquo; =
+\begin{bmatrix}
+-315 & 120 & 400 \\
+352 & 120 & 400 \\
+167 & 12260 & -3600
+\end{bmatrix}
+$$</p><p>We take the first row and interpret it as the coefficients of the polynomial $h(Bx)$:</p><p>$$
+h(Bx) = 400x^2 + 120x - 315
+$$</p><p>Therefore:</p><p>$$
+h(x) = \frac{400}{20^2}x^2 + \frac{120}{20}x - 315 = x^2 + 6x - 315
+$$</p><p>Solving $h(x)$ (using the quadratic formula or Newton’s method), we get the root $x_0 = 15$. Note that we also obtain the root $x_0 = -21$, which has an absolute value greater than $B$. In practice, Coppersmith&rsquo;s method often performs better than theoretical bounds suggest.</p><h3 id=the-knapsack-problem>The Knapsack Problem</h3><p>The knapsack problem is a famous computational problem belonging to the <strong>NP-complete</strong> class, and it was once used as a <strong>trapdoor function</strong> in some public-key cryptosystems. The most common version of the knapsack problem in <strong>cryptography and cryptanalysis</strong> is the <strong>subset sum problem</strong>, where we need to find a subset of a given set of numbers such that their sum equals a specific target value. In this section, we will study a special case of the subset sum problem, as well as the modular subset sum problem and its generalizations.</p><h4 id=low-density-subset-sum-problems>Low-density Subset Sum Problems</h4><p><strong>Definition (Subset Sum Problem).</strong> Given positive integers $a_1, \ldots, a_n$ (called <strong>weights</strong>) and a target integer $s$, find a subset of $a_i$ such that their sum equals $s$. That is, find $e_1, \ldots, e_n$ with $e_i \in \left\lbrace 0, 1\right\rbrace$ such that:</p><p>$$
+\sum_{i=1}^{n} e_i a_i = s
+$$</p><p>Many cryptosystems based on the subset sum problem have been proven <strong>insecure</strong> due to algorithms capable of solving special cases of <strong>low-density subset sum problems</strong>.</p><p>The <strong>density</strong> of a set of weights $a_1, \ldots, a_n$ is defined as:</p><p>$$
+d = \frac{n}{\log_2 \max(a_i)}
+$$</p><p>Lagarias and Odlyzko proposed the <strong>LO algorithm</strong>, which can solve subset sum problems when $d &lt; 0.6463$ given access to an <strong>SVP oracle</strong> (Shortest Vector Problem oracle). Similarly, Coster et al. proposed the <strong>CJLOSS algorithm</strong>, a slight improvement on LO, raising the bound to $d &lt; 0.9408$. Both algorithms are based on <strong>lattice reduction</strong> and are proven to be quite practical.</p><p>The strategy is to <strong>construct a lattice</strong> containing a vector that represents the $e_i$&rsquo;s as a <strong>short vector</strong>. A simple lattice following this idea is generated by the rows of the basis matrix:</p><p>$$
+\mathbf{B} =
+\begin{bmatrix}
+1 & & & & a_1 \\
+& 1 & & & a_2 \\
+& & \ddots & & \vdots \\
+& & & 1 & a_n \\
+& & & & s
+\end{bmatrix}
+$$</p><p>Note that the linear combination $\mathbf{t} = (e_1, \ldots, e_n, -1)$ yields the (short) vector $\mathbf{x}_1 = (e_1, \ldots, e_n, 0)$, meaning $\mathbf{tB} = \mathbf{x}_1$. Thus, we can expect that <strong>lattice reduction</strong> will help us find this vector. The <strong>CJLOSS</strong> algorithm uses a slightly different lattice, with basis $\mathbf{B}&rsquo;$ given by:</p><p>$$
+\mathbf{B}&rsquo; =
+\begin{bmatrix}
+1 & & & & N a_1 \\
+& 1 & & & N a_2 \\
+& & \ddots & & \vdots \\
+& & & 1 & N a_n \\
+\frac{1}{2} & \frac{1}{2} & \cdots & \frac{1}{2} & N s
+\end{bmatrix}
+$$</p><p>where $N > \sqrt{n}$ is an integer. In this case, the same linear combination $\mathbf{t} = (e_1, \ldots, e_n, -1)$ yields the vector:</p><p>$$
+\mathbf{x}_2 = (e_1 - \tfrac{1}{2}, \ldots, e_n - \tfrac{1}{2}, 0)
+$$</p><p>thus $\lVert \mathbf{x}_2 \rVert = \tfrac{1}{2}\sqrt{n}$. The <strong>probability $P$ that $\mathbf{x}_2$ is not the unique shortest vector in the lattice</strong> is bounded by:</p><p>$$
+P \le n(4n\sqrt{n} + 1)\frac{2^{c_0 n}}{\max(a_i)}
+$$</p><p>with $c_0 = 1.0628\ldots$. This upper bound approaches $0$ when $\max(a_i) > 2^{c_0 n}$, and therefore:</p><p>$$
+\begin{aligned}
+& \max(a_i) > 2^{c_0 n} \\
+\implies & \log_2 \max(a_i) > c_0 n \\
+\implies & \frac{1}{c_0} > \frac{n}{\log_2 \max(a_i)} \\
+\implies & d &lt; \frac{1}{c_0} \\
+\implies & d &lt; 0.9408\ldots
+\end{aligned}
+$$</p><p>Thus, most subset sum problems with density $d &lt; 0.9408$ can be solved efficiently given an <strong>SVP oracle</strong>. In practice, such an oracle does not exist, but the <strong>LLL algorithm</strong> often finds a vector short enough to solve the subset sum problem. Moreover, the theoretical bound $d &lt; 0.9408$ is not absolute—higher density instances can often be solved in practice.</p><p><strong>Example.</strong> Let $(a_1, a_2, a_3, a_4, a_5, a_6) = (83, 59, 47, 81, 76, 51)$ with $n = 6$ and target $s = 291$. The density of this problem is:</p><p>$$
+d = \frac{n}{\log_2 \max(a_i)} = \frac{6}{6.375} = 0.9412
+$$</p><p>Although this density is <strong>slightly higher</strong> than the theoretical limit, we still apply the <strong>CJLOSS</strong> algorithm to test it. With $N = 3$, we construct the lattice generated by the rows of $\mathbf{B}$ (as above). After <strong>running the LLL algorithm</strong>, we obtain the reduced basis $\mathbf{B}&rsquo;$ and the first vector:</p><p>$$
+\mathbf{b}_1 = \left(-\frac{1}{2}, \frac{1}{2}, \frac{1}{2}, -\frac{1}{2}, -\frac{1}{2}, -\frac{1}{2}, 0\right)
+$$</p><p>which is the vector $\mathbf{x} = (e_1 - \tfrac{1}{2}, \ldots, e_6 - \tfrac{1}{2}, 0)$ (or $-\mathbf{x}$). We deduce the $e_i$&rsquo;s by calculating:</p><p>$$
+(e_1, e_2, e_3, e_4, e_5, e_6) = \left(\frac{1}{2} - b_1, \ldots, \frac{1}{2} - b_6\right)
+= (1, 0, 0, 1, 1, 1)
+$$</p><p>and clearly:</p><p>$$
+\sum_{i=1}^{n} e_i a_i = s
+$$</p><p>The above method can be <strong>extended</strong> to other variants such as:</p><ul><li><strong>Multiple Subset Sum Problem</strong></li><li><strong>Modular Subset Sum Problem</strong></li><li><strong>Multiple Modular Subset Sum Problem</strong></li></ul><p><strong>Definition (Multiple Subset Sum Problem).</strong> Given positive integers $a_{1,1}, \ldots, a_{k,n}$ (weights) and target integers $s_1, \ldots, s_k$, find $e_1, \ldots, e_n$ with $e_i \in \left\lbrace 0, 1\right\rbrace$ such that:</p><p>$$
+\sum_{i=1}^{n} e_i a_{j,i} = s_j \quad \text{for all } 1 \le j \le k
+$$</p><p>The density of the <strong>multiple subset sum problem</strong> is defined as:</p><p>$$
+d = \frac{n}{k \cdot \log_2 \max(a_{j,i})}
+$$</p><p>The <strong>multiple subset sum problem</strong> can be solved with the same density bound $d &lt; 0.9408$ using a lattice with basis $\mathbf{B}$ given by:</p><p>$$
+\mathbf{B} =
+\begin{bmatrix}
+1 & & & & 0 & N a_{1,1} & N a_{2,1} & \cdots & N a_{k,1} \\
+& 1 & & & 0 & N a_{1,2} & N a_{2,2} & \cdots & N a_{k,2} \\
+& & \ddots & & \vdots & \vdots & & \vdots & \vdots \\
+& & & 1 & 0 & N a_{1,n} & N a_{2,n} & \cdots & N a_{k,n} \\
+\frac{1}{2} & \frac{1}{2} & \cdots & \frac{1}{2} & \frac{1}{2} & N s_1 & N s_2 & \cdots & N s_k
+\end{bmatrix}
+$$</p><p>with $N > \sqrt{\frac{n+1}{4}}$. As before, the linear combination $(e_1, \ldots, e_n, -1)$ yields the short vector:</p><p>$$
+\mathbf{x} = (e_1 - \tfrac{1}{2}, \ldots, e_n - \tfrac{1}{2}, -\tfrac{1}{2}, 0, \ldots, 0)
+$$</p><p>and thus, we expect lattice reduction to find this target vector.</p><p><strong>Definition (Modular Subset Sum Problem).</strong> Given positive integers $a_1, \ldots, a_n$ (weights), a target integer $s$, and a <strong>modulus $M$</strong>, find $e_1, \ldots, e_n$ with $e_i \in \left\lbrace 0, 1\right\rbrace$ such that:</p><p>$$
+\sum_{i=1}^{n} e_i a_i \equiv s \pmod{M}
+$$</p><p><strong>Definition (Multiple Modular Subset Sum Problem).</strong> Given positive integers $a_{1,1}, \ldots, a_{k,n}$ (weights), target integers $s_1, \ldots, s_k$, and a modulus $M$, find $e_1, \ldots, e_n$ with $e_i \in \left\lbrace 0, 1\right\rbrace$ such that:</p><p>$$
+\sum_{i=1}^{n} e_i a_{j,i} \equiv s_j \pmod{M}
+$$</p><p>for all $1 \le j \le k$. The density of the <strong>multiple modular subset sum problem</strong> is defined as:</p><p>$$
+d = \frac{n}{k \cdot \log_2 M}
+$$</p><p>Note that the standard <strong>modular subset sum problem</strong> is just a special case where $k = 1$. The <strong>multiple modular subset sum problem</strong> can be solved when $d &lt; 0.9408$ and</p><p>$$
+k = \mathcal{o}\left(\frac{n}{\log_2((n+1)\sqrt{n+1})}\right)
+$$</p><p>using a lattice with basis $\mathbf{B}&rsquo;$ given by:</p><p>$$
+\mathbf{B}&rsquo; =
+\begin{bmatrix}
+1 & & & & 0 & N a_{1,1} & N a_{2,1} & \cdots & N a_{k,1} \\
+& 1 & && 0 & N a_{1,2} & N a_{2,2} & \cdots & N a_{k,2} \\
+& & \ddots & & \vdots & \vdots & & \vdots & \vdots \\
+& & & 1 & 0 & N a_{1,n} & N a_{2,n} & \cdots & N a_{k,n} \\
+& & & & & N M \\
+& & & & & & N M \\
+& & & & & & & \ddots \\
+& & & & & & & & N M \\
+\frac{1}{2} & \frac{1}{2} & \cdots & \frac{1}{2} & \frac{1}{2} & N s_1 & N s_2 & \cdots & N s_k
+\end{bmatrix}
+$$</p><p>To see why the target vector lies in this lattice, we rewrite the modular equations:</p><p>$$
+\sum_{i=1}^{n} e_i a_{j,i} = s_j \pmod{M}
+$$</p><p>as</p><p>$$
+\sum_{i=1}^{n} e_i a_{j,i} = s_j + \ell_j M
+$$</p><p>and observe that the linear combination $(e_1, \ldots, e_n, -\ell_1, \ldots, -\ell_k, -1)$ yields the target vector:</p><p>$$
+\mathbf{x} = (e_1 - \tfrac{1}{2}, \ldots, e_n - \tfrac{1}{2}, -\tfrac{1}{2}, 0, \ldots, 0)
+$$</p><h3 id=the-hidden-number-problem>The Hidden Number Problem</h3><p>The Hidden Number Problem (HNP) was introduced for the purpose of proving results related to the <strong>bit security</strong> of the Diffie–Hellman key exchange protocol. Broadly speaking, HNP deals with <strong>recovering a secret &ldquo;hidden&rdquo; number</strong> when we have partial information about its <strong>linear relations</strong>. Consequently, HNP has naturally become useful in <strong>cryptography</strong>, specifically in <strong>side-channel attacks</strong>. In this section, we will study the hidden number problem as well as its extended version.</p><p>The original formulation of HNP is to <strong>find a secret integer $\alpha$ modulo $p$</strong> (where $p$ is a known prime), given the <strong>most significant bits (MSB)</strong> of a number of values $t_i \alpha \bmod p$, where $t_i$ are known random numbers. We will follow a reformulation, which is a slight variant, modeling the problem as <strong>finding the solution to a system of linear equations</strong>.</p><p><strong>Definition (Hidden Number Problem).</strong> Let $p$ be a prime and $\alpha \in [1, p - 1]$ be a secret integer. Recover $\alpha$ given $m$ pairs of integers $\left\lbrace (t_i, a_i)\right\rbrace_{i=1}^m$ such that:</p><p>$$
+\beta_i - t_i \alpha + a_i \equiv 0 \pmod{p}
+$$</p><p>where $\beta_i$ are unknown values satisfying $|\beta_i| &lt; B$ for a constant $B &lt; p$. With suitable parameters, HNP can be solved by <strong>reduction to the Closest Vector Problem (CVP)</strong>. Consider the matrix with basis $\mathbf{B}$ given by:</p><p>$$
+\mathbf{B} =
+\begin{bmatrix}
+p & & & & \\
+& p & & & \\
+& & \ddots & & \\
+& & & p & \\
+t_1 & t_2 & \cdots & t_m & 1/p
+\end{bmatrix}
+$$</p><p>By rewriting the HNP equation as $\beta_i + a_i = t_i \alpha + k_i p$ with $k_i$ being integers, we see that the linear combination $\mathbf{x} = (k_1, \ldots, k_m, \alpha)$ generates the lattice vector:</p><p>$$
+\mathbf{xB} = (\beta_1 + a_1, \ldots, \beta_m + a_m, \alpha/p)
+$$</p><p>Let $\mathbf{t} = (a_1, \ldots, a_m, 0)$ and $\mathbf{u} = (\beta_1, \ldots, \beta_m, \alpha/p)$, we have $\mathbf{xB - t = u}$. The length of $\mathbf{u}$ is bounded by $\sqrt{m+1}B$, while the lattice determinant is $p^{m-1}$. Therefore, we can expect that a <strong>CVP approximation algorithm</strong> will find vector $\mathbf{u}$, from which we can read the secret value $\alpha$ by multiplying the last element by $p$. It has been shown that this method <strong>succeeds using Babai&rsquo;s algorithm combined with LLL</strong>, if:</p><p>$$
+m = 2 \left\lceil \sqrt{\log p} \right\rceil
+$$</p><p>and</p><p>$$
+B \le \frac{p}{2^k}
+\quad \text{with} \quad
+k = \left\lceil \sqrt{\log p} \right\rceil + \left\lceil \log \log p \right\rceil
+$$</p><p>In practice, HNP can be solved with looser parameter conditions, especially in small dimensions and with optimizations like <strong>recentering</strong>. Furthermore, studies suggest that the <strong>SVP (Shortest Vector Problem)</strong> method using <strong>Kannan’s embedding</strong> is often <strong>more effective than the CVP method</strong>. With the SVP method, we <strong>embed the target vector of the CVP</strong> into the lattice basis as an extra row, obtaining basis $\mathbf{B}&rsquo;$:</p><p>$$
+\mathbf{B}&rsquo; =
+\begin{bmatrix}
+p & & & & \\
+& p & & & \\
+& & \ddots & & \\
+& & & p & \\
+t_1 & t_2 & \cdots & t_m & B/p \\
+a_1 & a_2 & \cdots & a_m & & B
+\end{bmatrix}
+$$</p><p>This lattice contains the vector:</p><p>$$
+\mathbf{u}&rsquo; = (\beta_1, \ldots, \beta_m, \alpha B/p, -B)
+$$</p><p>generated by the linear combination $(k_1, \ldots, k_m, \alpha, -1)$. We have $\lVert \mathbf{u}&rsquo;\rVert &lt; \sqrt{m+2}B$, so we have a high probability of finding this short vector among the basis vectors of the <strong>LLL-reduced basis</strong>. Notably, a vector shorter than $(0, \ldots, 0, B, 0)$ also belongs to this lattice, generated by the combination $( -t_1, \ldots, -t_m, p, 0 )$, so $\mathbf{u}&rsquo;$ is likely to be the <strong>second vector in the basis after LLL reduction</strong>.</p><h4 id=example-1>Example</h4><p>Let $p = 401$ and $(t_1, t_2, t_3) = (143, 293, 304)$. We will use the SVP method to solve the HNP and recover the secret integer $\alpha = 309$. Suppose we have:</p><p>$$
+\beta_i - t_i \alpha + a_i \equiv 0 \pmod{p}, \quad i \in \left\lbrace 1, 2, 3\right\rbrace
+$$</p><p>with $(a_1, a_2, a_3) = (62, 300, 86)$ and $\beta_i &lt; B = 20$. We construct the matrix generated by the rows of $\mathbf{B}$:</p><p>$$
+\begin{aligned}
+\mathbf{B} & =
+\begin{bmatrix}
+p & 0 & 0 & 0 & 0 \\
+0 & p & 0 & 0 & 0 \\
+0 & 0 & p & 0 & 0 \\
+t_1 & t_2 & t_3 & B/p & 0 \\
+a_1 & a_2 & a_3 & 0 & B
+\end{bmatrix} \\
+& =
+\begin{bmatrix}
+401 & 0 & 0 & 0 & 0 \\
+0 & 401 & 0 & 0 & 0 \\
+0 & 0 & 401 & 0 & 0 \\
+143 & 293 & 304 & 20/401 & 0 \\
+62 & 300 & 86 & 0 & 20
+\end{bmatrix}
+\end{aligned}
+$$</p><p>Running the <strong>LLL algorithm</strong> on this basis, we obtain the LLL-reduced basis $\mathbf{B}&rsquo;$:</p><p>$$
+\mathbf{B}&rsquo; =
+\begin{bmatrix}
+0 & 0 & 0 & 20 & 0 \\
+-15 & -12 & -16 & \frac{1840}{401} & 20 \\
+24 & -5 & -6 & -\frac{1800}{401} & 20 \\
+6 & -42 & -5 & -\frac{1440}{401} & -40 \\
+-11 & -1 & 57 & -\frac{3880}{401} & 20
+\end{bmatrix}
+$$</p><p>As expected, the first basis vector is $(0, 0, 0, B, 0)$. To recover $\alpha$, we examine the other basis vectors. Our target vector is $\mathbf{u} = (\beta_1, \beta_2, \beta_3, \alpha B/p, -B)$, and although no basis vector has the last element $-20$, $-\mathbf{u}$ has the same length and may be in the basis. Indeed, $-\mathbf{u}$ is found in the second basis vector, and it satisfies $\beta_i &lt; B$ for $i \in \left\lbrace 1, 2, 3\right\rbrace$. Thus, we can read $\alpha$ from the penultimate element of $-\mathbf{u}$:</p><p>$$
+\alpha = -\left( \frac{1840}{401} \right) \cdot \frac{401}{20} \bmod p = 309
+$$</p><hr><p>Through this post, we have seen that lattice reduction (specifically the LLL algorithm) is not merely a theoretical concept but a versatile tool with profound implications in cryptanalysis. By transforming complex constraints into linear relations within a lattice, we can reduce hard problems—such as finding small roots modulo $N$ (Coppersmith), solving knapsack-type cryptosystems, or recovering secret keys from side-channel leakage (HNP)—into the problem of finding short vectors (SVP/CVP). Understanding these attacks is crucial, as they form the foundation for assessing the security parameters of modern cryptographic primitives and pave the way for understanding Lattice-based Cryptography in the post-quantum era.</p><h2 id=references>References</h2><ol><li>Joseph Surin and Shaanan Cohney. (2023). <em>A Gentle Tutorial for Lattice-Based Cryptanalysis</em>. Retrieved from <a href=https://eprint.iacr.org/2023/032.pdf>https://eprint.iacr.org/2023/032.pdf</a></li></ol><h2 id=connect-with-me>Connect with Me</h2><p>Connect with me on <a href=https://www.facebook.com/dangduongminhnhat/>Facebook</a>, <a href=https://www.linkedin.com/in/nhatdang1901/>LinkedIn</a>, via email at <a href=mailto:dangduongminhnhat2003@gmail.com>dangduongminhnhat2003@gmail.com</a>, <a href=https://github.com/dangduongminhnhat>GitHub</a>, or by phone at <a href=tel:+84829258815>+84 829 258 815</a>.</p><div class=blog-tags><a href=https://dangduongminhnhat.github.io/tags/cryptography/>Cryptography</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/lll-algorithm/>LLL Algorithm</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/coppersmith-method/>Coppersmith Method</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/knapsack-problem/>Knapsack Problem</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/hidden-number-problem/>Hidden Number Problem</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://dangduongminhnhat.github.io/posts/cryptography/p8/ data-toggle=tooltip data-placement=top title="Cryptography 8: Foundations of Lattice Cryptography and the LLL Algorithm">&larr; Previous Post</a></li></ul><div id=utterances-comments><script src=https://utteranc.es/client.js repo=dangduongminhnhat/dangduongminhnhat.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2025
+&nbsp;&bull;&nbsp;
+<a href=https://dangduongminhnhat.github.io/>Daminha Blog</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js integrity=sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous onload=renderMathInElement(document.body)></script><script src=https://code.jquery.com/jquery-3.7.0.slim.min.js integrity=sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js integrity=sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/load-photoswipe.js></script></body></html>
