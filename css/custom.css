@@ -1,0 +1,54 @@
+/* base */
+.callout {
+  border: 1px solid #ddd;
+  border-left: 4px solid #444;
+  padding: 12px 16px;
+  margin: 1.5em 0;
+  border-radius: 4px;
+  background: #fff;
+}
+
+[data-theme="dark"] .callout {
+  background: transparent;        /* bỏ nền card */
+  border: 1px solid #333;                 /* bỏ box */
+  border-left: 3px solid #888;    /* chỉ giữ line trái */
+  padding: 0.6em 1em;
+  margin: 1.2em 0;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .callout * {
+  color: inherit;
+}
+
+/* title */
+.callout-title {
+  font-weight: 600;
+  font-family: "Georgia", "Times New Roman", serif;
+  margin-bottom: 6px;
+}
+
+/* content */
+.callout-content {
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.6;
+}
+
+/* từng loại (rất subtle) */
+.definition { border-left-color: #000; }
+.theorem    { border-left-color: #222; }
+.lemma      { border-left-color: #444; }
+.proof      { border-left-color: #666; }
+.example    { border-left-color: #888; }
+.intuition  { border-left-color: #aaa; }
+.remark     { border-left-color: #bbb; }
+.pitfall    { border-left-color: #999; }
+.algorithm  { border-left-color: #333; }
+.notation   { border-left-color: #555; }
+
+/* nested nhẹ nhàng */
+.callout .callout {
+  margin-top: 10px;
+  border-left-width: 3px;
+  background: #fafafa;
+}

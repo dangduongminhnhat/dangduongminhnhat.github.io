@@ -6,8 +6,15 @@
     <description>Recent content in Cryptography on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Dec 2025 19:35:18 +0700</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 16:37:25 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 10: Learning With Errors — Lattice-Based Hardness and Variants</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p10/</link>
+      <pubDate>Thu, 30 Apr 2026 16:37:25 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p10/</guid>
+      <description>An introduction to the Learning With Errors (LWE) problem, its lattice structure, hardness reduction from BDD and SVP, and its computational variants: DLWE and ss-LWE.</description>
+    </item>
     <item>
       <title>Cryptography 9: Applications of Lattice Reduction and Lattice-based Problems</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p9/</link>

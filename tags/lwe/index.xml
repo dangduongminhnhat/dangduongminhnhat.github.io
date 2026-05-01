@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LWE on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/lwe/</link>
+    <description>Recent content in LWE on Daminha Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Apr 2026 16:37:25 +0700</lastBuildDate>
+    <atom:link href="https://dangduongminhnhat.github.io/tags/lwe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptography 10: Learning With Errors — Lattice-Based Hardness and Variants</title>
+      <link>https://dangduongminhnhat.github.io/posts/cryptography/p10/</link>
+      <pubDate>Thu, 30 Apr 2026 16:37:25 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p10/</guid>
+      <description>An introduction to the Learning With Errors (LWE) problem, its lattice structure, hardness reduction from BDD and SVP, and its computational variants: DLWE and ss-LWE.</description>
+    </item>
+  </channel>
+</rss>
