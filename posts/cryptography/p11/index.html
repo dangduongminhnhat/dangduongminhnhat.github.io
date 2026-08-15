@@ -1,0 +1,212 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Cryptography 11: From Lindner–Peikert to Kyber — Building the Module-LWE Key Encapsulation Mechanism - Daminha Blog</title>
+<meta name=description content="This post traces the path from the Lindner–Peikert cryptosystem — an early LWE-based encryption scheme with provable correctness and CPA security — through the polynomial ring underlying lattice cryptography, where multiplication turns into a structured matrix operation and coefficient sizes stay tightly controlled, to Module-LWE (MLWE), a generalization of LWE that remains as hard as ordinary LWE despite its extra structure. Building on MLWE, Kyber-PKE achieves an extremely low decryption failure rate and provable CPA security, and after ciphertext compression per the FIPS 203 standard, is upgraded via the Fujisaki–Okamoto transform into Kyber-KEM (ML-KEM) — NIST&rsquo;s standardized, chosen-ciphertext-secure, plaintext-aware key encapsulation mechanism."><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Daminha Blog","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/dangduongminhnhat.github.io\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/dangduongminhnhat.github.io\/posts\/cryptography\/p11\/","name":"Cryptography 11 from lindner– peikert to kyber — building the module lwe key encapsulation mechanism"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Dang Duong Minh Nhat"},"headline":"Cryptography 11: From Lindner–Peikert to Kyber — Building the Module-LWE Key Encapsulation Mechanism","description":"This post traces the path from the Lindner–Peikert cryptosystem — an early LWE-based encryption scheme with provable correctness and CPA security — through the polynomial ring underlying lattice cryptography, where multiplication turns into a structured matrix operation and coefficient sizes stay tightly controlled, to Module-LWE (MLWE), a generalization of LWE that remains as hard as ordinary LWE despite its extra structure. Building on MLWE, Kyber-PKE achieves an extremely low decryption failure rate and provable CPA security, and after ciphertext compression per the FIPS 203 standard, is upgraded via the Fujisaki–Okamoto transform into Kyber-KEM (ML-KEM) — NIST\u0026rsquo;s standardized, chosen-ciphertext-secure, plaintext-aware key encapsulation mechanism.","inLanguage":"en","wordCount":2960,"datePublished":"2026-07-12T16:03:56\u002b07:00","dateModified":"2026-07-12T16:03:56\u002b07:00","image":"https:\/\/dangduongminhnhat.github.io\/","keywords":["Cryptography, Lattice, LWE, Kyber, ML-KEM, Post-Quantum"],"mainEntityOfPage":"https:\/\/dangduongminhnhat.github.io\/posts\/cryptography\/p11\/","publisher":{"@type":"Organization","name":"https:\/\/dangduongminhnhat.github.io\/","logo":{"@type":"ImageObject","url":"https:\/\/dangduongminhnhat.github.io\/","height":60,"width":60}}}</script><meta property="og:title" content="Cryptography 11: From Lindner–Peikert to Kyber — Building the Module-LWE Key Encapsulation Mechanism"><meta property="og:description" content="This post traces the path from the Lindner–Peikert cryptosystem — an early LWE-based encryption scheme with provable correctness and CPA security — through the polynomial ring underlying lattice cryptography, where multiplication turns into a structured matrix operation and coefficient sizes stay tightly controlled, to Module-LWE (MLWE), a generalization of LWE that remains as hard as ordinary LWE despite its extra structure. Building on MLWE, Kyber-PKE achieves an extremely low decryption failure rate and provable CPA security, and after ciphertext compression per the FIPS 203 standard, is upgraded via the Fujisaki–Okamoto transform into Kyber-KEM (ML-KEM) — NIST&rsquo;s standardized, chosen-ciphertext-secure, plaintext-aware key encapsulation mechanism."><meta property="og:url" content="https://dangduongminhnhat.github.io/posts/cryptography/p11/"><meta property="og:type" content="website"><meta property="og:site_name" content="Daminha Blog"><meta name=twitter:title content="Cryptography 11: From Lindner–Peikert to Kyber — Building the …"><meta name=twitter:description content="This post traces the path from the Lindner–Peikert cryptosystem — an early LWE-based encryption scheme with provable correctness and CPA security — through the polynomial ring underlying lattice …"><meta name=twitter:card content="summary_large_image"><meta name=generator content="Hugo 0.129.0"><link rel=alternate href=https://dangduongminhnhat.github.io/index.xml type=application/rss+xml title="Daminha Blog"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css integrity=sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css integrity=sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu crossorigin=anonymous><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/main.css><link rel=stylesheet href=/css/custom.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/syntax.css><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=https://dangduongminhnhat.github.io/css/theme-toggle.css><script>const savedTheme=localStorage.getItem("theme")||"light";document.documentElement.setAttribute("data-theme",savedTheme)</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-V19WW5WSEZ"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-V19WW5WSEZ")}</script><link rel=apple-touch-icon sizes=180x180 href=/favicon_io/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon_io/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon_io/favicon-16x16.png><link rel=manifest href=/favicon_io/site.webmanifest><script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    }
+  });
+</script><script type=text/javascript async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script><script type=text/javascript async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta name=google-site-verification content="ors8seNeA2TL4hvELynbBtrr4PwXapoPh2td6zTadCU"><meta name=google-site-verification content="oQJmyNtEP9HjjEcXwRno2_YPeuLd5kX3jTltynIx65s"></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=https://dangduongminhnhat.github.io/>Daminha Blog</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li><a title=About href=/posts/about-me/>About</a></li><li><a title=Tags href=/tags/>Tags</a></li><li><a title="Cryptography Series" href=/posts/cryptography/>Cryptography Series</a></li><li><a title=Note href=https://hackmd.io/@daminha>Note</a></li><li><a title=Blog href=/posts/blog/>Blog</a></li><li><a href=javascript:void(0); onclick=toggleTheme() style=outline:none><span class="hidden-sm hidden-md hidden-lg">Theme</span>
+<span class="glyphicon glyphicon-adjust" id=themeGlyph></span></a></li></ul></div></div></nav><script>document.addEventListener("DOMContentLoaded",function(){const e=localStorage.getItem("theme")||"light";document.documentElement.setAttribute("data-theme",e),window.toggleTheme=function(){const t=document.documentElement.getAttribute("data-theme"),e=t==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e)}})</script><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1>Cryptography 11: From Lindner–Peikert to Kyber — Building the Module-LWE Key Encapsulation Mechanism</h1><hr class=small></div></div></div></div></div><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><strong>Posted on:</strong> July 12, 2026 |
+<strong>Reading time:</strong> 14 minutes |
+<strong>Word count:</strong> 2960 words |
+<strong>Author:</strong> Dang Duong Minh Nhat</p><p>Hi everyone, it take a long time from the last post to this one. Today, we will learn about the path from the Lindner–Peikert cryptosystem to Kyber, which is a post-quantum secure key encapsulation mechanism standardized by NIST in FIPS 203 under the official name <strong>ML-KEM</strong> (Module-Lattice-based KEM). To understand this post, you should have read the previous posts in this series, especially the one on <a href=https://dangduongminhnhat.github.io/posts/cryptography/p10/>Cryptography 10</a>. Okay, let&rsquo;s get started.</p><hr><h2 id=the-lindnerpeikert-cryptosystem>The Lindner–Peikert cryptosystem</h2><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content><p>For $x \in [0, q-1]$, define the symmetric modular reduction operator:</p><p>$$
+x \ \text{mods } q =
+\begin{cases}
+x & \text{if } x \le (q-1)/2, \\
+x - q & \text{if } x > (q-1)/2.
+\end{cases}
+$$</p><p>This naturally extends to any integer: if $z \in \mathbb{Z}$ then $z \ \text{mods } q = (z \bmod q) \ \text{mods } q$. Using this representation, we define the rounding function:</p><p>$$
+\text{Round}_q(x) =
+\begin{cases}
+0 & \text{if } -q/4 &lt; x \ \text{mods } q &lt; q/4, \\
+1 & \text{otherwise}.
+\end{cases}
+$$</p></div></div><p>We assume the parameters $q, n, B$ satisfy $B \le \sqrt{\dfrac{q}{4(2n+1)}}$.</p><h3 id=key-generation>Key generation</h3><p>Alice picks $A \in_R \mathbb{Z}_q^{n \times n}$, $s \in_R [-B,B]^n$, $e \in_R [-B,B]^n$, and computes $b = As + e \pmod{q}$. The public key is $(A,b)$, the secret key is $s$.</p><h3 id=encryption>Encryption</h3><p>To encrypt a message $m \in \left\lbrace 0,1\right\rbrace $, Bob picks $r, z \in_R [-B,B]^n$ and $z_0 \in_R [-B,B]$. He computes $c_1 = A^T r + z$, $c_2 = b^T r + z_0 + m \left\lceil \dfrac{q}{2} \right\rfloor$, and sends the ciphertext $c = (c_1, c_2)$.</p><h3 id=decryption>Decryption</h3><p>Alice computes $m = \text{Round}_q(c_2 - s^T c_1)$.</p><h3 id=correctness>Correctness</h3><p>We have:</p><p>$$
+\begin{aligned}
+c_2 - s^T c_1 & = (b^T r + z_0 + m\left\lceil \frac{q}{2} \right\rfloor) - s^T (A^T r + z) \\
+& = (s^T A^T + e^T)r + z_0 + m\left\lceil \frac{q}{2} \right\rfloor - s^T (A^T r + z) \\
+& = e^T r - s^T z + z_0 + m\left\lceil \frac{q}{2} \right\rfloor.
+\end{aligned}
+$$</p><p>We also have:</p><p>$$
+\begin{aligned}
+\left| e^T r - s^T z + z_0 \right| & \le nB^2 + nB^2 + B \\
+& \le \frac{2nq}{4(2n+1)} + \sqrt{\frac{q}{4(2n+1)}} \\
+& = \frac{nq}{2(2n+1)} + \sqrt{\frac{q}{4(2n+1)}} \\
+& &lt; \frac{q}{4}.
+\end{aligned}
+$$</p><ul><li>Case $m = 0$: since $m = \text{Round}_q(c_2 - s^T c_1) = \text{Round}_q(e^T r - s^T z + z_0)$ and $\left| e^T r - s^T z + z_0 \ \text{mods } q \right| &lt; \dfrac{q}{4}$, decryption correctly recovers $m = 0$.</li><li>Case $m = 1$: then $m = \text{Round}_q(c_2 - s^T c_1) = \text{Round}_q \left(e^T r - s^T z + z_0 + \dfrac{q+1}{2}\right)$. Since $\left| e^T r - s^T z + z_0 \right| &lt; \dfrac{q}{4}$, we get $\dfrac{q}{4} + \dfrac{1}{2} &lt; e^T r - s^T z + z_0 + \dfrac{q+1}{2} &lt; \dfrac{3q}{4} + \dfrac{1}{2}$.<ul><li>If $\dfrac{q}{4} + \dfrac{1}{2} &lt; e^T r - s^T z + z_0 + \dfrac{q+1}{2} \le \dfrac{q-1}{2}$, the condition holds directly.</li><li>If $\dfrac{q-1}{2} &lt; x = e^T r - s^T z + z_0 + \dfrac{q+1}{2} &lt; \dfrac{3q}{4} + \dfrac{1}{2}$, then $x \ \text{mods } q &lt; -\dfrac{q}{4} + \dfrac{1}{2}$, which also holds since $x$ is an integer.</li></ul></li></ul><p>So decryption succeeds — i.e. $m = \text{Round}_q(c_2 - s^T c_1)$ recovers the right bit — exactly when $\left| e^T r - s^T z + z_0 \ \text{mods } q \right| &lt; \dfrac{q}{4}$.</p><h3 id=security>Security</h3><p>This public-key encryption scheme is indistinguishable under chosen-plaintext attack, assuming the $\text{ss-DLWE}(n,n,q,B)$ problem is hard. To see this, note that encryption can be written as:</p><p>$$
+\begin{bmatrix}
+c_1 \\
+c_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+A^T \\
+b^T
+\end{bmatrix} r
++
+\begin{bmatrix}
+z \\
+z_0
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+\left\lceil \frac{q}{2} \right\rfloor m
+\end{bmatrix}.
+$$</p><p>Under the hardness of ss-DLWE, the matrix</p><p>$$
+\begin{bmatrix}
+A^T \\
+b^T
+\end{bmatrix}
+$$</p><p>is computationally indistinguishable from a uniformly random matrix. Consequently,</p><p>$$
+\begin{bmatrix}
+A^T \\
+b^T
+\end{bmatrix} r
++
+\begin{bmatrix}
+z \\
+z_0
+\end{bmatrix}
+=
+\begin{bmatrix}
+A^T r + z \\
+b^T r + z_0
+\end{bmatrix}
+$$</p><p>is also indistinguishable from a random vector. So, from an attacker&rsquo;s point of view, the ciphertext component $c_2$ looks like the sum of a uniformly random element $b^T r + z_0 \in \mathbb{Z}_q$ and the plaintext $m\left\lceil \dfrac{q}{2} \right\rfloor$. Hence the attacker learns nothing about $m$.</p><h2 id=the-polynomial-ring-r_q--mathbbz_qxxn1>The polynomial ring $R_q = \mathbb{Z}_q[x]/(x^n+1)$</h2><p>Let $q$ be prime and $n$ a positive integer. The polynomial ring $R_q = \mathbb{Z}_q[x]/(x^n+1)$ consists of polynomials in $\mathbb{Z}_q[x]$ of degree less than $n$, where multiplication is carried out by reducing modulo $x^n+1$. To multiply two polynomials $f(x), g(x) \in R_q$: first multiply them as ordinary polynomials in $\mathbb{Z}_q[x]$, obtaining $h(x) \in \mathbb{Z}_q[x]$ of degree at most $2n-2$; then divide $h(x)$ by $x^n+1$ and take the remainder $r(x) \in \mathbb{Z}_q[x]$, of degree at most $n-1$. The product of $f(x)$ and $g(x)$ in $R_q$ is $r(x)$.</p><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content><p><strong>Vector representation of a polynomial.</strong> A polynomial $f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1} \in R_q$ can be represented as a length-$n$ vector of its coefficients, $f=(a_0,a_1,\cdots,a_{n-1})$.</p><p><strong>Polynomial multiplication as a matrix product.</strong> Polynomial multiplication can be represented as a matrix-vector product. Let $a(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_{n-1} x^{n-1} \in R_q$, $b(x) = b_0 + b_1 x + b_2 x^2 + \cdots + b_{n-1} x^{n-1} \in R_q$, and $c(x) = a(x) \times b(x)$ in $R_q$. Then</p><p>$$
+\begin{aligned}
+c(x) & = a(x)(b_0 + b_1 x + b_2 x^2 + \cdots + b_{n-1} x^{n-1}) \\
+& = b_0 a(x) + b_1 x \cdot a(x) + b_2 x^2 \cdot a(x) + \cdots + b_{n-1} x^{n-1} \cdot a(x).
+\end{aligned}
+$$</p></div></div><p>We have:</p><p>$$
+\begin{aligned}
+x \cdot a(x) & = a_0 x + a_1 x^2 + \cdots + a_{n-2} x^{n-1} + a_{n-1} x^n \\
+& = -a_{n-1} + a_0 x + a_1 x^2 + \cdots + a_{n-2} x^{n-1} \pmod{x^n+1}.
+\end{aligned}
+$$</p><p>This corresponds to the vector $(-a_{n-1}, a_0, a_1, \ldots, a_{n-2})$ — that is, the vector of $x \cdot a(x)$ is a <strong>right cyclic shift</strong> of the vector of $a(x)$, except that the element wrapped around to the front gets negated. From this it follows that if $c(x) = a(x) \times b(x)$ in $R_q$, then</p><p>$$
+\begin{bmatrix}
+c_0 \\
+c_1 \\
+c_2 \\
+\vdots \
+c_{n-1}
+\end{bmatrix}
+=
+\underbrace{
+\begin{bmatrix}
+a_0 & -a_{n-1} & -a_{n-2} & \cdots & -a_1 \\
+a_1 & a_0 & -a_{n-1} & \cdots & -a_2 \\
+a_2 & a_1 & a_0 & \cdots & -a_3 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+a_{n-1} & a_{n-2} & a_{n-3} & \cdots & a_0
+\end{bmatrix}
+}_{\text{circ}(a)}
+\cdot
+\begin{bmatrix}
+b_0 \\
+b_1 \\
+b_2 \\
+\vdots \\
+b_{n-1}
+\end{bmatrix}
+$$</p><p>The $n \times n$ matrix above is called an <strong>anti-circulant matrix</strong>, denoted $A = \text{circ}(a)$.</p><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content><strong>Size.</strong> For an odd integer $q \ge 3$, the <em>size</em> of an integer $r \in \mathbb{Z}_q$ is its infinity norm, denoted $\lVert r\rVert_{\infty} = |r \ \text{mods } q|$.</div></div><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content>The size (infinity norm) of a polynomial $f(x) = f_0+f_1x+f_2x^2+\cdots+f_{n-1}x^{n-1} \in R_q$ is $\lVert f\rVert_\infty = \max_i \lVert f_i\Vert_\infty$.</div></div><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content>Let $\eta$ be a positive integer that is very small relative to $\dfrac{q}{2}$. The set of <em>small polynomials</em> in $R_q$ is $S_\eta = \left\lbrace f \in R_q \ | \ \lVert f\rVert _\infty \le \eta\right\rbrace $.</div></div><div class="callout theorem"><div class=callout-title>Theorem</div><div class=callout-content>Let $R_q = \mathbb{Z}_q[x]/(x^n+1)$ and let $\eta_1, \eta_2$ be positive integers satisfying $n\eta_1\eta_2 &lt; \dfrac{q}{2}$. For $f \in S_{\eta_1}$ and $g \in S_{\eta_2}$, we have $fg \in S_{n\eta_1\eta_2}$.</div></div><div class="callout proof"><div class=callout-title>Proof</div><div class=callout-content>Let $f(x) = f_0 + f_1x + \cdots + f_{n-1}x^{n-1} \in S_{\eta_1}$ and $g(x) = g_0+g_1x+ \cdots + g_{n-1}x^{n-1} \in S_{\eta_2}$. Let $h(x) = h_0 + h_1x + \cdots + h_{n-1}x^{n-1}$ be the product of $f(x)$ and $g(x)$ in $R_q$. Carrying out the multiplication and substituting $x^{n+j}=-x^j \pmod{x^n+1}$ for $0 \le j \le n-1$, we obtain
+$$h_i = f_0g_i + f_1g_{i-1} + \cdots + f_ig_0 - f_{i+1}g_{n-1} - f_{i+2}g_{n-2}-\cdots-f_{n-1}g_{i+1}.$$
+From this, $\lVert h_i\rVert _\infty \le n\eta_1\eta_2 \Rightarrow \lVert h\rVert _\infty \le n\eta_1\eta_2$.</div></div><h2 id=module-lwe-mlwe>Module-LWE (MLWE)</h2><p>A module generalizes the notion of a vector space by replacing the field of coefficients with a ring. Here, the module $R_q^k$ consists of length-$k$ vectors whose entries are each a polynomial in $R_q$. Addition and subtraction of two such vectors again yield an element of $R_q^k$, while their inner product yields a single polynomial in $R_q$. We now generalize the LWE and DLWE problems to Module Learning With Errors (MLWE) and Decisional Module Learning With Errors (D-MLWE) by replacing integers modulo $q$ with polynomials in the ring $R_q=\mathbb{Z}_q[x]/(x^n+1)$.</p><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content><strong>Module Learning With Errors, denoted $\text{MLWE}(k,l,n,q,B)$.</strong> Let $A \in_R R_q^{k \times l}$ (i.e. the columns $A_1, A_2,\cdots,A_l$ belong to the module $R_q^k$), $s \in_R R^l_q$, and $e \in_R S_B^k$, where $k>l$, $B \ll \dfrac{q}{2}$, and $R_q = \mathbb{Z}_q[x]/(x^n+1)$. Given $A$ and $t = As+e \in R_q^k$, find $s$.</div></div><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content><strong>Decisional Module Learning With Errors, denoted $\text{D-MLWE}(k,l,n,q,B)$.</strong> Let $A \in_R R_q^{k \times l}$, $s \in_R R^l_q$, $e \in_R S_B^k$, $r \in_R R_q^k$, and $t = As +e \in R_q^k$. Uniformly at random set $z=t$ or $z=r$, each with probability $\dfrac{1}{2}$. Given $A$ and $z$, decide whether $z=t$ or $z=r$ with probability noticeably greater than $\dfrac{1}{2}$.</div></div><p>In the variants of MLWE and D-MLWE, the vector $s$ is chosen to have small coefficients.</p><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content><strong>Short-secret Module Learning With Errors, denoted $\text{ss-MLWE}(k,l,n,q,\eta_1,\eta_2)$.</strong> Let $A \in_R R_q^{k \times l}$, $s \in_R S_{\eta_1}^l$, and $e \in_R S_{\eta_2}^k$, where $k \ge l$ and $\eta_1, \eta_2 \ll \dfrac{q}{2}$. Given $A$ and $t=As+e \in R_q^k$, find $s$.</div></div><div class="callout definition"><div class=callout-title>Definition</div><div class=callout-content><strong>Short-secret Decisional Module Learning With Errors, denoted $\text{ss-D-MLWE}(k,l,n,q,\eta_1,\eta_2)$.</strong> Let $A \in_R R_q^{k \times l}$, $s \in_R S_{\eta_1}^l$, $e \in_R S_{\eta_2}^k$, $r \in_R R_q^k$, and $t = As +e \in R_q^k$. Uniformly at random set $z=t$ or $z=r$, each with probability $\dfrac{1}{2}$. Given $A$ and $z$, decide whether $z=t$ or $z=r$ with probability noticeably greater than $\dfrac{1}{2}$.</div></div><h3 id=hardness-of-mlwe>Hardness of MLWE</h3><p>No attacks against MLWE (or its decisional and short-secret variants) are currently known to be faster than attacks against plain LWE — that is, no attack has yet been found that exploits the special anti-circulant block structure of the matrix $A$.</p><h2 id=the-kyber-public-key-encryption-scheme>The Kyber public-key encryption scheme</h2><p>Kyber-PKE is post-quantum secure, based on the hardness of MLWE.</p><div class="callout notation"><div class=callout-title>Notation</div><div class=callout-content><ul><li>$R_q = \mathbb{Z}_q[x]/(x^n+1)$</li><li>$S_\eta = \left\lbrace f \in R_q \ | \ \lVert f\rVert_\infty \le \eta\right\rbrace $</li><li>$\lceil x \rfloor$ denotes the nearest integer to $x$; ties (e.g. $1.5$) round up (e.g. to $2$).</li><li>The plaintext space is $\left\lbrace 0,1\right\rbrace ^n$. A plaintext $m = (m_0,m_1,\cdots,m_{n-1}) \in \left\lbrace 0,1\right\rbrace ^n$ is mapped to the polynomial $m(x) = m_0 + m_1x+ \cdots + m_{n-1}x^{n-1} \in R_q$.</li></ul></div></div><p>Kyber-PKE uses the same $\text{mods}$ and $\text{Round}_q(x)$ functions defined earlier for Lindner–Peikert. The function $\text{Round}_q(x)$ extends to polynomials by applying it coefficient-wise.</p><div class="callout example"><div class=callout-title>Example</div><div class=callout-content>$\text{Round}_{3329}(3000+2500x+2010x^2+37x^3)=x+x^2$</div></div><h3 id=kyber-pke-without-ciphertext-compression>Kyber-PKE (without ciphertext compression)</h3><h4 id=domain-parameters>Domain parameters</h4><p>$q,n,k,\eta_1,\eta_2$.</p><h4 id=key-generation-1>Key generation</h4><p>Bob performs:</p><ol><li>Choose $A \in_R R_q^{k \times k}$, $s \in_R S_{\eta_1}^k$, and $e \in_R S_{\eta_1}^k$.</li><li>Compute $t=As+e$.</li><li>The public key is $(A,t)$; the secret key is $s$.</li></ol><h4 id=encryption-1>Encryption</h4><p>Alice encrypts a message $m \in \left\lbrace 0,1\right\rbrace ^n$ by:</p><ol><li>Obtaining Bob&rsquo;s public key $(A,t)$.</li><li>Choosing $r \in_R S_{\eta_1}^k$, $e_1 \in_R S_{\eta_2}^k$, and $e_2 \in_R S_{\eta_2}$.</li><li>Computing $u=A^Tr+e_1$ and $v=t^Tr+e_2 + \lceil \dfrac{q}{2} \rfloor m$.</li><li>Returning the ciphertext $c = (u,v)$.</li></ol><h4 id=decryption-1>Decryption</h4><p>To decrypt, Bob computes $m = \text{Round}_q(v-s^Tu)$.</p><h4 id=correctness-1>Correctness</h4><p>We have:</p><p>$$
+\begin{aligned}
+v-s^Tu & = (t^Tr+e_2+ \lceil \dfrac{q}{2} \rfloor m) - s^T(A^Tr+e_1) \\
+& = (s^TA^T+e^T)r + e_2 + \lceil \dfrac{q}{2} \rfloor m - s^T(A^Tr+e_1) \quad (\text{since } t = As+ e \Rightarrow t^T = s^TA^T + e^T) \\
+& = e^Tr +e_2-s^Te_1+ \lceil \dfrac{q}{2} \rfloor m.
+\end{aligned}
+$$</p><p>Let $E(x) = e^Tr +e_2-s^Te_1$. Then:</p><p>$$
+\begin{cases}
+e = (e^{(1)},e^{(2)},\cdots,e^{(k)}) \\
+r = (r^{(1)}, r^{(2)}, \cdots, r^{(k)})
+\end{cases}
+\Rightarrow
+e^Tr = e^{(1)}r^{(1)}+e^{(2)}r^{(2)}+\cdots+e^{(k)}r^{(k)}.
+$$</p><p>Applying the theorem from the ring section above:</p><p>$$
+\begin{aligned}
+& \begin{cases}
+\lVert e^{(i)}\rVert _\infty \le \eta_1 \\
+\lVert r^{(i)}\rVert _\infty \le \eta_1
+\end{cases} \quad \forall i \in \left\lbrace 1, 2, \cdots, k\right\rbrace \\
+\Rightarrow &
+\lVert e^{(i)}r^{(i)}\rVert _\infty \le n\eta_1^2 \\
+\Rightarrow &
+\lVert (e^Tr)\rVert _\infty = \left \lVert \sum_{i=1}^k (e^{(i)}r^{(i)}) \right \rVert _\infty \le \sum_{i=1}^k \lVert (e^{(i)}r^{(i)})\rVert _\infty \ (\text{triangle inequality}) \le kn\eta_1^2\
+\end{aligned}
+$$</p><p>Similarly, $\lVert s^Te_1\rVert _\infty \le kn\eta_1\eta_2$. Therefore:</p><p>$$
+\begin{aligned}
+\lVert E_i\rVert _\infty & \le \max_{i \in \left\lbrace 1,\cdots,k\right\rbrace } \lVert E_i\rVert _\infty \\
+& = \lVert E\rVert _\infty \\
+& = \lVert e^Tr +e_2-s^Te_1\rVert _\infty \\
+& \le \lVert e^Tr\rVert _\infty + \lVert e_2\rVert _\infty + \lVert s^Te_1\rVert _\infty \\
+& \le kn\eta_1^2 + \eta_2 + kn\eta_1\eta_2.
+\end{aligned}
+$$</p><p>So, if $kn\eta_1^2 + \eta_2 + kn\eta_1\eta_2 &lt; \dfrac{q}{4}$, correctness holds (this is only a sufficient, one-directional condition), as shown earlier for Lindner–Peikert. In practice, however, ML-KEM-768 with parameters $q=3329, n=256, k=3, \eta_1=2, \eta_2=2$ does <em>not</em> satisfy that inequality. Nevertheless, the probability that $\lVert E\rVert _\infty \ge \dfrac{q}{4}$ is only $2^{-164}$; for ML-KEM-1024, with parameters $q=3329, n=256, k=4, \eta_1=2, \eta_2=2$, that probability is $2^{-174}$ — both negligibly small failure probabilities.</p><h4 id=security-1>Security</h4><div class="callout theorem"><div class=callout-title>Theorem</div><div class=callout-content>Kyber-PKE is semantically secure against chosen-plaintext attack, assuming the ss-D-MLWE problem is intractable.</div></div><div class="callout proof"><div class=callout-title>Proof</div><div class=callout-content><p>Encryption can be rewritten as</p><p>$$
+\begin{bmatrix}
+u \\
+v
+\end{bmatrix}
+=
+\begin{bmatrix}
+A^T \\
+t^T
+\end{bmatrix}
+r
++
+\begin{bmatrix}
+e_1 \\
+e_2
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+\left\lceil \dfrac{q}{2} \right\rfloor m
+\end{bmatrix}.
+$$</p><p>Assuming <strong>ss-D-MLWE is hard</strong>, the matrix</p><p>$$
+\begin{bmatrix}
+A^T \\
+t^T
+\end{bmatrix}
+$$</p><p>is <strong>computationally indistinguishable from a uniformly random matrix</strong>. Under this same assumption,</p><p>$$
+\begin{bmatrix}
+A^T \\
+t^T
+\end{bmatrix}
+r +
+\begin{bmatrix}
+e_1 \\
+e_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+A^T r + e_1 \\
+t^T r + e_2
+\end{bmatrix}
+$$</p><p>is also <strong>indistinguishable from random</strong>. So, from an attacker&rsquo;s viewpoint, $v$ is the sum of a random polynomial $t^T r + e_2$ and the scaled message polynomial $\left\lceil \dfrac{q}{2} \right\rfloor m$. Since $u$ <strong>does not depend on $m$</strong> either, no information about $m$ leaks. Hence the attacker <strong>learns nothing about the plaintext $m$</strong>.</p></div></div><h3 id=ciphertext-compression>Ciphertext compression</h3><p>The FIPS 203 standard describes a method for compressing and decompressing Kyber-PKE ciphertexts. The approach discards the low-order bits of the coefficients across all polynomials in the ciphertext $c = (u,v)$. The compression parameters are chosen carefully so that decompression does not affect decryption.</p><p>Choose a compression parameter $1 \le d &lt; \log_2q$. For $X \in [0,q-1]$, define the compression function</p><p>$$
+\text{Compress}_q(X,d)=\left\lceil\dfrac{2^d}{q}\cdot X\right\rfloor \bmod{2^d},
+$$</p><p>and for $Y \in [0,2^d-1]$, the decompression function</p><p>$$
+\text{Decompress}_q(Y,d)=\left\lceil\dfrac{q}{2^d}\cdot Y\right\rfloor\bmod{q}.
+$$</p><div class="callout theorem"><div class=callout-title>Theorem</div><div class=callout-content><strong>Decompression error.</strong> For $d \in [1,\lfloor \log_2q\rfloor]$, $X \in [0, q-1]$, $Y = \text{Compress}_q(X,d)$, and $X&rsquo; = \text{Decompress}_q(Y,d)$: $\lVert X&rsquo;-X\rVert _\infty \le \left \lceil \dfrac{q}{2^{d+1}}\right\rfloor$.</div></div><p>The compression and decompression functions extend to polynomials in $R_q$ and vectors of polynomials in $R_q^k$ by applying them coefficient-wise.</p><h2 id=the-kyber-key-encapsulation-mechanism>The Kyber key encapsulation mechanism</h2><p>Kyber-KEM is a post-quantum secure key encapsulation mechanism, standardized by NIST in FIPS 203 under the official name <strong>ML-KEM</strong> (Module-Lattice-based KEM). Kyber-KEM is built by applying a variant of the Fujisaki–Okamoto (FO) transform to Kyber-PKE — a general technique for converting a chosen-plaintext-secure scheme into a chosen-ciphertext-secure one.</p><h3 id=domain-parameters-1>Domain parameters</h3><ul><li>Kyber-PKE: $q,n=256,k,\eta_1,\eta_2$</li><li>Hash functions:<ul><li>$G:\left\lbrace 0,1\right\rbrace ^* \rightarrow \left\lbrace 0,1\right\rbrace ^{2n}$</li><li>$H:\left\lbrace 0,1\right\rbrace ^* \rightarrow \left\lbrace 0,1\right\rbrace ^{n}$</li><li>$J:\left\lbrace 0,1\right\rbrace ^* \rightarrow \left\lbrace 0,1\right\rbrace ^{n}$</li></ul></li></ul><p>These three hash functions are built from SHA3 and SHAKE256.</p><h3 id=key-generation-2>Key generation</h3><p>Bob performs:</p><ol><li>Generate a Kyber-PKE key pair: encryption key $(A,t)$ and decryption key $s$.</li><li>Choose $z \in_R \left\lbrace 0,1\right\rbrace ^{256}$ at random.</li><li>Publish encapsulation (public) key $ek=(A,t)$ and keep decapsulation (private) key $dk = (s,ek,H(ek),z)$.</li></ol><h3 id=encapsulation>Encapsulation</h3><p>To establish an $n$-bit shared secret key with Bob, Alice performs:</p><ol><li>Obtain the encapsulation key $ek$ from Bob.</li><li>Choose $m \in_R \left\lbrace 0,1\right\rbrace ^{256}$ at random.</li><li>Compute $h=H(ek)$ and $(K,R) = G(m,h)$, with $K,R \in \left\lbrace 0,1\right\rbrace ^{256}$.</li><li>Encrypt $m$ under Kyber-PKE using $ek$, using $R$ as a seed to deterministically derive $e_1,e_2,r$ (rather than sampling them freshly at random), producing ciphertext $c$.</li><li>Send $c$ to Bob and set $K$ as the shared secret key.</li></ol><h3 id=decapsulation>Decapsulation</h3><p>To recover $K$ from $c$, Bob performs:</p><ol><li>Decrypt $c$ using Kyber-PKE decryption with secret key $s$, obtaining $m&rsquo;$.</li><li>Compute $(K&rsquo;,R&rsquo;) = G(m&rsquo;,H(ek))$.</li><li>Compute $\overline{K} = J(z,c)$.</li><li>Re-encrypt $m&rsquo;$ under Kyber-PKE using $ek$, deriving $e_1,e_2,r$ from $R&rsquo;$, producing $c&rsquo;$.</li><li>If $c \ne c&rsquo;$, return $\overline{K}$.</li><li>Otherwise, return $K$.</li></ol><p>So, if $c = c&rsquo;$, Bob accepts $K$ as the shared secret key. If not, Bob instead produces a pseudorandom key $\overline{K}$ by hashing $c$ together with the secret value $z$. Decapsulation therefore &ldquo;fails&rdquo; — in the sense of producing a mismatched key — exactly when $c \ne c&rsquo;$, which can still occur between two honest parties due to the (extremely small) probability that Kyber-PKE decryption is incorrect, i.e. $m \ne m&rsquo;$. Under the parameters specified in FIPS 203, this failure probability is negligible.</p><h3 id=security-2>Security</h3><p>Kyber-KEM has been proven IND-CCA secure against chosen-ciphertext attack, assuming the D-MLWE problem is hard and that $G, H, J$ behave as random oracles. It is additionally secure against quantum adversaries.</p><h3 id=plaintext-awareness>Plaintext awareness</h3><p>The idea behind the FO transform is that Kyber-KEM has the plaintext-awareness property: decapsulation returns the &ldquo;correct&rdquo; key $K$ only if the party performing encapsulation actually knew $K$. If an attacker already knows $K$, the attack yields no new information; if the attacker does not know $K$, Bob will (with overwhelming probability) return a key different from $K$, so the attacker gains no useful information either way.</p><hr><p>From a simple encryption scheme over $\mathbb{Z}_q^n$ to ML-KEM — NIST&rsquo;s official post-quantum key-encapsulation standard — we can trace a single consistent thread: every refinement along the way (moving to a polynomial ring, generalizing to modules, applying the FO transform) is aimed at resolving a concrete tradeoff between <strong>performance</strong> and <strong>provable security</strong>. The structure &ldquo;the LWE matrix looks random under a decisional assumption&rdquo; runs from Lindner–Peikert all the way to Kyber, illustrating the power of proving security through a sequence of computationally indistinguishable distributions.</p><h2 id=references>References</h2><ol><li>Alfred Menezes. (2025, April 30). <em>A Gentle Introduction to Lattice-Based Cryptography</em>. Retrieved from <a href=https://drive.google.com/file/d/1-G9qYuQhuHr0W4-YglVGub1PxdLyFHC6/view>https://drive.google.com/file/d/1-G9qYuQhuHr0W4-YglVGub1PxdLyFHC6/view</a></li><li>Alfred Menezes. <em>Textbook of Applied Cryptography</em>. Retrieved from <a href=https://drive.google.com/file/d/1xGAODc0PyMvH65spbGBCW-Xgkbe0leif/view>https://drive.google.com/file/d/1xGAODc0PyMvH65spbGBCW-Xgkbe0leif/view</a></li></ol><h2 id=connect-with-me>Connect with Me</h2><p>Connect with me on <a href=https://www.facebook.com/dangduongminhnhat/>Facebook</a>, <a href=https://www.linkedin.com/in/nhatdang1901/>LinkedIn</a>, via email at <a href=mailto:dangduongminhnhat2003@gmail.com>dangduongminhnhat2003@gmail.com</a>, <a href=https://github.com/dangduongminhnhat>GitHub</a>, or by phone at <a href=tel:+84829258815>+84 829 258 815</a>.</p><div class=blog-tags><a href=https://dangduongminhnhat.github.io/tags/cryptography/>Cryptography</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/lattice/>Lattice</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/lwe/>LWE</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/kyber/>Kyber</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/ml-kem/>ML-KEM</a>&nbsp;
+<a href=https://dangduongminhnhat.github.io/tags/post-quantum/>Post-Quantum</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://dangduongminhnhat.github.io/posts/cryptography/p10/ data-toggle=tooltip data-placement=top title="Cryptography 10: Learning With Errors — Lattice-Based Hardness and Variants">&larr; Previous Post</a></li></ul><div id=utterances-comments><script src=https://utteranc.es/client.js repo=dangduongminhnhat/dangduongminhnhat.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2026
+&nbsp;&bull;&nbsp;
+<a href=https://dangduongminhnhat.github.io/>Daminha Blog</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.129.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js integrity=sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous onload=renderMathInElement(document.body)></script><script src=https://code.jquery.com/jquery-3.7.0.slim.min.js integrity=sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js integrity=sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://dangduongminhnhat.github.io/js/load-photoswipe.js></script></body></html>

@@ -6,27 +6,48 @@
     <description>Recent content in Tags on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Apr 2026 16:37:25 +0700</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 16:03:56 +0700</lastBuildDate>
     <atom:link href="https://dangduongminhnhat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cryptography</title>
       <link>https://dangduongminhnhat.github.io/tags/cryptography/</link>
-      <pubDate>Thu, 30 Apr 2026 16:37:25 +0700</pubDate>
+      <pubDate>Sun, 12 Jul 2026 16:03:56 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kyber</title>
+      <link>https://dangduongminhnhat.github.io/tags/kyber/</link>
+      <pubDate>Sun, 12 Jul 2026 16:03:56 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/kyber/</guid>
       <description></description>
     </item>
     <item>
       <title>Lattice</title>
       <link>https://dangduongminhnhat.github.io/tags/lattice/</link>
-      <pubDate>Thu, 30 Apr 2026 16:37:25 +0700</pubDate>
+      <pubDate>Sun, 12 Jul 2026 16:03:56 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/lattice/</guid>
       <description></description>
     </item>
     <item>
       <title>LWE</title>
       <link>https://dangduongminhnhat.github.io/tags/lwe/</link>
-      <pubDate>Thu, 30 Apr 2026 16:37:25 +0700</pubDate>
+      <pubDate>Sun, 12 Jul 2026 16:03:56 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/tags/lwe/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ML-KEM</title>
+      <link>https://dangduongminhnhat.github.io/tags/ml-kem/</link>
+      <pubDate>Sun, 12 Jul 2026 16:03:56 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/ml-kem/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Post-Quantum</title>
+      <link>https://dangduongminhnhat.github.io/tags/post-quantum/</link>
+      <pubDate>Sun, 12 Jul 2026 16:03:56 +0700</pubDate>
+      <guid>https://dangduongminhnhat.github.io/tags/post-quantum/</guid>
       <description></description>
     </item>
     <item>

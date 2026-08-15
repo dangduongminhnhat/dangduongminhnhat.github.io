@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>LWE on Daminha Blog</title>
-    <link>https://dangduongminhnhat.github.io/tags/lwe/</link>
-    <description>Recent content in LWE on Daminha Blog</description>
+    <title>Post-Quantum on Daminha Blog</title>
+    <link>https://dangduongminhnhat.github.io/tags/post-quantum/</link>
+    <description>Recent content in Post-Quantum on Daminha Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Jul 2026 16:03:56 +0700</lastBuildDate>
-    <atom:link href="https://dangduongminhnhat.github.io/tags/lwe/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dangduongminhnhat.github.io/tags/post-quantum/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cryptography 11: From Lindner–Peikert to Kyber — Building the Module-LWE Key Encapsulation Mechanism</title>
       <link>https://dangduongminhnhat.github.io/posts/cryptography/p11/</link>
       <pubDate>Sun, 12 Jul 2026 16:03:56 +0700</pubDate>
       <guid>https://dangduongminhnhat.github.io/posts/cryptography/p11/</guid>
       <description>This post traces the path from the Lindner–Peikert cryptosystem — an early LWE-based encryption scheme with provable correctness and CPA security — through the polynomial ring underlying lattice cryptography, where multiplication turns into a structured matrix operation and coefficient sizes stay tightly controlled, to Module-LWE (MLWE), a generalization of LWE that remains as hard as ordinary LWE despite its extra structure. Building on MLWE, Kyber-PKE achieves an extremely low decryption failure rate and provable CPA security, and after ciphertext compression per the FIPS 203 standard, is upgraded via the Fujisaki–Okamoto transform into Kyber-KEM (ML-KEM) — NIST&amp;rsquo;s standardized, chosen-ciphertext-secure, plaintext-aware key encapsulation mechanism.</description>
-    </item>
-    <item>
-      <title>Cryptography 10: Learning With Errors — Lattice-Based Hardness and Variants</title>
-      <link>https://dangduongminhnhat.github.io/posts/cryptography/p10/</link>
-      <pubDate>Thu, 30 Apr 2026 16:37:25 +0700</pubDate>
-      <guid>https://dangduongminhnhat.github.io/posts/cryptography/p10/</guid>
-      <description>An introduction to the Learning With Errors (LWE) problem, its lattice structure, hardness reduction from BDD and SVP, and its computational variants: DLWE and ss-LWE.</description>
     </item>
   </channel>
 </rss>
